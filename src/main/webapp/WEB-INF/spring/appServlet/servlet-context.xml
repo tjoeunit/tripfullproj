@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans 
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- Annotation 등록 ! view의 하위 패키지도 Bean 객체 생성해서 사용가능 ! 핸들러 등록 컨트롤러 등록 필요없음 -->
+	<context:component-scan base-package="com.tjoeunit.view" />
+
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<mvc:annotation-driven />
+
+	<!-- LocaleResolver 등록 -->
+	<beans:bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver"></beans:bean>	
+	
+	<!-- LocaleChangeInterceptor 등록 -->
+	<mvc:interceptors>
+		<beans:bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+			<beans:property name="paramName" value="lang"></beans:property>
+		</beans:bean>
+	</mvc:interceptors>	
+	
+	<beans:bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/webapp/" />
+		<beans:property name="suffix" value=".jsp" />
+		<beans:property name="order" value="1" />
+	</beans:bean>
+		
+	<!-- 파일 업로드 -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="100000"></beans:property>
+	</beans:bean>
+	
+</beans:beans>
