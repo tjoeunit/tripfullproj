@@ -26,7 +26,7 @@ public class MembersController {
 		String msg="회원 가입 실패", url="/member/insertMembers.do";
 		if(cnt>0) {
 			msg="회원 가입 성공";
-			url="";
+			url="../index.jsp";
 		}
 		
 		model.addAttribute("msg", msg);

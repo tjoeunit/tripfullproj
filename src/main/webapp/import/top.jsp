@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="shortcut icon" href="./img/favicon16.ico">
+<link rel="shortcut icon" href="../img/favicon16.ico">
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
@@ -115,7 +115,7 @@
 		<nav class="nav">
 			<div class="navDiv">			
 				<div class="navImgDiv">
-					<img src="./img/tripfulllogo.png">					
+					<img src="../img/tripfulllogo.png">					
 				</div>
 				
 				<div class="navAccDiv">
@@ -132,7 +132,7 @@
 						<li><a href="#">숙소</a></li>
 						<li><a href="#">렌터카 & 교통</a></li>
 						<li><a href="#">액티비티</a></li>
-						<li><a href="getLTList.jsp">랜선투어</a></li>
+						<li><a href="getLanTripList.do">랜선투어</a></li>
 						<li><a href="#">여행이야기</a></li>
 					</ul>
 				</div>				

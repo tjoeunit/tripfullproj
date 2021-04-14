@@ -10,10 +10,13 @@
 		<typeAlias alias="board" type="com.springbook.biz.board.BoardVO"/>
 	</typeAliases>	
 	-->
-	
+	<typeAliases>  
+		<typeAlias alias="lantrip" type="com.tjoeunit.biz.lantrip.LanTripVO"/>
+	</typeAliases>	
 	
 	<!-- Sql Mapper 설정 -->
 	<mappers>
 		<mapper resource="mappings/members-mapping.xml"/>
+		<mapper resource="mappings/lantrip-mapping.xml"/>
 	</mappers>	
 </configuration>
