@@ -5,12 +5,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.tjoeunit.biz.members.MembersService;
 import com.tjoeunit.biz.members.MembersVO;
 
 @Controller
+@RequestMapping("/members")
 public class MembersController {
 
 	@Autowired
@@ -18,7 +18,7 @@ public class MembersController {
 	
 	@RequestMapping(value="/insertMembers.do", method=RequestMethod.GET)
 	public String insertMembersPage() {
-		System.out.println("회원가입뷰");
+		System.out.println("회원가입뷰");		
 		return "members/insertMembers";
 	}
 	
@@ -29,11 +29,11 @@ public class MembersController {
 		
 		int cnt = membersService.insertMembers(vo);
 		
-		String msg="회원 가입 실패", url="insertMembers.do";
+		String msg="회원 가입 실패", url="/members/insertMembers.do";
 		
 		if(cnt>0) {
 			msg="회원 가입 성공";
-			url="index.do";
+			url="/index.do";
 		}
 		
 		model.addAttribute("msg", msg);
@@ -44,6 +44,3 @@ public class MembersController {
 	}
 		
 }
-
-
-

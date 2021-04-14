@@ -111,14 +111,14 @@
 		<nav class="nav">
 			<div class="navDiv">			
 				<div class="navImgDiv">								
-					<a style="all: unset; cursor: pointer;" href="index.do">
-						<img src="${pageContext.request.contextPath}/img/tripfulllogo.png">
+					<a style="all: unset; cursor: pointer;" href="<c:url value='/index.do'/>">
+						<img src="<c:url value='/img/tripfulllogo.png'/>">
 					</a>
 				</div>
 				
 				<div class="navAccDiv">
 					<ul>
-						<li><a href="insertMembers.do">회원가입</a></li>
+						<li><a href="<c:url value='/members/insertMembers.do'/>">회원가입</a></li>
 						<li><a href="#">로그인</a></li>
 						<li><a href="#">관리자</a></li>
 					</ul>
