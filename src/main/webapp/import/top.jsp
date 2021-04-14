@@ -15,7 +15,7 @@
 	
 	.nav {
 		background-color: white;
-		position: fixed;
+		/*position: fixed;*/
 		width: 100%;
 		top: 0;
 		cursor: default;
@@ -96,17 +96,18 @@
 		
 		text-align: center;
 	}
-	
+	/*
 	.navBackDiv {
 		height: 120px;
 		width: 100%;
 		clear: both;
 	}
+	*/
 	
 	.navListDiv {
 		clear: both;
 	}
-		
+	
 	
 </style>
 
@@ -120,7 +121,7 @@
 				
 				<div class="navAccDiv">
 					<ul>
-						<li><a href="members/insertMembers.jsp">회원가입</a></li>
+						<li><a href="members/insertMembers.do">회원가입</a></li>
 						<li><a href="#">로그인</a></li>
 						<li><a href="#">관리자</a></li>
 					</ul>
@@ -138,7 +139,4 @@
 				</div>				
 			</div>
 		</nav>
-		<div class="navBackDiv">
-			
-		</div>
 </header>

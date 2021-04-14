@@ -25,13 +25,6 @@
 		</beans:bean>
 	</mvc:interceptors>	
 	
-	<beans:bean
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<beans:property name="prefix" value="/webapp/" />
-		<beans:property name="suffix" value=".jsp" />
-		<beans:property name="order" value="1" />
-	</beans:bean>
-		
 	<!-- 파일 업로드 -->
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<beans:property name="maxUploadSize" value="100000"></beans:property>
