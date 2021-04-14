@@ -1,18 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="shortcut icon" href="./img/favicon16.ico">
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/img/favicon16.ico">
+
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Tripfull</title>
 </head>
 
 <style>
-/* body{
-		padding-top: 130px;
-	} */
-	
 	.nav {
 		background-color: white;
 		/*position: fixed;*/
@@ -73,7 +72,7 @@
 		border-right: solid 0.75em transparent;
 		border-top: solid 0.6em #282828;
 	}	
-	
+		
 	.navDiv {
 		margin-left: 360px;
 		width: 1200px;		
@@ -96,18 +95,10 @@
 		
 		text-align: center;
 	}
-	/*
-	.navBackDiv {
-		height: 120px;
-		width: 100%;
-		clear: both;
-	}
-	*/
 	
 	.navListDiv {
 		clear: both;
-	}
-	
+	}	
 	
 </style>
 
@@ -115,13 +106,15 @@
 <header>	
 		<nav class="nav">
 			<div class="navDiv">			
-				<div class="navImgDiv">
-					<img src="./img/tripfulllogo.png">					
+				<div class="navImgDiv">								
+					<a style="all: unset; cursor: pointer;" href="index.do">
+						<img src="${pageContext.request.contextPath}/img/tripfulllogo.png">
+					</a>
 				</div>
 				
 				<div class="navAccDiv">
 					<ul>
-						<li><a href="members/insertMembers.do">회원가입</a></li>
+						<li><a href="insertMembers.do">회원가입</a></li>
 						<li><a href="#">로그인</a></li>
 						<li><a href="#">관리자</a></li>
 					</ul>

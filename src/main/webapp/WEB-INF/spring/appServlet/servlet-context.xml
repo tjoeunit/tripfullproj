@@ -30,4 +30,12 @@
 		<beans:property name="maxUploadSize" value="100000"></beans:property>
 	</beans:bean>
 	
+	<!-- 컨트롤러 메서드 처리 후 페이지 경로 설정에 사용 -->
+	<beans:bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+		<beans:property name="order" value="1" />
+	</beans:bean>
+	
 </beans:beans>
