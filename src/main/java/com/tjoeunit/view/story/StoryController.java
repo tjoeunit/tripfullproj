@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,20 +25,48 @@ public class StoryController {
 	@Autowired
 	private StoryService storyService;
 	
+//파일 업로드(CKEditor)
+	 @RequestMapping(value = "/storyFileUpload.do")
+	    public String fileUpload(@ModelAttribute("StoryVO") StoryVO vo , HttpServletRequest request , Model model){
+	        HttpSession session = request.getSession();
+	        String rootPath = session.getServletContext().getRealPath("/");
+	        String storyFileAttachPath = "storyUpload/";
+
+	        MultipartFile storyUploadFile = vo.getStoryUploadFile();
+	        String storyFilename = "";
+	        String CKEditorFuncNum = "";
+	        
+	        if(storyUploadFile != null){
+	            storyFilename = storyUploadFile.getOriginalFilename();
+	            vo.setStoryFilename(storyFilename);
+	            CKEditorFuncNum = vo.getCKEditorFuncNum();
+	            try{
+	                File storyFile = new File(rootPath + storyFileAttachPath + storyFilename);
+	                storyUploadFile.transferTo(storyFile);
+	            }catch(IOException e){
+	                e.printStackTrace();
+	            }  
+	        }
+	            model.addAttribute("filePath",storyFileAttachPath + storyFilename);          //결과값을
+	            model.addAttribute("CKEditorFuncNum",CKEditorFuncNum);//jsp ckeditor 콜백함수로 보내줘야함
+	        return "sample/fileUploadComplete";
+	    }
+	
 // 글 등록
 	@RequestMapping("/insertStory.do")
 	public String insertStory(StoryVO vo, HttpSession session) throws IOException {
 		System.out.println("글 등록 처리");
 		
-		// 파일 업로드 처리
-		String storyFileSaveFolder = session.getServletContext().getRealPath("/storyUpload/");
-		
-		MultipartFile storyUploadFile = vo.getStoryUploadFile();
-		if(!storyUploadFile.isEmpty()) {
-			String storyFileName = storyUploadFile.getOriginalFilename();
-			storyUploadFile.transferTo(new File(storyFileSaveFolder+storyFileName));
-			
-		}
+		/*
+		 * String fileSaveFolder =
+		 * session.getServletContext().getRealPath("/storyUpload/");
+		 * 
+		 * MultipartFile uploadFile = vo.getStoryUploadFile(); if(!uploadFile.isEmpty())
+		 * { String fileName = uploadFile.getOriginalFilename();
+		 * uploadFile.transferTo(new File(fileSaveFolder+fileName));
+		 * 
+		 * }
+		 */
 		
 		// JavaBean의 필드 이름과, JSP 내의 파라미터 이름이 동일하다면 Annotation으로 등록할 시에 따로 추출할 필요없이 Spring이 알아서 추출해서 값을 담아준다.
 		// 즉 전의 프로젝트와 달리 따로 코드를 적을 필요가 없어진다.
@@ -62,7 +91,7 @@ public class StoryController {
 // 글 수정
 	@RequestMapping("/updateStory.do")
 											//사용자로부터 전달 받은 TITLE과 CONTENT 값 업데이트
-	public String updateStory(@ModelAttribute("story") StoryVO vo) {		//boardVO에 값을 담아 "board"에 담아줌
+	public String updateStory(@ModelAttribute("story") StoryVO vo) {		//storyVO에 값을 담아 "story "에 담아줌
 		System.out.println("글 수정 처리" +vo);
 		// 1. 사용자 입력 정보 추출(Spring이 대신 해줌.생략 가능)
 		
@@ -83,7 +112,7 @@ public class StoryController {
 	}
 	
 // RequestMapping이 실행되기 직전에 이 메소드가 먼저 호출 되어진다.(model에 값이 들어감)
-	@ModelAttribute("conditionMap.do")		//"conditionMap"에 return 값을 저장
+	@ModelAttribute("/conditionMap.do")		//"conditionMap"에 return 값을 저장
 	public Map<String, String> searchConditionMap() {
 		Map<String, String> conditionMap = new HashMap<String, String>();
 		conditionMap.put("제목", "TITLE");
@@ -107,7 +136,7 @@ public class StoryController {
 		
 		model.addAttribute("storyList", storyService.getStoryList(vo));		//key Value
 		
-		return "getStoryList.jsp";
+		return "/story/getStoryList.jsp";
 
 	}
 
@@ -120,6 +149,6 @@ public class StoryController {
 		
 		model.addAttribute("story", story);
 		
-		return "getStory.jsp";
+		return "/story/getStory.jsp";
 	}
 }

@@ -34,5 +34,17 @@
 		select * from story order by story_no desc
 	]]>
 	</select>
-
+	
+	<select id="getStoryList_T" resultType="com.tjoeunit.biz.story.StoryVO">
+	<![CDATA[
+		select * from story where story_title like '%'||#{storySearchKeyword}||'%' order by story_no desc
+	]]>
+	</select>
+	
+	<select id="getStoryList_C" resultType="com.tjoeunit.biz.story.StoryVO">
+	<![CDATA[
+		select * from story where story_content like '%'||#{storySearchKeyword}||'%' order by story_no desc
+	]]>
+	</select>
+	
 </mapper>

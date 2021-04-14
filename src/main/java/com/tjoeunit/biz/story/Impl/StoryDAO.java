@@ -15,30 +15,30 @@ public class StoryDAO {
 	private SqlSessionTemplate mybatis;
 	
 	public void insertStory(StoryVO vo) {
-		mybatis.insert("StoryDAOTemplate.insertStory", vo);
+		mybatis.insert("storyDAOTemplate.insertStory", vo);
 	}
 	
 	public void updateStory(StoryVO vo) {
-		mybatis.update("StoryDAOTemplate.updateStory", vo);
+		mybatis.update("storyDAOTemplate.updateStory", vo);
 	}
 	
 	public void deleteStory(StoryVO vo) {
-		mybatis.delete("StoryDAOTemplate.deleteStory", vo);
+		mybatis.delete("storyDAOTemplate.deleteStory", vo);
 	}
 	
 	public StoryVO getStory(StoryVO vo) {
-		return mybatis.selectOne("StoryDAOTemplate.getStory", vo);
+		return mybatis.selectOne("storyDAOTemplate.getStory", vo);
 	}
 	
 	public List<StoryVO> getStoryList(StoryVO vo) {
 		// 검색 기능 전
-		return mybatis.selectList("StoryDAOTemp.getStoryList", vo);			//구현해야 함!
+		return mybatis.selectList("storyDAOTemp.getStoryList", vo);			//구현해야 함!
 		/*
 		 * if(vo.getStorySearchCondition().equals("TITLE")){ return
-		 * mybatis.selectList("StoryDAOTemplate.getStoryList_T", vo); }else
+		 * mybatis.selectList("storyDAOTemplate.getStoryList_T", vo); }else
 		 * if(vo.getStorySearchCondition().equals("CONTENT")){ return
-		 * mybatis.selectList("StoryDAOTemplate.getStoryList_C", vo); }else { return
-		 * mybatis.selectList("StoryDAOTemplate.getStoryList_T", vo); }
+		 * mybatis.selectList("storyDAOTemplate.getStoryList_C", vo); }else { return
+		 * mybatis.selectList("storyDAOTemplate.getStoryList_T", vo); }
 		 */
 	}
 }

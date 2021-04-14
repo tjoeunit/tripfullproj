@@ -19,7 +19,11 @@ public class StoryVO {
 	private Date story_date;
 	private String storySearchCondition;
 	private String storySearchKeyword;
+	
+	private String storyFileAttachPath;
+	private String storyFilename;
 	private MultipartFile storyUploadFile;
+	private String CKEditorFuncNum;
 	
 	
 	public int getStory_no() {
@@ -94,12 +98,6 @@ public class StoryVO {
 	public void setStory_date(Date story_date) {
 		this.story_date = story_date;
 	}
-	public MultipartFile getStoryUploadFile() {
-		return storyUploadFile;
-	}
-	public void setStoryUploadFile(MultipartFile storyUploadFile) {
-		this.storyUploadFile = storyUploadFile;
-	}
 	public String getStorySearchCondition() {
 		return storySearchCondition;
 	}
@@ -111,6 +109,30 @@ public class StoryVO {
 	}
 	public void setStorySearchKeyword(String storySearchKeyword) {
 		this.storySearchKeyword = storySearchKeyword;
+	}
+	public String getStoryFileAttachPath() {
+		return storyFileAttachPath;
+	}
+	public void setStoryFileAttachPath(String storyFileAttachPath) {
+		this.storyFileAttachPath = storyFileAttachPath;
+	}
+	public String getStoryFilename() {
+		return storyFilename;
+	}
+	public void setStoryFilename(String storyFilename) {
+		this.storyFilename = storyFilename;
+	}
+	public MultipartFile getStoryUploadFile() {
+		return storyUploadFile;
+	}
+	public void setStoryUploadFile(MultipartFile storyUploadFile) {
+		this.storyUploadFile = storyUploadFile;
+	}
+	public String getCKEditorFuncNum() {
+		return CKEditorFuncNum;
+	}
+	public void setCKEditorFuncNum(String cKEditorFuncNum) {
+		CKEditorFuncNum = cKEditorFuncNum;
 	}
 	
 	

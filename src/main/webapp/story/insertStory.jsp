@@ -1,5 +1,6 @@
 <%@page contentType="text/html; charset=UTF-8"%>
 <%@ include file="../../import/top.jsp" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 
 <style type="text/css">
 .story_insert{
@@ -36,42 +37,76 @@
 <title>여행 이야기 등록</title>
 </head>
 <body>
- <script type="text/javascript" src="../../ckeditor/ckeditor.js"></script>
 
+<!-- ckeditor 4 -->
+ 	<script type="text/javascript" src = "<c:url value = '../ckeditor/ckeditor.js' />"></script>
+	<script type='text/javascript'>	
+/*		CKEDITOR.on('dialogDefinition', function( ev ){
+			var dialog = ev.data.definition.dialog;
+			var dialogName = ev.data.name;
+		    var dialogDefinition = ev.data.definition;
+		  
+		    switch (dialogName) {
+		        case 'image': // 이미지 속성창이 보일때 안보이게 하기 위해서 .
+		        	
+		            //dialogDefinition.removeContents('info');
+		            dialogDefinition.removeContents('Link');
+		            dialogDefinition.removeContents('advanced');
+		            
+		            dialog.on('show', function (obj) {
+		        		this.selectPage('Upload'); //업로드텝으로 시작
+		            });
+		        break;
+	    	}
+		});
+*/
+		
+	    var editorConfig = { filebrowserUploadUrl : "/storyFileUpload.do" };
+	    
+	    var ck = null;
+
+	    window.onload = function(){
+	        ck = CKEDITOR.replace("story_editor1" , editorConfig,{height:700});
+	    };
 	</script>
-	<center>
-		<h1>여행 이야기</h1>
-		<form action="insertStory.do" method="post" enctype="multipart/form-data">
-			<table class="story_insert">
-				<tr>
-					<td class="insert_story_subject">제목</td>
-					<td><input type="text" size=80/></td>
-				</tr>
-				<tr>
-					<td class="insert_story_writer">작성자</td>
-					<td><input type="text" readonly="readonly" size=80/></td>
-				</tr>
-				<tr>
-					<td class="insert_story_content">내용</td>
-					<td>
-					<!-- id -> class 수정 예정 -->
-						<textarea id="story_editor1"></textarea>
-						 <script>
-	                        CKEDITOR.replace( 'story_editor1', {height:700});
-	                	</script>
-					</td>
-				</tr>
-				<tr>
-					<hr>
-					<div  class="push_story">
-						<td><input type="submit" value=" 새글 등록 "/></td>
-					</div>
-				</tr>
-			</table>
-		</form>
-		<br>
-		<a href="getStoryList.jsp">글 목록 가기</a>
+	
+		<center>
+			<h1>여행 이야기</h1>
+			<form action="insertStory.do" method="post" enctype="multipart/form-data">
+				<table class="story_insert">
+					<tr>
+						<td class="insert_story_subject">제목</td>
+						<td><input type="text" size=80/></td>
+					</tr>
+					<tr>
+						<td class="insert_story_writer">작성자</td>
+						<td><input type="text" size=80/></td>
+					</tr>
+					<tr>
+						<td class="insert_story_content">내용</td>
+						<td>
+						<!-- id -> class 수정 예정 -->
+							<textarea id="story_editor1"></textarea>
+						</td>
+					</tr>
+					<tr>
+						<hr>
+						<div  class="push_story">
+							<td><input type="submit" value=" 새글 등록 "/></td>
+						</div>
+					</tr>
+				</table>
+			</form>
+			
+			<br>
+			
+			<a href="getStoryList.jsp">글 목록 가기</a>
 	</center>
+
+    <script type = "text/javascript">
+        window.parent.CKEDITOR.tools.callFunction('${CKEditorFuncNum}','${filePath}', '업로드완료');
+    </script>
+    
 </body>
 </html>
 
