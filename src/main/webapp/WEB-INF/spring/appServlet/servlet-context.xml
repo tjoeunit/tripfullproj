@@ -25,12 +25,14 @@
 		</beans:bean>
 	</mvc:interceptors>	
 	
+	<!--
+	이게 없어야 requestmapping(~~~.do)했을 때 return 경로를 잘 표현할 수 있음
 	<beans:bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/webapp/" />
 		<beans:property name="suffix" value=".jsp" />
 		<beans:property name="order" value="1" />
-	</beans:bean>
+	</beans:bean> -->
 		
 	<!-- 파일 업로드 -->
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
