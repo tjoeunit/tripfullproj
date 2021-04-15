@@ -16,32 +16,32 @@ public class HotelServiceImpl implements HotelService {
 	private HotelDAOMyBatisSecond hotelDAO;
 
 	@Override
-	public int insertHotel(HotelVO vo) {
-		hotelDAO.insertBoard(vo);
-		return 0;
+	public void insertHotel(HotelVO vo) {
+		hotelDAO.insertHotel(vo);
+		
 	}
 
 	@Override
 	public List<HotelVO> getHotelList(HotelVO vo) {
-		List<HotelVO> list = hotelDAO.getBoardList(vo);
-		return null;
+		List<HotelVO> list = hotelDAO.getHotelList(vo);
+		return list;
 	}
 
 	@Override
 	public HotelVO getHotel(HotelVO vo) {
-		HotelVO board = hotelDAO.getBoard(vo);
-		return null;
+		HotelVO board = hotelDAO.getHotel(vo);
+		return board;
 	}
 
 	@Override
 	public void updateHotel(HotelVO vo) {
-		hotelDAO.updateBoard(vo);
+		hotelDAO.updateHotel(vo);
 		
 	}
 
 	@Override
 	public void deleteHotel(HotelVO vo) {
-		hotelDAO.deleteBoard(vo);
+		hotelDAO.deleteHotel(vo);
 		
 	}	
 

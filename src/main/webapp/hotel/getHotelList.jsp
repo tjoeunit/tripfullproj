@@ -12,52 +12,40 @@
 </head>
 <body>
 	<center>
-		<h1><spring:message code="message.board.list.mainTitle"/></h1>
-		<h3>${userName }<spring:message code="message.board.list.welcomeMsg"/>...
-			<a href="logout.do">Log-out</a>
-		</h3>
 		<!-- 검색 시작 -->
-		<form action="getBoardList.do" method="post">
-			<table border="1" cellpadding="0" cellspacing="0" width="700">
+		<form action="getHotelList.do" method="get">
+			<table class="hotel_search">
 				<tr>
 					<td align="right">
-					<select name="searchCondition">
+					<select name="hotelsearchCondition">
 						<c:forEach items="${conditionMap }" var="option">
 							<option value="${option.value }">${option.key }
 						</c:forEach>							
 					</select> 
 					<input name="searchKeyword" type="text" /> 
-					<input type="submit" value="<spring:message code="message.board.list.search.condition.btn"/>"/>
+					<input type="submit" value="검색"/>
 					</td>
 				</tr>
 			</table>
 		</form>
 		<!-- 검색 종료 -->
 		<table border="1" cellpadding="0" cellspacing="0" width="700">
-			<tr>
-				<th bgcolor="orange" width="100">
-				<spring:message	code="message.board.list.table.head.seq" /></th>
-				<th bgcolor="orange" width="200">
-				<spring:message code="message.board.list.table.head.title" /></th>
-				<th bgcolor="orange" width="150">
-				<spring:message code="message.board.list.table.head.writer" /></th>
-				<th bgcolor="orange" width="150">
-				<spring:message code="message.board.list.table.head.regDate" /></th>
-				<th bgcolor="orange" width="100">
-				<spring:message code="message.board.list.table.head.cnt" /></th>
+			<tr class="top_hotel_list">
+				<th class="hotel_thumb"></th>
+				<th class="hotel_title"></th>
+				<th class="hotel_category"></th>
+				<th class="hotel_price"></th>
 			</tr>
-			<c:forEach items="${boardList }" var="board">
+			<c:forEach items="${hotelList }" var="board">
 				<tr>
-					<td>${board.seq }</td>
-					<td align="left"><a href="getBoard.do?seq=${board.seq }">
-							${board.title }</a></td>
-					<td>${board.writer }</td>
-					<td><fmt:formatDate value="${board.regDate }" pattern="yyyy-MM-dd"/></td>
-					<td>${board.cnt }</td>
+					<td>${hotel.thumb }</td>
+					<td>${hotel.title }</td>
+					<td>${hotel.category }</td>
+					<td>${hotel.price }</td>					
 				</tr>
 			</c:forEach>
 		</table>
-		<br> <a href="insertBoard.jsp"><spring:message code="message.board.list.link.insertBoard"/></a>
+		<br> <a href="insertHotel.jsp">새글 등록</a>
 	</center>
 </body>
 </html>

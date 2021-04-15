@@ -27,7 +27,7 @@ public class HotelController {
 	private HotelService hotelService;
 	
 	// 글 등록
-	@RequestMapping("/insertHotel.do") 
+	@RequestMapping("/hotel/insertHotel.do") 
 	public String insertBoard(HotelVO vo, HttpSession session) throws IOException{ // 브라우저 데이터를 담아주는 커멘드 객체 역할 
 		System.out.println("글 등록 처리");
 
@@ -48,7 +48,7 @@ public class HotelController {
 		hotelService.insertHotel(vo);
 		// 이미 서비스임플리에 구현됨 가져오기 만 하면된다.
 		
-		return "redirect: getHotelList.do";
+		return "redirect: /hotel/getHotelList.do";
 	}
 	
 	// 글 수정
@@ -84,7 +84,7 @@ public class HotelController {
 	}
 	
 	// 글 목록 검색
-	@RequestMapping("/getHotelList.do") 
+	@RequestMapping("/hotel/getHotelList.do") 
 	public String getHotelList(HotelVO vo, Model model){
 		System.out.println("글 목록 검색 처리");		
 		// 검색 기능  Null check
