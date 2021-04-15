@@ -3,6 +3,10 @@
 <%@ include file="../import/top.jsp" %>
 
 <style type="text/css">	
+	a{
+			text-decoration: none;
+		}
+
 	.main_title {
 		align-content: left;
 		margin-left: 360px;
@@ -40,7 +44,7 @@
 		margin-right: auto;
 		padding: 5px;
 	}
-	
+
 	.lan_product_thumb {
 		width: 200px;
 		height: 200px;
@@ -48,26 +52,54 @@
 	}
 	
 	.lan_product_title {
-		width : 650px;
+		width : 600px;
 		height : 90px;
-		padding: 5px;
+		padding: 10px;
 	}
 	
-	.Lan_Product_Detail {
-		width : 650px;
+	.lan_product_title a{
+		color: black;
+		font-size: 2em;
+		font-weight: 600;
+	}
+	
+	.lan_product_title:hover {
+		font-size: 1.2em;
+	}
+	
+	.lan_product_detail {
+		width : 600px;
 		height : 90px;
-		padding: 5px;
+		padding: 10px;
+		color: gray;
 	}
 	
 	.lan_product_city{
-		width: 100px;
-		padding: 5px;
+		width: 150px;
+		padding: 10px;
+		text-align: right;
 	}
 	
 	.lan_price {
-		width: 100px;
-		padding: 5px;
-		background-color: #58CCFF;
+		width: 150px;
+		position: relative;
+		box-sizing: border-box;
+		color: black;
+		text-align: center;
+		font-weight: 600;
+		line-height: 1.5em;
+		padding: 0 1.25em;
+		-moz-transition: background-color .2s ease-in-out;
+		-webkit-transition: background-color .2s ease-in-out;
+		-ms-transition: background-color .2s ease-in-out;
+		transition: background-color .2s ease-in-out;
+	}
+	
+	.lan_price:hover{
+		text-decoration: none;
+		color: #fff !important;
+		background: #383838;
+		cursor: pointer;
 	}
 	
 </style>
@@ -78,19 +110,6 @@
 	<h1 class="main_title">	랜선여행</h1>
 	
 	<div class="lan_filter">
-		<ul class="lan_filter_name">카테고리
-			<li>전체</li>
-			<li><a href="#">사진 여행</a></li>
-			<li><a href="#">영상 여행</a></li>
-		</ul>
-		<ul class="lan_filter_name">가격대
-			<li><input type="number">원 이하</li>
-		</ul>
-		<ul class="lan_filter_name">평점
-			<li><input type="radio" checked="checked">전체</li>
-			<li><input type="radio">4점 이상</li>
-			<li><input type="radio">5점만</li>
-		</ul>
 		<ul class="lan_filter_name">여행지
 			<li><input type="checkbox">아시아</li>
 			<li><input type="checkbox">유럽</li>
@@ -99,14 +118,22 @@
 			<li><input type="checkbox">아프리카</li>
 			<li><input type="checkbox">오세아니아</li>
 		</ul>
+		<ul class="lan_filter_name">평점
+			<li><input type="radio" checked="checked">전체</li>
+			<li><input type="radio">4점 이상</li>
+			<li><input type="radio">5점만</li>
+		</ul>
+		<ul class="lan_filter_name">가격대
+			<li><input type="number">원 이하</li>
+		</ul>
 	</div>
 	
 	<table class="lan_products">
 	
 		<tr>
-			
-			<table class="lan_product">
 			<c:forEach items="${ lanTripList }" var="lantrip">
+			<table class="lan_product">
+			
 				<tr>
 					<td rowspan="3" class="lan_product_thumb">${ lantrip.lantrip_thumb }</td>
 					<td class="lan_product_title"><a href="<c:url value='getLanTrip.do?lantrip_no=${ lantrip.lantrip_no }'/>">${ lantrip.lantrip_title }</td></a>
@@ -114,11 +141,11 @@
 				</tr>
 				<tr>
 					<td class="lan_product_detail">${ lantrip.lantrip_content }</td>
-					<td class="lan_price">${ lantrip.lantrip_price }</td>
+					<td class="lan_price" onclick="location.href='#'">${ lantrip.lantrip_price }원에<br>구매하기</td>
 				</tr>
-			</c:forEach>
-			</table>
 			
+			</table>
+			</c:forEach>
 		</tr>
 	
 	</table>
