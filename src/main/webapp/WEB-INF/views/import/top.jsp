@@ -127,7 +127,7 @@
 				<div class="navListDiv">
 					<ul>
 						<li><a href="#">항공권</a></li>
-						<li><a href="#">숙소</a></li>
+						<li><a href="<c:url value='/hotel/getHotelList.do'/>">숙소</a></li>
 						<li><a href="#">렌터카 & 교통</a></li>
 						<li><a href="#">액티비티</a></li>
 						<li><a href="<c:url value='/lantrip/getLanTripList.do'/>">랜선투어</a></li>
