@@ -130,7 +130,7 @@
 						<li><a href="#">숙소</a></li>
 						<li><a href="#">렌터카 & 교통</a></li>
 						<li><a href="#">액티비티</a></li>
-						<li><a href="getLanTripList.do">랜선투어</a></li>
+						<li><a href="<c:url value='/lantrip/getLanTripList.do'/>">랜선투어</a></li>
 						<li><a href="story/getStoryList.jsp">여행이야기</a></li>
 					</ul>
 				</div>
