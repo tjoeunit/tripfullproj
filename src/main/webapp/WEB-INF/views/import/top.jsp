@@ -1,21 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="shortcut icon" href="../img/favicon16.ico">
+<!-- 파비콘 -->
+<link rel="shortcut icon" href="<c:url value='/img/favicon16.ico'/>">
+
+<!-- 제이쿼리 -->
+<script type="text/javascript" src="<c:url value='/lib/js/jquery-3.5.1.min.js'/>"></script>
+
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Tripfull</title>
 </head>
 
 <style>
-/* body{
-		padding-top: 130px;
-	} */
-
 	.nav {
 		background-color: white;
-		position: fixed;
+		/*position: fixed;*/
 		width: 100%;
 		top: 0;
 		cursor: default;
@@ -97,16 +100,9 @@
 		text-align: center;
 	}
 
-	.navBackDiv {
-		height: 120px;
-		width: 100%;
-		clear: both;
-	}
-
 	.navListDiv {
 		clear: both;
 	}
-
 
 </style>
 
@@ -115,12 +111,14 @@
 		<nav class="nav">
 			<div class="navDiv">
 				<div class="navImgDiv">
-					<img src="../img/tripfulllogo.png">
+					<a style="all: unset; cursor: pointer;" href="<c:url value='/index.do'/>">
+						<img src="<c:url value='/img/tripfulllogo.png'/>">
+					</a>
 				</div>
 
 				<div class="navAccDiv">
 					<ul>
-						<li><a href="members/insertMembers.jsp">회원가입</a></li>
+						<li><a href="<c:url value='/members/insertMembers.do'/>">회원가입</a></li>
 						<li><a href="#">로그인</a></li>
 						<li><a href="#">관리자</a></li>
 					</ul>
@@ -138,7 +136,4 @@
 				</div>
 			</div>
 		</nav>
-		<div class="navBackDiv">
-
-		</div>
 </header>

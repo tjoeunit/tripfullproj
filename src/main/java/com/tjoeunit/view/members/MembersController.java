@@ -15,27 +15,32 @@ public class MembersController {
 
 	@Autowired
 	private MembersService membersService;
-	
+
+	@RequestMapping(value="/insertMembers.do", method=RequestMethod.GET)
+	public String insertMembersPage() {
+		System.out.println("회원가입뷰");
+		return "members/insertMembers";
+	}
+
 	//회원 등록
-	@RequestMapping(value = "/insertMembers.do", method = RequestMethod.POST)
+	@RequestMapping(value="/insertMembers.do", method=RequestMethod.POST)
 	public String insertMembers(MembersVO vo, Model model) throws Exception {
-	System.out.println("회원가입처리");		
-		
+	System.out.println("회원가입처리");
+
 		int cnt = membersService.insertMembers(vo);
-		
-		String msg="회원 가입 실패", url="/member/insertMembers.do";
+
+		String msg="회원 가입 실패", url="/members/insertMembers.do";
+
 		if(cnt>0) {
 			msg="회원 가입 성공";
-			url="../index.jsp";
+			url="/index.do";
 		}
-		
+
 		model.addAttribute("msg", msg);
 		model.addAttribute("url", url);
 
-		return "../common/message";
+		return "common/message";
+
 	}
-		
+
 }
-
-
-

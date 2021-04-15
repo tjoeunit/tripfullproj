@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ include file="import/top.jsp" %>
+<%@ include file="../import/top.jsp" %>
 
 <style>
 	.mainDiv {
@@ -26,18 +25,12 @@
 	
 </style>
 
-
 <main>
 	<div class="mainDiv">
-
-		
-		<img src="img/indeximg1.jpg" id="indexImage" style="width: 1200px;">		
-		
-		
-		
+		<img src="<c:url value='/img/indeximg1.jpg'/>" id="indexImage" style="width: 1200px;">		
 		<script type="text/javascript">
 			var myImage=document.getElementById("indexImage");
-			var imageArray=["img/indeximg1.jpg", "img/indeximg2.jpg", "img/indeximg3.jpg"];
+			var imageArray=["<c:url value='/img/indeximg1.jpg'/>", "<c:url value='/img/indeximg2.jpg'/>", "<c:url value='/img/indeximg3.jpg'/>"];
 			var imageIndex=0;
 			
 			function changeImage(){
@@ -74,13 +67,9 @@
 		</div>
 		
 		<div>
-			<img src="img/tripstoryimg.png" style="width:1200px">			
-		</div>
-		
+			<img src="<c:url value='/img/tripstoryimg.png'/>" style="width:1200px">			
+		</div>		
 	</div>
-	
-	
-
 </main>
 
-<%@ include file="import/bottom.jsp" %>
+<%@ include file="../import/bottom.jsp" %>
