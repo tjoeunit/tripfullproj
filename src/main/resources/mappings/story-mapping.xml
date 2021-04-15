@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 파일 넣기 확인 다시 해야 함, 작성자랑 members_no 못하겠음, 댓글 넣기 기능 추가해야 함 -->
+
+<mapper namespace="storyDAOTemplate" >
+	<insert id="insertStory">
+	<![CDATA[
+		insert into story(story_no, story_title, members_no, story_content, story_date)
+		values((select nvl(max(story_no), 0)+1 from story),#{story_title},#{members_no},#{story_content},#{story_date})
+	]]>
+	</insert>
+
+	<update id="updateStory">
+		update story set story_title=#{story_title}, story_content=#{story_content} where story_no=#{story_no}
+	</update>
+
+	<delete id="deleteStory">
+		delete story where story_no=#{story_no}
+	</delete>
+
+	<select id="getStory" resultType="com.tjoeunit.biz.story.StoryVO">
+		select * from story where story_no=#{story_no}
+	</select>
+
+	<select id="getStoryList" resultType="com.tjoeunit.biz.story.StoryVO">
+		select * from story order by story_no desc
+	</select>
+	<!-- 
+	<select id="getStoryList_T" resultType="com.tjoeunit.biz.story.StoryVO">
+		select * from story where story_title like '%'||#{storySearchKeyword}||'%' order by story_no desc
+	</select>
+	
+	<select id="getStoryList_C" resultType="com.tjoeunit.biz.story.StoryVO">
+		select * from story where story_content like '%'||#{storySearchKeyword}||'%' order by story_no desc
+	</select>
+	 -->
+</mapper>
