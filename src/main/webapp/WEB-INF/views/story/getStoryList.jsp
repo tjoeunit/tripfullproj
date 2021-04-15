@@ -26,11 +26,8 @@
 .story_no{
 	width: 7%;
 }
-.story_pic{
-	width: 10%;
-}
 .story_subject{
-	width: 40%;
+	width: 50%;
 }
 .story_writer{
 	width: 15%;
@@ -44,13 +41,7 @@
 
 </style>
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type">
-<title>여행 이야기</title>
-</head>
-<body>
+<main>
 	<center>	
 	
 		<h1>여행 이야기</h1>
@@ -78,7 +69,6 @@
 			
 			<tr class="top_story_list">
 				<th class="story_no"> 번호</th>
-				<th class="story_pic"> 사진</th>
 				<th class="story_subject">제목</th>
 				<th class="story_writer">작성자</th>
 				<th class="story_date">등록일</th>
@@ -89,7 +79,7 @@
 				<tr>
 					<td>${ story.story_no }</td>
 					<td ><a href="getStory.do?story_no=${ story.story_no }">${ story.story_title }</a></td>
-					<td>${ story.members_no }</td>
+					<td>${ member_id.member_id }</td>
 					<td>${ story.story_date }</td>
 					<td>${ story.story_cnt }</td>
 				</tr>
@@ -99,8 +89,8 @@
 		
 		<br>
 		
-		 <a href="insertStory.jsp">새글 등록</a>
+		 <a href="insertStoryPage.do">새글 등록</a>
 	</center>
-</body>
-</html>
+</main>
+
 <%@ include file="../import/bottom.jsp" %>

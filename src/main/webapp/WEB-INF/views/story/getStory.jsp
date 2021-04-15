@@ -1,13 +1,7 @@
 <%@page contentType="text/html; charset=UTF-8"%>
 <%@ include file="../import/top.jsp" %>
 
-<!DOCTYPE html >
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>글 상세</title>
-</head>
-<body>
+<main>
 	<center>
 		<h1>글 상세</h1>
 		<hr>
@@ -38,17 +32,15 @@
 					<td align="left">${story.story_cnt}</td>
 				</tr>
 				<tr>
-					<td colspan="2" align="center"><input type="submit"
-						value="글 수정"></td>
+					<td colspan="2" align="center"><input type="submit" value="글 수정"></td>
 				</tr>
 			</table>
 		</form>
 		<hr>
-		<a href="insertStory.jsp">글등록</a>&nbsp;&nbsp;&nbsp; 
+		<a href="insertStoryPage.do">글등록</a>&nbsp;&nbsp;&nbsp; 
 		<a href="deleteStory.do?seq=${story.story_no}">글삭제</a>&nbsp;&nbsp;&nbsp;
 		<a href="getStoryList.do">글목록</a>
 	</center>
-</body>
-</html>
+</main>
 
 <%@ include file="../import/bottom.jsp" %>
