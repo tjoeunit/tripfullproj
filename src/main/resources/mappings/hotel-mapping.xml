@@ -49,11 +49,11 @@
 	
 	<select id="getHotelList" resultType="com.tjoeunit.biz.hotel.HotelVO">
 	
-		select * from hotel
+		select * from hotel 
 	
 	</select>
 	
-	<select id="getHotelList_T" resultType="com.tjoeunit.biz.hotel.HotelVO">
+<!-- 	<select id="getHotelList_T" resultType="com.tjoeunit.biz.hotel.HotelVO">
 	
 		select * from hotel where title like '%'||#{searchKeyword}||'%' order by hotel_no desc
 	
@@ -63,6 +63,6 @@
 	
 		select * from hotel where content like '%'||#{searchKeyword}||'%' order by hotel_no desc
 	
-	</select>
+	</select> -->
 
 </mapper>

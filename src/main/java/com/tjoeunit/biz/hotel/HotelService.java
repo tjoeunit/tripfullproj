@@ -16,6 +16,6 @@ public interface HotelService {
 	//글 수정 
 	void updateHotel(HotelVO vo);
 	
-	//글 삭제
+	//글 삭제0.
 	void deleteHotel(HotelVO vo);
 }

@@ -14,7 +14,7 @@
 			<table border="1" cellpadding="0" cellspacing="0">
 				<tr>
 					<td bgcolor="#58CCFF" width="70">썸네일</td>
-					<td><input type="file" name = "hotel_thumb"/></td>
+					<td><input type="file"  name = "hotel_thumb"/></td>
 				</tr>
 				<tr>
 					<td bgcolor="#58CCFF">제목</td>
@@ -35,7 +35,7 @@
 			</table>
 		</form>
 		<hr>
-		<a href="getHotelList.jsp">호텔 목록 가기</a>
+		<a href="">호텔 목록 가기</a>
 	</center>
 </body>
 </html>

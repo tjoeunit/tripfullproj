@@ -6,55 +6,18 @@ public class HotelVO {
 	private int hotel_no;
 	private String hotel_title;
 	private String hotel_content;
-	private String hotel_img;
-	private String hotel_thumb;
 	private String hotel_category;
 	private int hotel_price;
 	private String hotel_area;
 	private String searchCondition;
 	private String searchKeyword;
-	private MultipartFile uploadFile;
+	private MultipartFile hotel_thumb;
+	private MultipartFile hotel_img;
 	
-	public String getSearchCondition() {
-		return searchCondition;
-	}
-
-
-
-	public void setSearchCondition(String searchCondition) {
-		this.searchCondition = searchCondition;
-	}
-
-
-
-	public String getSearchKeyword() {
-		return searchKeyword;
-	}
-
-
-
-	public void setSearchKeyword(String searchKeyword) {
-		this.searchKeyword = searchKeyword;
-	}
-
-
-
-	public MultipartFile getUploadFile() {
-		return uploadFile;
-	}
-
-
-
-	public void setUploadFile(MultipartFile uploadFile) {
-		this.uploadFile = uploadFile;
-	}
-
-
-
+	
 	public int getHotel_no() {
 		return hotel_no;
 	}
-
 
 
 	public void setHotel_no(int hotel_no) {
@@ -62,11 +25,9 @@ public class HotelVO {
 	}
 
 
-
 	public String getHotel_title() {
 		return hotel_title;
 	}
-
 
 
 	public void setHotel_title(String hotel_title) {
@@ -74,11 +35,9 @@ public class HotelVO {
 	}
 
 
-
 	public String getHotel_content() {
 		return hotel_content;
 	}
-
 
 
 	public void setHotel_content(String hotel_content) {
@@ -86,35 +45,9 @@ public class HotelVO {
 	}
 
 
-
-	public String getHotel_img() {
-		return hotel_img;
-	}
-
-
-
-	public void setHotel_img(String hotel_img) {
-		this.hotel_img = hotel_img;
-	}
-
-
-
-	public String getHotel_thumb() {
-		return hotel_thumb;
-	}
-
-
-
-	public void setHotel_thumb(String hotel_thumb) {
-		this.hotel_thumb = hotel_thumb;
-	}
-
-
-
 	public String getHotel_category() {
 		return hotel_category;
 	}
-
 
 
 	public void setHotel_category(String hotel_category) {
@@ -122,11 +55,9 @@ public class HotelVO {
 	}
 
 
-
 	public int getHotel_price() {
 		return hotel_price;
 	}
-
 
 
 	public void setHotel_price(int hotel_price) {
@@ -134,17 +65,54 @@ public class HotelVO {
 	}
 
 
-
 	public String getHotel_area() {
 		return hotel_area;
 	}
-
 
 
 	public void setHotel_area(String hotel_area) {
 		this.hotel_area = hotel_area;
 	}
 
+
+	public String getSearchCondition() {
+		return searchCondition;
+	}
+
+
+	public void setSearchCondition(String searchCondition) {
+		this.searchCondition = searchCondition;
+	}
+
+
+	public String getSearchKeyword() {
+		return searchKeyword;
+	}
+
+
+	public void setSearchKeyword(String searchKeyword) {
+		this.searchKeyword = searchKeyword;
+	}
+
+
+	public MultipartFile getHotel_thumb() {
+		return hotel_thumb;
+	}
+
+
+	public void setHotel_thumb(MultipartFile hotel_thumb) {
+		this.hotel_thumb = hotel_thumb;
+	}
+
+
+	public MultipartFile getHotel_img() {
+		return hotel_img;
+	}
+
+
+	public void setHotel_img(MultipartFile hotel_img) {
+		this.hotel_img = hotel_img;
+	}
 
 
 	@Override
