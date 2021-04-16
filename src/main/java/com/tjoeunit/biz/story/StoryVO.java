@@ -9,9 +9,6 @@ public class StoryVO {
 	private int members_no;
 	private String story_title;
 	private String story_content;
-	private String story_imgname; //파일명 (변경)
-	private String story_imgorigin; //파일명 (기존)
-	private String story_imgsize; //파일용량
 	private int story_re_ref;
 	private int story_re_lev;
 	private int story_re_seq;
@@ -49,24 +46,6 @@ public class StoryVO {
 	}
 	public void setStory_content(String story_content) {
 		this.story_content = story_content;
-	}
-	public String getStory_imgname() {
-		return story_imgname;
-	}
-	public void setStory_imgname(String story_imgname) {
-		this.story_imgname = story_imgname;
-	}
-	public String getStory_imgorigin() {
-		return story_imgorigin;
-	}
-	public void setStory_imgorigin(String story_imgorigin) {
-		this.story_imgorigin = story_imgorigin;
-	}
-	public String getStory_imgsize() {
-		return story_imgsize;
-	}
-	public void setStory_imgsize(String story_imgsize) {
-		this.story_imgsize = story_imgsize;
 	}
 	public int getStory_re_ref() {
 		return story_re_ref;

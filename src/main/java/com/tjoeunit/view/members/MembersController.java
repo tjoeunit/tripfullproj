@@ -38,6 +38,7 @@ public class MembersController {
 
 		model.addAttribute("msg", msg);
 		model.addAttribute("url", url);
+		model.addAttribute("member_id", vo.getMembers_id());
 
 		return "common/message";
 

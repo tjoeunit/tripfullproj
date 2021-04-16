@@ -29,13 +29,7 @@
 
 </style>
 
-<!DOCTYPE html >
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>여행 이야기 등록</title>
-</head>
-<body>
+<main>
 
 <!-- ckeditor 4 -->
  	<script type="text/javascript" src = "<c:url value = '../ckeditor/ckeditor.js' />"></script>
@@ -60,12 +54,11 @@
 					</tr>
 					<tr>
 						<td class="insert_story_writer">작성자</td>
-						<td><input type="text" size=80/></td>
+						<td>${member_id.member_id}</td>
 					</tr>
 					<tr>
 						<td class="insert_story_content">내용</td>
 						<td>
-						<!-- id -> class 수정 예정 -->
 							<textarea id="story_editor1"></textarea>
 						</td>
 					</tr>
@@ -80,14 +73,13 @@
 			
 			<br>
 			
-			<a href="getStoryList.jsp">글 목록 가기</a>
+			<a href="getStoryList.do">글 목록 가기</a>
 	</center>
 
     <script type = "text/javascript">
         window.parent.CKEDITOR.tools.callFunction('${CKEditorFuncNum}','${filePath}', '업로드완료');
     </script>
     
-</body>
-</html>
+</main>
 
 <%@ include file="../import/bottom.jsp" %>
