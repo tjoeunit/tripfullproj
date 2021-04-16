@@ -26,10 +26,10 @@ public class LanTripDAO {
 		  mybatis.delete("lanTripDAOTemplate.deleteLanTrip", vo);
 	}  
 	  
-	public LanTripVO getLanTrip(LanTripVO vo) {
-	  return mybatis.selectOne("lanTripDAOTemplate.getLanTrip", vo);
+	public LanTripVO getLanTrip(LanTripVO vo) { 
+		return mybatis.selectOne("lanTripDAOTemplate.getLanTrip", vo);
 	}
-	  
+
 	public List<LanTripVO> getLanTripList(LanTripVO vo) {
 		  // 검색 기능 전 
 		  return mybatis.selectList("lanTripDAOTemplate.getLanTripList", vo);

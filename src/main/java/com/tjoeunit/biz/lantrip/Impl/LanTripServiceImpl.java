@@ -25,10 +25,11 @@ public class LanTripServiceImpl implements LanTripService {
 		return list;
 	}
 
+	
 	@Override
 	public LanTripVO getLanTrip(LanTripVO vo) {
-		LanTripVO board = lanTripDAO.getLanTrip(vo);
-		return board;
+		LanTripVO lanTrip = lanTripDAO.getLanTrip(vo);
+		return lanTrip;
 	}
 
 	@Override

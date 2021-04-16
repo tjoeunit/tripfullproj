@@ -12,7 +12,16 @@ public class LanTripVO {
 	private String	lantrip_area;
 	private String	lantrip_searchCondition;
 	private String	lantrip_searchKeyword;
+	private String	lantrip_video;
 	
+	public String getLantrip_video() {
+		return lantrip_video;
+	}
+
+	public void setLantrip_video(String lantrip_video) {
+		this.lantrip_video = lantrip_video;
+	}
+
 	public int getLantrip_no() {
 		return lantrip_no;
 	}

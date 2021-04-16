@@ -7,43 +7,62 @@
 	
 	.lan_product_top{
 		margin-left: 360px;
-		margin-bottom: 30px;
+		padding: 10px;
+		margin-bottom: 20px;
 		width: 1000px;
 		border-bottom: 1px solid gray;
 	}
 	
 	.lan_product_title {
-		margin-left: 360px;
-		width: 700px;
-		float: left;
-		box-sizing: border-box;
-		padding-bottom: 20px;
-		padding-right: 10px;
+		display: inline-block;
+		width: 800px;
 		font-size: 40px;
-		font: bold;
+		font-weight: 600;
+		text-align: left;
 	}
 	
 	.lan_price {
-		width: 150px;
-		float: left;
+		display: inline-block;
+		position: relative;
 		box-sizing: border-box;
 		padding: 5px;
 	}
 	
 	.lan_buy {
-		width: 100px;
-		float: left;
+		display: inline-block;
+		position: relative;
 		box-sizing: border-box;
-		background-color: #58CCFF;
-		padding: 5px;
-		color: white;
+		color: black;
+		text-decoration: none;
+		text-align: center;
+		font-weight: 600;
+		border-radius: 8px;
+		height: 2.5em;
+		line-height: 2.5em;
+		padding: 0 1.25em;
+		-moz-transition: background-color .2s ease-in-out;
+		-webkit-transition: background-color .2s ease-in-out;
+		-ms-transition: background-color .2s ease-in-out;
+		transition: background-color .2s ease-in-out;
+	}
+	
+	.lan_buy:hover {
+		color: #fff !important;
+		background: #383838;
 	}
 	
 	.lan_video {
 		margin-left: 360px;
 	}
 	
-	.lan_product_detail {
+	.lan_product_detail{
+		margin-left: 360px;
+		width: 1000px;
+		border-bottom: 1px solid gray;
+		padding: 10px;
+	}
+	
+	.lan_product_img {
 		margin-left: 360px;
 		width: 900px;
 		height: 1000px; /* 나중에 삭제 */
@@ -54,26 +73,28 @@
 </style>
 
 <main>
-	
-		<input name="lantrip_no" type="hidden" value="${ lantrip.lantrip_no }" />
+
+<!-- 랜선여행 제목 표현식에 있는 lantrip은 컨트롤러에서 model의 키값으로 정의한 것 사용 -->
+	<div type="hidden" value="getLanTrip.do?lantrip_no=${ lantrip.lantrip_no }">
 		<div class="lan_product_top">
-			<div class="lan_product_title">
-				<input type="text" name="lantrip_title" value="${ lantrip.lantrip_title }">
-			</div>
-			<div class="lan_price">가격${ lantrip.lantrip_price }</div>
-			<div class="lan_buy">구매하기</div>
+			<span class="lan_product_title">${ lantrip.lantrip_title }</span>
+			<span class="lan_price">${ lantrip.lantrip_price }원</span>
+			<a href="#"><span class="lan_buy">구매하기</span></a>
 		</div>
-	
-	<div class="lan_video">
-		<iframe width="854" height="480" src="https://www.youtube.com/embed/msxK0k4NvcU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-		</iframe>
+
+<!-- 랜선여행 상세 설명 -->
+		<div class="lan_product_detail">${ lantrip.lantrip_content }</div>
+		<div class="lan_video">
+			<iframe width="854" height="480" src="${ lantrip.lantrip_video }" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+			</iframe>
+		</div>
+		<div class="lan_product_img">상품 상세 이미지 ${ lantrip.lantrip_img }
+		</div>
 	</div>
-	<div class="lan_product_detail">상품 상세 이미지</div>
+	
+	
+	
 	
 	<br>
-	
-	
-	
-	
 </main>
 <%@ include file="../import/bottom.jsp" %>

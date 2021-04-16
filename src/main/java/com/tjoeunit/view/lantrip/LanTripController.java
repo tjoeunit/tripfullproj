@@ -56,7 +56,7 @@ public class LanTripController {
 
 // 글 수정
 	@RequestMapping("/updateLanTrip.do")
-	public String updateBoard(@ModelAttribute("lanTrip") LanTripVO vo) {
+	public String updateLanTrip(@ModelAttribute("lanTrip") LanTripVO vo) {
 		System.out.println("글 수정 처리" + vo);
 		
 		lanTripService.updateLanTrip(vo);
@@ -75,25 +75,24 @@ public class LanTripController {
 	
 // 글 목록 보기
 	@RequestMapping(value="/getLanTripList.do", method = RequestMethod.GET)
-	public String getLTList(LanTripVO vo, Model model) {
-		System.out.println("글 목록 뷰");
+	public String getLanTripList(LanTripVO vo, Model model) {
+		System.out.println("랜선여행 목록 뷰");
 		List<LanTripVO> lanTripList = lanTripService.getLanTripList(vo);
 		model.addAttribute("lanTripList", lanTripList);
 		return "lantrip/getLanTripList";
 	}
 	
-	// 글 상세 조회
-	@RequestMapping(value="/getLanTrip.do", method = RequestMethod.GET)
-	public String getLanTrip(LanTripVO vo, Model model) {
-		System.out.println("글 상세 조회 처리");
-		
-		LanTripVO lanTrip = lanTripService.getLanTrip(vo);
-		
-		System.out.println(vo);
-		
-		model.addAttribute("lanTrip", lanTrip);
-		
-		return "lantrip/getLanTrip";				
-	}	
+
+// 글 상세 조회
+	 @RequestMapping(value="/getLanTrip.do", method = RequestMethod.GET)
+	 public String getLanTrip(LanTripVO vo, Model model) {
+		 System.out.println("랜선여행 상세 조회 처리");
+		 
+		 LanTripVO lanTrip = lanTripService.getLanTrip(vo);
+		 
+		 model.addAttribute("lantrip", lanTrip);
+		 
+	 return "lantrip/getLanTrip";
+	 }
 	
 }
