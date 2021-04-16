@@ -61,6 +61,13 @@ public class HotelController {
 	//WEB-INF 폴더에 있는 jsp는 직접적으로 view를 볼 수 없다. 
 	//또한 직접적으로 볼 수 없기 때문에 <a> 앵커 태그로 이동이 불가하며 Controller를 통해서만 이동을 해야 한다.
 	
+	//글 게시판 화면 보기
+	@RequestMapping(value="/viewGetHotelList.do") 
+	public String viewGetHotelList(){
+		System.out.println("숙소 게시판 화면 보기 처리");
+		return "hotel/getHotelList";
+	}	
+	
 	// 글 수정
 	@RequestMapping("/updateHotel.do") 
 	public String updateHotel(@ModelAttribute("hotel") HotelVO vo){

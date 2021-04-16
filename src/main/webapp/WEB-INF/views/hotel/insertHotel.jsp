@@ -1,5 +1,5 @@
 <%@page contentType="text/html; charset=UTF-8"%>
-
+<%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <!DOCTYPE html >
 <html>
 <head>
@@ -35,7 +35,7 @@
 			</table>
 		</form>
 		<hr>
-		<a href="">호텔 목록 가기</a>
+		<a href="<c:url value='/hotel/viewGetHotelList.do'/>">숙소 목록 보기</a>
 	</center>
 </body>
 </html>
