@@ -12,7 +12,11 @@ public class MembersDAO {
 	@Autowired
 	private SqlSessionTemplate mybatis;
 
-	public int insertMembers(MembersVO vo){
+	public int insertMembers(MembersVO vo) {
 		return mybatis.insert("membersDAOTemplate.insertMembers", vo);
+	}
+		
+	public int getMembers(MembersVO vo) {
+		return mybatis.selectOne("membersDAOTemplate.getMembers", vo);
 	}
 }

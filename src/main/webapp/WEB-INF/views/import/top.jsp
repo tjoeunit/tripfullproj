@@ -120,7 +120,7 @@
 					<ul>
 						<li><a href="<c:url value='/members/insertMembers.do'/>">회원가입</a></li>
 						<li><a href="#">로그인</a></li>
-						<li><a href="#">관리자</a></li>
+						<li><a href="<c:url value='/adminLogin/adminLogin.do'/>">관리자</a></li>
 					</ul>
 				</div>
 
