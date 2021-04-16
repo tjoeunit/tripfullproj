@@ -1,5 +1,7 @@
 package com.tjoeunit.biz.members.Impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,7 @@ public class MembersServiceImpl implements MembersService{
 		
 		return membersDAO.insertMembers(vo);
 	}
+
 	
 	
 	

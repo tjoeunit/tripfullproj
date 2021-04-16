@@ -38,9 +38,75 @@ public class MembersController {
 
 		model.addAttribute("msg", msg);
 		model.addAttribute("url", url);
+		model.addAttribute("member_id", vo.getMembers_id());
 
 		return "common/message";
 
 	}
+/*	
+	// 글 수정
+		@RequestMapping("/updateMembers.do")
+												//사용자로부터 전달 받은 TITLE과 CONTENT 값 업데이트
+		public String updateMembers(@ModelAttribute("members") MembersVO vo) {		
+			System.out.println("고객정보 수정 처리" +vo);
+			// 1. 사용자 입력 정보 추출(Spring이 대신 해줌.생략 가능)
+			
+			// 2. DB 연동 처리
+			membersService.updateMembers(vo);
+			// 3. 화면 전환
+			return "redirect:getMembersList.do";
+		}
+		
+	// 글 삭제
+		@RequestMapping("/deleteMembers.do")
+		public void deleteMembers(MembersVO vo) {
+			System.out.println("고객 삭제 기능 처리");
+					
+			membersService.deleteMembers(vo);
+			
+			return;
+		}
+	
+	// RequestMapping이 실행되기 직전에 이 메소드가 먼저 호출 되어진다.(model에 값이 들어감)
+		@ModelAttribute("/conditionMap.do")		//"conditionMap"에 return 값을 저장
+		public Map<String, String> searchConditionMap() {
+			Map<String, String> conditionMap = new HashMap<String, String>();
+			conditionMap.put("제목", "TITLE");
+			conditionMap.put("내용", "CONTENT");
+			return conditionMap;
+		}
 
+	// 고객 목록 보기
+		@RequestMapping("/getMembersList.do")
+//		public String getMembersList(MembersVO vo, Model model) {	//ModelAndView의 Model 딴에 있는 변수를 매개변수로
+			System.out.println("글 목록 검색 처리");
+		// 검색 기능 추가 Null check
+
+			if(vo.getMembersSearchCondition() == null) {
+				vo.setMembersSearchCondition("TITLE");
+			}
+			
+			if(vo.getMembersSearchKeyword() == null) {
+				vo.setMembersSearchKeyword("");
+			}
+			
+			model.addAttribute("membersList", membersService.getMembersList(vo));		//key Value
+			
+			return "/members/getMembersList.jsp";
+
+		}
+
+	// 글 상세 조회
+		@RequestMapping("/getMembers.do")
+		public String getMembers(MembersVO vo, Model model) {
+			System.out.println("글 상세 조회 처리");
+			
+	//		MembersVO members = membersService.getMembers(vo);
+			
+	//		model.addAttribute("members", members);
+			
+			return "/members/getMembers.jsp";
+		}
+	}	
+*/
 }

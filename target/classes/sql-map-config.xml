@@ -11,6 +11,8 @@
 	<mappers>
 		<mapper resource="mappings/members-mapping.xml"/>
 		<mapper resource="mappings/lantrip-mapping.xml"/>
+		<mapper resource="mappings/story-mapping.xml"/>
+		<mapper resource="mappings/hotel-mapping.xml"/>
 	</mappers>
 	
 	
