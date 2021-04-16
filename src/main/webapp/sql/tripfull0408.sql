@@ -54,7 +54,7 @@ ALTER TABLE story
 		REFERENCES members (
 			members_no
 		);
-select story_date from story;
+		
 /* 항공 */
 CREATE TABLE flight (
 	flight_no NUMBER NOT NULL, /* 항공번호 */
