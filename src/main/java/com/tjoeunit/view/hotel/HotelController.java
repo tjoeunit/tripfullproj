@@ -21,34 +21,27 @@ import com.tjoeunit.biz.hotel.HotelVO;
 
 @Controller
 @RequestMapping("/hotel")
-//모델에 저장할때 세션영역에도 자료 저장해줘
+
 public class HotelController {
 	@Autowired 
-	//주입하기
 	private HotelService hotelService;
 	
 	// 글 등록
 	@RequestMapping(value="/insertHotel.do") 
-	public String insertBoard(HotelVO vo, HttpSession session) throws IOException{ // 브라우저 데이터를 담아주는 커멘드 객체 역할 
+	public String insertHotel(HotelVO vo, HttpSession session) throws IOException{ // 브라우저 데이터를 담아주는 커멘드 객체 역할 
 		System.out.println("숙소 등록 처리");
 
 		// 파일 업로드 처리
-		String fileSaveFolder = session.getServletContext().getRealPath("hotel/hotelUpload/"); 
-		// 어플리케이션 객체 반환 
-		//application getrealpath로 절대경로 가져올 수 있다. 
-		//session  getservletcontext
-		// 이 절대경로 위치는 서블릿의 절대위치로 반환하는데 우리는 프로젝트의 위치를 원한다. 
-		// 서버 설정을 통해 프로젝트 위치로 변경 
-		
+		String fileSaveFolder = session.getServletContext().getRealPath("/img/"); 
+			
 		MultipartFile hotel_thumb = vo.getHotel_thumb();
 		if(!hotel_thumb.isEmpty()) {
-			String fileName = hotel_thumb.getOriginalFilename(); 
-			hotel_thumb.transferTo(new File(fileSaveFolder+fileName));
-		}// 해당위치의 파일이름을 저장해주는 메서드
-		// uploadFile 는 자s바빈 필드
+			String hotel_thumb_path = hotel_thumb.getOriginalFilename(); 
+			hotel_thumb.transferTo(new File(fileSaveFolder+hotel_thumb_path));
+			System.out.println(fileSaveFolder+hotel_thumb_path);
+		}
 		
-		hotelService.insertHotel(vo);
-		// 이미 서비스임플리에 구현됨 가져오기 만 하면된다.
+		hotelService.insertHotel(vo);	
 		
 		return "redirect: getHotelList.do";
 	}
@@ -61,13 +54,7 @@ public class HotelController {
 	//WEB-INF 폴더에 있는 jsp는 직접적으로 view를 볼 수 없다. 
 	//또한 직접적으로 볼 수 없기 때문에 <a> 앵커 태그로 이동이 불가하며 Controller를 통해서만 이동을 해야 한다.
 	
-	//글 게시판 화면 보기
-	@RequestMapping(value="/viewGetHotelList.do") 
-	public String viewGetHotelList(){
-		System.out.println("숙소 게시판 화면 보기 처리");
-		return "hotel/getHotelList";
-	}	
-	
+		
 	// 글 수정
 	@RequestMapping("/updateHotel.do") 
 	public String updateHotel(@ModelAttribute("hotel") HotelVO vo){

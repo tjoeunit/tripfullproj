@@ -11,10 +11,44 @@ public class HotelVO {
 	private String hotel_area;
 	private String searchCondition;
 	private String searchKeyword;
-	private MultipartFile hotel_thumb;
+	private MultipartFile hotel_thumb;  
 	private MultipartFile hotel_img;
-	
-	
+	private String hotel_thumb_path;
+	private String hotel_img_path;
+	// 이미지는 디비에 저장하지 않고 서버에 먼저 올린다음 
+	// 그 위치 경로를 스트링으로 경로를 넣어주는것이다.
+
+
+	public String getHotel_thumb_path() {
+		return hotel_thumb_path;
+	}
+
+
+	public String getHotel_img_path() {
+		return hotel_img_path;
+	}
+
+
+	public void setHotel_img_path(String hotel_img_path) {
+		this.hotel_img_path = hotel_img_path;
+	}
+
+
+	public void setHotel_thumb_path(String hotel_thumb_path) {
+		this.hotel_thumb_path = hotel_thumb_path;
+	}
+
+
+	@Override
+	public String toString() {
+		return "HotelVO [hotel_no=" + hotel_no 
+								+ ", hotel_title=" + hotel_title 
+								+ ", hotel_content=" + hotel_content
+								+ ", hotel_price=" + hotel_price 
+								+ ", hotel_area=" + hotel_area + "]";
+	}
+
+
 	public int getHotel_no() {
 		return hotel_no;
 	}
@@ -115,13 +149,5 @@ public class HotelVO {
 	}
 
 
-	@Override
-	public String toString() {
-		return "HotelVO [hotel_no=" + hotel_no 
-								+ ", hotel_title=" + hotel_title 
-								+ ", hotel_content=" + hotel_content
-								+ ", hotel_price=" + hotel_price 
-								+ ", hotel_area=" + hotel_area + "]";
-	}
 		
 }

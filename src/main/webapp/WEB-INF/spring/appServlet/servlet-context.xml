@@ -27,7 +27,10 @@
 
 	<!-- 파일 업로드 -->
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<beans:property name="maxUploadSize" value="100000"></beans:property>
+		 <!-- max upload size in bytes -->
+		<beans:property name="maxUploadSize" value="5242880"/><!--5MB-->
+		<!-- max size of file in memory (in bytes) -->
+        <beans:property name="maxInMemorySize" value="1048576" /> <!-- 1MB -->
 	</beans:bean>
 
 	<!-- 컨트롤러 메서드 처리 후 페이지 경로 설정에 사용 -->
