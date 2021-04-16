@@ -28,21 +28,22 @@ public class HotelController {
 	private HotelService hotelService;
 	
 	// 글 등록
-	@RequestMapping(value="/insertHotel.do", method=RequestMethod.POST) 
+	@RequestMapping(value="/insertHotel.do") 
 	public String insertBoard(HotelVO vo, HttpSession session) throws IOException{ // 브라우저 데이터를 담아주는 커멘드 객체 역할 
-		System.out.println("글 등록 처리");
+		System.out.println("숙소 등록 처리");
 
 		// 파일 업로드 처리
-		String fileSaveFolder = session.getServletContext().getRealPath("/hotelUpload/"); // 어플리케이션 객체 반환 
+		String fileSaveFolder = session.getServletContext().getRealPath("hotel/hotelUpload/"); 
+		// 어플리케이션 객체 반환 
 		//application getrealpath로 절대경로 가져올 수 있다. 
 		//session  getservletcontext
 		// 이 절대경로 위치는 서블릿의 절대위치로 반환하는데 우리는 프로젝트의 위치를 원한다. 
 		// 서버 설정을 통해 프로젝트 위치로 변경 
 		
-		MultipartFile uploadFile = vo.getUploadFile();
-		if(!uploadFile.isEmpty()) {
-			String fileName = uploadFile.getOriginalFilename(); 
-			uploadFile.transferTo(new File(fileSaveFolder+fileName));
+		MultipartFile hotel_thumb = vo.getHotel_thumb();
+		if(!hotel_thumb.isEmpty()) {
+			String fileName = hotel_thumb.getOriginalFilename(); 
+			hotel_thumb.transferTo(new File(fileSaveFolder+fileName));
 		}// 해당위치의 파일이름을 저장해주는 메서드
 		// uploadFile 는 자s바빈 필드
 		
@@ -51,6 +52,14 @@ public class HotelController {
 		
 		return "redirect: getHotelList.do";
 	}
+	//글 등록 화면 보기 
+	@RequestMapping(value="/viewInsertHotel.do") 
+	public String viewInsertHotel(){
+		System.out.println("숙소 등록 화면 보기 처리");
+		return "hotel/insertHotel";
+	}	
+	//WEB-INF 폴더에 있는 jsp는 직접적으로 view를 볼 수 없다. 
+	//또한 직접적으로 볼 수 없기 때문에 <a> 앵커 태그로 이동이 불가하며 Controller를 통해서만 이동을 해야 한다.
 	
 	// 글 수정
 	@RequestMapping("/updateHotel.do") 
@@ -85,9 +94,9 @@ public class HotelController {
 	}
 	
 	// 글 목록 검색
-	@RequestMapping(value="/getHotelList.do", method=RequestMethod.GET) 
+	@RequestMapping(value="/getHotelList.do") 
 	public String getHotelList(HotelVO vo, Model model){
-		System.out.println("글 목록 검색 처리");		
+		System.out.println("숙소 목록 검색 처리");		
 		// 검색 기능  Null check
 		/*
 		 * if(vo.getSearchCondition()==null) { vo.setSearchCondition("hotel_title"); }

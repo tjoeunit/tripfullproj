@@ -45,7 +45,7 @@
 				</tr>
 			</c:forEach>
 		</table>
-		<br> <a href="insertHotel.jsp">새글 등록</a>
+		<br><a href="<c:url value='/hotel/viewInsertHotel.do'/>">새글 등록</a>
 	</center>
 </body>
 </html>
