@@ -7,6 +7,11 @@
 	font: bold;
 	width: 1200px;
 }
+
+.story_insert td{
+	text-align: center;
+}
+
 .insert_story_subject{
 	border-style: black thick;
 	background-color: #58CCFF;
@@ -32,17 +37,7 @@
 <main>
 
 <!-- ckeditor 4 -->
- 	<script type="text/javascript" src = "<c:url value = '../ckeditor/ckeditor.js' />"></script>
-	<script type='text/javascript'>	
-		
-	    var editorConfig = { filebrowserUploadUrl : "../storyUpload/storyFileUpload.do" };
-	    
-	    var ck = null;
-
-	    window.onload = function(){
-	        ck = CKEDITOR.replace("story_editor1" , editorConfig,{height:700});
-	    };
-	</script>
+ 	<script type="text/javascript" src = "<c:url value = '/ckeditor/ckeditor.js' />"></script>
 	
 		<center>
 			<h1>여행 이야기</h1>
@@ -50,24 +45,31 @@
 				<table class="story_insert">
 					<tr>
 						<td class="insert_story_subject">제목</td>
-						<td><input type="text" size=80/></td>
+						<td><input type="text" size=100%/></td>
 					</tr>
+					
 					<tr>
 						<td class="insert_story_writer">작성자</td>
-						<td>${member_id.member_id}</td>
+						<td><input type="text" size=100% value="${member_id.member_id}" readonly></td>
 					</tr>
+					
 					<tr>
 						<td class="insert_story_content">내용</td>
 						<td>
-							<textarea id="story_editor1"></textarea>
+							<textarea id="story_ckeditor"></textarea>
+							<script type="text/javascript">
+								 CKEDITOR.replace('story_ckeditor', {height: 700, width: 900});
+							</script>
 						</td>
 					</tr>
+					
 					<tr>
 						<hr>
 						<div  class="push_story">
 							<td><input type="submit" value=" 새글 등록 "/></td>
 						</div>
 					</tr>
+					
 				</table>
 			</form>
 			
@@ -75,10 +77,6 @@
 			
 			<a href="getStoryList.do">글 목록 가기</a>
 	</center>
-
-    <script type = "text/javascript">
-        window.parent.CKEDITOR.tools.callFunction('${CKEditorFuncNum}','${filePath}', '업로드완료');
-    </script>
     
 </main>
 

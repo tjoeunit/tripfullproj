@@ -27,34 +27,7 @@ import com.tjoeunit.biz.story.StoryVO;
 public class StoryController {
 	@Autowired
 	private StoryService storyService;
-	/*
-//파일 업로드(CKEditor)
-	 @RequestMapping(value = "storyUpload/storyFileUpload.do")
-	    public String fileUpload(@ModelAttribute("StoryVO") StoryVO vo , HttpServletRequest request , Model model){
-	        HttpSession session = request.getSession();
-	        String rootPath = session.getServletContext().getRealPath("/");
-	        String storyFileAttachPath = "storyUpload/";
 
-	        MultipartFile storyUploadFile = vo.getStoryUploadFile();
-	        String storyFilename = "";
-	        String CKEditorFuncNum = "";
-	        
-	        if(storyUploadFile != null){
-	            storyFilename = storyUploadFile.getOriginalFilename();
-	            vo.setStoryFilename(storyFilename);
-	            CKEditorFuncNum = vo.getCKEditorFuncNum();
-	            try{
-	                File storyFile = new File(rootPath + storyFileAttachPath + storyFilename);
-	                storyUploadFile.transferTo(storyFile);
-	            }catch(IOException e){
-	                e.printStackTrace();
-	            }  
-	        }
-	            model.addAttribute("filePath",storyFileAttachPath + storyFilename);          //결과값을
-	            model.addAttribute("CKEditorFuncNum",CKEditorFuncNum);//jsp ckeditor 콜백함수로 보내줘야함
-	        return "sample/fileUploadComplete";
-	    }
-	*/
 	
 // 글 등록 페이지 불러오기
 	@RequestMapping(value="/insertStoryPage.do", method=RequestMethod.GET)
@@ -145,10 +118,12 @@ public class StoryController {
 			vo.setStorySearchKeyword("");
 		}
 	*/	
+
 		List<StoryVO> storyList = storyService.getStoryList(vo);
 		
 		model.addAttribute("storyList", storyList);		//key Value
 		
+		System.out.println("스토리 목록 보기");
 		return "story/getStoryList";
 
 	}
