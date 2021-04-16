@@ -15,12 +15,14 @@ public class MembersServiceImpl implements MembersService{
 	private MembersDAO membersDAO;
 
 	@Override
-	public int insertMembers(MembersVO vo) {
-		
+	public int insertMembers(MembersVO vo) {		
 		return membersDAO.insertMembers(vo);
 	}
 
-	
+	@Override
+	public int checkIdDup(String members_id) {
+		return membersDAO.checkIdDup(members_id);
+	}
 	
 	
 }

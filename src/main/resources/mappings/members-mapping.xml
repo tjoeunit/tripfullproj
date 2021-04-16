@@ -16,4 +16,9 @@
 			#{members_zipcode}, #{members_address},	#{members_address_detail})	
 	</insert>
 
+	<select id="checkIdDup" parameterType="string" resultType="int">
+		select count(*) from members
+		where members_id=#{members_id}
+	</select>
+
 </mapper>

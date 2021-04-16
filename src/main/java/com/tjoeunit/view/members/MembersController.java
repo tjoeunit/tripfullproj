@@ -5,6 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.tjoeunit.biz.members.MembersService;
 import com.tjoeunit.biz.members.MembersVO;
@@ -43,6 +45,17 @@ public class MembersController {
 		return "common/message";
 
 	}
+	
+	//회원 등록 시 아이디 중복 확인
+	@RequestMapping("/checkIdDup.do")
+	@ResponseBody
+	public int checkIdDup(@RequestParam String members_id) {
+		System.out.println("members_id = "+members_id);
+		int cnt = membersService.checkIdDup(members_id);
+		System.out.println("cnt = "+cnt);
+		return cnt;
+	}
+	
 /*	
 	// 글 수정
 		@RequestMapping("/updateMembers.do")

@@ -15,4 +15,10 @@ public class MembersDAO {
 	public int insertMembers(MembersVO vo){
 		return mybatis.insert("membersDAOTemplate.insertMembers", vo);
 	}
+	
+	public int checkIdDup(String members_id) {
+		return mybatis.selectOne("membersDAOTemplate.checkIdDup", members_id);
+	}
+
+	
 }

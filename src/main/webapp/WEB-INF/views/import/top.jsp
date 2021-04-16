@@ -9,7 +9,7 @@
 <link rel="shortcut icon" href="<c:url value='/img/favicon16.ico'/>">
 
 <!-- 제이쿼리 -->
-<script type="text/javascript" src="<c:url value='/lib/js/jquery-3.5.1.min.js'/>"></script>
+<script type="text/javascript" src="<c:url value='/js/jquery-3.5.1.min.js'/>"></script>
 
 <meta charset="UTF-8">
 <title>Tripfull</title>
