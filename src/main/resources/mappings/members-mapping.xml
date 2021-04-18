@@ -16,4 +16,18 @@
 			#{members_zipcode}, #{members_address},	#{members_address_detail})	
 	</insert>
 
+	<select id="checkIdDup" parameterType="string" resultType="int">
+		select count(*) from members
+		where members_id=#{members_id}
+	</select>
+	
+	<select id="checkPwDup" parameterType="string" resultType="string">
+		select members_pw from members
+		where members_pw=#{members_pw}
+	</select>
+	
+	<select id="selectByMembersId" resultType="com.tjoeunit.biz.members.MembersVO">
+		select * from members
+		where members_id=#{members_id}
+	</select>
 </mapper>

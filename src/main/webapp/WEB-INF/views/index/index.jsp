@@ -46,7 +46,10 @@
 		</script>
 		
 		<div>
+			세션에 저장되었는지 보여주기 위해 임시로 생성
+			<input type="text" value="${members_id}">
 			<div>
+				
 				<div class="productDiv">
 					<div class="productThumDiv">항공이미지</div>
 					<div>설명</div>
