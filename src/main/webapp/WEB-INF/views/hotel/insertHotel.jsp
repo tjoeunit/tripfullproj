@@ -1,5 +1,5 @@
 <%@page contentType="text/html; charset=UTF-8"%>
-
+<%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <!DOCTYPE html >
 <html>
 <head>
@@ -15,6 +15,7 @@
 				<tr>
 					<td bgcolor="#58CCFF" width="70">썸네일</td>
 					<td><input type="file"  name = "hotel_thumb"/></td>
+					<!-- <input multiple="multiple" type="file"  name = "file"/>-->
 				</tr>
 				<tr>
 					<td bgcolor="#58CCFF">제목</td>
@@ -35,7 +36,7 @@
 			</table>
 		</form>
 		<hr>
-		<a href="">호텔 목록 가기</a>
+		<a href="<c:url value='/hotel/getHotelList.do'/>">숙소 목록 보기</a>
 	</center>
 </body>
 </html>
