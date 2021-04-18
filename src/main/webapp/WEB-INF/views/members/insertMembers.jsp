@@ -25,8 +25,8 @@
 		});
 		
 		$('#members_id').keyup(function() {
-			if ($('#members_id').val().length < 4) {
-				$('#chkId2').html("아이디는 4글자 이상 사용할 수 있습니다").css('color', 'red')
+			if ($('#members_id').val().length < 5) {
+				$('#chkId2').html("아이디는 5글자 이상 사용할 수 있습니다").css('color', 'red')
 				$('#chkId').val("N");
 	
 			} else {
@@ -53,9 +53,11 @@
 				});	
 			}
 		});
-
+		
+		var checked = "checked";
+		
 		$('form[name=frm]').submit(function() {
-			if ($('#members_id').val().length < 1) {
+			if ($('#members_id').val().length < 5) {
 				alert('아이디를 확인하세요');
 				$('#members_id').focus();
 				event.preventDefault();
@@ -83,9 +85,17 @@
 				alert('이메일을 확인하세요');
 				$("#members_email").focus();
 				event.preventDefault();
-			} else if ($('#members_tel').val().length < 13) {
+			} else if ($('#members_tel1').val().length < 3) {
 				alert('전화번호를 확인하세요');
-				$("#members_tel").focus();
+				$("#members_tel1").focus();
+				event.preventDefault();
+			} else if ($('#members_tel2').val().length < 4) {
+				alert('전화번호를 확인하세요');
+				$("#members_tel2").focus();
+				event.preventDefault();
+			} else if ($('#members_tel3').val().length < 4) {
+				alert('전화번호를 확인하세요');
+				$("#members_tel3").focus();
 				event.preventDefault();
 			} else if ($('#members_zipcode').val().length < 1) {
 				alert('우편번호를 확인하세요');
@@ -99,9 +109,7 @@
 				alert('주소상세를 확인하세요');
 				$("#members_detail_address").focus();
 				event.preventDefault();
-			}
-				
-
+			} 
 		
 
 		});
@@ -130,8 +138,6 @@
 			}
 		}
 		*/
-		
-		
 		
 	});
 </script>
@@ -182,16 +188,12 @@
 		<div>
 			회원가입
 		</div>
-		<div>
-			이용약관
-			<input type="checkbox" id="chk1">
-			<input type="checkbox" id="chk2">
-			<input type="checkbox" id="chk3">
-		</div>
+		
 		
 		<form name="frm" action="insertMembers.do" method="post">
 			<input type="hidden" name="chkId" id="chkId">
-			<input type="text" name="members_tel" id="members_tel">
+			<input type="hidden" name="members_tel" id="members_tel">
+	
 			<table>
 				<tr>
 					<td>아이디 :</td>
@@ -247,7 +249,7 @@
 			</table>
 			
 			<input type="submit" value="가입하기">
-			<input type="button" value="뒤로가기">
+			<button type="button" onclick="history.back()">뒤로가기</button>
 		</form>
 	</div>
 	

@@ -19,6 +19,13 @@ public class MembersDAO {
 	public int checkIdDup(String members_id) {
 		return mybatis.selectOne("membersDAOTemplate.checkIdDup", members_id);
 	}
-
+	
+	public String checkMembersPw(String members_id) {
+		return mybatis.selectOne("membersDAOTemplate.checkPwDup", members_id);
+	}
+	
+	public MembersVO selectByMembersId(String members_id) {
+		return mybatis.selectOne("membersDAOTemplate.selectByMembersId" ,members_id);
+	}
 	
 }

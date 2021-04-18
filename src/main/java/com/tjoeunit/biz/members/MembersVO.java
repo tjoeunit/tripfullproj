@@ -8,15 +8,13 @@ public class MembersVO {
 	private String members_pw;
 	private String members_name;
 	private String members_tel;
-	private Date members_birth;
 	private String members_email;
-	private Date members_regdate;
 	private Date members_outdate;
 	private String members_gender;
-	private int members_zipcode;
+	private String members_zipcode;
 	private String members_address;
 	private String members_address_detail;
-		
+	
 	public int getMembers_no() {
 		return members_no;
 	}
@@ -47,23 +45,11 @@ public class MembersVO {
 	public void setMembers_tel(String members_tel) {
 		this.members_tel = members_tel;
 	}
-	public Date getMembers_birth() {
-		return members_birth;
-	}
-	public void setMembers_birth(Date members_birth) {
-		this.members_birth = members_birth;
-	}
 	public String getMembers_email() {
 		return members_email;
 	}
 	public void setMembers_email(String members_email) {
 		this.members_email = members_email;
-	}
-	public Date getMembers_regdate() {
-		return members_regdate;
-	}
-	public void setMembers_regdate(Date members_regdate) {
-		this.members_regdate = members_regdate;
 	}
 	public Date getMembers_outdate() {
 		return members_outdate;
@@ -77,10 +63,10 @@ public class MembersVO {
 	public void setMembers_gender(String members_gender) {
 		this.members_gender = members_gender;
 	}
-	public int getMembers_zipcode() {
+	public String getMembers_zipcode() {
 		return members_zipcode;
 	}
-	public void setMembers_zipcode(int members_zipcode) {
+	public void setMembers_zipcode(String members_zipcode) {
 		this.members_zipcode = members_zipcode;
 	}
 	public String getMembers_address() {
@@ -99,10 +85,10 @@ public class MembersVO {
 	@Override
 	public String toString() {
 		return "MembersVO [members_no=" + members_no + ", members_id=" + members_id + ", members_pw=" + members_pw
-				+ ", members_name=" + members_name + ", members_tel=" + members_tel + ", members_birth=" + members_birth
-				+ ", members_email=" + members_email + ", members_regdate=" + members_regdate + ", members_outdate="
-				+ members_outdate + ", members_gender=" + members_gender + ", members_zipcode=" + members_zipcode
-				+ ", members_address=" + members_address + ", members_address_detail=" + members_address_detail + "]";
-	}
+				+ ", members_name=" + members_name + ", members_tel=" + members_tel + ", members_email=" + members_email
+				+ ", members_outdate=" + members_outdate + ", members_gender=" + members_gender + ", members_zipcode="
+				+ members_zipcode + ", members_address=" + members_address + ", members_address_detail="
+				+ members_address_detail + "]";
+	}	
 		
 }

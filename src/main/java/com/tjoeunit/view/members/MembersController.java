@@ -1,5 +1,8 @@
 package com.tjoeunit.view.members;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,16 +21,17 @@ public class MembersController {
 	@Autowired
 	private MembersService membersService;
 
+	//회원가입 페이지
 	@RequestMapping(value="/insertMembers.do", method=RequestMethod.GET)
 	public String insertMembersPage() {
-		System.out.println("회원가입뷰");
+		System.out.println("회원가입 페이지");
 		return "members/insertMembers";
 	}
 
-	//회원 등록
+	//회원가입 처리
 	@RequestMapping(value="/insertMembers.do", method=RequestMethod.POST)
 	public String insertMembers(MembersVO vo, Model model) throws Exception {
-	System.out.println("회원가입처리");
+		System.out.println("회원가입 처리");
 
 		int cnt = membersService.insertMembers(vo);
 
@@ -46,15 +50,58 @@ public class MembersController {
 
 	}
 	
-	//회원 등록 시 아이디 중복 확인
+	//회원 등록 시 아이디 중복 확인 (Ajax)
 	@RequestMapping("/checkIdDup.do")
 	@ResponseBody
 	public int checkIdDup(@RequestParam String members_id) {
-		System.out.println("members_id = "+members_id);
+		System.out.println("members_id = " + members_id);
 		int cnt = membersService.checkIdDup(members_id);
 		System.out.println("cnt = "+cnt);
 		return cnt;
 	}
+	
+	//회원 로그인 페이지
+	@RequestMapping(value="/loginMembers.do", method=RequestMethod.GET)
+	public String loginMembersPage() {
+		System.out.println("회원 로그인 페이지");
+		return "members/loginMembers";
+	}
+	
+	//회원 로그인 처리
+	@RequestMapping(value="/loginMembers.do", method=RequestMethod.POST)
+	public String loginMembers(@RequestParam String members_id, @RequestParam String members_pw,
+			HttpServletRequest request, Model model) {
+		System.out.println("회원 로그인 처리");
+		System.out.println("members_id = " + members_id +", members_pw = " + members_pw);
+		
+		int result = membersService.loginMembers(members_id, members_pw);
+		//result = 0 아이디가 존재하지 않거나 비밀번호가 일치하지 않음
+		//result = 1 아이디가 존재하고 비밀번호 일치
+		System.out.println("로그인 결과 cnt = " + result);
+		
+		//기본값 설정
+		String msg = "로그인 실패", url = "/members/loginMembers.do";
+		
+		if(result == 1) {
+			MembersVO vo = membersService.selectByMembersId(members_id);
+				msg = vo.getMembers_id() + "님 로그인 성공";
+				url = "/index.do";
+				
+				//세션에 저장
+				HttpSession session = request.getSession();
+				session.setAttribute("members_no", vo.getMembers_no());
+				session.setAttribute("members_id", vo.getMembers_id());
+				session.setAttribute("members_name", vo.getMembers_name());			
+		
+		}
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		return "common/message";
+	}
+	
+
 	
 /*	
 	// 글 수정
