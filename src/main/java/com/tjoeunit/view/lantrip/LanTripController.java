@@ -36,40 +36,34 @@ public class LanTripController {
 		if(!lanTripThumb.isEmpty()) {
 			String lanTripThumbName = lanTripThumb.getOriginalFilename();
 			lanTripThumb.transferTo(new File(lanTripThumbSave+lanTripThumbName));
+			vo.setLantrip_thumb_path(lanTripThumbName);
+			System.out.println(lanTripThumbName);
 		}
 		
-		// 상세설명 파일 업로드 처리
-				String lanTripDetailSave = session.getServletContext().getRealPath("/lanTripUpload/detail");
-				
-				MultipartFile lanTripDetail = vo.getLantrip_thumb();
-				if(!lanTripDetail.isEmpty()) {
-					String lanTripDetailName = lanTripDetail.getOriginalFilename();
-					lanTripDetail.transferTo(new File(lanTripDetailSave+lanTripDetailName));
-				}
 		
 		// DB연동처리
 		lanTripService.insertLanTrip(vo);
 		
 		// 화면전환
-		return "redirect:getLanTripList.do";
+		return "admin/adminLanTrip";
 	}
 
 // 글 수정
-	@RequestMapping("/updateLanTrip.do")
+	@RequestMapping(value = "/updateLanTrip.do", method = RequestMethod.POST)
 	public String updateLanTrip(@ModelAttribute("lanTrip") LanTripVO vo) {
 		System.out.println("글 수정 처리" + vo);
 		
 		lanTripService.updateLanTrip(vo);
-		return "redirect:getLanTripList.do";
+		return "admin/adminLanTrip";
 	}
 	
 	// 글 삭제
-	@RequestMapping("/deleteLanTrip.do")
+	@RequestMapping(value = "/deleteLanTrip.do", method = RequestMethod.POST)
 	public String deleteLanTrip(LanTripVO vo) {
 		System.out.println("글 삭제 처리");
 		
 		lanTripService.deleteLanTrip(vo);
-		return "redirect:getLanTripList.do";
+		return "admin/adminLanTrip";
 	}
 
 	

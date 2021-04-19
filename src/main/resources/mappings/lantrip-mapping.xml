@@ -10,7 +10,7 @@
 		</selectKey>
 		insert into lantrip(lantrip_no, lantrip_title, lantrip_content, lantrip_img, lantrip_thumb, lantrip_price, lantrip_area)
 		values(
-			#{lantrip_no}, #{lantrip_title}, #{lantrip_content}, #{lantrip_img}, #{lantrip_thumb}, #{lantrip_price}, #{lantrip_area})
+			#{lantrip_no}, #{lantrip_title}, #{lantrip_content}, #{lantrip_img_path}, #{lantrip_thumb_path}, #{lantrip_price}, #{lantrip_area})
 	</insert>
 	
 <!-- 랜선여행 글 목록보기 -->
