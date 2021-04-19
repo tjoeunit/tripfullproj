@@ -16,7 +16,7 @@ public class MembersDAO {
 		return mybatis.insert("membersDAOTemplate.insertMembers", vo);
 	}
 		
-	public int getMembers(MembersVO vo) {
+	public MembersVO getMembers(MembersVO vo) {
 		return mybatis.selectOne("membersDAOTemplate.getMembers", vo);
 	}
 }
