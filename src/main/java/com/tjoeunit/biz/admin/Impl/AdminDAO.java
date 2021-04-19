@@ -12,7 +12,7 @@ public class AdminDAO {
 	@Autowired
 	private SqlSessionTemplate mybatis;
 		
-	public AdminVO adminLoginCheck(AdminVO vo) {
+	public String adminLoginCheck(AdminVO vo) {
 		return mybatis.selectOne("membersDAOTemplate.adminLogin", vo);
 	}
 }

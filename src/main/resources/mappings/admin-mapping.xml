@@ -3,21 +3,8 @@
 
 <mapper namespace="adminDAOTemplate">
 	
-	<insert id="insertMembers">	
-		<selectKey keyProperty="members_no" resultType="int" order="BEFORE">
-			select members_seq.nextval from dual
-		</selectKey>	
-		insert into members(members_no, members_id, members_pw, members_name,
-			members_tel, members_email, members_gender,
-			members_zipcode, members_address, members_address_detail)
-		values(
-			#{members_no}, #{members_id}, #{members_pw}, #{members_name},
-			#{members_tel}, #{members_email}, #{members_gender},
-			#{members_zipcode}, #{members_address},	#{members_address_detail})	
-	</insert>
-	
-	<select id="adminLogin" resultType="com.tjoeunit.biz.admin.AdminVO">
-		select * from members where members_id="admin", members_pw=1004
+	<select id="adminLogin" resultType="String">
+		select admin_name from admin where admin_id=#{admin_id} and admin_pw=#{admin_pw}
 	</select>
-
+	
 </mapper>

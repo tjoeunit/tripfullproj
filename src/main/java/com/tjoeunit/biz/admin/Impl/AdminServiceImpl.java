@@ -1,7 +1,5 @@
 package com.tjoeunit.biz.admin.Impl;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,17 +12,10 @@ public class AdminServiceImpl implements AdminService{
 	@Autowired
 	private AdminDAO adminDAO;
 	
-	@Override
-	public boolean adminLoginCheck(AdminVO vo, HttpSession session) throws Exception {
-		
-		boolean result = adminDAO.adminLogin(vo);
-		
-		if(result) {//로그인 성공
-			session.setAttribute("admin_id", vo.getMembers_id());
-            session.setAttribute("admin_pw", vo.getMembers_pw());
-		}
-		
-		return result;
+	@Override  //로그인 체크 관련 메소드 
+	public String adminLoginCheck(AdminVO vo) {
+		return adminDAO.adminLoginCheck(vo);
+		//vo에서 정보를 받고 dao에 리턴한다.
 	}
 	
 }

@@ -1,67 +1,47 @@
 package com.tjoeunit.biz.admin;
 
-import java.sql.Date;
-
 public class AdminVO {
-	private int members_no;
-	private String members_id;
-	private String members_pw;
-	private String members_name;
-		
+	private int admin_no;
+	private String admin_id;
+	private String admin_pw;
+	private String admin_name;
 
+	public int getAdmin_no() {
+		return admin_no;
+	}
 	
-	public int getMembers_no() {
-		return members_no;
+	public void setAdmin_no(int admin_no) {
+		this.admin_no = admin_no;
 	}
 
-
-
-	public void setMembers_no(int members_no) {
-		this.members_no = members_no;
+	public String getAdmin_id() {
+		return admin_id;
 	}
 
-
-
-	public String getMembers_id() {
-		return members_id;
+	public void setAdmin_id(String admin_id) {
+		this.admin_id = admin_id;
 	}
 
-
-
-	public void setMembers_id(String members_id) {
-		this.members_id = members_id;
+	public String getAdmin_pw() {
+		return admin_pw;
 	}
 
-
-
-	public String getMembers_pw() {
-		return members_pw;
+	public void setAdmin_pw(String admin_pw) {
+		this.admin_pw = admin_pw;
 	}
 
-
-
-	public void setMembers_pw(String members_pw) {
-		this.members_pw = members_pw;
+	public String getAdmin_name() {
+		return admin_name;
 	}
 
-
-
-	public String getMembers_name() {
-		return members_name;
+	public void setAdmin_name(String admin_name) {
+		this.admin_name = admin_name;
 	}
-
-
-
-	public void setMembers_name(String members_name) {
-		this.members_name = members_name;
-	}
-
-
 
 	@Override
 	public String toString() {
-		return "MembersVO [members_no=" + members_no + ", members_id=" + members_id + ", members_pw=" + members_pw
-				+ ", members_name=" + members_name + "]";
+		return "AdminVO [admin_no=" + admin_no + ", admin_id=" + admin_id + ", admin_pw=" + admin_pw
+				+ ", admin_name=" + admin_name + "]";
 	}
 		
 }
