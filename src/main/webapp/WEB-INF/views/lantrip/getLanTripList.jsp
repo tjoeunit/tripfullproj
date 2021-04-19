@@ -152,4 +152,6 @@
 	<br>
 </main>
 
+<!-- 깃허브에 올라가라!! -->
+
 <%@ include file="../import/bottom.jsp" %>
