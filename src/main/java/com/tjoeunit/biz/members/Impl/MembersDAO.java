@@ -21,7 +21,7 @@ public class MembersDAO {
 	}
 	
 	public String checkMembersPw(String members_id) {
-		return mybatis.selectOne("membersDAOTemplate.checkPwDup", members_id);
+		return mybatis.selectOne("membersDAOTemplate.checkMembersPw", members_id);
 	}
 	
 	public MembersVO selectByMembersId(String members_id) {

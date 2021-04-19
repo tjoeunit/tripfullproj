@@ -29,13 +29,15 @@ public class MembersServiceImpl implements MembersService{
 		
 		//아이디 존재유무 확인
 		int idCheck = membersDAO.checkIdDup(members_id);
+		System.out.println("idCheck = "+idCheck);
 		
 		//아이디 있음
 		if(idCheck > 0) {
 			
 			//아이디와 비밀번호 일치여부
 			String pwCheck = membersDAO.checkMembersPw(members_id);
-		
+			System.out.println("pwCheck = "+pwCheck);
+			
 			//비밀번호 일치
 			if(members_pw.equals(pwCheck)) {
 				result = 1;
@@ -50,6 +52,7 @@ public class MembersServiceImpl implements MembersService{
 			result = 0;
 		}
 		
+		System.out.println("result = "+result);
 		return result;
 				
 	}

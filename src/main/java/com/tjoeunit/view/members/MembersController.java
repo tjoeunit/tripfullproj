@@ -77,7 +77,7 @@ public class MembersController {
 		int result = membersService.loginMembers(members_id, members_pw);
 		//result = 0 아이디가 존재하지 않거나 비밀번호가 일치하지 않음
 		//result = 1 아이디가 존재하고 비밀번호 일치
-		System.out.println("로그인 결과 cnt = " + result);
+		System.out.println("로그인 결과 result = " + result);
 		
 		//기본값 설정
 		String msg = "로그인 실패", url = "/members/loginMembers.do";
