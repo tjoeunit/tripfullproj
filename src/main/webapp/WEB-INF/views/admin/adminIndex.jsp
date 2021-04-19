@@ -16,6 +16,12 @@
 
 </head>
 <body>
+<c:if test="${message == 'success' }"> <!-- controller에서 보낸 메시지의 값이 success면 c:if문이 실행.-->
+<h2>
+    ${sessionScope.admin_name}(${sessionScope.admin_id})님 환영합니다.
+    	<!--sessionScope는 세션에 담은 setAttribute()메소드 안에 있는 값을 jsp에서 JSTL로 간단히 사용. -->
+</h2>
+</c:if>
 
   <div class="wrapper">
         <div class="wrap">
