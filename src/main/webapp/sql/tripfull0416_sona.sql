@@ -1,13 +1,4 @@
-/* 상품 등록시 필요한 영상 url 저장 */
-alter table lantrip
-	add lantrip_video VARCHAR2(2000); 
+/* 랜트립에서 영상을 추가해야해서 랜트립 상품 등록 시 필요한 영상url 컬럼, 카테고리 컬럼 생성*/
 
-/* 이미지 첨부를 위한 경로 저장 */
 alter table lantrip
-	add lantrip_img_path VARCHAR2(3000); 
-
-/* 썸네일 첨부를 위한 경로 저장 */
-alter table lantrip
-	add lantrip_thumb_path VARCHAR2(800); 
-
-	select *from lantrip;
+	add lantrip_video VARCHAR2(2000);

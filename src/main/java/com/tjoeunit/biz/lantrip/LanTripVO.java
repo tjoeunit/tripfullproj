@@ -6,39 +6,13 @@ public class LanTripVO {
 	private int		lantrip_no;
 	private String	lantrip_title;
 	private String	lantrip_content;
-	private MultipartFile	lantrip_img;
-	private MultipartFile	lantrip_thumb;
+	private String	lantrip_img;
+	private String	lantrip_thumb;
 	private int		lantrip_price;
 	private String	lantrip_area;
-	private String	lantrip_searchCondition;
-	private String	lantrip_searchKeyword;
 	private String	lantrip_video;
 	private String	lantrip_thumb_path;
 	private String  lantrip_img_path;
-	
-	public String getLantrip_thumb_path() {
-		return lantrip_thumb_path;
-	}
-
-	public void setLantrip_thumb_path(String lantrip_thumb_path) {
-		this.lantrip_thumb_path = lantrip_thumb_path;
-	}
-
-	public String getLantrip_img_path() {
-		return lantrip_img_path;
-	}
-
-	public void setLantrip_img_path(String lantrip_img_path) {
-		this.lantrip_img_path = lantrip_img_path;
-	}
-
-	public String getLantrip_video() {
-		return lantrip_video;
-	}
-
-	public void setLantrip_video(String lantrip_video) {
-		this.lantrip_video = lantrip_video;
-	}
 
 	public int getLantrip_no() {
 		return lantrip_no;
@@ -64,19 +38,19 @@ public class LanTripVO {
 		this.lantrip_content = lantrip_content;
 	}
 
-	public MultipartFile getLantrip_img() {
+	public String getLantrip_img() {
 		return lantrip_img;
 	}
 
-	public void setLantrip_img(MultipartFile lantrip_img) {
+	public void setLantrip_img(String lantrip_img) {
 		this.lantrip_img = lantrip_img;
 	}
 
-	public MultipartFile getLantrip_thumb() {
+	public String getLantrip_thumb() {
 		return lantrip_thumb;
 	}
 
-	public void setLantrip_thumb(MultipartFile lantrip_thumb) {
+	public void setLantrip_thumb(String lantrip_thumb) {
 		this.lantrip_thumb = lantrip_thumb;
 	}
 
@@ -96,29 +70,21 @@ public class LanTripVO {
 		this.lantrip_area = lantrip_area;
 	}
 
-	public String getLantrip_searchCondition() {
-		return lantrip_searchCondition;
+	public String getLantrip_video() {
+		return lantrip_video;
 	}
 
-	public void setLantrip_searchCondition(String lantrip_searchCondition) {
-		this.lantrip_searchCondition = lantrip_searchCondition;
-	}
-
-	public String getLantrip_searchKeyword() {
-		return lantrip_searchKeyword;
-	}
-
-	public void setLantrip_searchKeyword(String lantrip_searchKeyword) {
-		this.lantrip_searchKeyword = lantrip_searchKeyword;
+	public void setLantrip_video(String lantrip_video) {
+		this.lantrip_video = lantrip_video;
 	}
 
 	// 콜솔에서 확인 가능
-	@Override 
+	@Override
 	public String toString() {
 		return "LanTripVO [lantrip_no="+lantrip_no+", lantrip_title="+lantrip_title+", lantrip_content="+lantrip_content+", lantrip_img"+lantrip_img
-				+", lantrip_thumb="+lantrip_thumb+", lantrip_price="+lantrip_price+", lantrip_area"+lantrip_area+"]";
-		
+				+", lantrip_thumb="+lantrip_thumb+", lantrip_price="+lantrip_price+", lantrip_area="+lantrip_area+", lantrip_video="+lantrip_video+"]";
+
 	}
-	
-	
+
+
 }
