@@ -135,7 +135,7 @@
 			<table class="lan_product">
 			
 				<tr>
-					<td rowspan="3" class="lan_product_thumb"><img src="<c:url value='/lanTripUpload/${ lantrip.lantrip_thumb }'/>"></td>
+					<td rowspan="3"><img class="lan_product_thumb" src="<c:url value='/lanTripUpload/${ lantrip.lantrip_thumb }'/>"></td>
 					<td class="lan_product_title"><a href="<c:url value='getLanTrip.do?lantrip_no=${ lantrip.lantrip_no }'/>">${ lantrip.lantrip_title }</td></a>
 					<td class="lan_product_city">${ lantrip.lantrip_area }</td>
 				</tr>
@@ -143,13 +143,10 @@
 					<td class="lan_product_detail">${ lantrip.lantrip_content }</td>
 					<td class="lan_price" onclick="location.href='#'">${ lantrip.lantrip_price }원에<br>구매하기</td>
 				</tr>
-			<br>
-			<br>
 			</table>
 			</c:forEach>
 		</tr>
 	</table>
-	<br>
 	<br>
 </main>
 

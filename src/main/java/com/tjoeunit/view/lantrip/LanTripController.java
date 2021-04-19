@@ -39,9 +39,7 @@ public class LanTripController {
 				String lanTripUploadName = lanTripImgUpload[i].getOriginalFilename();
 				lanTripImgUpload[i].transferTo(new File(lanTripImg+lanTripUploadName));
 				vo.setLantrip_thumb(lanTripUploadName);
-				System.out.println(lanTripUploadName);
 				vo.setLantrip_img(lanTripUploadName);
-				System.out.println(lanTripUploadName);
 			}
 		}
 		

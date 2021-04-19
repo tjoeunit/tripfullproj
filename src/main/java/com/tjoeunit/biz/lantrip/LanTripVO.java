@@ -10,8 +10,6 @@ public class LanTripVO {
 	private String	lantrip_thumb;
 	private int		lantrip_price;
 	private String	lantrip_area;
-	private String	lantrip_searchCondition;
-	private String	lantrip_searchKeyword;
 	private String	lantrip_video;
 	
 	public int getLantrip_no() {
@@ -70,22 +68,6 @@ public class LanTripVO {
 		this.lantrip_area = lantrip_area;
 	}
 
-	public String getLantrip_searchCondition() {
-		return lantrip_searchCondition;
-	}
-
-	public void setLantrip_searchCondition(String lantrip_searchCondition) {
-		this.lantrip_searchCondition = lantrip_searchCondition;
-	}
-
-	public String getLantrip_searchKeyword() {
-		return lantrip_searchKeyword;
-	}
-
-	public void setLantrip_searchKeyword(String lantrip_searchKeyword) {
-		this.lantrip_searchKeyword = lantrip_searchKeyword;
-	}
-
 	public String getLantrip_video() {
 		return lantrip_video;
 	}
@@ -98,7 +80,7 @@ public class LanTripVO {
 	@Override 
 	public String toString() {
 		return "LanTripVO [lantrip_no="+lantrip_no+", lantrip_title="+lantrip_title+", lantrip_content="+lantrip_content+", lantrip_img"+lantrip_img
-				+", lantrip_thumb="+lantrip_thumb+", lantrip_price="+lantrip_price+", lantrip_area"+lantrip_area+"]";
+				+", lantrip_thumb="+lantrip_thumb+", lantrip_price="+lantrip_price+", lantrip_area="+lantrip_area+", lantrip_video="+lantrip_video+"]";
 		
 	}
 	
