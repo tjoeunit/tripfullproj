@@ -13,7 +13,25 @@ public class LanTripVO {
 	private String	lantrip_searchCondition;
 	private String	lantrip_searchKeyword;
 	private String	lantrip_video;
+	private String	lantrip_thumb_path;
+	private String  lantrip_img_path;
 	
+	public String getLantrip_thumb_path() {
+		return lantrip_thumb_path;
+	}
+
+	public void setLantrip_thumb_path(String lantrip_thumb_path) {
+		this.lantrip_thumb_path = lantrip_thumb_path;
+	}
+
+	public String getLantrip_img_path() {
+		return lantrip_img_path;
+	}
+
+	public void setLantrip_img_path(String lantrip_img_path) {
+		this.lantrip_img_path = lantrip_img_path;
+	}
+
 	public String getLantrip_video() {
 		return lantrip_video;
 	}
