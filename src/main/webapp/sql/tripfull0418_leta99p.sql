@@ -10,4 +10,8 @@ alter table members drop column members_birth;
 /* members_regdate 가입일 오라클에서 자동 입력되도록 설정 */
 alter table members modify members_regdate default sysdate;
 
+/* 운영자 계정 다시 입력 */
+insert into members (members_no, members_id, members_pw, members_name)
+values (1, 'admin', '1004', '운영자');
+
 commit
