@@ -152,6 +152,6 @@
 	<br>
 </main>
 
-<!-- 깃허브에 올라가라!! -->
+<!-- 깃허브에 올라가라!! dididididi -->
 
 <%@ include file="../import/bottom.jsp" %>
