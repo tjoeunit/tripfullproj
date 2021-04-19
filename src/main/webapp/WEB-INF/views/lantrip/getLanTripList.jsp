@@ -148,11 +148,10 @@
 			</table>
 			</c:forEach>
 		</tr>
-	
 	</table>
+	<br>
 	<br>
 </main>
 
-<!-- 깃허브에 올라가라!! dididididi -->
 
 <%@ include file="../import/bottom.jsp" %>
