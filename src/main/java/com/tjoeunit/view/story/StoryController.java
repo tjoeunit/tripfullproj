@@ -1,13 +1,10 @@
 package com.tjoeunit.view.story;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
+import java.io.PrintWriter;
 import java.util.List;
-import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,10 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.multipart.MultipartFile;
 
-import com.tjoeunit.biz.lantrip.LanTripVO;
 import com.tjoeunit.biz.story.StoryService;
 import com.tjoeunit.biz.story.StoryVO;
 
@@ -28,7 +22,6 @@ public class StoryController {
 	@Autowired
 	private StoryService storyService;
 
-	
 // 글 등록 페이지 불러오기
 	@RequestMapping(value="/insertStoryPage.do", method=RequestMethod.GET)
 	public String insertStoryPage() throws IOException {
@@ -38,7 +31,7 @@ public class StoryController {
 	
 // 글 등록
 	@RequestMapping(value="/insertStory.do", method=RequestMethod.POST)
-	public String insertStory(StoryVO vo, Model model) throws IOException {
+	public String insertStory(StoryVO vo, HttpServletResponse insert) throws Exception {
 		System.out.println("스토리 등록 처리");
 		
 		/*
@@ -55,20 +48,14 @@ public class StoryController {
 		// JavaBean의 필드 이름과, JSP 내의 파라미터 이름이 동일하다면 Annotation으로 등록할 시에 따로 추출할 필요없이 Spring이 알아서 추출해서 값을 담아준다.
 		// 즉 전의 프로젝트와 달리 따로 코드를 적을 필요가 없어진다.
 		
-		int cnt = storyService.insertStory(vo);
-
-		String msg="스토리 등록 실패", url="/story/insertStory.do";
-
-		if(cnt>0) {
-			msg="스토리 등록 성공";
-			url="/story/getStoryList.do";
-		}
-
-		model.addAttribute("msg", msg);
-		model.addAttribute("url", url);
-
-		return "common/message";
+		insert.setContentType("text/html; charset=UTF-8");
+		PrintWriter story_out_write = insert.getWriter();
+		story_out_write.println("<script>alert('글이 등록되었습니다.');</script>");
+		story_out_write.flush();
 		
+		storyService.insertStory(vo);
+		
+		return "redirect:getStoryList.do";
 	}
 	
 // 글 수정
@@ -108,16 +95,6 @@ public class StoryController {
 // 글 목록 보기
 	@RequestMapping(value="/getStoryList.do",  method = RequestMethod.GET)
 	public String getStoryList(StoryVO vo, Model model) {	//ModelAndView의 Model 딴에 있는 변수를 매개변수로
-	// 검색 기능 추가 Null check
-		/*
-		if(vo.getStorySearchCondition() == null) {
-			vo.setStorySearchCondition("TITLE");
-		}
-		
-		if(vo.getStorySearchKeyword() == null) {
-			vo.setStorySearchKeyword("");
-		}
-	*/	
 
 		List<StoryVO> storyList = storyService.getStoryList(vo);
 		
@@ -136,6 +113,7 @@ public class StoryController {
 		StoryVO story = storyService.getStory(vo);
 		
 		model.addAttribute("story", story);
+		
 		
 		return "story/getStory";
 	}

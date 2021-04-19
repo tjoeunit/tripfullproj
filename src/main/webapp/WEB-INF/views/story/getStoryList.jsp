@@ -60,7 +60,7 @@
 				<tr>
 					<td>${ story.story_no }</td>
 					<td ><a href="getStory.do?story_no=${ story.story_no }">${ story.story_title }</a></td>
-					<td>${ member_id.member_id }</td>
+					<td>${ members_id }</td>
 					<td>${ story.story_date }</td>
 					<td>${ story.story_cnt }</td>
 				</tr>

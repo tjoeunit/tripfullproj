@@ -14,8 +14,6 @@ public class StoryVO {
 	private int story_re_seq;
 	private int story_cnt;
 	private Date story_date;
-	private String storySearchCondition;
-	private String storySearchKeyword;
 	
 	private String storyFileAttachPath;
 	private String storyFilename;
@@ -76,18 +74,6 @@ public class StoryVO {
 	}
 	public void setStory_date(Date story_date) {
 		this.story_date = story_date;
-	}
-	public String getStorySearchCondition() {
-		return storySearchCondition;
-	}
-	public void setStorySearchCondition(String storySearchCondition) {
-		this.storySearchCondition = storySearchCondition;
-	}
-	public String getStorySearchKeyword() {
-		return storySearchKeyword;
-	}
-	public void setStorySearchKeyword(String storySearchKeyword) {
-		this.storySearchKeyword = storySearchKeyword;
 	}
 	public String getStoryFileAttachPath() {
 		return storyFileAttachPath;
