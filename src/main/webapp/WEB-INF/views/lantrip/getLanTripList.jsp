@@ -72,6 +72,7 @@
 		height : 90px;
 		padding: 10px;
 		color: gray;
+		overflow: hidden;
 	}
 	
 	.lan_product_city{
