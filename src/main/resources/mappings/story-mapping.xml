@@ -9,9 +9,9 @@
 		<selectKey keyProperty="story_no" resultType="int" order="BEFORE">
 			select story_seq.nextval from dual
 		</selectKey>
-			insert into story(story_no, story_title, story_content, story_cnt, story_date)
+			insert into story(story_no, story_title, story_content)
 			values(
-				#{story_no}, #{story_title}, #{story_content}, #{story_cnt}, #{story_date})
+				#{story_no}, #{story_title}, #{story_content})
 	</insert>
 
 	<update id="updateStory">

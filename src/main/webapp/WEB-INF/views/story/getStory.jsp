@@ -33,7 +33,7 @@
 				</tr>
 				<tr>
 					<td>작성자</td>
-					<td>${members_no}</td>
+					<td>${members_id}</td>
 				</tr>
 				<tr>
 					<td>내용</td>

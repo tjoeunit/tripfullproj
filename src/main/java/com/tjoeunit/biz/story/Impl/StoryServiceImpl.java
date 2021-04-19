@@ -16,9 +16,8 @@ public class StoryServiceImpl implements StoryService {
 	private StoryDAO storyDAO;
 	
 	@Override
-	public int insertStory(StoryVO vo) {
-		return storyDAO.insertStory(vo);
-		
+	public void insertStory(StoryVO vo) {
+		storyDAO.insertStory(vo);
 	}
 
 	@Override
