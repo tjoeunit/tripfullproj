@@ -20,7 +20,7 @@
 			}
 		});
 		
-		//전화번호 숫자 정규식
+		//전화번호 숫자 정규식!
 		var numReg = /^[0-9]+$/;		
 
 		$('#members_tel2').keyup(function(){
