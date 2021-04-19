@@ -143,7 +143,7 @@
 					<td class="lan_product_detail">${ lantrip.lantrip_content }</td>
 					<td class="lan_price" onclick="location.href='#'">${ lantrip.lantrip_price }원에<br>구매하기</td>
 				</tr>
-			
+			<br>
 			</table>
 			</c:forEach>
 		</tr>
