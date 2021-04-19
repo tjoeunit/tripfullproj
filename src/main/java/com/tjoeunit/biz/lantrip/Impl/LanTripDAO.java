@@ -14,8 +14,8 @@ public class LanTripDAO {
 	@Autowired
 	private SqlSessionTemplate mybatis;	
 	
-	public void insertLanTrip(LanTripVO vo){
-		mybatis.insert("lanTripDAOTemplate.insertLanTrip", vo);
+	public int insertLanTrip(LanTripVO vo){
+		return mybatis.insert("lanTripDAOTemplate.insertLanTrip", vo);
 	  }
 	
     public void updateLanTrip(LanTripVO vo){

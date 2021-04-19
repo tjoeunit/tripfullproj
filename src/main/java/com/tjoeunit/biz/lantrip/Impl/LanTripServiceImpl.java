@@ -15,8 +15,8 @@ public class LanTripServiceImpl implements LanTripService {
 	private LanTripDAO lanTripDAO;
 
 	@Override
-	public void insertLanTrip(LanTripVO vo) {
-		lanTripDAO.insertLanTrip(vo);
+	public int insertLanTrip(LanTripVO vo) {
+		return lanTripDAO.insertLanTrip(vo);
 	}
 
 	@Override

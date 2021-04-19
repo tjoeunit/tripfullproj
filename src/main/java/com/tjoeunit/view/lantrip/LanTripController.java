@@ -26,26 +26,24 @@ public class LanTripController {
 	
 // 글 등록
 	@RequestMapping( value = "/insertLanTrip.do", method = RequestMethod.POST)
-	public String insertLanTrip(LanTripVO vo, HttpSession session) throws Exception {
+	public String insertLanTrip(LanTripVO vo, HttpSession session, MultipartFile[] lanTripImgUpload, Model model) throws Exception {
 		System.out.println("랜선여행 등록 처리");
 		
-		// 썸네일 파일 업로드 처리
-		String lanTripThumbSave = session.getServletContext().getRealPath("/lanTripUpload/thumb");
+		// 파일 업로드 처리
+		String lanTripImg = session.getServletContext().getRealPath("/lanTripUpload/");
+		System.out.println("==>"+lanTripImgUpload.length);
 		
-		MultipartFile lanTripThumb = vo.getLantrip_thumb();
-		if(!lanTripThumb.isEmpty()) {
-			String lanTripThumbName = lanTripThumb.getOriginalFilename();
-			lanTripThumb.transferTo(new File(lanTripThumbSave+lanTripThumbName));
+		for(int i = 0; i < lanTripImgUpload.length; i++) {
+			System.out.println("==>"+lanTripImgUpload[i].isEmpty());
+			if(!lanTripImgUpload[i].isEmpty()) {
+				String lanTripUploadName = lanTripImgUpload[i].getOriginalFilename();
+				lanTripImgUpload[i].transferTo(new File(lanTripImg+lanTripUploadName));
+				vo.setLantrip_thumb(lanTripUploadName);
+				System.out.println(lanTripUploadName);
+				vo.setLantrip_img(lanTripUploadName);
+				System.out.println(lanTripUploadName);
+			}
 		}
-		
-		// 상세설명 파일 업로드 처리
-				String lanTripDetailSave = session.getServletContext().getRealPath("/lanTripUpload/detail");
-				
-				MultipartFile lanTripDetail = vo.getLantrip_thumb();
-				if(!lanTripDetail.isEmpty()) {
-					String lanTripDetailName = lanTripDetail.getOriginalFilename();
-					lanTripDetail.transferTo(new File(lanTripDetailSave+lanTripDetailName));
-				}
 		
 		// DB연동처리
 		lanTripService.insertLanTrip(vo);
@@ -77,8 +75,11 @@ public class LanTripController {
 	@RequestMapping(value="/getLanTripList.do", method = RequestMethod.GET)
 	public String getLanTripList(LanTripVO vo, Model model) {
 		System.out.println("랜선여행 목록 뷰");
+		
 		List<LanTripVO> lanTripList = lanTripService.getLanTripList(vo);
+		
 		model.addAttribute("lanTripList", lanTripList);
+		
 		return "lantrip/getLanTripList";
 	}
 	
