@@ -74,7 +74,7 @@
 	  <url-pattern>/ckfinder/core/connector/java/connector.java</url-pattern>
 	</servlet-mapping>  
 	
-	<filter>
+	<!-- <filter>
        <filter-name>FileUploadFilter</filter-name>
        <filter-class>com.ckfinder.connector.FileUploadFilter</filter-class>
        <init-param>
@@ -86,7 +86,7 @@
             <param-name>sessionParameterName</param-name>
             <param-value>jsessionid</param-value>
        </init-param>
-	</filter>
+	</filter> 
 
 	<filter-mapping>
         <filter-name>FileUploadFilter</filter-name>
@@ -94,7 +94,7 @@
                /ckfinder/core/connector/java/connector.java
         </url-pattern>
 	</filter-mapping>
-	<!-- CKFINDER END -->
+		 CKFINDER END -->
 
 
 </web-app>

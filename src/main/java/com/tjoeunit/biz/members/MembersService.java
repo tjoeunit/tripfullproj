@@ -18,7 +18,7 @@ public interface MembersService {
 	//List<MembersVO> getMembersList(MembersVO vo);
 	
 	//고객 상세 조회
-	MembersVO getMembers(MembersVO vo);
+	//MembersVO getMembers(MembersVO vo);
 	
 	//고객 정보 수정
 	//void updateMembers(MembersVO vo);
