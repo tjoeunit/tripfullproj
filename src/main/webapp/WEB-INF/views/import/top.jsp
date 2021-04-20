@@ -126,9 +126,11 @@
 
 				<div class="navListDiv">
 					<ul>
-						<li><a href="#">항공권</a></li>
+						<li><a href="<c:url value='/practice/insertPractice.do'/>">연습(CK입력)</a></li>
+						<li><a href="<c:url value='/practice/getPracticeList.do'/>">연습(CK출력)</a></li>
+						<li><a href="<c:url value='#'/>">항공권</a></li>
 						<li><a href="<c:url value='/hotel/getHotelList.do'/>">숙소</a></li>
-						<li><a href="#">렌터카 & 교통</a></li>
+						<li><a href="<c:url value='#'/>">렌터카 & 교통</a></li>
 						<li><a href="#">액티비티</a></li>
 						<li><a href="<c:url value='/lantrip/getLanTripList.do'/>">랜선투어</a></li>
 						<li><a href="<c:url value='/story/getStoryList.do'/>">여행이야기</a></li>
