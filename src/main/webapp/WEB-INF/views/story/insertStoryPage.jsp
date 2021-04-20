@@ -50,7 +50,7 @@
 					
 					<tr>
 						<td class="insert_story_writer">작성자</td>
-						<td><input type="text" size=100% value="${member_id.member_id}" readonly></td>
+						<td><input type="text" size=100% value="${members_id}" readonly></td>
 					</tr>
 					
 					<tr>
@@ -58,7 +58,7 @@
 						<td>
 							<textarea id="story_ckeditor"></textarea>
 							<script type="text/javascript">
-								CKEDITOR.replace('story_ckeditor', {height: 700, width: 900, filebrowserUploadUrl:'/story/imageUpload.do'});
+								CKEDITOR.replace('story_ckeditor', {height: 700, width: 900, filebrowserUploadUrl:'/storyImage/imageUpload.do'});
 							</script>
 						</td>
 					</tr>
