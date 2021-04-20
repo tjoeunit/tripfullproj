@@ -8,9 +8,33 @@
 		<selectKey keyProperty="lantrip_no" resultType="int" order="BEFORE">
 			select lantrip_seq.nextval from dual
 		</selectKey>
-		insert into lantrip(lantrip_no, lantrip_title, lantrip_content, lantrip_img, lantrip_thumb, lantrip_price, lantrip_area, lantrip_video)
+		insert into lantrip(
+			lantrip_no, lantrip_title,
+			lantrip_content,
+			lantrip_thumb,
+			lantrip_price,
+			lantrip_area,
+			lantrip_video,
+			lantrip_img1,
+			lantrip_img2,
+			lantrip_img3,
+			lantrip_img4,
+			lantrip_img5
+			)
 		values(
-			#{lantrip_no}, #{lantrip_title}, #{lantrip_content}, #{lantrip_img}, #{lantrip_thumb}, #{lantrip_price}, #{lantrip_area}, #{lantrip_video})
+			#{lantrip_no},
+			#{lantrip_title},
+			#{lantrip_content},
+			#{lantrip_thumb},
+			#{lantrip_price},
+			#{lantrip_area},
+			#{lantrip_video},
+			#{lantrip_img1}, 
+			#{lantrip_img2}, 
+			#{lantrip_img3}, 
+			#{lantrip_img4}, 
+			#{lantrip_img5}
+			)
 	</insert>
 
 <!-- 랜선여행 글 목록보기 -->
