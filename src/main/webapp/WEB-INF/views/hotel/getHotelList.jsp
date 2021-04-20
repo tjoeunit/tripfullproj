@@ -38,7 +38,7 @@
 			</tr>
 			<c:forEach items="${hotelList}" var="hotel">
 				<tr>
-					<td>${hotel.hotel_thumb }</td>
+					<td>${hotel.hotel_img1 }</td>
 					<td>${hotel.hotel_title}</td>
 					<td>${hotel.hotel_category }</td>
 					<td>${hotel.hotel_price }</td>					

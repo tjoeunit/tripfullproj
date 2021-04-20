@@ -15,6 +15,10 @@
 			#{members_tel}, #{members_email}, #{members_gender},
 			#{members_zipcode}, #{members_address},	#{members_address_detail})	
 	</insert>
+	
+	<select id="getMembers" resultType="com.tjoeunit.biz.members.MembersVO">
+		select * from members where members_id=#{members_id}, members_pw=#{members_pw}
+	</select>
 
 	<select id="checkIdDup" parameterType="string" resultType="int">
 		select count(*) from members
