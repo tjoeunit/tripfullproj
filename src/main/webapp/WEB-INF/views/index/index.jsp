@@ -6,7 +6,6 @@
 	.mainDiv {
 		margin-top: 10px;
 		width: 1200px;
-		margin-left: 360px;
 	}
 	
 	.productDiv {

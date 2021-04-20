@@ -103,6 +103,11 @@
 	.navListDiv {
 		clear: both;
 	}
+	
+	main {
+		margin-left: 360px;
+		width: 1200px;
+	}
 
 </style>
 
