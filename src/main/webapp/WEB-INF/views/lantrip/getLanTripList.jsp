@@ -9,27 +9,22 @@
 
 	.main_title {
 		align-content: left;
-		margin-left: 360px;
-		width: 15%;
-		font-weight: 600;
-		font-size: 48px;
 	}
 	
 	.lan_filter {
+		border: 1px solid #58CCFF;
+		width: 1000px;
+		margin-right: auto;
 		margin-bottom: 20px;
 	}
 	
 	.lan_filter_name {
-		color: black;
-		text-align: center;
-		font-weight: 600;
-		width: 15%;
-		
+		color: #58CCFF;
 	}
 	
 	.lan_filter ul li {
 		color: #000000;
-		padding-right: 30px;
+		padding-left: 30px;
 		display: inline;
 	}
 	
@@ -73,7 +68,6 @@
 		height : 90px;
 		padding: 10px;
 		color: gray;
-		overflow: hidden;
 	}
 	
 	.lan_product_city{
@@ -109,16 +103,26 @@
 <main>
 	
 	<br>
-	<span class="main_title">랜선투어</span>
+	<h1 class="main_title">	랜선여행</h1>
 	
-	<span class="lan_filter">
-		<span>아시아</span>
-		<span>유럽</span>
-		<span>북아메리카</span>
-		<span>남아메리카</span>
-		<span>아프리카</span>
-		<span>오세아니아</span>
-	</span>
+	<div class="lan_filter">
+		<ul class="lan_filter_name">여행지
+			<li><input type="checkbox">아시아</li>
+			<li><input type="checkbox">유럽</li>
+			<li><input type="checkbox">북아메리카</li>
+			<li><input type="checkbox">남아메리카</li>
+			<li><input type="checkbox">아프리카</li>
+			<li><input type="checkbox">오세아니아</li>
+		</ul>
+		<ul class="lan_filter_name">평점
+			<li><input type="radio" checked="checked">전체</li>
+			<li><input type="radio">4점 이상</li>
+			<li><input type="radio">5점만</li>
+		</ul>
+		<ul class="lan_filter_name">가격대
+			<li><input type="number">원 이하</li>
+		</ul>
+	</div>
 	
 	<table class="lan_products">
 	
