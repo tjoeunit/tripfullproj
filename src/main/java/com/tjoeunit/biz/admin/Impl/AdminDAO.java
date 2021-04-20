@@ -13,6 +13,6 @@ public class AdminDAO {
 	private SqlSessionTemplate mybatis;
 		
 	public String adminLoginCheck(AdminVO vo) {
-		return mybatis.selectOne("membersDAOTemplate.adminLogin", vo);
+		return mybatis.selectOne("adminDAOTemplate.adminLogin", vo);
 	}
 }

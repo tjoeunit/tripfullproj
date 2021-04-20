@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>adminIndex</title>
 
-<link rel="stylesheet" href="../resources/css/admin/adminIndex.css">
+<link rel="stylesheet" href="../css/admin/adminIndex.css">
  
 <script
   src="https://code.jquery.com/jquery-3.4.1.js"
@@ -16,19 +17,19 @@
 
 </head>
 <body>
-<c:if test="${message == 'success' }"> <!-- controller에서 보낸 메시지의 값이 success면 c:if문이 실행.-->
+<%-- <c:if test="${message == 'success' }"> <!-- controller에서 보낸 메시지의 값이 success면 c:if문이 실행.-->
 <h2>
     ${sessionScope.admin_name}(${sessionScope.admin_id})님 환영합니다.
     	<!--sessionScope는 세션에 담은 setAttribute()메소드 안에 있는 값을 jsp에서 JSTL로 간단히 사용. -->
 </h2>
-</c:if>
+</c:if> --%>
 
   <div class="wrapper">
         <div class="wrap">
             <!-- gnv_area -->    
             <div class="top_gnb_area">
                 <ul class="list">    
-                    <li><a href="../index.jsp">메인 페이지</a></li>
+                    <li><a href="<c:url value='/index.do'/>">메인 페이지</a></li>
                     <li><a href="/member/logout.do">로그아웃</a></li>
                     <li>고객센터</li>            
                 </ul>
