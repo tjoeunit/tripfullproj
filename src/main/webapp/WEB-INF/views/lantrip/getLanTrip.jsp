@@ -1,7 +1,7 @@
 <%@page import="com.tjoeunit.biz.lantrip.LanTripVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ include file="../import/top.jsp" %>
 
 
@@ -99,10 +99,15 @@
 			<div>${ lantrip.lantrip_content }</div>
 		</div>
 		<div><img class="lan_product_thumb" src="<c:url value='/lanTripUpload/${ lantrip.lantrip_thumb }'/>"></div>
-		<div class="lan_video">
-			<iframe width="854" height="480" src="${ lantrip.lantrip_video }" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+		<%-- <div class="lan_video">
+			<iframe width="854" height="480"
+				src="${ fn:substring(lantrip.lantrip_video, 0 ,24) }/embed/${ fn:substring(lantrip.lantrip_video,24) }"
+				title="YouTube video player"
+				frameborder="0"
+				allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+				allowfullscreen>
 			</iframe>
-		</div>
+		</div> --%>
 		
 		<!-- core의 if문 이용해서 코드 실행할 수 있게 함 null인 경우 skip될 수 있게 처리  jstl 이용해서  -->
 		
