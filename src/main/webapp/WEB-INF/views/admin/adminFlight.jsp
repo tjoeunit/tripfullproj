@@ -23,8 +23,8 @@
             <!-- gnv_area -->    
             <div class="top_gnb_area">
                 <ul class="list">    
-                    <li><a href="<c:url value='../index/index.do'/>">메인 페이지</a></li>
-                    <li><a href="/member/logout.do">로그아웃</a></li>
+                    <li><a href="<c:url value='../index.do'/>">메인 페이지</a></li>
+                    <li><a href="../adminLogin/adminLogout.do">로그아웃</a></li>
                     <li>고객센터</li>            
                 </ul>
             </div>
