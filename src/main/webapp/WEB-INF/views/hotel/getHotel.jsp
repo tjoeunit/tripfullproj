@@ -9,16 +9,16 @@
 		margin-left: 360px;
 	}
 	
-	.flight_div{
+	.hotel_div{
 		width: 1200px;
 	}
 	
-	.flight_product_thumb{
+	.hotel_product_thumb{
 		width: 400px;
 		height: 300px;
 	}
 	
-	.flight_product_title {
+	.hotel_product_title {
 		display: inline-block;
 		width: 1200px;
 		font-size: 40px;
@@ -26,7 +26,7 @@
 		text-align: left;
 	}
 	
-	.flight_buy {
+	.hotel_buy {
 		display: inline-block;
 		position: relative;
 		box-sizing: border-box;
@@ -45,22 +45,22 @@
 		transition: background-color .2s ease-in-out;
 	}
 	
-	.flight_buy:hover {
+	.hotel_buy:hover {
 		color: #fff !important;
 		background: #383838;
 	}	
 	
-	.flight_product_detail{
+	.hotel_product_detail{
 		width: 1200px;
 		padding: 10px;
 	}
 	
-	.flight_product_detail_area{
+	.hotel_product_detail_area{
 		color: gray;
 		text-align: right;
 	}	
 	
-	.flight_product_img {
+	.hotel_product_img {
 		width: 1200px;
 		height: auto;
 		background-color: #58CCFF;

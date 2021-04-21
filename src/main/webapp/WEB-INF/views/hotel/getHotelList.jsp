@@ -11,72 +11,66 @@
 		align-content: left;
 	}
 	
-	.flight_filter {
+	.hotel_filter {
 		border: 1px solid #58CCFF;
 		width: 1000px;
 		margin-right: auto;
 		margin-bottom: 20px;
 	}
 	
-	.flight_filter_name {
+	.hotel_filter_name {
 		color: #58CCFF;
 	}
 	
-	.flight_filter ul li {
+	.hotel_filter ul li {
 		color: #000000;
 		padding-left: 30px;
 		display: inline;
 	}
 	
-	.flight_products{
+	.hotel_products{
 		width: 1000px;
 		margin-right: auto;
 		margin-bottom: 30px;
 	}
 	
-	.flight_product {
+	.hotel_product {
 		border-bottom: 1px solid gray;
 		border-top: 1px solid gray;
 		margin-right: auto;
 		padding: 5px;
 	}
 
-	.flight_product_thumb {
+	.hotel_product_thumb {
 		width: 200px;
 		height: 200px;
 		border: 1px solid gray;
 	}
 	
-	.flight_product_title {
+	.hotel_product_title {
 		width : 600px;
 		height : 90px;
 		padding: 10px;
 	}
 	
-	.flight_product_title a{
+	.hotel_product_title a{
 		color: black;
 		font-size: 2em;
 		font-weight: 600;
 	}
 	
-	.flight_product_title:hover {
+	.hotel_product_title:hover {
 		font-size: 1.2em;
 	}
 	
-	.flight_product_detail {
+	.hotel_product_detail {
 		width : 600px;
 		height : 90px;
 		padding: 10px;
 		color: gray;
 	}
-	
-	.flight_product_departure{
-		width: 150px;
-		padding: 10px;
-		text-align: right;
-	}
-	
-	.flight_price {
+
+	.hotel_price {
 		width: 150px;
 		position: relative;
 		box-sizing: border-box;
@@ -91,7 +85,7 @@
 		transition: background-color .2s ease-in-out;
 	}
 	
-	.flight_price:hover{
+	.hotel_price:hover{
 		text-decoration: none;
 		color: #fff !important;
 		background: #383838;
@@ -130,7 +124,7 @@
 			<table class="hotel_product">			
 				<tr>
 					<td rowspan="3"><img class="hotel_product_thumb" src="<c:url value='/HotelUpload/${hotel.hotel_thumb}'/>"></td>
-					<td class="flight_product_title"><a href="<c:url value='getFlight.do?flight_no=${hotel.hotel_no}'/>">${hotel.hotel_title}</td></a>
+					<td class="hotel_product_title"><a href="<c:url value='getHotel.do?hotel_no=${hotel.hotel_no}'/>">${hotel.hotel_title}</td></a>
 				</tr>
 				<tr>
 					<td class="hotel_product_detail">${hotel.hotel_content }</td>

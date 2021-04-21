@@ -3,8 +3,8 @@
 <%@ include file="../import/top.jsp" %>
 
 <main>
-항공권
-	<form action="insertFlight.do" method="post" enctype="multipart/form-data">
+숙박권
+	<form action="insertHotel.do" method="post" enctype="multipart/form-data">
 		<table>
 			<tr>
 				<td>제목</td>

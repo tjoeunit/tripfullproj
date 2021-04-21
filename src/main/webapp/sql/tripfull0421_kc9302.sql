@@ -14,6 +14,13 @@ alter table hotel
 alter table hotel
 	add flight_video VARCHAR2(2000);	
 	
+/* 5. hotel 테이블 hotel_img2,hotel_img3 삭제
+alter table hotel
+	drop column flight_img2;
+	
+alter table hotel
+	drop column flight_img3;	*/
+	
 
 	
 	

@@ -1,9 +1,9 @@
 package com.tjoeunit.view.hotel;
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
+
 import java.util.List;
-import java.util.Map;
+
 
 import javax.servlet.http.HttpSession;
 
@@ -13,7 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
+
 import org.springframework.web.multipart.MultipartFile;
 
 import com.tjoeunit.biz.hotel.HotelService;
@@ -26,12 +26,11 @@ public class HotelController {
 	@Autowired 
 	private HotelService hotelService;
 	
-	//글 등록 페이지
-	@RequestMapping(value="/viewInsertHotel.do", method = RequestMethod.GET) 
-	public String viewInsertHotel(){
-	System.out.println("숙소 등록 화면 보기 처리");
+	// 글 등록 페이지
+	@RequestMapping(value="/insertHotel.do", method = RequestMethod.GET)
+	public String insertHotelPage() {
 		return "hotel/insertHotel";
-	}	
+	}
 		//WEB-INF 폴더에 있는 jsp는 직접적으로 view를 볼 수 없다. 
 		//또한 직접적으로 볼 수 없기 때문에 <a> 앵커 태그로 이동이 불가하며 Controller를 통해서만 이동을 해야 한다.
 		
@@ -62,8 +61,9 @@ public class HotelController {
 				case 2 : vo.setHotel_img2(HotelImgUploadName);
 				break;
 				
-				case 3 : vo.setHotel_img3(HotelImgUploadName);
-				break;		
+				default : vo.setHotel_img3(HotelImgUploadName);
+				break;	
+								
 			}
 				
 			}else {
@@ -76,8 +76,8 @@ public class HotelController {
 						case 2 : vo.setHotel_img2(null);
 						break;
 						
-						case 3 : vo.setHotel_img3(null);
-						break;				
+						default : vo.setHotel_img3(null);
+						break;			
 						}
 					}
 				}
@@ -139,15 +139,15 @@ public class HotelController {
 	}	// 모델에는 2개의 값이 담긴다. 모델엔 뷰니까 모델값과 뷰값
 	 
 	// 글 상세 조회
-	@RequestMapping("/getHotel.do") 
+	@RequestMapping(value="/getHotel.do", method = RequestMethod.GET) 
 	public String getBoard(HotelVO vo, Model model){
-		System.out.println("글 상세 조회 처리");
+		System.out.println("숙소 상세 조회 처리");
 		
 		HotelVO hotel = hotelService.getHotel(vo);				
 		
 		model.addAttribute("hotel",hotel);
 		
-		return "getHotel.jsp";
+		return "hotel/getHotel";
 	}	
 	//
 }
