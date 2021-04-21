@@ -5,6 +5,6 @@
 	
 	<select id="adminLogin" resultType="String">
 		select admin_name from admin where admin_id=#{admin_id} and admin_pw=#{admin_pw}
-	</select>
+	</select><!-- com.tjoeunit.biz.admin.AdminVO  -->
 	
 </mapper>

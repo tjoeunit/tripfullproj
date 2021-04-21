@@ -1,20 +1,22 @@
+<%@page import="com.tjoeunit.biz.lantrip.LanTripVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
 <%@ include file="../import/top.jsp" %>
 
-<style type="text/css">
+
+<style type="text/css">	
 	main {
 		margin-left: 360px;
 	}
-
+	
 	.lan_product_top{
 		padding: 10px;
 		margin-bottom: 20px;
 		width: 1000px;
 		border-bottom: 1px solid gray;
 	}
-
+	
 	.lan_product_title {
 		display: inline-block;
 		width: 800px;
@@ -22,14 +24,14 @@
 		font-weight: 600;
 		text-align: left;
 	}
-
+	
 	.lan_price {
 		display: inline-block;
 		position: relative;
 		box-sizing: border-box;
 		padding: 5px;
 	}
-
+	
 	.lan_buy {
 		display: inline-block;
 		position: relative;
@@ -47,37 +49,37 @@
 		-ms-transition: background-color .2s ease-in-out;
 		transition: background-color .2s ease-in-out;
 	}
-
+	
 	.lan_buy:hover {
 		color: #fff !important;
 		background: #383838;
 	}
-
+	
 	.lan_video {
-
+		
 	}
-
+	
 	.lan_product_detail{
 		width: 1000px;
 		border-bottom: 1px solid gray;
 		padding: 10px;
 	}
-
+	
 	.lan_product_detail_area{
 		color: gray;
 		text-align: right;
 	}
-
+	
 	.lan_product_thumb{
 		width: 900px;
 	}
-
+	
 	.lan_product_img {
 		width: 900px;
 		height: 1000px; /* 나중에 삭제 */
 		background-color: #58CCFF;
 	}
-
+	
 </style>
 
 <main>
@@ -91,7 +93,7 @@
 		</div>
 
 <!-- 랜선여행 상세 설명 -->
-
+	
 		<div class="lan_product_detail">
 			<div class="lan_product_detail_area">${ lantrip.lantrip_area }</div>
 			<div>${ lantrip.lantrip_content }</div>
@@ -101,8 +103,15 @@
 			<iframe width="854" height="480" src="${ lantrip.lantrip_video }" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 			</iframe>
 		</div>
+		
+		<!-- core의 if문 이용해서 코드 실행할 수 있게 함 null인 경우 skip될 수 있게 처리  jstl 이용해서  -->
+		
 		<div>
-			<img class="lan_product_img" src="<c:url value='/lanTripUpload/${ lantrip.lantrip_img }'/>">상품 상세 이미지
+			<img class="lan_product_img" src="<c:url value='/lanTripUpload/${ lantrip.lantrip_img1 }'/>">
+			<img class="lan_product_img" src="<c:url value='/lanTripUpload/${ lantrip.lantrip_img2 }'/>">
+			<img class="lan_product_img" src="<c:url value='/lanTripUpload/${ lantrip.lantrip_img3 }'/>">
+			<img class="lan_product_img" src="<c:url value='/lanTripUpload/${ lantrip.lantrip_img4 }'/>">
+			<img class="lan_product_img" src="<c:url value='/lanTripUpload/${ lantrip.lantrip_img5 }'/>">
 		</div>
 
 <!-- =================================================================================== -->
@@ -171,9 +180,9 @@
 						</table>
 					</form>
 				</div>
-
-
-
+	
+	
+	
 	<br>
 </main>
 <%@ include file="../import/bottom.jsp" %>
