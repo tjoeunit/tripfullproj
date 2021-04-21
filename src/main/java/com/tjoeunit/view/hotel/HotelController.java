@@ -27,20 +27,26 @@ public class HotelController {
 	private HotelService hotelService;
 	
 	// 글 등록
-	@RequestMapping(value="/insertHotel.do") 
-	public String insertHotel(HotelVO vo, HttpSession session) throws IOException{ // 브라우저 데이터를 담아주는 커멘드 객체 역할 
+	@RequestMapping(value="/insertHotel.do", method = RequestMethod.POST) 
+	public String insertHotel(HotelVO vo, HttpSession session, MultipartFile[] HotelImgUpload, Model model) throws IOException{
 		System.out.println("숙소 등록 처리");
 
 		// 파일 업로드 처리
-		String fileSaveFolder = session.getServletContext().getRealPath("/img/"); 
-			
-		MultipartFile hotel_thumb = vo.getHotel_thumb();
-		if(!hotel_thumb.isEmpty()) {
-			String hotel_thumb_path = hotel_thumb.getOriginalFilename(); 
-			hotel_thumb.transferTo(new File(fileSaveFolder+hotel_thumb_path));
-			System.out.println(fileSaveFolder+hotel_thumb_path);
+		String HotelImg = session.getServletContext().getRealPath("/HotelUpload/"); 
+		System.out.println("==>"+HotelImgUpload.length);
+		System.out.println(HotelImg);
+		for(int i = 0; i < HotelImgUpload.length; i++) {
+			System.out.println("==>"+HotelImgUpload[i].isEmpty());
+			if(!HotelImgUpload[i].isEmpty()) {
+				String HotelUploadName = HotelImgUpload[i].getOriginalFilename();
+				System.out.println(HotelUploadName);
+				HotelImgUpload[i].transferTo(new File(HotelImg+HotelUploadName));
+				vo.setHotel_img1(HotelUploadName);
+				vo.setHotel_img2(HotelUploadName);
+				vo.setHotel_img3(HotelUploadName);
+			}
 		}
-		
+		// DB연동처리		
 		hotelService.insertHotel(vo);	
 		
 		return "redirect: getHotelList.do";

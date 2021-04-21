@@ -50,7 +50,7 @@
 					
 					<tr>
 						<td class="insert_story_writer">작성자</td>
-						<td><input type="text" size=100% value="${member_id.member_id}" readonly></td>
+						<td><input type="text" size=100% value="${members_id}" readonly></td>
 					</tr>
 					
 					<tr>
@@ -58,10 +58,7 @@
 						<td>
 							<textarea id="story_ckeditor"></textarea>
 							<script type="text/javascript">
-								CKEDITOR.replace('story_ckeditor', {height: 700, width: 900, filebrowserUploadUrl:'/story/imageUpload.do'});
-								/* 입력 받은 content 값 변수에 저장 (db로 넘기기 위해) */
-								var story_content = CKEDITOR.instances.story_ckeditor.getData();
-								/* CKEDITOR.instances.story_ckeditor.setData(); */
+								CKEDITOR.replace('story_ckeditor', {height: 700, width: 900, filebrowserUploadUrl:'/storyImage/imageUpload.do'});
 							</script>
 						</td>
 					</tr>
@@ -80,7 +77,6 @@
 			
 			<a href="getStoryList.do">글 목록 가기</a>
 	</center>
-    <!-- C:\workspaces\springproject\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\tripfullproj\ -->
 </main>
 
 <%@ include file="../import/bottom.jsp" %>

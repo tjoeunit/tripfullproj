@@ -28,6 +28,7 @@ public class StoryController {
 		System.out.println("스토리 등록 페이지 호출");
 		return null;
 	}
+
 	
 // 글 등록
 	@RequestMapping(value="/insertStory.do", method=RequestMethod.POST)
@@ -78,8 +79,9 @@ public class StoryController {
 				
 		storyService.deleteStory(vo);
 		
-		return "redirect:getStoryList.do";
+		return "story/getStoryList";
 	}
+	
 /*	
 // RequestMapping이 실행되기 직전에 이 메소드가 먼저 호출 되어진다.(model에 값이 들어감)
 	@ModelAttribute("/conditionMap.do")		//"conditionMap"에 return 값을 저장
@@ -89,8 +91,8 @@ public class StoryController {
 		conditionMap.put("내용", "CONTENT");
 		return conditionMap;
 	}
-	
-	*/
+*/
+
 	
 // 글 목록 보기
 	@RequestMapping(value="/getStoryList.do",  method = RequestMethod.GET)

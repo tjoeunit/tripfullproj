@@ -24,18 +24,18 @@ ALTER TABLE members
 
 /* 여행스토리 */
 CREATE TABLE story (
-	story_no NUMBER NOT NULL, /* 여행스토리번호 */
-	members_no NUMBER, /* 멤버번호 */
-	story_title VARCHAR2(100), /* 여행스토리제목 */
-	story_content VARCHAR2(2000), /* 여행스토리내용 */
+	story_no NUMBER NOT NULL, /* 여행스토리번호 0000000000000000*/
+	members_no NUMBER, /* 멤버번호 0000000000000000000000000000*/
+	story_title VARCHAR2(100), /* 여행스토리제목 000000000000000*/
+	story_content VARCHAR2(2000), /* 여행스토리내용 000000000000000(필요 없을 것 같음)*/
 	story_imgname VARCHAR2(500), /* 여행스토리사진이름 */
 	story_imgorigin VARCHAR2(500), /* 여행스토리사진원본이름 */
 	story_imgsize VARCHAR2(500), /* 여행스토리사진크기 */
-	story_re_ref NUMBER, /* 여행스토리댓글REF */
-	story_re_lev NUMBER, /* 여행스토리댓글LEV */
-	story_re_seq NUMBER, /* 여행스토리댓글SEQ */
-	story_cnt NUMBER, /* 여행스토리조회수 */
-	story_date DATE /* 여행스토리작성일 */
+	story_re_ref NUMBER, /* 여행스토리댓글REF000000000000000 */
+	story_re_lev NUMBER, /* 여행스토리댓글LEV000000000000000 */
+	story_re_seq NUMBER, /* 여행스토리댓글SEQ 000000000000000*/
+	story_cnt NUMBER, /* 여행스토리조회수000000000000000 */
+	story_date DATE /* 여행스토리작성일 000000000000000*/
 );
 
 ALTER TABLE story
@@ -313,9 +313,5 @@ CREATE SEQUENCE story_seq
 increment by 1
 start with 1
 nocache;
-
-/*관리자 아이디 생성*/
-INSERT INTO members (members_no, members_id, members_pw, members_name)
-VALUES (members_seq.nextval, 'admin', '1004', '운영자');
 
 commit

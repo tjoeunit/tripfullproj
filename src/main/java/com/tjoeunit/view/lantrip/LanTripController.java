@@ -35,6 +35,7 @@ public class LanTripController {
 		
 		for(int i = 0; i < lanTripImgUpload.length; i++) {
 			System.out.println("==>"+lanTripImgUpload[i].isEmpty());
+			
 			if(!lanTripImgUpload[i].isEmpty()) {
 				String lanTripUploadName = lanTripImgUpload[i].getOriginalFilename();
 				lanTripImgUpload[i].transferTo(new File(lanTripImg+lanTripUploadName));
