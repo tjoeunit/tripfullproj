@@ -14,8 +14,8 @@ public class HotelDAO {
 	@Autowired
 	private SqlSessionTemplate mybatis;
 	
-	public void insertHotel(HotelVO vo){
-		mybatis.insert("hotelDAOTemplate.insertHotel", vo);
+	public int insertHotel(HotelVO vo){
+		return mybatis.insert("hotelDAOTemplate.insertHotel", vo);
 	  }
 	
     public void updateHotel(HotelVO vo){
