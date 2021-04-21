@@ -242,12 +242,12 @@
 </script>
 <main>
 	
-	<div style="margin-left: 360px;">
+	<div>
 		회원가입
 		<form name="frm" action="<c:url value='/members/insertMembers.do'/>" method="post">
 			<div>
 				이용약관<br>
-				<textarea name="policy" rows="8" cols="150">
+				<textarea name="policy" rows="8" cols="120">
 제1조(목적)
 이 약관은 트립풀(전자거래 사업자)이 운영하는 홈페이지(이하 "쇼핑몰"이라 한다)에서 제공하는 인터넷 관련 서비스(이하 "서비스"라 한다)를 이용함에 있어 트립풀와 이용자의 권리·의무 및 책임사항을 규정함을 목적으로 합니다.
 ※ 「PC통신 등을 이용하는 전자거래에 대해서도 그 성질에 반하지 않는 한 이 약관을 준용합니다」
@@ -402,7 +402,7 @@
 			</div><br>
 			<div>
 				개인정보 수집 및 이용<br>
-				<textarea name="personalInfo" rows="8" cols="150">
+				<textarea name="personalInfo" rows="8" cols="120">
 정보통신망법 규정에 따라 트립풀에 회원가입 신청하시는 분께 수집하는 개인정보의 항목, 개인정보의 수집 및 이용목적, 개인정보의 보유 및 이용기간을 안내 드리오니 자세히 읽은 후 동의하여 주시기 바랍니다.
 
 1. 수집하는 개인정보

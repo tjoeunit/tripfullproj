@@ -142,7 +142,7 @@
 								<td align="left"><input type="number" name="lantrip_price" />원</td>
 							</tr>
 							<tr>
-						.		<td bgcolor="#58CCFF">내용</td>
+								<td bgcolor="#58CCFF">내용</td>
 								<td align="left"><textarea name="lantrip_content" cols="80" rows="10"></textarea></td>
 							</tr>
 							<tr>

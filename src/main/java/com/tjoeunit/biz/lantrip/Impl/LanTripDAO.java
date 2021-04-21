@@ -12,7 +12,7 @@ import com.tjoeunit.biz.lantrip.LanTripVO;
 public class LanTripDAO {
 	
 	@Autowired
-	private SqlSessionTemplate mybatis;	
+	private SqlSessionTemplate mybatis;
 	
 	public int insertLanTrip(LanTripVO vo){
 		return mybatis.insert("lanTripDAOTemplate.insertLanTrip", vo);
