@@ -14,7 +14,7 @@ import com.tjoeunit.biz.admin.AdminService;
 import com.tjoeunit.biz.admin.AdminVO;
 
 @Controller
-@RequestMapping("/adminLogin")
+/* @RequestMapping("/adminLogin") */
 public class AdminController {
 
 	@Autowired
@@ -25,14 +25,14 @@ public class AdminController {
            // LoggerFactory.getLogger(AdminController.class);  
      
 
-	@RequestMapping(value="/adminLogin_View.do", method=RequestMethod.GET)
+	@RequestMapping(value="/adminLogin/adminLogin_View.do", method=RequestMethod.GET)
 	public String adminLoginPage() {
 		System.out.println("관리자 로그인 페이지");
 		return "adminLogin/adminLogin";
 	}
 	
 	//관리자 로그인 처리
-		@RequestMapping(value="/adminLogin.do", method=RequestMethod.POST)
+		@RequestMapping(value="/adminLogin/adminLogin.do", method=RequestMethod.POST)
 		public ModelAndView adminLoginCheck(AdminVO vo, HttpSession session, ModelAndView mav) {
 		System.out.println("관리자 로그인 확인");
 
@@ -54,5 +54,45 @@ public class AdminController {
         
                 return mav;
         }
+		
+
+		@RequestMapping(value="/admin/adminAccomodations.do", method=RequestMethod.GET)
+		public String adminAccomodations() {
+			System.out.println("숙박 페이지 이동 ");
+			return "admin/adminAccomodations";
+		}
+		
+
+		@RequestMapping(value="/admin/adminFlight.do", method=RequestMethod.GET)
+		public String adminFlight() {
+			System.out.println("항공 페이지 이동 ");
+			return "/admin/adminFlight";
+		}
+		
+
+		@RequestMapping(value="/admin/adminActivity.do", method=RequestMethod.GET)
+		public String adminActivity() {
+			System.out.println("액티비티 페이지 이동 ");
+			return "admin/adminActivity";
+		}
+		
+
+		@RequestMapping(value="/admin/adminLanTrip.do", method=RequestMethod.GET)
+		public String adminLanTrip() {
+			System.out.println("랜선여행 페이지 이동 ");
+			return "admin/adminLanTrip";
+		}
+		
+		
+		
+		 //관리자 로그아웃 
+	    @RequestMapping("logout.do")
+	    public String logout(HttpSession session) {
+	        session.invalidate();
+	        //로그아웃을 시키려면 session에 있는 데이터를 삭제시켜야 하기 때문에 invalidate()메소드를 사용해서
+	        //안에 있는 데이터를 초기화 시킨다.
+	        
+	        return "redirect:/adminLogin/adminLogin_View.do";
+	    }
 	
 }

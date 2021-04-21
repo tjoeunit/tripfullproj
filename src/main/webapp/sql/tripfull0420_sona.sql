@@ -8,7 +8,7 @@ alter table lantrip
 	add lantrip_img3 VARCHAR2(2000)
 	add lantrip_img4 VARCHAR2(2000)
 	add lantrip_img5 VARCHAR2(2000);
-	
+
 alter table lantrip
 	drop column lantrip_img2;
 
@@ -17,7 +17,7 @@ alter table lantrip
 
 alter table lantrip
 	drop column lantrip_img4;
-	
+
 alter table lantrip
 	drop column lantrip_img5;
 

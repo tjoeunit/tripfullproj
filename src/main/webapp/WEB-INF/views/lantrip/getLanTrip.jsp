@@ -9,19 +9,19 @@
 		margin: 10px;
 		width: 1200px;
 	}
-	
+
 	.lan_product_top{
 		padding: 10px;
 		margin-bottom: 20px;
 		width: 1200px;
 		border-bottom: 1px solid gray;
 	}
-	
+
 	.lan_product_thumb {
 		width: 400px;
 		height: 300px;
 	}
-	
+
 	.lan_product_title {
 		display: inline-block;
 		font-size: 40px;
@@ -29,12 +29,12 @@
 		text-align: left;
 		padding: 10px;
 	}
-	
+
 	.lan_product_city {
 		text-align: left;
 		padding: 0px 10px;
 	}
-	
+
 	.lan_product_city span	{
 		display: inline-block;
 		margin: 0px 5px;
@@ -43,13 +43,13 @@
 		background-color: #D9E3E8;
 		padding: 5px 10px;
 	}
-	
+
 	.lan_product_price {
 		display: inline-block;
 		width: 350px;
 		margin: 0px 10px;
 		text-align: right;
-	}	
+	}
 
 	.lan_product_buy {
 		-moz-transition: background-color .2s ease-in-out;
@@ -72,34 +72,34 @@
 		text-align: center;
 		margin: 0px 10px;
 	}
-	
+
 	.lan_product_buy:hover{
 		color: #fff !important;
 		background: #383838;
 		cursor: pointer;
 	}
-	
+
 	.lan_video {
-		
+
 	}
-	
+
 	.lan_product_detail{
 		border-bottom: 1px solid gray;
 		padding: 10px;
 		margin: 10px;
 	}
-	
+
 	.lan_product_img {
 		width: 1200px;
 		background-color: #58CCFF;
 	}
-	
+
 </style>
 
 <main>
 
 	<div class="lan_product">
-	
+
 		<!-- 랜선여행 제목 표현식에 있는 lantrip은 컨트롤러에서 model의 키값으로 정의한 것 사용 -->
 		<div type="hidden" value="getLanTrip.do?lantrip_no=${ lantrip.lantrip_no }" ></div>
 			<table class="lan_product_top">
@@ -122,7 +122,7 @@
 					</td>
 				</tr>
 			</table>
-	
+
 			<!-- 랜선여행 상세 설명 -->
 			<div class="lan_product_detail">${ lantrip.lantrip_content }</div>
 			<div class="lan_video">
@@ -134,7 +134,7 @@
 					allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 					allowfullscreen>
 				</iframe>
-			</div>		
+			</div>
 			<div>
 				<img class="lan_product_img" src="<c:url value='/lanTripUpload/${ lantrip.lantrip_img1 }'/>">
 			</div>
