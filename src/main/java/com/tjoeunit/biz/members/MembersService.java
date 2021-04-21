@@ -26,5 +26,6 @@ public interface MembersService {
 	//고객 삭제
 	//void deleteMembers(MembersVO vo);
 
-
+	//고객 번호로 아이디 가져오기
+	MembersVO selectByMembersNo(int members_no);
 }

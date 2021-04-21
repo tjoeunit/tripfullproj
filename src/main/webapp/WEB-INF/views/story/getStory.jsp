@@ -2,61 +2,87 @@
 <%@ include file="../import/top.jsp" %>
 
 <style>
-	.getStory_table td{
-		border: 2px solid #58CCFF;
+
+	.story_get{
+		font: bold;
+		width: 1000px;
 		padding: 10px;
 	}
 	
-	.getStory_content{
-		height: 900px;
-		width: 900px;
+	.story_get td{
 	}
 	
-	.getStory_submit{ /* 안먹음 */
+	.get_story_subject{
+		background-color: #58CCFF;
+		width: 120px;
+	}
+	
+	.get_story_writer{
+		background-color: #58CCFF;
+	}
+	
+	.get_story_content{
+		background-color: #58CCFF;
+		height: 700px;
+	}
+	.get_story_date{
+		background-color: #58CCFF;
+	}
+	.get_story_cnt{	
+		background-color: #58CCFF;
+	}
+	.get_story_submit{
 		text-align: center;
 	}
 	
+	.get_story_bottom{
+		text-align: center;
+	}
+
 	
 	
 </style>
 
 <main>
-	<center>
 		<h1>스토리 상세</h1>
 		<hr>
 		<form action="updateStory.do" method="post">
 			<input name="story_no" type="hidden" value="${story.story_no}" />
-			<table class="getStory_table">
+			<table class="story_get">
 				<tr>
-					<td>제목</td>
+					<td class="get_story_subject">제목</td>
 					<td>${story.story_title}</td>
 				</tr>
 				<tr>
-					<td>작성자</td>
-					<td>${members_id}</td>
+					<td class="get_story_writer">작성자</td>
+					<td>${story.story_writer}</td>
 				</tr>
 				<tr>
-					<td>내용</td>
-					<td class="getStory_content">	${story.story_content}</td>
+					<td class="get_story_content">내용</td>
+					<td>	${story.story_content}</td>
 				</tr>
 				<tr>
-					<td>등록일</td>
-					<td>${story.story_date}</td>
+					<td class="get_story_date">등록일</td>
+					<td><fmt:formatDate value="${ story.story_date }" dateStyle="full" timeStyle="full"/></td>
 				</tr>
 				<tr>
-					<td>조회수</td>
+					<td class="get_story_cnt">조회수</td>
 					<td>${story.story_cnt}</td>
 				</tr>
-				<tr>
-					<td class="getStory_submit"><input type="submit" value="글 수정"></td>
-				</tr>
-			</table>
+			</table><br><br>
+			
+			<div class="get_story_submit">
+				<td><input type="submit" value="글 수정"></td>
+			</div>
+			
 		</form>
-		<hr>
-		<a href="insertStoryPage.do">글등록</a>&nbsp;&nbsp;&nbsp; 
-		<a href="deleteStory.do?seq=${story.story_no}">글삭제</a>&nbsp;&nbsp;&nbsp;
-		<a href="getStoryList.do">글목록</a>
-	</center>
+		<br><hr><br>
+		<div class="get_story_bottom">
+			<a href="insertStoryPage.do">글등록</a>&nbsp;&nbsp;&nbsp; 
+			<a href="deleteStory.do?seq=${story.story_no}">글삭제</a>&nbsp;&nbsp;&nbsp;
+			<a href="getStoryList.do">글목록</a>
+		</div>
+		<br><br>
 </main>
 
 <%@ include file="../import/bottom.jsp" %>

@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <% String members_id = (String)session.getAttribute("members_id"); %>
+<% int members_no = (Integer)session.getAttribute("members_no"); %>
 <!DOCTYPE html>
 <html>
 <head>
