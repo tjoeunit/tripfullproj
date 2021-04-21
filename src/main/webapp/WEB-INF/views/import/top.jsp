@@ -111,6 +111,17 @@
 
 </style>
 
+<script type="text/javascript">
+	$(function(){
+		if(("#sessionID").val() != null){
+			
+		} else {
+			
+		}
+	});	
+	
+</script>
+
 <body>
 <header>
 		<nav class="nav">
@@ -123,8 +134,10 @@
 
 				<div class="navAccDiv">
 					<ul>
-						<li><a href="<c:url value='/members/insertMembers.do'/>">회원가입</a></li>
-						<li><a href="<c:url value='/members/loginMembers.do'/>">로그인</a></li>
+						<li id="signinLi"><a href="<c:url value='/members/insertMembers.do'/>">회원가입</a></li>
+						<li id="mypageLi"><a href="<c:url value='#'/>">마이페이지</a></li>
+						<li id="loginLi"><a href="<c:url value='/members/loginMembers.do'/>">로그인</a></li>
+						<li id="logoutLi"><a href="<c:url value='#'/>">로그아웃</a></li>
 						<li><a href="<c:url value='/adminLogin/adminLogin_View.do'/>">관리자</a></li>
 					</ul>
 				</div>
@@ -141,6 +154,8 @@
 						<li><a href="<c:url value='/story/getStoryList.do'/>">여행이야기</a></li>
 					</ul>
 				</div>
+				
+				<input type="text" id="sessionID" value="${members_id}">
 			</div>
 		</nav>
 </header>
