@@ -6,7 +6,7 @@ public interface LanTripService {
 	// CRUD 기능의 메서드 구현
 	
 	// 랜선여행 등록
-	void insertLanTrip(LanTripVO vo);
+	int insertLanTrip(LanTripVO vo);
 	
 	// 랜선여행 목록
 	List<LanTripVO> getLanTripList(LanTripVO vo);

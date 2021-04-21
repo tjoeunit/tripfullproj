@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
-<%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <!DOCTYPE html>
@@ -38,7 +37,7 @@
 			</tr>
 			<c:forEach items="${hotelList}" var="hotel">
 				<tr>
-					<td>${hotel.hotel_thumb }</td>
+					<td><img class="hotel_thumb" src="<c:url value='/hotelUpload/${ hotel.hotel_img1 }'/>"></td>
 					<td>${hotel.hotel_title}</td>
 					<td>${hotel.hotel_category }</td>
 					<td>${hotel.hotel_price }</td>					

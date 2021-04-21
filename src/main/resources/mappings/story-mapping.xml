@@ -2,13 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- 파일 넣기 확인 다시 해야 함, 작성자랑 members_no 못하겠음, 댓글 넣기 기능 추가해야 함 -->
-
-<mapper namespace="storyDAOTemplate" >
+<!-- story_no, members_no, story_title, story_content, story_re_ref, story_re_lev, story_re_seq, story_cnt, story_date, storyfilename, storyuploadfile, ckeditorfuncnum -->
+ <mapper namespace="storyDAOTemplate" >
+	
 	<insert id="insertStory">
-	<![CDATA[
-		insert into story(story_no, story_title, members_no, story_content, story_date)
-		values((select nvl(max(story_no), 0)+1 from story),#{story_title},#{members_no},#{story_content},#{story_date})
-	]]>
+		<selectKey keyProperty="story_no" resultType="int" order="BEFORE">
+			select story_seq.nextval from dual
+		</selectKey>
+			insert into story(story_no, story_title, story_content)
+			values(
+				#{story_no}, #{story_title}, #{story_content})
 	</insert>
 
 	<update id="updateStory">
@@ -26,13 +29,5 @@
 	<select id="getStoryList" resultType="com.tjoeunit.biz.story.StoryVO">
 		select * from story order by story_no desc
 	</select>
-	<!-- 
-	<select id="getStoryList_T" resultType="com.tjoeunit.biz.story.StoryVO">
-		select * from story where story_title like '%'||#{storySearchKeyword}||'%' order by story_no desc
-	</select>
 	
-	<select id="getStoryList_C" resultType="com.tjoeunit.biz.story.StoryVO">
-		select * from story where story_content like '%'||#{storySearchKeyword}||'%' order by story_no desc
-	</select>
-	 -->
 </mapper>

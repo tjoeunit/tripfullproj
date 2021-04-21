@@ -5,7 +5,7 @@ import java.util.List;
 public interface StoryService {
 	
 	//글 등록
-	int insertStory(StoryVO vo);
+	void insertStory(StoryVO vo);
 	
 	//글 목록 조회
 	List<StoryVO> getStoryList(StoryVO vo);

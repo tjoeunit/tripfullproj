@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="practiceDAOTemplate">
+
+	<insert id="insertPractice">
+		<selectKey keyProperty="practice_no" resultType="int" order="BEFORE">
+			select practice_seq.nextval from dual
+		</selectKey>
+			<![CDATA[
+			insert into practice(practice_no, practice_title, practice_content)
+			values(#{practice_no}, #{practice_title}, #{practice_content})
+			]]>
+	</insert>
+	
+	<select id="getPracticeList" resultType="com.tjoeunit.biz.practice.PracticeVO">
+		select * from practice order by practice_no desc
+	</select>
+	
+	<select id="getPractice" resultType="com.tjoeunit.biz.practice.PracticeVO">
+		select * from practice where practice_no=#{practice_no}
+	</select>
+
+</mapper>

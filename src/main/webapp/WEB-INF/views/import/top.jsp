@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<% String members_id = (String)session.getAttribute("members_id"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +9,7 @@
 <link rel="shortcut icon" href="<c:url value='/img/favicon16.ico'/>">
 
 <!-- 제이쿼리 -->
-<script type="text/javascript" src="<c:url value='/lib/js/jquery-3.5.1.min.js'/>"></script>
+<script type="text/javascript" src="<c:url value='/js/jquery-3.5.1.min.js'/>"></script>
 
 <meta charset="UTF-8">
 <title>Tripfull</title>
@@ -103,6 +103,11 @@
 	.navListDiv {
 		clear: both;
 	}
+	
+	main {
+		margin-left: 360px;
+		width: 1200px;
+	}
 
 </style>
 
@@ -119,16 +124,18 @@
 				<div class="navAccDiv">
 					<ul>
 						<li><a href="<c:url value='/members/insertMembers.do'/>">회원가입</a></li>
-						<li><a href="#">로그인</a></li>
+						<li><a href="<c:url value='/members/loginMembers.do'/>">로그인</a></li>
 						<li><a href="<c:url value='/adminLogin/adminLogin_View.do'/>">관리자</a></li>
 					</ul>
 				</div>
 
-				<div class="navListDiv">
+				<div class="navListDiv"> 
 					<ul>
-						<li><a href="#">항공권</a></li>
+						<li><a href="<c:url value='/practice/insertPractice.do'/>">연습(CK입력)</a></li>
+						<li><a href="<c:url value='/practice/getPracticeList.do'/>">연습(CK출력)</a></li>
+						<li><a href="<c:url value='/flight/getFlightList.do'/>">항공권</a></li>
 						<li><a href="<c:url value='/hotel/getHotelList.do'/>">숙소</a></li>
-						<li><a href="#">렌터카 & 교통</a></li>
+						<li><a href="<c:url value='#'/>">렌터카 & 교통</a></li>
 						<li><a href="#">액티비티</a></li>
 						<li><a href="<c:url value='/lantrip/getLanTripList.do'/>">랜선투어</a></li>
 						<li><a href="<c:url value='/story/getStoryList.do'/>">여행이야기</a></li>

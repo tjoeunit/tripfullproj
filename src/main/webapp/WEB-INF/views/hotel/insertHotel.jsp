@@ -1,5 +1,5 @@
 <%@page contentType="text/html; charset=UTF-8"%>
-
+<%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <!DOCTYPE html >
 <html>
 <head>
@@ -13,8 +13,19 @@
 		<form action="insertHotel.do" method="post" enctype="multipart/form-data">
 			<table border="1" cellpadding="0" cellspacing="0">
 				<tr>
-					<td bgcolor="#58CCFF" width="70">썸네일</td>
-					<td><input type="file"  name = "hotel_thumb"/></td>
+					<td bgcolor="#58CCFF" width="70">사진1</td>
+					<td><input type="file"  name = "HotelImgUpload"/></td>
+					<!-- <input multiple="multiple" type="file"  name = "file"/>-->
+				</tr>
+					<tr>
+					<td bgcolor="#58CCFF" width="70">사진2</td>
+					<td><input type="file"  name = "HotelImgUpload"/></td>
+					<!-- <input multiple="multiple" type="file"  name = "file"/>-->
+				</tr>
+					<tr>
+					<td bgcolor="#58CCFF" width="70">사진3</td>
+					<td><input type="file"  name = "HotelImgUpload"/></td>
+					<!-- <input multiple="multiple" type="file"  name = "file"/>-->
 				</tr>
 				<tr>
 					<td bgcolor="#58CCFF">제목</td>
@@ -23,6 +34,14 @@
 				<tr>
 					<td bgcolor="#58CCFF">카테고리</td>
 					<td align="left"><input type="text" name="hotel_category" size="10" /></td>
+				</tr>
+				<tr>
+					<td bgcolor="#58CCFF">내용</td>
+					<td align="left"><input type="text" name="hotel_content" size="10" /></td>
+				</tr>
+				<tr>
+					<td bgcolor="#58CCFF">지역</td>
+					<td align="left"><input type="text" name="hotel_area" size="10" /></td>
 				</tr>
 				<tr>
 					<td bgcolor="#58CCFF">가격</td>
@@ -35,7 +54,7 @@
 			</table>
 		</form>
 		<hr>
-		<a href="">호텔 목록 가기</a>
+		<a href="<c:url value='/hotel/getHotelList.do'/>">숙소 목록 보기</a>
 	</center>
 </body>
 </html>
