@@ -37,7 +37,7 @@
 			</tr>
 			<c:forEach items="${hotelList}" var="hotel">
 				<tr>
-					<td><img class="hotel_thumb" src="<c:url value='/hotelUpload/${ hotel.hotel_img1 }'/>"></td>
+					<td><img class="hotel_thumb" src="<c:url value='/hotelUpload/${ hotel.hotel_img}'/>"></td>
 					<td>${hotel.hotel_title}</td>
 					<td>${hotel.hotel_category }</td>
 					<td>${hotel.hotel_price }</td>					

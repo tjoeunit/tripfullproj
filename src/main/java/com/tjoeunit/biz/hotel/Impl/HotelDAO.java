@@ -14,8 +14,8 @@ public class HotelDAO {
 	@Autowired
 	private SqlSessionTemplate mybatis;
 	
-	public void insertHotel(HotelVO vo){
-		mybatis.insert("hotelDAOTemplate.insertHotel", vo);
+	public int insertHotel(HotelVO vo){
+		return mybatis.insert("hotelDAOTemplate.insertHotel", vo);
 	  }
 	
     public void updateHotel(HotelVO vo){
@@ -31,7 +31,7 @@ public class HotelDAO {
 	}//  값을 반환하는 셀렉문 , 하나만 반환하면 selectOne
 	  
 	public List<HotelVO> getHotelList(HotelVO vo) {
-		  // 검색 기능 전 
+		  
 		  return mybatis.selectList("hotelDAOTemplate.getHotelList", vo);
 	
     } 

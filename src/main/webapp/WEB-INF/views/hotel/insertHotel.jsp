@@ -13,21 +13,6 @@
 		<form action="insertHotel.do" method="post" enctype="multipart/form-data">
 			<table border="1" cellpadding="0" cellspacing="0">
 				<tr>
-					<td bgcolor="#58CCFF" width="70">사진1</td>
-					<td><input type="file"  name = "HotelImgUpload"/></td>
-					<!-- <input multiple="multiple" type="file"  name = "file"/>-->
-				</tr>
-					<tr>
-					<td bgcolor="#58CCFF" width="70">사진2</td>
-					<td><input type="file"  name = "HotelImgUpload"/></td>
-					<!-- <input multiple="multiple" type="file"  name = "file"/>-->
-				</tr>
-					<tr>
-					<td bgcolor="#58CCFF" width="70">사진3</td>
-					<td><input type="file"  name = "HotelImgUpload"/></td>
-					<!-- <input multiple="multiple" type="file"  name = "file"/>-->
-				</tr>
-				<tr>
 					<td bgcolor="#58CCFF">제목</td>
 					<td align="left"><input type="text" name="hotel_title" size="10" /></td>
 				</tr>
@@ -48,8 +33,16 @@
 					<td><input type="number" name = "hotel_price"/></td>
 				</tr>
 				<tr>
-					<td colspan="2" align="center"><input type="submit"
-						value="호텔 등록" /></td>
+					<td>썸네일</td>
+					<td><input type="file" name="hotelImgUpload"/></td>
+				</tr>
+				<tr>
+					<td>설명파일</td>
+					<td><input type="file" name="hotelImgUpload"/></td>
+				</tr>
+				<tr>
+					<td><input type="submit"value="등록하기" /></td>
+					<td><input type="button"value="뒤로가기" /></td>
 				</tr>
 			</table>
 		</form>

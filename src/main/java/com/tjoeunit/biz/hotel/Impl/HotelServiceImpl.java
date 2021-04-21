@@ -9,16 +9,14 @@ import com.tjoeunit.biz.hotel.HotelService;
 import com.tjoeunit.biz.hotel.HotelVO;
 
 @Service
-// 빈생성 요청 어노테이션 
 public class HotelServiceImpl implements HotelService {
 
 	@Autowired
 	private HotelDAO hotelDAO;
 
 	@Override
-	public void insertHotel(HotelVO vo) {
-		hotelDAO.insertHotel(vo);
-		
+	public int insertHotel(HotelVO vo) {
+		return hotelDAO.insertHotel(vo);		
 	}
 
 	@Override
@@ -29,22 +27,18 @@ public class HotelServiceImpl implements HotelService {
 
 	@Override
 	public HotelVO getHotel(HotelVO vo) {
-		HotelVO board = hotelDAO.getHotel(vo);
-		return board;
+		HotelVO hotel = hotelDAO.getHotel(vo);
+		return hotel;
 	}
 
 	@Override
 	public void updateHotel(HotelVO vo) {
-		hotelDAO.updateHotel(vo);
-		
+		hotelDAO.updateHotel(vo);		
 	}
 
 	@Override
 	public void deleteHotel(HotelVO vo) {
-		hotelDAO.deleteHotel(vo);
-		
+		hotelDAO.deleteHotel(vo);		
 	}	
-
-
 
 }
