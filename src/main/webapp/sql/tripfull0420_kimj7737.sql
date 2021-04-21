@@ -1,6 +1,8 @@
 --CKEditor 이미지 업로드를 위한 테이블 생성
 --따로 jsp 파일 만들어야 함 (practice.jsp 참고)
 
+
+/* 흠 */
 CREATE TABLE story_CKEditor (
 	story_CKEditor_no NUMBER NOT NULL,
 	story_CKEditor_title VARCHAR2(300),

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="flightDAOTemplate">
+		
+<!-- 항공권 등록 -->
+
+	<insert id="insertFlight">	
+		<selectKey keyProperty="flight_no" resultType="int" order="BEFORE">
+			select flight_seq.nextval from dual
+		</selectKey>
+		insert into flight(
+			flight_no, flight_title, flight_content, flight_thumb, flight_price,
+			flight_departure, flight_arrival,
+			flight_img1, flight_video
+		)
+		values(
+			#{flight_no}, #{flight_title}, #{flight_content}, #{flight_thumb}, #{flight_price},
+			#{flight_departure}, #{flight_arrival},
+			#{flight_img1},	#{flight_video}
+		)
+	</insert>
+
+<!-- 항공권 목록보기 -->
+	<select id="getFlightList" resultType="com.tjoeunit.biz.flight.FlightVO">
+		<![CDATA[
+			select * from flight order by flight_no desc
+		]]>
+	</select>
+
+<!-- 항공권 상세보기-->
+	<select id="getFlight" resultType="com.tjoeunit.biz.flight.FlightVO">
+		<![CDATA[
+			select * from flight where flight_no=#{flight_no}
+		]]>
+	</select>
+		
+</mapper>

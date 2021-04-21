@@ -9,5 +9,7 @@ alter table lantrip
 	add lantrip_img4 VARCHAR2(2000)
 	add lantrip_img5 VARCHAR2(2000);
 
+/* 흠 */	
 select *from LANTRIP;
 delete from lantrip where lantrip_price >= 20000;
+
