@@ -1,58 +1,82 @@
 <%@page import="com.tjoeunit.biz.lantrip.LanTripVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ include file="../import/top.jsp" %>
 
+<style type="text/css">
 
-<style type="text/css">	
-	main {
-		margin-left: 360px;
+	.lan_product {
+		margin: 10px;
+		width: 1200px;
 	}
 	
 	.lan_product_top{
 		padding: 10px;
 		margin-bottom: 20px;
-		width: 1000px;
+		width: 1200px;
 		border-bottom: 1px solid gray;
+	}
+	
+	.lan_product_thumb {
+		width: 400px;
+		height: 300px;
 	}
 	
 	.lan_product_title {
 		display: inline-block;
-		width: 800px;
 		font-size: 40px;
 		font-weight: 600;
 		text-align: left;
+		padding: 10px;
 	}
 	
-	.lan_price {
-		display: inline-block;
-		position: relative;
-		box-sizing: border-box;
-		padding: 5px;
+	.lan_product_city {
+		text-align: left;
+		padding: 0px 10px;
 	}
 	
-	.lan_buy {
+	.lan_product_city span	{
 		display: inline-block;
-		position: relative;
-		box-sizing: border-box;
-		color: black;
-		text-decoration: none;
+		margin: 0px 5px;
 		text-align: center;
-		font-weight: 600;
-		border-radius: 8px;
-		height: 2.5em;
-		line-height: 2.5em;
-		padding: 0 1.25em;
+		border-radius: 5px;
+		background-color: #D9E3E8;
+		padding: 5px 10px;
+	}
+	
+	.lan_product_price {
+		display: inline-block;
+		width: 350px;
+		margin: 0px 10px;
+		text-align: right;
+	}	
+
+	.lan_product_buy {
 		-moz-transition: background-color .2s ease-in-out;
 		-webkit-transition: background-color .2s ease-in-out;
 		-ms-transition: background-color .2s ease-in-out;
 		transition: background-color .2s ease-in-out;
+		position: relative;
+		display: inline-block;
+		color: black;
+		text-decoration: none;
+		outline: 0;
+		font-weight: 600;
+		border-radius: 8px;
+		border: 1px solid lightgray;
+		color: black;
+		height: 2.5em;
+		line-height: 2.5em;
+		width: 350px;
+		background-color: white;
+		text-align: center;
+		margin: 0px 10px;
 	}
 	
-	.lan_buy:hover {
+	.lan_product_buy:hover{
 		color: #fff !important;
 		background: #383838;
+		cursor: pointer;
 	}
 	
 	.lan_video {
@@ -60,23 +84,13 @@
 	}
 	
 	.lan_product_detail{
-		width: 1000px;
 		border-bottom: 1px solid gray;
 		padding: 10px;
-	}
-	
-	.lan_product_detail_area{
-		color: gray;
-		text-align: right;
-	}
-	
-	.lan_product_thumb{
-		width: 900px;
+		margin: 10px;
 	}
 	
 	.lan_product_img {
-		width: 900px;
-		height: 1000px; /* 나중에 삭제 */
+		width: 1200px;
 		background-color: #58CCFF;
 	}
 	
@@ -84,110 +98,48 @@
 
 <main>
 
-<!-- 랜선여행 제목 표현식에 있는 lantrip은 컨트롤러에서 model의 키값으로 정의한 것 사용 -->
-	<div type="hidden" value="getLanTrip.do?lantrip_no=${ lantrip.lantrip_no }">
-		<div class="lan_product_top">
-			<span class="lan_product_title">${ lantrip.lantrip_title }</span>
-			<span class="lan_price">${ lantrip.lantrip_price }원</span>
-			<a href="#"><span class="lan_buy">구매하기</span></a>
-		</div>
-
-<!-- 랜선여행 상세 설명 -->
+	<div class="lan_product">
 	
-		<div class="lan_product_detail">
-			<div class="lan_product_detail_area">${ lantrip.lantrip_area }</div>
-			<div>${ lantrip.lantrip_content }</div>
-		</div>
-		<div><img class="lan_product_thumb" src="<c:url value='/lanTripUpload/${ lantrip.lantrip_thumb }'/>"></div>
-		<%-- <div class="lan_video">
-			<iframe width="854" height="480"
-				src="${ fn:substring(lantrip.lantrip_video, 0 ,24) }/embed/${ fn:substring(lantrip.lantrip_video,24) }"
-				title="YouTube video player"
-				frameborder="0"
-				allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-				allowfullscreen>
-			</iframe>
-		</div> --%>
-		
-		<!-- core의 if문 이용해서 코드 실행할 수 있게 함 null인 경우 skip될 수 있게 처리  jstl 이용해서  -->
-		
-		<div>
-			<img class="lan_product_img" src="<c:url value='/lanTripUpload/${ lantrip.lantrip_img1 }'/>">
-			<img class="lan_product_img" src="<c:url value='/lanTripUpload/${ lantrip.lantrip_img2 }'/>">
-			<img class="lan_product_img" src="<c:url value='/lanTripUpload/${ lantrip.lantrip_img3 }'/>">
-			<img class="lan_product_img" src="<c:url value='/lanTripUpload/${ lantrip.lantrip_img4 }'/>">
-			<img class="lan_product_img" src="<c:url value='/lanTripUpload/${ lantrip.lantrip_img5 }'/>">
-		</div>
-
-<!-- =================================================================================== -->
-		<div class="admin_content_wrap">
-			<div class="admin_content_subject"><span>랜선여행 관리</span></div>
-				<div class="admin_content_lantrip">
-					<form  class="lan_table" action="insertLanTrip.do" method="post"  enctype="multipart/form-data">
-						<table class="lan_enroll" border="1" cellpadding="0" cellspacing="0">
-							<tr >
-								<td bgcolor="#58CCFF" width="100px">제목</td>
-								<td align="left" width="80%"><input type="text" name="lantrip_title" /></td>
-							</tr>
-							<tr>
-								<td bgcolor="#58CCFF" width="70">지역</td>
-								<td align="left">
-									<select name="lantrip_area">
-										<option value="아시아">아시아</option>
-										<option value="유럽">유럽</option>
-										<option value="북아메리카">북아메리카</option>
-										<option value="남아메리카">남아메리카</option>
-										<option value="아프리카">아프리카</option>
-										<option value="오세아니아">오세아니아</option>
-									</select>
-								</td>
-							</tr>
-							<tr>
-								<td bgcolor="#58CCFF" width="70">가격</td>
-								<td align="left"><input type="number" name="lantrip_price" />원</td>
-							</tr>
-							<tr>
-						.		<td bgcolor="#58CCFF">내용</td>
-								<td align="left"><textarea name="lantrip_content" cols="80" rows="10"></textarea></td>
-							</tr>
-							<tr>
-								<td bgcolor="#58CCFF">영상url</td>
-								<td><input type="text" name="lantrip_video"/></td>
-							</tr>
-							<tr>
-								<td bgcolor="#58CCFF">썸네일</td>
-								<td><input type="file" name="lanTripImgUpload"/></td>
-							</tr>
-							<tr>
-								<td bgcolor="#58CCFF">설명파일1</td>
-								<td><input type="file" name="lanTripImgUpload"/></td>
-							</tr>
-							<tr>
-								<td bgcolor="#58CCFF">설명파일2</td>
-								<td><input type="file" name="lanTripImgUpload"/></td>
-							</tr>
-							<tr>
-								<td bgcolor="#58CCFF">설명파일3</td>
-								<td><input type="file" name="lanTripImgUpload"/></td>
-							</tr>
-							<tr>
-								<td bgcolor="#58CCFF">설명파일4</td>
-								<td><input type="file" name="lanTripImgUpload"/></td>
-							</tr>
-							<tr>
-								<td bgcolor="#58CCFF">설명파일5</td>
-								<td><input type="file" name="lanTripImgUpload"/></td>
-							</tr>
-							<tr>
-								<td colspan="2" align="center">
-								<input type="submit"value=" 새글 등록 " /></td>
-							</tr>
-						</table>
-					</form>
-				</div>
+		<!-- 랜선여행 제목 표현식에 있는 lantrip은 컨트롤러에서 model의 키값으로 정의한 것 사용 -->
+		<div type="hidden" value="getLanTrip.do?lantrip_no=${ lantrip.lantrip_no }" ></div>
+			<table class="lan_product_top">
+				<tr>
+					<td rowspan="3"><img class="lan_product_thumb" src="<c:url value='/lanTripUpload/${ lantrip.lantrip_thumb }'/>"></td>
+					<td class="lan_product_title">${ lantrip.lantrip_title }</td>
+				</tr>
+				<tr>
+					<td class="lan_product_city" headers="70">
+						<span>#${ lantrip.lantrip_area }</span>
+						<span>#랜선여행</span>
+						<span>#코로나여행</span>
+						<span>#안전여행</span>
+					</td>
+				</tr>
+				<tr>
+					<td height="70">
+						<span class="lan_product_price">${lantrip.lantrip_price} 원</span>
+						<span class="lan_product_buy">구매하기</span>
+					</td>
+				</tr>
+			</table>
 	
-	
-	
+			<!-- 랜선여행 상세 설명 -->
+			<div class="lan_product_detail">${ lantrip.lantrip_content }</div>
+			<div class="lan_video">
+				<h3>랜선투어 맛보기 영상</h3>
+				<iframe width="1200" height="675"
+					src="${ lantrip.lantrip_video }"
+					title="YouTube video player"
+					frameborder="0"
+					allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+					allowfullscreen>
+				</iframe>
+			</div>		
+			<div>
+				<img class="lan_product_img" src="<c:url value='/lanTripUpload/${ lantrip.lantrip_img1 }'/>">
+			</div>
+	</div>
 	<br>
 </main>
+
 <%@ include file="../import/bottom.jsp" %>

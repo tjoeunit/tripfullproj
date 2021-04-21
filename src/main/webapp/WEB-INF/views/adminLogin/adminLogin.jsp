@@ -1,10 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>관리자 로그인</title>
+<%@ include file="../import/top.jsp" %>
+
 <script>
 //button을 클릭하면 아이디와 비밀번호를 처리해서 Controller에 있는 login_check로 맵핑시킨다.
 //아이디와 비밀번호를 받아 처리하는 자바스크립트 구문
@@ -30,26 +27,50 @@
 });
   */
 </script>
-</head>
-<body>
+
+<style type="text/css">
+	.admin_login {
+	  box-sizing: border-box;
+	  width: 500px;
+	  background-color: #EEEFF1;
+	  padding: 20px;
+	  margin: 50px auto;
+	  border: none;
+	  border-radius: 5px;
+	}
 	
+	.admin_login_field {
+	  font-size: 16px;
+	  padding: 20px 10px;
+	  margin: 20px 0px;
+	  border-radius: 5px;
+	  border: none;
+	  width: 440px;
+	}
+	
+	.admin_login_submit {
+	  font-size: 16px;
+	  padding: 20px 10px;
+	  margin: 30px 0px;
+	  border-radius: 5px;
+	  border: none;
+	  width: 100%;
+	  text-align: center;
+	  background-color: #58CCFF;
+	  cursor: pointer;
+	}
+</style>
+
+<main>
 	<center>
 		<h1>관리자 로그인</h1>
-		<hr>
+		
 		<!-- <form  name="form1" method="post"> -->
-		<form  action="adminLogin.do"  method="post">
-			<table border="1" cellpadding = "0" cellspacing="0">
-				<tr>
-					<td bgcolor = "#58CCFF">아이디</td>
-					<td><input id="admin_id" name = "admin_id" placeholder="아이디를 입력하세요."/></td>
-				</tr>
-				<tr>
-					<td  bgcolor = "#58CCFF">비밀번호</td>
-					<td><input type = "password" id="admin_pw" name = "admin_pw" placeholder="비밀번호를 입력하세요."/></td>
-				</tr>
-				<tr>
-					<td bgcolor = "gray" colspan = "2" align = "center">
-						<input type="submit" value="로그인"/>
+		<div class="admin_login">
+			<form  action="adminLogin.do"  method="post">
+				<input type="text" class="admin_login_field" placeholder="아이디">
+				<input type="password" class="admin_login_field" placeholder="비밀번호">
+				<input type="submit" class="admin_login_submit" value="로그인" />
 					<!-- 	<button type="button" id="btnLogin" >로그인</button> -->
 <%-- 						
 						<c:if test="${param.message == 'nologin' }">
@@ -64,11 +85,10 @@
                         	<div style="color: red;">로그아웃되었습니다.</div>
                     	</c:if> 
   --%>
-					</td>					
-				</tr>
-			</table>
-		</form>
+			</form>
+		</div>
 	</center>
-	
-</body>
-</html>
+
+</main>
+
+<%@ include file="../import/bottom.jsp" %>

@@ -45,41 +45,26 @@ public class LanTripController {
 				
 				case 1 : vo.setLantrip_img1(lanTripUploadName);
 				break;
-				
-				case 2 : vo.setLantrip_img2(lanTripUploadName);
-				break;
-				
-				case 3 : vo.setLantrip_img3(lanTripUploadName);
-				break;
-				
-				case 4 : vo.setLantrip_img4(lanTripUploadName);
-				break;
-				
-				default : vo.setLantrip_img5(lanTripUploadName);
-				break;
 				}
 				
 			}else {
 				switch(i) {
 				case 0 : vo.setLantrip_thumb(null);
+				break;
 				
 				case 1 : vo.setLantrip_img1(null);
-				break;
-				
-				case 2 : vo.setLantrip_img2(null);
-				break;
-				
-				case 3 : vo.setLantrip_img3(null);
-				break;
-				
-				case 4 : vo.setLantrip_img4(null);
-				break;
-				
-				default : vo.setLantrip_img5(null);
 				break;
 				}
 			}
 		}
+		
+		// 영상주소 처리 : DB에 저장할 때 변경된 주소로 저장하기 위함
+		String lan_url = vo.getLantrip_video();
+		lan_url = "https://www.youtube.com/embed"+lan_url.substring(16);
+		
+		vo.setLantrip_video(lan_url); // 변경된 주소 저장
+		
+		System.out.println(lan_url);
 		
 		// DB연동처리
 		lanTripService.insertLanTrip(vo);
@@ -126,7 +111,7 @@ public class LanTripController {
 		 System.out.println("랜선여행 상세 조회 처리");
 		 
 		 LanTripVO lanTrip = lanTripService.getLanTrip(vo);
-
+		 
 		 model.addAttribute("lantrip", lanTrip);
 		 
 	 return "lantrip/getLanTrip";

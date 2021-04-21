@@ -42,8 +42,7 @@
 </style>
 
 <main>
-	<center>	
-	
+
 		<h1>여행 이야기</h1>
 		
 		<table class = "story_top">
@@ -71,7 +70,7 @@
 		<br>
 		
 		 <a href="insertStoryPage.do">새글 등록</a>
-	</center>
+
 </main>
 
 <%@ include file="../import/bottom.jsp" %>
