@@ -18,7 +18,7 @@
 				<option value="게스트하우스">게스트하우스</option>
 				<option value="캠핑">캠핑</option>
 			</select>
-		</td>	
+		</td>
 			<tr>
 				<td>내용</td>
 				<td><textarea name="hotel_content" cols="80" rows="10"></textarea></td>
