@@ -7,6 +7,7 @@
 	$("#hotel_category").val(hotel_category).prop("selected", true);
 //자바스크립트활용을 어떻게하지 ㅠ 
 //풀리퀘스트 왜 안돼??
+		//푸쉬만 할까
 </script>
 <main>
 숙박권 수정
