@@ -98,7 +98,7 @@ public class HotelController {
 	
 
 	// 글 수정
-	@RequestMapping(value = "/insertHotel.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/updateHotel.do", method = RequestMethod.POST)
 	public String updateHotel(HotelVO vo, HttpSession session, MultipartFile[] hotelImgUpload, Model model) throws Exception {
 		System.out.println("숙박권 수정 처리");
 		
@@ -148,19 +148,7 @@ public class HotelController {
 
 		return "common/message";		
 		
-	}
-	/*@RequestMapping(value="/updateHotel.do", method = RequestMethod.POST ) 
-	public String updateHotel(@ModelAttribute("hotel") HotelVO vo,){
-		System.out.println("숙박권 수정 처리" + vo);	
-		
-		hotelService.updateHotel(vo);
-		String msg="숙박권 수정 성공", url="/hotel/getHotelList.do";
-		
-		model.addAttribute("msg", msg);
-		model.addAttribute("url", url);
-
-		return "common/message";	
-	}*/
+	}	
 		
 	// 글 삭제
 	@RequestMapping("/deleteHotel.do") 
