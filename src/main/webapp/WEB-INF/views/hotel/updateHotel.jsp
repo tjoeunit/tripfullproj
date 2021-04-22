@@ -20,7 +20,7 @@
 		</tr>				
 		<td>		
 			<select id="hotel_category" name="hotel_category">				
-				<%-- <option value="사용자지정">${hotel.hotel_category}</option> --%>
+				<option value="사용자지정">${hotel.hotel_category}</option>
 				<option value="호텔">호텔</option>
 				<option value="팬션">팬션</option>
 				<option value="게스트하우스">게스트하우스</option>
