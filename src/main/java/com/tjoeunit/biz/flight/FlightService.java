@@ -2,6 +2,8 @@ package com.tjoeunit.biz.flight;
 
 import java.util.List;
 
+import com.tjoeunit.biz.common.PagingVO;
+
 public interface FlightService {
 	// CRUD 기능의 메서드 구현
 	
@@ -19,4 +21,14 @@ public interface FlightService {
 	
 	// 항공권 삭제
 	void deleteFlight(FlightVO vo);
+	
+	
+	
+	///////////////////////////////////////////////////페이징
+	// 게시물 총 개수
+	int countFlight();
+	
+	// 페이징 처리 게시글 조회
+	List<FlightVO> selectFlight(PagingVO vo);
+	///////////////////////////////////////////////////페이징
 }

@@ -90,8 +90,12 @@ public class FlightController {
 		
 		// DB연동처리
 		String youUrl = vo.getFlight_video();
-		String subUrl = youUrl.substring(17);
-		vo.setFlight_video(subUrl);
+		String subUrl = "";
+		
+		if(youUrl.length() > 17) {
+			subUrl = youUrl.substring(17);
+			vo.setFlight_video(subUrl);
+		}		
 		
 		System.out.println(vo);
 		
