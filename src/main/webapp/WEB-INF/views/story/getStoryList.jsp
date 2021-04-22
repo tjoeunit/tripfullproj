@@ -46,6 +46,18 @@
 
 </style>
 
+<script type="text/javascript">
+ 	$(function(){
+
+		//세션에 로그인 된 아이디 값이 없다면
+		if($("#sessionID").val() == ""){
+			// 새글 등록 버튼 숨기기
+			$("#new_story_post").hide();
+		}
+	
+	});
+</script>
+
 <main>
 	
 		<br><h1>여행 이야기</h1>
@@ -73,11 +85,11 @@
 			
 		</table>
 		
-		<br>
+		<br><br>
 		
-		<div class="new_story_post">
-		 	<a href="insertStoryPage.do">새글 등록</a><br><br>
-		</div>
+		<div id="new_story_post" class="new_story_post">
+		 	<a href="insertStoryPage.do">새글 등록</a>
+		</div><br><br>
 </main>
 
 <%@ include file="../import/bottom.jsp" %>
