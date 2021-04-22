@@ -101,29 +101,18 @@ public class FlightController {
 		flightService.deleteFlight(vo);
 		return "redirect:getFlightList.do";
 	}
-
 		
-	// 글 목록 보기
-	/*
+	/* 글 목록 보기 : 페이징 처리 전 목록 컨트롤러
 	@RequestMapping(value="/getFlightList.do", method = RequestMethod.GET)
 	public String getFlightList(FlightVO vo, Model model) {
 		System.out.println("항공권 목록 페이지");
-		
-		
-		
-		
-		
-		
-		List<FlightVO> flightList = flightService.getFlightList(vo);
-		
-		model.addAttribute("flightList", flightList);
-		
+		List<FlightVO> flightList = flightService.getFlightList(vo);		
+		model.addAttribute("flightList", flightList);		
 		return "flight/getFlightList";
 	}
 	*/
 	
-	//페이징 ...................
-	
+	// 글 목록 보기 : 페이징 처리 후 목록 컨트롤러
 	@RequestMapping(value="/getFlightList.do", method = RequestMethod.GET)
 	public String flightListPaging(PagingVO vo, Model model,
 			@RequestParam(value="nowPage", required=false) String nowPage,
@@ -138,12 +127,12 @@ public class FlightController {
 		} else if (cntPerPage == null) { 
 			cntPerPage = "5";
 		}
+		
 		vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
 		model.addAttribute("paging", vo);
 		model.addAttribute("flightList", flightService.selectFlight(vo));
 		return "flight/getFlightList";
-	}
-	
+	}	
 	
 	// 글 상세 조회
 	@RequestMapping(value="/getFlight.do", method = RequestMethod.GET)

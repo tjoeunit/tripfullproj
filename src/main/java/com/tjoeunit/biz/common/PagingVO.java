@@ -2,6 +2,19 @@ package com.tjoeunit.biz.common;
 
 public class PagingVO {
 	
+	/*
+	flight 기준으로 설명
+	1. PagingVO (이대로 사용)
+	2. FlightService.java FlightDAO.java FlightServiceImpl.java flight-mapping.xml 작업 (주석 있음)
+	3. FlightController.java 기존 항공권 목록 조회 부분에 페이징 처리를 추가 (주석 있음)
+	4. getFlightList.jsp 내에서 3부분 코드추가작업 (주석있음)
+	*/
+	
+	
+	
+	
+	
+	
 	// 현재페이지, 시작페이지, 끝페이지, 게시글 총 갯수, 페이지당 글 갯수, 마지막페이지, SQL쿼리에 쓸 start, end
 	private int nowPage, startPage, endPage, total, cntPerPage, lastPage, start, end;
 	private int cntPage = 5;
@@ -97,4 +110,5 @@ public class PagingVO {
 				+ ", cntPerPage=" + cntPerPage + ", lastPage=" + lastPage + ", start=" + start + ", end=" + end
 				+ ", cntPage=" + cntPage + "]";
 	}
+	
 }

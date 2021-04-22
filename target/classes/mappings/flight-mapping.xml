@@ -32,16 +32,12 @@
 		]]>
 	</select>
 	
-	
-	
-	
-	<!-- 페이징 관련 시작 -->
-	<!-- 총 게시글 갯수 출력 -->
+	<!-- 페이징 처리 쿼리 (항공권 총 개수) -->
 	<select id="countFlight" resultType="int">
 		select count(*) from flight
 	</select>
 
-	<!-- 페이징 처리 후 게시글 조회 -->
+	<!-- 페이징 처리 쿼리 -->
 	<select id="selectFlight" resultType="com.tjoeunit.biz.flight.FlightVO">
 		select * from (
 			select rownum as rn, a.*
@@ -52,6 +48,5 @@
 		)
 		where rn between #{start} and #{end}
 	</select>
-	<!-- 페이징 관련 끝 -->
 		
 </mapper>
