@@ -48,7 +48,7 @@
 
 <main>
 	
-		<h1>여행 이야기</h1>
+		<br><h1>여행 이야기</h1>
 		
 		<table class = "story_top">
 			

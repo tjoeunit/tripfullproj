@@ -9,7 +9,10 @@
 		padding: 10px;
 	}
 	
-	.story_get td{
+	.story_get h5{
+		text-align: right;
+		padding-top: 10px;
+		padding-right: 20%;
 	}
 	
 	.get_story_subject{
@@ -31,9 +34,6 @@
 	.get_story_cnt{	
 		background-color: #58CCFF;
 	}
-	.get_story_submit{
-		text-align: center;
-	}
 	
 	.get_story_bottom{
 		text-align: center;
@@ -44,19 +44,13 @@
 </style>
 
 <main>
-		<h1>스토리 상세</h1>
-		<hr>
-		<form action="updateStory.do" method="post">
+		<br><h1>스토리 상세</h1><hr>
 			<input name="story_no" type="hidden" value="${story.story_no}" />
-			<table class="story_get">
-				<tr>
-					<td class="get_story_subject">제목</td>
-					<td>${story.story_title}</td>
-				</tr>
-				<tr>
-					<td class="get_story_writer">작성자</td>
-					<td>${story.story_writer}</td>
-				</tr>
+			
+					<h2>${story.story_title}</h2>
+					<h5>작성자: ${story.story_writer}</h5>
+			
+				<table class="story_get">
 				<tr>
 					<td class="get_story_content">내용</td>
 					<td>	${story.story_content}</td>
@@ -71,16 +65,11 @@
 				</tr>
 			</table><br><br>
 			
-			<div class="get_story_submit">
-				<td><input type="submit" value="글 수정"></td>
-			</div>
-			
-		</form>
 		<br><hr><br>
 		<div class="get_story_bottom">
-			<a href="insertStoryPage.do">글등록</a>&nbsp;&nbsp;&nbsp; 
-			<a href="deleteStory.do?seq=${story.story_no}">글삭제</a>&nbsp;&nbsp;&nbsp;
-			<a href="getStoryList.do">글목록</a>
+			<a href="updateStoryPage.do?story_no=${story.story_no}">수정하기</a>&nbsp;&nbsp;&nbsp;&nbsp; 
+			<a href="deleteStory.do?story_no=${story.story_no}">삭제하기</a>&nbsp;&nbsp;&nbsp;&nbsp; 
+			<a href="getStoryList.do">목록보기</a>
 		</div>
 		<br><br>
 </main>
