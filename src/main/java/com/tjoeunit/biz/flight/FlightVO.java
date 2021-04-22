@@ -57,7 +57,7 @@ public class FlightVO {
 	}
 	public void setFlight_img1(String flight_img1) {
 		this.flight_img1 = flight_img1;
-	}
+	} 
 	
 	@Override
 	public String toString() {

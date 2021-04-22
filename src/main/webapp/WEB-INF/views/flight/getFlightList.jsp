@@ -100,6 +100,16 @@
 	
 </style>
 
+<!-- 페이징 옵션 처리 자바스크립트 시작 -->
+<script>
+	function selChange() {
+		var sel = document.getElementById('cntPerPage').value;
+		location.href="boardList?nowPage=${paging.nowPage}&cntPerPage="+sel;
+	}
+</script>
+<!-- 페이징 옵션 처리 자바스크립트 끝 -->
+
+
 <main>
 	
 	<br>
@@ -126,6 +136,19 @@
 		</ul>
 	</div>
 	
+	<!-- 페이징 옵션 시작 -->
+	<select id="cntPerPage" name="sel" onchange="selChange()">
+		<option value="5"
+			<c:if test="${paging.cntPerPage == 5}">selected</c:if>>5줄 보기</option>
+		<option value="10"
+			<c:if test="${paging.cntPerPage == 10}">selected</c:if>>10줄 보기</option>
+		<option value="15"
+			<c:if test="${paging.cntPerPage == 15}">selected</c:if>>15줄 보기</option>
+		<option value="20"
+			<c:if test="${paging.cntPerPage == 20}">selected</c:if>>20줄 보기</option>
+	</select>
+	<!-- 페이징 옵션 끝 -->
+	
 	<table class="flight_products">	
 		<tr>
 			<c:forEach items="${flightList}" var="flight">
@@ -143,6 +166,27 @@
 			</c:forEach>
 		</tr>
 	</table>
+	
+	<!-- 페이징 하단 숫자 시작 -->
+	<div style="display: block; text-align: center;">		
+		<c:if test="${paging.startPage != 1 }">
+			<a href="/boardList?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}">&lt;</a>
+		</c:if>
+		<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
+			<c:choose>
+				<c:when test="${p == paging.nowPage }">
+					<b>${p }</b>
+				</c:when>
+				<c:when test="${p != paging.nowPage }">
+					<a href="/boardList?nowPage=${p }&cntPerPage=${paging.cntPerPage}">${p }</a>
+				</c:when>
+			</c:choose>
+		</c:forEach>
+		<c:if test="${paging.endPage != paging.lastPage}">
+			<a href="/boardList?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}">&gt;</a>
+		</c:if>
+	</div>
+	<!-- 페이징 하단 숫자 끝 -->
 	
 	<br>
 </main>

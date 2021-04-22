@@ -17,7 +17,7 @@ public class FlightDAO {
 	
 	public int insertFlight(FlightVO vo){
 		return mybatis.insert("flightDAOTemplate.insertFlight", vo);
-	  }
+	}
 	
     public void updateFlight(FlightVO vo){
     	mybatis.update("flightDAOTemplate.updateFlight", vo);
