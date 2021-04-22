@@ -20,4 +20,10 @@ ALTER TABLE admin
 INSERT INTO admin ( admin_no, admin_id, admin_pw, admin_name)
 VALUES ( 9, 'admin', '1004', '운영자');
 
+select * from admin;
+
+update admin
+set admin_tel = '01011111111'
+where admin_no = 9;
+
 commit

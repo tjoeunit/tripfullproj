@@ -38,8 +38,12 @@ public class AdminController {
 
 		String result = adminService.adminLoginCheck(vo);
         
+		System.out.println("result");
+		
         if(result != null){//로그인이 성공했을시 출력되는 구문
+        	System.out.println("if문");
             session.setAttribute("admin_id", vo.getAdmin_id());
+            System.out.println("admin_id값 가져옴");
             session.setAttribute("admin_name", vo.getAdmin_name());
             
             mav.setViewName("admin/adminIndex"); //admin페이지를 보여줌
