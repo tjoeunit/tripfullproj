@@ -9,7 +9,7 @@ public class HotelVO {
 	private String hotel_category;
 	private int hotel_price;
 	private String hotel_area;
-	
+
 	public int getHotel_no() {
 		return hotel_no;
 	}
@@ -108,12 +108,12 @@ public class HotelVO {
 
 	@Override
 	public String toString() {
-		return "HotelVO [hotel_no=" + hotel_no 
-								+ ", hotel_title=" + hotel_title 
+		return "HotelVO [hotel_no=" + hotel_no
+								+ ", hotel_title=" + hotel_title
 								+ ", hotel_content=" + hotel_content
-								+ ", hotel_price=" + hotel_price 
+								+ ", hotel_price=" + hotel_price
 								+ ", hotel_area=" + hotel_area + "]";
 	}
 
-	
+
 }

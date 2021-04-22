@@ -11,10 +11,6 @@ public class LanTripVO {
 	private String	lantrip_area;
 	private String	lantrip_video;
 	private String	lantrip_img1;
-	private String	lantrip_img2;
-	private String	lantrip_img3;
-	private String	lantrip_img4;
-	private String	lantrip_img5;
 	
 	public int getLantrip_no() {
 		return lantrip_no;
@@ -78,38 +74,6 @@ public class LanTripVO {
 
 	public void setLantrip_img1(String lantrip_img1) {
 		this.lantrip_img1 = lantrip_img1;
-	}
-
-	public String getLantrip_img2() {
-		return lantrip_img2;
-	}
-
-	public void setLantrip_img2(String lantrip_img2) {
-		this.lantrip_img2 = lantrip_img2;
-	}
-
-	public String getLantrip_img3() {
-		return lantrip_img3;
-	}
-
-	public void setLantrip_img3(String lantrip_img3) {
-		this.lantrip_img3 = lantrip_img3;
-	}
-
-	public String getLantrip_img4() {
-		return lantrip_img4;
-	}
-
-	public void setLantrip_img4(String lantrip_img4) {
-		this.lantrip_img4 = lantrip_img4;
-	}
-
-	public String getLantrip_img5() {
-		return lantrip_img5;
-	}
-
-	public void setLantrip_img5(String lantrip_img5) {
-		this.lantrip_img5 = lantrip_img5;
 	}
 
 	// 콜솔에서 확인 가능

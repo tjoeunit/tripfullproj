@@ -15,11 +15,11 @@
 	 	text-align: center;
 	 	padding: 7px;
 	}
-	
+
 	.story_subject_title{
 		text-align: left;
 	}
-	
+
 	.story_no{
 		width: 7%;
 	}
@@ -46,12 +46,24 @@
 
 </style>
 
+<script type="text/javascript">
+ 	$(function(){
+
+		//세션에 로그인 된 아이디 값이 없다면
+		if($("#sessionID").val() == ""){
+			// 새글 등록 버튼 숨기기
+			$("#new_story_post").hide();
+		}
+
+	});
+</script>
+
 <main>
-	
-		<h1>여행 이야기</h1>
-		
+
+		<br><h1>여행 이야기</h1>
+
 		<table class = "story_top">
-			
+
 			<tr class="top_story_list">
 				<th class="story_no"> 번호</th>
 				<th class="story_subject">제목</th>
@@ -59,7 +71,7 @@
 				<th class="story_date">등록일</th>
 				<th class="story_views">조회수</th>
 			</tr>
-			
+
 			<c:forEach items="${ storyList }" var="story">
 				<tr>
 					<td>${ story.story_no }</td>
@@ -70,14 +82,14 @@
 					<td>${ story.story_cnt }</td>
 				</tr>
 			</c:forEach>
-			
+
 		</table>
-		
-		<br>
-		
-		<div class="new_story_post">
-		 	<a href="insertStoryPage.do">새글 등록</a><br><br>
-		</div>
+
+		<br><br>
+
+		<div id="new_story_post" class="new_story_post">
+		 	<a href="insertStoryPage.do">새글 등록</a>
+		</div><br><br>
 </main>
 
 <%@ include file="../import/bottom.jsp" %>

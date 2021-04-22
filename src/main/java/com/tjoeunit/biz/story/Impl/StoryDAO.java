@@ -23,8 +23,8 @@ public class StoryDAO {
 		mybatis.update("storyDAOTemplate.viewCountStory", vo);
 	}
 	
-	public void updateStory(StoryVO vo) {
-		mybatis.update("storyDAOTemplate.updateStory", vo);
+	public int updateStory(StoryVO vo) {
+		return mybatis.update("storyDAOTemplate.updateStory", vo);
 	}
 	
 	public void deleteStory(StoryVO vo) {

@@ -23,7 +23,7 @@ public class HotelDAO {
 	}
 	  
 	public void deleteHotel(HotelVO vo){
-		  mybatis.delete("hotelDAOTemplate.deleteHotel", vo);
+		mybatis.delete("hotelDAOTemplate.deleteHotel", vo);
 	}  
 	  
 	public HotelVO getHotel(HotelVO vo) {

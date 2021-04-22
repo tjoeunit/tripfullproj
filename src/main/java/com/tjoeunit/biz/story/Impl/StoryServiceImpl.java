@@ -38,8 +38,8 @@ public class StoryServiceImpl implements StoryService {
 	}
 
 	@Override
-	public void updateStory(StoryVO vo) {
-		storyDAO.updateStory(vo);
+	public int updateStory(StoryVO vo) {
+		return storyDAO.updateStory(vo);
 	}
 
 	@Override
