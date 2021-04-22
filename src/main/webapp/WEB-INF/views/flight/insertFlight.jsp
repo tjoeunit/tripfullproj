@@ -4,7 +4,7 @@
 
 <main>
 항공권
-	<form action="insertFlight.do" method="post" enctype="multipart/form-data">
+	<form action="<c:url value='/flight/insertFlight.do'/>" method="post" enctype="multipart/form-data">
 		<table>
 			<tr>
 				<td>제목</td>

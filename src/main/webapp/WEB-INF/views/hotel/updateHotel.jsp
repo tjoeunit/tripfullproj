@@ -8,9 +8,13 @@
 	// var hotel_category = "${hotel.hotel_category}";
 	//
 	
-	var cat = $("#test").val();
+	//var cat = $("#test").val();
+	//
+	//$('#hotel_category').val('cat').prop("selected", true);
 	
-	$('#hotel_category').val('cat').prop("selected", true);
+	$(function(){
+		$('#hotel_category').val($("#test").val()).prop("selected", true);
+	});
 		
 //자바스크립트활용을 어떻게하지 ㅠ 
 //풀리퀘스트 왜 안돼??
