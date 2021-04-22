@@ -10,13 +10,11 @@
 		</selectKey>
 		insert into flight(
 			flight_no, flight_title, flight_content, flight_thumb, flight_price,
-			flight_departure, flight_arrival,
-			flight_img1, flight_video
+			flight_departure, flight_arrival, flight_img1
 		)
 		values(
 			#{flight_no}, #{flight_title}, #{flight_content}, #{flight_thumb}, #{flight_price},
-			#{flight_departure}, #{flight_arrival},
-			#{flight_img1},	#{flight_video}
+			#{flight_departure}, #{flight_arrival}, #{flight_img1}
 		)
 	</insert>
 
@@ -39,17 +37,17 @@
 	
 	<!-- 페이징 관련 시작 -->
 	<!-- 총 게시글 갯수 출력 -->
-	<select id="countBoard" resultType="int">
+	<select id="countFlight" resultType="int">
 		select count(*) from flight
 	</select>
 
 	<!-- 페이징 처리 후 게시글 조회 -->
-	<select id="selectBoard" resultType="com.tjoeunit.biz.flight.FlightVO">
+	<select id="selectFlight" resultType="com.tjoeunit.biz.flight.FlightVO">
 		select * from (
 			select rownum as rn, a.*
 				from (
 					select * from flight
-					order by members_no desc
+					order by flight_no desc
 					) a		
 		)
 		where rn between #{start} and #{end}

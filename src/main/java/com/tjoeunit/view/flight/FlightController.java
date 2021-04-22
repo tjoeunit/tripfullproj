@@ -104,9 +104,15 @@ public class FlightController {
 
 		
 	// 글 목록 보기
+	/*
 	@RequestMapping(value="/getFlightList.do", method = RequestMethod.GET)
 	public String getFlightList(FlightVO vo, Model model) {
 		System.out.println("항공권 목록 페이지");
+		
+		
+		
+		
+		
 		
 		List<FlightVO> flightList = flightService.getFlightList(vo);
 		
@@ -114,9 +120,11 @@ public class FlightController {
 		
 		return "flight/getFlightList";
 	}
+	*/
 	
 	//페이징 ...................
-	@GetMapping("flightList")
+	
+	@RequestMapping(value="/getFlightList.do", method = RequestMethod.GET)
 	public String flightListPaging(PagingVO vo, Model model,
 			@RequestParam(value="nowPage", required=false) String nowPage,
 			@RequestParam(value="cntPerPage", required=false) String cntPerPage) {
@@ -132,10 +140,11 @@ public class FlightController {
 		}
 		vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
 		model.addAttribute("paging", vo);
-		model.addAttribute("viewAll", flightService.selectFlight(vo));
+		model.addAttribute("flightList", flightService.selectFlight(vo));
 		return "flight/getFlightList";
 	}
-
+	
+	
 	// 글 상세 조회
 	@RequestMapping(value="/getFlight.do", method = RequestMethod.GET)
 	public String getFlight(FlightVO vo, Model model) {

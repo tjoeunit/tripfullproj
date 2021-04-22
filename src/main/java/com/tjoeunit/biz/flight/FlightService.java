@@ -21,13 +21,12 @@ public interface FlightService {
 	
 	// 항공권 삭제
 	void deleteFlight(FlightVO vo);
-	
+	 
 	
 	
 	///////////////////////////////////////////////////페이징
 	// 게시물 총 개수
-	int countFlight();
-	
+	int countFlight();	
 	// 페이징 처리 게시글 조회
 	List<FlightVO> selectFlight(PagingVO vo);
 	///////////////////////////////////////////////////페이징
