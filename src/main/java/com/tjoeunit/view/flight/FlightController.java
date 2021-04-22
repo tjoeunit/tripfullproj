@@ -8,11 +8,14 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.tjoeunit.biz.common.PagingVO;
 import com.tjoeunit.biz.flight.FlightService;
 import com.tjoeunit.biz.flight.FlightVO;
 
@@ -111,7 +114,27 @@ public class FlightController {
 		
 		return "flight/getFlightList";
 	}
+	
+	//페이징 ...................
+	@GetMapping("flightList")
+	public String flightListPaging(PagingVO vo, Model model,
+			@RequestParam(value="nowPage", required=false) String nowPage,
+			@RequestParam(value="cntPerPage", required=false) String cntPerPage) {
 		
+		int total = flightService.countFlight();
+		if (nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "5";
+		} else if (nowPage == null) {
+			nowPage = "1";
+		} else if (cntPerPage == null) { 
+			cntPerPage = "5";
+		}
+		vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		model.addAttribute("paging", vo);
+		model.addAttribute("viewAll", flightService.selectFlight(vo));
+		return "flight/getFlightList";
+	}
 
 	// 글 상세 조회
 	@RequestMapping(value="/getFlight.do", method = RequestMethod.GET)

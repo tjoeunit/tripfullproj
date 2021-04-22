@@ -46,7 +46,7 @@
 	<!-- 페이징 처리 후 게시글 조회 -->
 	<select id="selectBoard" resultType="com.tjoeunit.biz.flight.FlightVO">
 		select * from (
-			select rownum rn, a.*
+			select rownum as rn, a.*
 				from (
 					select * from flight
 					order by members_no desc

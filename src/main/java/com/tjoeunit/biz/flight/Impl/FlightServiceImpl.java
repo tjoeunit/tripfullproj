@@ -40,9 +40,7 @@ public class FlightServiceImpl implements FlightService {
 	@Override
 	public void deleteFlight(FlightVO vo) {
 		flightDAO.deleteFlight(vo);
-	}
-
-	
+	}	
 	
 	///////////////////////////////////////////////////페이징
 	@Override
@@ -52,10 +50,7 @@ public class FlightServiceImpl implements FlightService {
 
 	@Override
 	public List<FlightVO> selectFlight(PagingVO vo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	
+		return flightDAO.selectFlight(vo);
+	}	
 	///////////////////////////////////////////////////페이징
 }
