@@ -1,17 +1,22 @@
 package com.tjoeunit.view.admin;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.tjoeunit.biz.admin.AdminService;
 import com.tjoeunit.biz.admin.AdminVO;
+import com.tjoeunit.biz.lantrip.LanTripService;
+import com.tjoeunit.biz.lantrip.LanTripVO;
 
 @Controller
 /* @RequestMapping("/adminLogin") */
@@ -37,13 +42,9 @@ public class AdminController {
 		System.out.println("관리자 로그인 확인");
 
 		String result = adminService.adminLoginCheck(vo);
-        
-		System.out.println("result");
 		
         if(result != null){//로그인이 성공했을시 출력되는 구문
-        	System.out.println("if문");
             session.setAttribute("admin_id", vo.getAdmin_id());
-            System.out.println("admin_id값 가져옴");
             session.setAttribute("admin_name", vo.getAdmin_name());
             
             mav.setViewName("admin/adminIndex"); //admin페이지를 보여줌
@@ -81,9 +82,17 @@ public class AdminController {
 		}
 		
 
+		@Autowired
+		private LanTripService lanTripService;
+		
 		@RequestMapping(value="/admin/adminLanTrip.do", method=RequestMethod.GET)
-		public String adminLanTrip() {
+		public String adminLanTrip(LanTripVO vo, Model model) {
 			System.out.println("랜선여행 페이지 이동 ");
+			
+			List<LanTripVO> lanTripList = lanTripService.getLanTripList(vo);
+				
+			model.addAttribute("lanTripList", lanTripList);
+				
 			return "admin/adminLanTrip";
 		}
 		

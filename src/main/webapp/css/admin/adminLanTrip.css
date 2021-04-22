@@ -112,8 +112,13 @@ ul{
 .admin_content_goods{            /* 항공 컨텐츠 상세 영역 */
     height: 500px;
     padding-left: 15px;
-    background-color: aqua;
+    background-color: skyblue;
     margin-bottom: 20px;
+}
+
+.top_lan_list {				/* 랜선여행 리스트 */
+	color: white;
+	background-color: #58CCFF;
 }
 
 .admin_content_goods_submit{            /* 항공 컨텐츠 submit */

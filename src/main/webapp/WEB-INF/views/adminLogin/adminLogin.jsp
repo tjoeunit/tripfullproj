@@ -68,8 +68,8 @@
 		<!-- <form  name="form1" method="post"> -->
 		<div class="admin_login">
 			<form  action="adminLogin.do"  method="post">
-				<input type="text" class="admin_login_field" placeholder="아이디">
-				<input type="password" class="admin_login_field" placeholder="비밀번호">
+				<input type="text" name="admin_id" class="admin_login_field" placeholder="아이디">
+				<input type="password" name="admin_pw" class="admin_login_field" placeholder="비밀번호">
 				<input type="submit" class="admin_login_submit" value="로그인" />
 					<!-- 	<button type="button" id="btnLogin" >로그인</button> -->
 <%-- 						
