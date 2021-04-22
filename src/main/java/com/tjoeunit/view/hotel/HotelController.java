@@ -25,7 +25,7 @@ public class HotelController {
 	//글 등록 페이지 
 	@RequestMapping(value="/insertHotel.do", method = RequestMethod.GET) 
 	public String insertHotelPage(){
-		System.out.println("숙소 등록 화면 보기 처리");
+		System.out.println("숙박 등록 화면 보기 처리");
 		return "hotel/insertHotel";
 	}	
 				
@@ -53,15 +53,15 @@ public class HotelController {
 					break;
 				}
 				
-			}else {
-				switch(i) {
-				case 0 : vo.setHotel_thumb(null);
-												
-				case 1 : vo.setHotel_img(null);
-				break;
+				}else {
+					switch(i) {
+					case 0 : vo.setHotel_thumb(null);
+													
+					case 1 : vo.setHotel_img(null);
+					break;
+					}
 				}
 			}
-		}
 		
 		// DB연동처리
 		System.out.println(vo);
@@ -108,7 +108,7 @@ public class HotelController {
 	// 글 목록 보기
 	@RequestMapping(value="/getHotelList.do", method = RequestMethod.GET) 
 	public String getHotelList(HotelVO vo, Model model){
-		System.out.println("숙소 목록 검색 처리");		
+		System.out.println("숙박 목록 검색 처리");		
 	
 		List<HotelVO> hotelList = hotelService.getHotelList(vo);
 		
