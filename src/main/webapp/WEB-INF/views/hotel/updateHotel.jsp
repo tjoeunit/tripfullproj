@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../import/top.jsp" %>		
-<script type="text/javascript">	
-
-	/* var hotel_category = "${hotel.hotel_category}";
-	$("#hotel_category").val(hotel_category).prop("selected", true); */
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+	 var hotel_category = "${hotel.hotel_category}";
+	$("#hotel_category").val(hotel_category).prop("selected", true);
 
 </script>
 <main>
@@ -19,7 +19,7 @@
 		</tr>				
 		<td>		
 			<select id="hotel_category" name="hotel_category">				
-				<option value="사용자지정">${hotel.hotel_category}</option>
+				<%-- <option value="사용자지정">${hotel.hotel_category}</option> --%>
 				<option value="호텔">호텔</option>
 				<option value="팬션">팬션</option>
 				<option value="게스트하우스">게스트하우스</option>
