@@ -4,40 +4,40 @@
 
 <style type="text/css">
 
-	.story_insert{
+	.story_update{
 		color: white;
 		font: bold;
 		width: 1000px;
 		padding: 10px;
 	}
 	
-	.story_insert td{
+	.story_update td{
 		text-align: center;
 	}
 	
-	.story_insert td input{
+	.story_update td input{
 		width: 100%;
 	}
 	
-	.insert_story_subject{
+	.update_story_subject{
 		background-color: #58CCFF;
 		width: 120px;
 	}
-	.insert_story_writer{
+	.update_story_writer{
 		background-color: #58CCFF;
 	}
 	
-	.insert_story_content{
+	.update_story_content{
 		background-color: #58CCFF;
 		height: 700px;
 	}
 	
-	.insertStory_bottom{
+	.updateStory_bottom{
 		text-align: center;
 		padding-right: 17%;
 	}
 	
-	.insertStory_bottom input{
+	.updateStory_bottom input{
 		width:65pt;
 		height:30pt;
 	}
@@ -48,40 +48,41 @@
 
 <!-- ckeditor 4 -->
  	<script type="text/javascript" src = "<c:url value = '/ckeditor/ckeditor.js' />"></script>
-			<br><h1>여행 이야기 등록</h1><hr><br>
-			<form action="insertStory.do" method="post" enctype="multipart/form-data">
+			<br><h1>여행 이야기 수정</h1><hr><br>
+			<form action="updateStory.do?story_no=${story.story_no}" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="members_no" value="${members_no}">
-				<table class="story_insert">
+				<table class="story_update">
 					<tr>
-						<td class="insert_story_subject">제목</td>
-						<td><input type="text" name="story_title" placeholder = "제목을 입력하세요"/></td>
+						<td class="update_story_subject">제목</td>
+						<td><input type="text" name="story_title" value="${story.story_title}"/></td>
 					</tr>
 					
 					<tr>
-						<td class="insert_story_writer">작성자</td>
-						<td><input type="text" name="story_writer" value="${members_id}" readonly></td>
+						<td class="update_story_writer">작성자</td>
+						<td><input type="text" name="story_writer" value="${story.story_writer}" readonly></td>
 					</tr>
 					<tr>
-						<td class="insert_story_content">내용</td>
+						<td class="update_story_content">내용</td>
 						<td>
-							<textarea id="story_content"  class="ckeditor" name="story_content"></textarea>
+							<textarea id="story_content"   class="ckeditor" name="story_content">${story.story_content}</textarea>
 							<script type="text/javascript">
 								CKEDITOR.replace('story_content', {height: 700, width: 900, filebrowserUploadUrl:'/storyImage/imageUpload.do'});
 							</script>
 						</td>
 					</tr>					
 					
-				</table>		<br>
+				</table>	<br><br>
 						
-					<div  class="insertStory_bottom">
-						<input type="submit" value=" 등록하기 "/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<div class = "updateStory_bottom">
+						<input type="submit" value=" 수정하기 "/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<input type="button" onclick="history.back()" value=" 뒤로가기 "/>
 					</div>
 					
 			</form>
 			
-			<br>
+			<br><br>
 			
+
 </main>
 
 <%@ include file="../import/bottom.jsp" %>
