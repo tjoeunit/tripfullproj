@@ -5,7 +5,7 @@
 <script>
 	 var hotel_category = "${hotel.hotel_category}";
 	$("#hotel_category").val(hotel_category).prop("selected", true);
-
+//자바스크립트활용을 어떻게하지 ㅠ 
 </script>
 <main>
 숙박권 수정
