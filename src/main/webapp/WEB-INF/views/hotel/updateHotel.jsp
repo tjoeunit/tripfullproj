@@ -5,20 +5,10 @@
 
 <script type="text/javascript">
 
-	// var hotel_category = "${hotel.hotel_category}";
-	//
-	
-	//var cat = $("#test").val();
-	//
-	//$('#hotel_category').val('cat').prop("selected", true);
-	
 	$(function(){
 		$('#hotel_category').val($("#test").val()).prop("selected", true);
 	});
-		
-//자바스크립트활용을 어떻게하지 ㅠ 
-//풀리퀘스트 왜 안돼??
-		//푸쉬만 할까
+
 </script>
 <main>
 숙박권 수정
@@ -32,7 +22,6 @@
 		</tr>				
 		<td>		
 			<select id="hotel_category" name="hotel_category">				
-				<%-- <option value="사용자지정">${hotel.hotel_category}</option> --%>
 				<option value="호텔">호텔</option>
 				<option value="팬션">팬션</option>
 				<option value="게스트하우스">게스트하우스</option>
