@@ -35,11 +35,7 @@
 			<tr>
 				<td>내용</td>
 				<td><textarea name="flight_content" cols="80" rows="10"></textarea></td>
-			</tr>
-			<tr>
-				<td>영상</td>
-				<td><input type="text" name="flight_video"/></td>
-			</tr>
+			</tr>			
 			<tr>
 				<td>썸네일</td>
 				<td><input type="file" name="flightImgUpload"/></td>

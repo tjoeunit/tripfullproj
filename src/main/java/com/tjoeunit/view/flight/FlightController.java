@@ -27,8 +27,7 @@ public class FlightController {
 	@RequestMapping(value="/insertFlight.do", method = RequestMethod.GET)
 	public String insertFlightPage() {
 		return "flight/insertFlight";
-	}
-	
+	}	
 	
 	// 글 등록 처리
 	@RequestMapping(value = "/insertFlight.do", method = RequestMethod.POST)
@@ -52,18 +51,6 @@ public class FlightController {
 					
 					case 1 : vo.setFlight_img1(flightUploadName);
 					break;
-					
-					case 2 : vo.setFlight_img2(flightUploadName);
-					break;
-					
-					case 3 : vo.setFlight_img3(flightUploadName);
-					break;
-					
-					case 4 : vo.setFlight_img4(flightUploadName);
-					break;
-					
-					default : vo.setFlight_img5(flightUploadName);
-					break;
 				}
 				
 			}else {
@@ -72,31 +59,10 @@ public class FlightController {
 				
 				case 1 : vo.setFlight_img1(null);
 				break;
-				
-				case 2 : vo.setFlight_img2(null);
-				break;
-				
-				case 3 : vo.setFlight_img3(null);
-				break;
-				
-				case 4 : vo.setFlight_img4(null);
-				break;
-				
-				default : vo.setFlight_img5(null);
-				break;
 				}
 			}
 		}
-		
-		// DB연동처리
-		String youUrl = vo.getFlight_video();
-		String subUrl = "";
-		
-		if(youUrl.length() > 17) {
-			subUrl = youUrl.substring(17);
-			vo.setFlight_video(subUrl);
-		}		
-		
+				
 		System.out.println(vo);
 		
 		int cnt = flightService.insertFlight(vo);
