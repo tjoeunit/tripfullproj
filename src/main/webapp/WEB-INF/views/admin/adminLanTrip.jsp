@@ -4,7 +4,7 @@
 
 <%@ include file="../import/admintop.jsp" %>
 
-<link rel="stylesheet" href="../css/admin/adminLanTrip.css">
+<link rel="stylesheet" href="<c:url value='/css/admin/adminLanTrip.css'/>">
 
 <main>
 
@@ -45,10 +45,16 @@
 	                <h2>여행이야기</h2>                  
                 </div> 
                 <div class="admin_content_wrap">
-                    <div class="admin_content_subject"><span>랜선여행 관리</span></div>
+                    <div class="admin_content_top">
+                    	<span class="admin_content_subject">랜선여행 관리</span>
+	                    <span class="admin_content_goods_submit">                    
+		                    <a href="<c:url value='/adminLanTrip/insertLanTrip.do'/>">등록</a>
+		                </span>
+                    </div>
+                    
                     <div class="admin_content_goods">
 	                    
-	                    <table class="lan_products">
+	                    <table class=lan_list_table>
 	                    	<tr class="top_lan_list">
 								<th class="lan_no">번호</th>
 								<th class="lan_title">제목</th>
@@ -68,21 +74,7 @@
 						
 
                     </div>
-					<div class="admin_content_goods_submit">                    
-	                    <form action="insertLanTrip.do">
-	                   		 <input type="submit" value="등록">
-	                    </form>
-	                </div>
-	                <div class="admin_content_goods_submit">    
-	                   <form action="updateLanTrip.do">
-	                   		 <input type="submit" value="수정">
-	                    </form>
-	                </div>
-	                <div class="admin_content_goods_submit">    
-	                   <form action="deleteLanTrip.do">
-	                   		 <input type="submit" value="삭제">
-	                    </form>  
-                     </div>                                     
+					                                 
                 </div> 
                 <div class="clearfix"></div> 
             </div>

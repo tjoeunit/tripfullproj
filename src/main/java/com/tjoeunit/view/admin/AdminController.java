@@ -1,5 +1,6 @@
 package com.tjoeunit.view.admin;
 
+import java.io.File;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.tjoeunit.biz.admin.AdminService;
@@ -81,22 +83,6 @@ public class AdminController {
 			return "admin/adminActivity";
 		}
 		
-
-		@Autowired
-		private LanTripService lanTripService;
-		
-		@RequestMapping(value="/admin/adminLanTrip.do", method=RequestMethod.GET)
-		public String adminLanTrip(LanTripVO vo, Model model) {
-			System.out.println("랜선여행 페이지 이동 ");
-			
-			List<LanTripVO> lanTripList = lanTripService.getLanTripList(vo);
-				
-			model.addAttribute("lanTripList", lanTripList);
-				
-			return "admin/adminLanTrip";
-		}
-		
-		
 		
 		 //관리자 로그아웃 
 	    @RequestMapping("/adminLogin/adminLogout.do")
@@ -104,7 +90,7 @@ public class AdminController {
 	        session.invalidate();
 	        //로그아웃을 시키려면 session에 있는 데이터를 삭제시켜야 하기 때문에 invalidate()메소드를 사용해서
 	        //안에 있는 데이터를 초기화 시킨다.
-	        System.out.println("관리자 로그아웃 ");
+	        System.out.println("관리자 로그아웃");
 	        return "redirect:/adminLogin/adminLogin_View.do";
 	    }
 	

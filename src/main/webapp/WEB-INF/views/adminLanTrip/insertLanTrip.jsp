@@ -45,10 +45,9 @@
                 </div> 
                 <div class="admin_content_wrap">
                     <div class="admin_content_subject"><span>랜선여행 관리</span></div>
+                    
                     <div class="admin_content_wrap">
-			<div class="admin_content_subject"><span>랜선여행 관리</span></div>
-				<div class="admin_content_lantrip">
-					<form  class="lan_table" action="insertLanTrip.do" method="post"  enctype="multipart/form-data">
+						<form  class="lan_table" action="<c:url value='/lantrip/insertLanTrip.do'/>" method="post"  enctype="multipart/form-data">
 						<table class="lan_enroll" border="1" cellpadding="0" cellspacing="0">
 							<tr >
 								<td bgcolor="#58CCFF" width="100px">제목</td>
@@ -72,7 +71,7 @@
 								<td align="left"><input type="number" name="lantrip_price" />원</td>
 							</tr>
 							<tr>
-						.		<td bgcolor="#58CCFF">내용</td>
+								<td bgcolor="#58CCFF">내용</td>
 								<td align="left"><textarea name="lantrip_content" cols="80" rows="10"></textarea></td>
 							</tr>
 							<tr>
@@ -89,27 +88,12 @@
 							</tr>
 							<tr>
 								<td colspan="2" align="center">
-								<input type="submit"value=" 새글 등록 " /></td>
+								<input type="submit" value=" 새글 등록 " /></td>
 							</tr>
 						</table>
 					</form>
 				</div>
-	
-					<div class="admin_content_goods_submit">                    
-	                    <form action="./lanTripEnroll.do">
-	                   		 <input type="submit" value="등록">
-	                    </form>
-	                </div>
-	                <div class="admin_content_goods_submit">    
-	                   <form action="updateLanTrip.do">
-	                   		 <input type="submit" value="수정">
-	                    </form>
-	                </div>
-	                <div class="admin_content_goods_submit">    
-	                   <form action="deleteLanTrip.do">
-	                   		 <input type="submit" value="삭제">
-	                    </form>  
-                     </div>                                     
+	                                    
                 </div> 
                 <div class="clearfix"></div> 
             </div>
