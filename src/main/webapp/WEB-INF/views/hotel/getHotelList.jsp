@@ -135,13 +135,12 @@
 				</tr>
 				<tr>
 					<td class="hotel_product_detail">${hotel.hotel_content }</td>
-					<td class="hotel_price" onclick="location.href='#'">${hotel.hotel_price}원에<br>구매하기</td>
+					<td class="hotel_price" onclick="location.href='#'">${hotel.hotel_price}원에<br>구매하기</td>					
 				</tr>
 			</table>
 			</c:forEach>
 		</tr>
-	</table>
-	
+	</table>		
 	<br>
 </main>
 

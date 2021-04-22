@@ -31,9 +31,9 @@ public class HotelServiceImpl implements HotelService {
 		return hotel;
 	}
 
-	@Override
+	@Override  
 	public void updateHotel(HotelVO vo) {
-		hotelDAO.updateHotel(vo);		
+		hotelDAO.updateHotel(vo);	
 	}
 
 	@Override

@@ -32,5 +32,23 @@
 			select * from hotel where hotel_no=#{hotel_no}
 		]]>
 	</select>
-		
+	
+<!-- 숙박권 삭제하기 -->		
+	<delete id="deleteHotel">
+		<![CDATA[
+			delete hotel where hotel_no=#{hotel_no}
+		]]>
+	</delete>
+
+<!-- 숙박권 수정하기 -->
+ 	<update id="updateHotel">
+		<![CDATA[
+			update hotel 
+				set hotel_title=#{hotel_title}, hotel_content=#{hotel_content}, 
+					hotel_img=#{hotel_img},hotel_thumb=#{hotel_thumb},hotel_category=#{hotel_category},
+					hotel_price=#{hotel_price},hotel_area=#{hotel_area}	
+				where 
+					hotel_no=#{hotel_no}
+		]]>
+	</update>	
 </mapper>

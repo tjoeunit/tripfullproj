@@ -85,23 +85,40 @@ public class HotelController {
 	//WEB-INF 폴더에 있는 jsp는 직접적으로 view를 볼 수 없다. 
 	//또한 직접적으로 볼 수 없기 때문에 <a> 앵커 태그로 이동이 불가하며 Controller를 통해서만 이동을 해야 한다.
 	
+	// 글 수정 페이지 
+	@RequestMapping(value="/updateHotel.do", method = RequestMethod.GET) 
+	public String updateHotelPage(HotelVO vo,Model model){
+		System.out.println("숙박권 수정 화면 보기 처리");
+		HotelVO hotel = hotelService.getHotel(vo);		
 		
+		model.addAttribute("hotel",hotel);
+		return "hotel/updateHotel";
+	}	
+	
+
 	// 글 수정
-	@RequestMapping("/updateHotel.do") 
+	@RequestMapping(value="/updateHotel.do", method = RequestMethod.POST ) 
 	public String updateHotel(@ModelAttribute("hotel") HotelVO vo){
 		System.out.println("숙박권 수정 처리" + vo);	
 		
 		hotelService.updateHotel(vo);
+		
 		return "redirect: getHotelList.do";
 	}
 		
 	// 글 삭제
 	@RequestMapping("/deleteHotel.do") 
-	public String deleteBoard(HotelVO vo){
+	public String deleteBoard(HotelVO vo,Model model){
 		System.out.println("숙박권 삭제 처리");
 		
 		hotelService.deleteHotel(vo);
-		return "redirect: getHotelList.do";
+		
+		String msg="숙박권 삭제 성공", url="/hotel/getHotelList.do";
+				
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+
+		return "common/message";				
 	}	
 	
 	

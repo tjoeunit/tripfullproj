@@ -111,7 +111,9 @@
 				<div>
 					<span>카테고리 : ${hotel.hotel_category}</span><br>
 					<span>지역 : ${hotel.hotel_area}</span><br>
-					<span>가격 : ${hotel.hotel_price}원</span>
+					<span>가격 : ${hotel.hotel_price}원</span><br>
+					<span><a href="<c:url value='updateHotel.do?hotel_no=${hotel.hotel_no}'/>">수정하기</a></span><br>
+					<span><a href="<c:url value='deleteHotel.do?hotel_no=${hotel.hotel_no}'/>">삭제하기</a></span>
 					
 				</div>
 				<div class="buy_div">
