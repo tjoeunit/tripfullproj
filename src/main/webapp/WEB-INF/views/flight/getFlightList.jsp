@@ -103,7 +103,7 @@
 <main>
 	
 	<br>
-	<h1 class="main_title">	항공권</h1>
+	<h1 class="main_title">항공권</h1>
 	<div style="text-align: right; width: 1000px;">
 			<a href="<c:url value='/flight/insertFlight.do'/>">항공권 등록하기 ^^</a>
 		</div>
