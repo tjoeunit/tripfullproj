@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>     
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>adminFight</title>
 
-<link rel="stylesheet" href="../resources/css/admin/adminActivity.css">
+<link rel="stylesheet" href="../css/admin/adminActivity.css">
  
 <script
   src="https://code.jquery.com/jquery-3.4.1.js"
@@ -22,8 +23,8 @@
             <!-- gnv_area -->    
             <div class="top_gnb_area">
                 <ul class="list">    
-                    <li><a href="../index.jsp">메인 페이지</a></li>
-                    <li><a href="/member/logout.do">로그아웃</a></li>
+                    <li><a href="<c:url value='../index.do'/>">메인 페이지</a></li>
+                    <li><a href="../adminLogin/adminLogout.do">로그아웃</a></li>
                     <li>고객센터</li>            
                 </ul>
             </div>
@@ -37,17 +38,18 @@
                 <div class="admin_navi_wrap">
                  	<h2>상품</h2>
 	                  <ul>
+	                  <ul>
 	                      <li >
-	                          <a class="admin_list_01" href="./adminFlight.jsp">항공</a>
+	                          <a class="admin_list_01" href="../admin/adminFlight.do">항공</a>
 	                      </li>
 	                      <li>
-	                          <a class="admin_list_02" href="./adminAccomodations.jsp">숙박</a>
+	                          <a class="admin_list_02" href="../admin/adminAccomodations.do">숙박</a>
 	                      </li>
 	                      <li>
-	                          <a class="admin_list_03" href="./adminActivity.jsp">액티비티</a>                            
+	                          <a class="admin_list_03" href="../admin/adminActivity.do">액티비티</a>                            
 	                      </li>
 	                      <li>
-	                          <a class="admin_list_04" href="/adminLanTrip.jsp">랜선여행</a>                            
+	                          <a class="admin_list_04" href="../admin/adminLanTrip.do">랜선여행</a>                            
 	                      </li>
 	                    </ul>
 		                <h2>고객</h2>
