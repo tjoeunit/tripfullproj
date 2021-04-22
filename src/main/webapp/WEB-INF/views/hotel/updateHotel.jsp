@@ -4,7 +4,7 @@
 
 <main>
 숙박권 수정
-	<form action="insertHotel.do" method="post" enctype="multipart/form-data">
+	<form action="updateHotel.do" method="post" enctype="multipart/form-data">
 		<table>
 		<tr>
 		<tr>
@@ -13,7 +13,7 @@
 		</tr>
 		<td>
 			<select name="hotel_category">
-				<option value="사용자선택" selected>${hotel.hotel_category}</option>
+				<option value="${hotel.hotel_category}" selected></option>
 				<option value="호텔">호텔</option>
 				<option value="팬션">팬션</option>
 				<option value="게스트하우스">게스트하우스</option>

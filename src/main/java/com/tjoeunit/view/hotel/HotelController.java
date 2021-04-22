@@ -95,16 +95,72 @@ public class HotelController {
 		return "hotel/updateHotel";
 	}	
 	
+	
 
 	// 글 수정
-	@RequestMapping(value="/updateHotel.do", method = RequestMethod.POST ) 
-	public String updateHotel(@ModelAttribute("hotel") HotelVO vo){
+	@RequestMapping(value = "/insertHotel.do", method = RequestMethod.POST)
+	public String updateHotel(HotelVO vo, HttpSession session, MultipartFile[] hotelImgUpload, Model model) throws Exception {
+		System.out.println("숙박권 수정 처리");
+		
+		// 파일 업로드 처리
+		String hotelImg = session.getServletContext().getRealPath("/hotelUpload/");
+		System.out.println("==>"+hotelImgUpload.length);
+		
+		for(int i = 0; i < hotelImgUpload.length; i++) {
+			System.out.println("==>"+hotelImgUpload[i].isEmpty());
+			
+			if(!hotelImgUpload[i].isEmpty()) {
+				String hotelUploadName = hotelImgUpload[i].getOriginalFilename();
+				hotelImgUpload[i].transferTo(new File(hotelImg+hotelUploadName));
+				
+				switch(i) {
+					case 0 : vo.setHotel_thumb(hotelUploadName);
+					break;
+					
+					case 1 : vo.setHotel_img(hotelUploadName);
+					break;
+				}
+				
+				}else {
+					switch(i) {
+					case 0 : vo.setHotel_thumb(null);
+													
+					case 1 : vo.setHotel_img(null);
+					break;
+					}
+				}
+			}
+		
+		// DB연동처리
+		System.out.println(vo);
+		
+		int cnt = hotelService.insertHotel(vo);
+		
+		String msg="숙박권 수정 실패", url="/hotel/insertHotel.do";
+
+		if(cnt>0) {
+			msg="숙박권 수정 성공";
+			url="/hotel/getHotelList.do";
+		}
+
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+
+		return "common/message";		
+		
+	}
+	/*@RequestMapping(value="/updateHotel.do", method = RequestMethod.POST ) 
+	public String updateHotel(@ModelAttribute("hotel") HotelVO vo,){
 		System.out.println("숙박권 수정 처리" + vo);	
 		
 		hotelService.updateHotel(vo);
+		String msg="숙박권 수정 성공", url="/hotel/getHotelList.do";
 		
-		return "redirect: getHotelList.do";
-	}
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+
+		return "common/message";	
+	}*/
 		
 	// 글 삭제
 	@RequestMapping("/deleteHotel.do") 
