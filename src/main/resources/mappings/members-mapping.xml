@@ -34,4 +34,9 @@
 		select * from members
 		where members_id=#{members_id}
 	</select>
+	
+	<select id="selectByMembersNo" resultType="com.tjoeunit.biz.members.MembersVO">
+		select * from members
+		where members_no=#{members_no}
+	</select>
 </mapper>

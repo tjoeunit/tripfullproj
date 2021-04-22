@@ -14,8 +14,13 @@ public class StoryDAO {
 	@Autowired
 	private SqlSessionTemplate mybatis;
 	
-	public void insertStory(StoryVO vo) {
-		mybatis.insert("storyDAOTemplate.insertStory", vo);
+	public int insertStory(StoryVO vo) {
+		return mybatis.insert("storyDAOTemplate.insertStory", vo);
+	}
+	
+	public void viewCountStory(StoryVO vo) {
+		// 조회수 처리											
+		mybatis.update("storyDAOTemplate.viewCountStory", vo);
 	}
 	
 	public void updateStory(StoryVO vo) {

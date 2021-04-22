@@ -86,12 +86,12 @@ public class AdminController {
 		
 		
 		 //관리자 로그아웃 
-	    @RequestMapping("logout.do")
+	    @RequestMapping("/adminLogin/adminLogout.do")
 	    public String logout(HttpSession session) {
 	        session.invalidate();
 	        //로그아웃을 시키려면 session에 있는 데이터를 삭제시켜야 하기 때문에 invalidate()메소드를 사용해서
 	        //안에 있는 데이터를 초기화 시킨다.
-	        
+	        System.out.println("관리자 로그아웃 ");
 	        return "redirect:/adminLogin/adminLogin_View.do";
 	    }
 	

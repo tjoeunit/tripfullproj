@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>     
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>adminFight</title>
+<title>adminIndex</title>
 
-<link rel="stylesheet" href="../css/admin/adminMemberEnroll.css">
+<link rel="stylesheet" href="../css/admin/adminIndex.css">
  
 <script
   src="https://code.jquery.com/jquery-3.4.1.js"
@@ -17,14 +17,20 @@
 
 </head>
 <body>
+<%-- <c:if test="${message == 'success' }"> <!-- controller에서 보낸 메시지의 값이 success면 c:if문이 실행.-->
+<h2>
+    ${sessionScope.admin_name}(${sessionScope.admin_id})님 환영합니다.
+    	<!--sessionScope는 세션에 담은 setAttribute()메소드 안에 있는 값을 jsp에서 JSTL로 간단히 사용. -->
+</h2>
+</c:if> --%>
 
   <div class="wrapper">
         <div class="wrap">
             <!-- gnv_area -->    
             <div class="top_gnb_area">
                 <ul class="list">    
-                    <li><a href="<c:url value='../index.do'/>">메인 페이지</a></li>
-                    <li><a href="../adminLogin/adminLogout.do">로그아웃</a></li>
+                    <li><a href="<c:url value='../index/index.do'/>">메인 페이지</a></li>
+                    <li><a href="/logout.do">로그아웃</a></li>
                     <li>고객센터</li>            
                 </ul>
             </div>
@@ -54,7 +60,7 @@
 		                <h2>고객</h2>
 	                  <ul>
 	                      <li >
-	                          <a class="admin_list_05" href="/adminMemberEnroll.jsp">고객등록</a>
+	                          <a class="admin_list_05" href="/admin/memberEnroll">고객등록</a>
 	                      </li>
 	                      <li>
 	                          <a class="admin_list_06" href="/admin/membersList">고객목록</a>
@@ -66,71 +72,22 @@
 	                <h2>여행이야기</h2>                  
                 </div> 
                 <div class="admin_content_wrap">
-                    <div class="admin_content_subject"><span>고객 등록</span></div>
-                    <div class="admin_content_goods">
-				    	<form action="/members/insertMembers.do" method="post">
-							<table class="memberEnroll" border="1" cellpadding="0" cellspacing="0">
-								<tr>
-									<td>아이디</td>
-									<td><input type="text" name="members_id"></td>
-								</tr>
-								<tr>
-									<td>비밀번호</td>
-									<td><input type="password" name="members_pw"></td>
-								</tr>
-								<tr>
-									<td>이름</td>
-									<td><input type="text" name="members_name"></td>
-								</tr>
-								<tr>
-									<td>전화번호</td>
-									<td><input type="text" name="members_tel"></td>
-								</tr>
-								<tr>
-									<td>이메일</td>
-									<td><input type="text" name="members_email"></td>
-								</tr>
-								<tr>
-									<td>성별</td>
-									<td>
-										<select name="members_gender">
-											<option value="남자">남자</option>
-										    <option value="여자">여자</option>
-										</select>
-									</td>
-								</tr>
-								<tr>
-									<td>우편번호</td>
-									<td><input type="text" name="members_zipcode"></td>
-								</tr>
-								<tr>
-									<td>주소</td>
-									<td><input type="text" name="members_address"></td>
-								</tr>
-								<tr>
-									<td>주소상세</td>
-									<td><input type="text" name="members_address_detail"></td>
-								</tr>
-							</table>
-							<input type="submit" value="가입하기">
-							<input type="button" value="뒤로가기">
-					  </form>                
-				    </div>              
-                    
+                    <div class="admin_content_subject"><span>관리자 메인화면</span></div>
+                    <div class="admin_content_goods"></div>
 					<div class="admin_content_goods_submit">                    
-	                    <form action="flightEnroll.do">
+	<!--                     <form action="">
 	                   		 <input type="submit" value="등록">
 	                    </form>
 	                </div>
 	                <div class="admin_content_goods_submit">    
-	                   <form action="flightUpdate.do">
+	                   <form action="">
 	                   		 <input type="submit" value="수정">
 	                    </form>
 	                </div>
-	                <div class="admin_content_goods_submit">    
-	                   <form action="flightDelete.do">
+	                <div class="admin_content_flight_submit">    
+	                   <form action="">
 	                   		 <input type="submit" value="삭제">
-	                    </form>  
+	                    </form>   -->
                      </div>                                     
                 </div> 
                 <div class="clearfix"></div> 

@@ -16,8 +16,13 @@ public class StoryServiceImpl implements StoryService {
 	private StoryDAO storyDAO;
 	
 	@Override
-	public void insertStory(StoryVO vo) {
-		storyDAO.insertStory(vo);
+	public int insertStory(StoryVO vo) {
+		return storyDAO.insertStory(vo);
+	}
+
+	@Override
+	public void viewCountStory(StoryVO vo) {
+		storyDAO.viewCountStory(vo);
 	}
 
 	@Override
@@ -41,6 +46,5 @@ public class StoryServiceImpl implements StoryService {
 	public void deleteStory(StoryVO vo) {
 		storyDAO.deleteStory(vo);
 	}
-
 
 }

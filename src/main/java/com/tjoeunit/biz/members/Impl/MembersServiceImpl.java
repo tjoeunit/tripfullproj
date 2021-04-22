@@ -62,5 +62,11 @@ public class MembersServiceImpl implements MembersService{
 		return membersDAO.selectByMembersId(members_id);
 	}
 
+	@Override
+	public MembersVO selectByMembersNo(int members_no) {
+		return membersDAO.selectByMembersNo(members_no);
+		
+	}
+
 
 }

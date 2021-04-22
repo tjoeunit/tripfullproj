@@ -12,7 +12,7 @@
 	  border: none;
 	  border-radius: 5px;
 	}
-	
+
 	.member_login_field {
 	  font-size: 16px;
 	  padding: 20px 10px;
@@ -21,7 +21,7 @@
 	  border: none;
 	  width: 440px;
 	}
-	
+
 	.member_login_submit {
 	  font-size: 16px;
 	  padding: 20px 10px;
@@ -38,7 +38,7 @@
 <main>
 	<center>
 		<h1>로그인<br></h1>
-		
+
 		<div class="member_login">
 			<form name="frm" action="<c:url value='/members/loginMembers.do'/>" method="post">
 				<input type="text" name="members_id" class="member_login_field" placeholder="아이디">

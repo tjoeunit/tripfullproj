@@ -27,5 +27,9 @@ public class MembersDAO {
 	public MembersVO selectByMembersId(String members_id) {
 		return mybatis.selectOne("membersDAOTemplate.selectByMembersId" ,members_id);
 	}
+	
+	public MembersVO selectByMembersNo(int members_no) {
+		return mybatis.selectOne("membersDAOTemplate.selectByMembersNo" ,members_no);
+	}
 
 }

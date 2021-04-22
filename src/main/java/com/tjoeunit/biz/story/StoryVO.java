@@ -2,24 +2,14 @@ package com.tjoeunit.biz.story;
 
 import java.util.Date;
 
-import org.springframework.web.multipart.MultipartFile;
-
 public class StoryVO {
 	private int story_no;
 	private int members_no;
 	private String story_title;
 	private String story_content;
-	private int story_re_ref;
-	private int story_re_lev;
-	private int story_re_seq;
+	private String story_writer;
 	private int story_cnt;
 	private Date story_date;
-	
-	private String storyFileAttachPath;
-	private String storyFilename;
-	private MultipartFile storyUploadFile;
-	private String CKEditorFuncNum;
-	
 	
 	public int getStory_no() {
 		return story_no;
@@ -45,23 +35,11 @@ public class StoryVO {
 	public void setStory_content(String story_content) {
 		this.story_content = story_content;
 	}
-	public int getStory_re_ref() {
-		return story_re_ref;
+	public String getStory_writer() {
+		return story_writer;
 	}
-	public void setStory_re_ref(int story_re_ref) {
-		this.story_re_ref = story_re_ref;
-	}
-	public int getStory_re_lev() {
-		return story_re_lev;
-	}
-	public void setStory_re_lev(int story_re_lev) {
-		this.story_re_lev = story_re_lev;
-	}
-	public int getStory_re_seq() {
-		return story_re_seq;
-	}
-	public void setStory_re_seq(int story_re_seq) {
-		this.story_re_seq = story_re_seq;
+	public void setStory_writer(String story_writer) {
+		this.story_writer = story_writer;
 	}
 	public int getStory_cnt() {
 		return story_cnt;
@@ -75,30 +53,15 @@ public class StoryVO {
 	public void setStory_date(Date story_date) {
 		this.story_date = story_date;
 	}
-	public String getStoryFileAttachPath() {
-		return storyFileAttachPath;
+	
+	@Override
+	public String toString() {
+		return "StoryVO [story_no=" + story_no + ", members_no=" + members_no + ", story_title=" + story_title
+				+ ", story_content=" + story_content + ", story_writer=" + story_writer + ", story_cnt=" + story_cnt
+				+ ", story_date=" + story_date + "]";
 	}
-	public void setStoryFileAttachPath(String storyFileAttachPath) {
-		this.storyFileAttachPath = storyFileAttachPath;
-	}
-	public String getStoryFilename() {
-		return storyFilename;
-	}
-	public void setStoryFilename(String storyFilename) {
-		this.storyFilename = storyFilename;
-	}
-	public MultipartFile getStoryUploadFile() {
-		return storyUploadFile;
-	}
-	public void setStoryUploadFile(MultipartFile storyUploadFile) {
-		this.storyUploadFile = storyUploadFile;
-	}
-	public String getCKEditorFuncNum() {
-		return CKEditorFuncNum;
-	}
-	public void setCKEditorFuncNum(String cKEditorFuncNum) {
-		CKEditorFuncNum = cKEditorFuncNum;
-	}
+	
+	
 	
 	
 }
