@@ -135,37 +135,37 @@
 
 <body>
 <header>
-		<nav class="nav">
-			<div class="navDiv">
-				<div class="navImgDiv">
-					<a style="all: unset; cursor: pointer;" href="<c:url value='/index.do'/>">
-						<img src="<c:url value='/img/tripfulllogo.png'/>">
-					</a>
-				</div>
-				<div class="navAccDiv">
-					<ul>
-						<li id="signin_li"><a href="<c:url value='/members/insertMembers.do'/>">회원가입</a></li>
-						<li id="login_li"><a href="<c:url value='/members/loginMembers.do'/>">로그인</a></li>
-						
-						<li id="mypage_li"><a href="<c:url value='#'/>">마이페이지</a></li>		
-						<li id="logout_li"><a href="<c:url value='/members/logoutMembers.do'/>">로그아웃</a></li>
-						<li><a href="<c:url value='/adminLogin/adminLogin_View.do'/>">관리자</a></li>
-					</ul>
-				</div>
-
-				<div class="navListDiv"> 
-					<ul>
-						<li><a href="<c:url value='/practice/insertPractice.do'/>">연습(CK입력)</a></li>
-						<li><a href="<c:url value='/practice/getPracticeList.do'/>">연습(CK출력)</a></li>
-						<li><a href="<c:url value='/flight/getFlightList.do'/>">항공권</a></li>
-						<li><a href="<c:url value='/hotel/getHotelList.do'/>">숙소</a></li>
-						<li><a href="<c:url value='#'/>">렌터카 & 교통</a></li>
-						<li><a href="#">액티비티</a></li>
-						<li><a href="<c:url value='/lantrip/getLanTripList.do'/>">랜선투어</a></li>
-						<li><a href="<c:url value='/story/getStoryList.do'/>">여행이야기</a></li>
-					</ul>
-				</div>				
-				<input type="hidden" id="sessionID" value="${members_id}">
+	<input type="hidden" id="sessionID" value="${members_id}">
+	<nav class="nav">
+		<div class="navDiv">
+			<div class="navImgDiv">
+				<a style="all: unset; cursor: pointer;" href="<c:url value='/index.do'/>">
+					<img src="<c:url value='/img/tripfulllogo.png'/>">
+				</a>
 			</div>
-		</nav>
+			<div class="navAccDiv">
+				<ul>
+					<li id="signin_li"><a href="<c:url value='/members/insertMembers.do'/>">회원가입</a></li>
+					<li id="login_li"><a href="<c:url value='/members/loginMembers.do'/>">로그인</a></li>					
+					<li id="mypage_li"><a href="#">회원정보</a></li>		
+					<li id="logout_li"><a href="<c:url value='/members/logoutMembers.do'/>">로그아웃</a></li>
+					<li><a href="<c:url value='/adminLogin/adminLogin_View.do'/>">관리자</a></li>
+				</ul>
+			</div>
+
+			<div class="navListDiv"> 
+				<ul>
+					<li><a href="<c:url value='/practice/insertPractice.do'/>">연습(CK입력)</a></li>
+					<li><a href="<c:url value='/practice/getPracticeList.do'/>">연습(CK출력)</a></li>
+					<li><a href="<c:url value='/flight/getFlightList.do'/>">항공권</a></li>
+					<li><a href="<c:url value='/hotel/getHotelList.do'/>">숙소</a></li>
+					<li><a href="<c:url value='#'/>">렌터카 & 교통</a></li>
+					<li><a href="#">액티비티</a></li>
+					<li><a href="<c:url value='/lantrip/getLanTripList.do'/>">랜선투어</a></li>
+					<li><a href="<c:url value='/story/getStoryList.do'/>">여행이야기</a></li>
+				</ul>
+			</div>	
+			
+		</div>
+	</nav>
 </header>

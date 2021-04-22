@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.tjoeunit.biz.common.PagingVO;
 import com.tjoeunit.biz.flight.FlightService;
 import com.tjoeunit.biz.flight.FlightVO;
 
@@ -41,4 +42,20 @@ public class FlightServiceImpl implements FlightService {
 		flightDAO.deleteFlight(vo);
 	}
 
+	
+	
+	///////////////////////////////////////////////////페이징
+	@Override
+	public int countFlight() {		
+		return flightDAO.countFlight();
+	}
+
+	@Override
+	public List<FlightVO> selectFlight(PagingVO vo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+	///////////////////////////////////////////////////페이징
 }

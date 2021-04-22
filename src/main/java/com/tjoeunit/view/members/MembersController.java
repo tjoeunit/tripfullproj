@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.tjoeunit.biz.flight.FlightVO;
 import com.tjoeunit.biz.members.MembersService;
 import com.tjoeunit.biz.members.MembersVO;
 
@@ -105,17 +106,19 @@ public class MembersController {
 	@RequestMapping(value="/logoutMembers.do", method=RequestMethod.GET)
 	public String logoutMembers(Model model, HttpSession session) {
 		
-		// 세션 전체 제거, 무효화 
-		session.invalidate();
+		String members_id = (String)session.getAttribute("members_id"); 
+		String msg = members_id + "님 로그아웃 되었습니다";
+		String url = "/index.do";		
 		
-		String msg="로그아웃 성공";
-		String url="/members/loginMembers.do";
+		// 세션 전체 제거, 무효화 
+		session.invalidate();		
 		
 		model.addAttribute("msg", msg);
 		model.addAttribute("url", url);
 
-		return "common/message";
-	}
+		return "common/messageLogout";
+	}	
+	
 /*	
 	// 글 수정
 		@RequestMapping("/updateMembers.do")
