@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../import/top.jsp" %>
-<main>
+<main>	
 	<div style="width: 500px; height: 300px; margin-top: 200px; margin-left: 500px;">
 		<form name="frm" action="<c:url value='/members/loginMembers.do'/>" method="post">
 			로그인<br>

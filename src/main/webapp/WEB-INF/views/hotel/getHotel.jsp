@@ -1,51 +1,140 @@
-<%@page contentType="text/html; charset=UTF-8"%>
+<%@page import="com.tjoeunit.biz.lantrip.LanTripVO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 
-<!DOCTYPE html >
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>글 상세</title>
-</head>
-<body>
-	<center>
-		<h1>글 상세</h1>
-		<a href="logout.do">Log-out</a>
-		<hr>
-		<form action="updateBoard.do" method="post">
-			<input name="seq" type="hidden" value="${board.seq}" />
-			<table border="1" cellpadding="0" cellspacing="0">
-				<tr>
-					<td bgcolor="orange" width="70">제목</td>
-					<td align="left"><input name="title" type="text"
-						value="${board.title }" /></td>
-				</tr>
-				<tr>
-					<td bgcolor="orange">작성자</td>
-					<td align="left">${board.writer }</td>
-				</tr>
-				<tr>
-					<td bgcolor="orange">내용</td>
-					<td align="left"><textarea name="content" cols="40" rows="10">
-						${board.content }</textarea></td>
-				</tr>
-				<tr>
-					<td bgcolor="orange">등록일</td>
-					<td align="left">${board.regDate }</td>
-				</tr>
-				<tr>
-					<td bgcolor="orange">조회수</td>
-					<td align="left">${board.cnt }</td>
-				</tr>
-				<tr>
-					<td colspan="2" align="center"><input type="submit"
-						value="글 수정" /></td>
-				</tr>
-			</table>
-		</form>
-		<hr>
-		<a href="insertBoard.jsp">글등록</a>&nbsp;&nbsp;&nbsp; 
-		<a href="deleteBoard.do?seq=${board.seq }">글삭제</a>&nbsp;&nbsp;&nbsp;
-		<a href="getBoardList.do">글목록</a>
-	</center>
-</body>
-</html>
+<%@ include file="../import/top.jsp" %>
+
+<style type="text/css">	
+	main {
+		margin-left: 360px;
+	}
+	
+	.hotel_div{
+		width: 1200px;
+	}
+	
+	.hotel_product_thumb{
+		width: 400px;
+		height: 300px;
+	}
+	
+	.hotel_product_title {
+		display: inline-block;
+		width: 1200px;
+		font-size: 40px;
+		font-weight: 600;
+		text-align: left;
+	}
+	
+	.hotel_buy {
+		display: inline-block;
+		position: relative;
+		box-sizing: border-box;
+		color: black;
+		text-decoration: none;
+		text-align: center;
+		font-weight: 600;
+		border-radius: 8px;
+		height: 2.5em;
+		width: 800px;
+		line-height: 2.5em;
+		padding: 0 1.25em;
+		-moz-transition: background-color .2s ease-in-out;
+		-webkit-transition: background-color .2s ease-in-out;
+		-ms-transition: background-color .2s ease-in-out;
+		transition: background-color .2s ease-in-out;
+	}
+	
+	.hotel_buy:hover {
+		color: #fff !important;
+		background: #383838;
+	}	
+	
+	.hotel_product_detail{
+		width: 1200px;
+		padding: 10px;
+	}
+	
+	.hotel_product_detail_area{
+		color: gray;
+		text-align: right;
+	}	
+	
+	.hotel_product_img {
+		width: 1200px;
+		height: auto;
+		background-color: #58CCFF;
+	}
+	
+	.thumb_div {
+		float: left;
+		width: 400px;
+		height: 300px;
+	}
+	
+	.info_div {
+		height: 300px;
+		width: 1200px;
+		margin-top: 10px;
+	}
+	
+	.title_div {
+		margin-top: 10px;
+		float: left;
+		width: 800px;
+		height: 300px;		
+	}
+	
+	.buy_div {
+		margin-top: 10px;
+		text-align: right;
+	}
+	
+	.clear_div {
+		clear: both;
+	}
+	
+</style>
+
+<main>
+	<div class="hotel_div">
+		<div class="info_div">
+		
+			<div class="thumb_div">
+				<img class="hotel_product_thumb" src="<c:url value='/hotelUpload/${hotel.hotel_thumb}'/>">			
+			</div>
+			
+			<div class="title_div">
+				<div>
+					<span class="hotel_product_title">${hotel.hotel_title}</span>
+				</div>
+				<div>
+					<span>카테고리 : ${hotel.hotel_category}</span><br>
+					<span>지역 : ${hotel.hotel_area}</span><br>
+					<span>가격 : ${hotel.hotel_price}원</span>
+					
+				</div>
+				<div class="buy_div">
+					<a href="#"><span class="hotel_buy">구매하기</span></a>
+				</div>
+			</div>
+			
+		</div>
+		
+		<div class="clear_div"></div>
+			
+		<!-- 숙박 상세 설명 -->	
+		<div class="hotel_product_detail">
+						
+		</div>		
+		<div>
+				설명 : ${hotel.hotel_content}
+		</div>		
+
+		<div>
+			<img class="hotel_product_img" src="<c:url value='/hotelUpload/${hotel.hotel_img}'/>">
+		</div>
+	</div>
+	<br>
+</main>
+<%@ include file="../import/bottom.jsp" %>

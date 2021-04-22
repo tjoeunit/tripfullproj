@@ -3,8 +3,7 @@
 
 <mapper namespace="flightDAOTemplate">
 		
-<!-- 항공권 등록 -->
-
+	<!-- 항공권 등록 -->
 	<insert id="insertFlight">	
 		<selectKey keyProperty="flight_no" resultType="int" order="BEFORE">
 			select flight_seq.nextval from dual
@@ -21,18 +20,40 @@
 		)
 	</insert>
 
-<!-- 항공권 목록보기 -->
+	<!-- 항공권 목록보기 -->
 	<select id="getFlightList" resultType="com.tjoeunit.biz.flight.FlightVO">
 		<![CDATA[
 			select * from flight order by flight_no desc
 		]]>
 	</select>
 
-<!-- 항공권 상세보기-->
+	<!-- 항공권 상세보기-->
 	<select id="getFlight" resultType="com.tjoeunit.biz.flight.FlightVO">
 		<![CDATA[
 			select * from flight where flight_no=#{flight_no}
 		]]>
 	</select>
+	
+	
+	
+	
+	<!-- 페이징 관련 시작 -->
+	<!-- 총 게시글 갯수 출력 -->
+	<select id="countBoard" resultType="int">
+		select count(*) from flight
+	</select>
+
+	<!-- 페이징 처리 후 게시글 조회 -->
+	<select id="selectBoard" resultType="com.tjoeunit.biz.flight.FlightVO">
+		select * from (
+			select rownum rn, a.*
+				from (
+					select * from flight
+					order by members_no desc
+					) a		
+		)
+		where rn between #{start} and #{end}
+	</select>
+	<!-- 페이징 관련 끝 -->
 		
 </mapper>

@@ -5,7 +5,7 @@ import java.util.List;
 public interface HotelService {
 	
 	//글 등록
-	void insertHotel(HotelVO vo);
+	int insertHotel(HotelVO vo);
 	
 	//글 목록 조회
 	List<HotelVO> getHotelList(HotelVO vo);

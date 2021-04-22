@@ -2,69 +2,35 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="hotelDAOTemplate">
+		
+<!-- 숙박권 등록 -->
 
 	<insert id="insertHotel">	
 		<selectKey keyProperty="hotel_no" resultType="int" order="BEFORE">
 			select hotel_seq.nextval from dual
-		</selectKey>	
-		insert into hotel(		hotel_no, 
-										hotel_title, 
-										hotel_content, 
-										hotel_img1,
-										hotel_img2,
-										hotel_category, 
-										hotel_price,
-										hotel_area,
-										hotel_img3)
+		</selectKey>
+		insert into hotel(
+			hotel_no, hotel_title,hotel_content, hotel_img, hotel_thumb,
+			hotel_category, hotel_price, hotel_area
+		)
 		values(
-										#{hotel_no}, 
-										#{hotel_title}, 
-										#{hotel_content}, 
-										#{hotel_img1,},
-										#{hotel_img2,}, 
-										#{hotel_category}, 
-										#{hotel_price},
-										#{hotel_area},
-										#{hotel_img3,} )	
+			#{hotel_no}, #{hotel_title}, #{hotel_content}, #{hotel_img}, #{hotel_thumb},
+			#{hotel_category}, #{hotel_price},	#{hotel_area}
+		)
 	</insert>
-	
-	<update id="updateHotel">
-		update hotel set hotel_title=#{hotel_title}, 
-								  hotel_content=#{hotel_content}, 
-								  hotel_category=#{hotel_category}, 
-								  hotel_price=#{hotel_price}, 
-								  hotel_area=#{hotel_area}, 
-								  hotel_price=#{hotel_price}, 
-								  where hotel_no=#{hotel_no}
-	
-	</update>
-	 
-	<delete id="deleteHotel">	
-	   	delete hotel where hotel_no=#{hotel_no}
-	</delete>
-	
-	<select id="getHotel" resultType="com.tjoeunit.biz.hotel.HotelVO">
-	
-		select * from hotel where hotel_no=#{hotel_no}
-		
-	</select>
-	
-	<select id="getHotelList" resultType="com.tjoeunit.biz.hotel.HotelVO">
-	
-		select * from hotel 
-	
-	</select>
-	
-<!-- 	<select id="getHotelList_T" resultType="com.tjoeunit.biz.hotel.HotelVO">
-	
-		select * from hotel where title like '%'||#{searchKeyword}||'%' order by hotel_no desc
-	
-	</select>
-	
-	<select id="getHotelList_C" resultType="com.tjoeunit.biz.hotel.HotelVO">
-	
-		select * from hotel where content like '%'||#{searchKeyword}||'%' order by hotel_no desc
-	
-	</select> -->
 
+<!-- 숙박권 목록보기 -->
+	<select id="getHotelList" resultType="com.tjoeunit.biz.hotel.HotelVO">
+		<![CDATA[
+			select * from hotel order by hotel_no desc
+		]]>
+	</select>
+
+<!-- 숙박권 상세보기-->
+	<select id="getHotel" resultType="com.tjoeunit.biz.hotel.HotelVO">
+		<![CDATA[
+			select * from hotel where hotel_no=#{hotel_no}
+		]]>
+	</select>
+		
 </mapper>
