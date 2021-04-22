@@ -101,8 +101,21 @@ public class MembersController {
 		return "common/message";
 	}
 	
+	//회원 로그아웃 처리
+	@RequestMapping(value="/logoutMembers.do", method=RequestMethod.GET)
+	public String logoutMembers(Model model, HttpSession session) {
+		
+		// 세션 전체 제거, 무효화 
+		session.invalidate();
+		
+		String msg="로그아웃 성공";
+		String url="/members/loginMembers.do";
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
 
-	
+		return "common/message";
+	}
 /*	
 	// 글 수정
 		@RequestMapping("/updateMembers.do")
