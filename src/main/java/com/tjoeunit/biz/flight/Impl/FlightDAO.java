@@ -39,14 +39,15 @@ public class FlightDAO {
 	
 	
 	
-	////////////////////////////////////////////////페이징
+	//페이징처리를 위해 생성
 	public int countFlight() {
 		return mybatis.selectOne("flightDAOTemplate.countFlight");
 	}
 	
+	//페이징처리를 위해 생성
 	public List<FlightVO> selectFlight(PagingVO vo) {
 		return mybatis.selectList("flightDAOTemplate.selectFlight", vo);
 	}	
-	////////////////////////////////////////////////페이징
+	
 	
 }
