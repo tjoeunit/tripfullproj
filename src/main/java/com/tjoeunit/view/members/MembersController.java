@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.tjoeunit.biz.flight.FlightVO;
 import com.tjoeunit.biz.members.MembersService;
 import com.tjoeunit.biz.members.MembersVO;
 
@@ -101,7 +102,22 @@ public class MembersController {
 		return "common/message";
 	}
 	
+	//회원 로그아웃 처리
+	@RequestMapping(value="/logoutMembers.do", method=RequestMethod.GET)
+	public String logoutMembers(Model model, HttpSession session) {
+		
+		String members_id = (String)session.getAttribute("members_id"); 
+		String msg = members_id + "님 로그아웃 되었습니다";
+		String url = "/index.do";		
+		
+		// 세션 전체 제거, 무효화 
+		session.invalidate();		
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
 
+		return "common/messageLogout";
+	}	
 	
 /*	
 	// 글 수정

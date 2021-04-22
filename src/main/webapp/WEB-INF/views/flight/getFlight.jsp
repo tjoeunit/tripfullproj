@@ -110,7 +110,7 @@
 				</div>
 				<div>
 					<span>출발 : ${flight.flight_departure}</span><br>
-					<span>도착 : ${flight.flight_departure}</span><br>
+					<span>도착 : ${flight.flight_arrival}</span><br>
 					<span>가격 : ${flight.flight_price}원</span>
 					
 				</div>
