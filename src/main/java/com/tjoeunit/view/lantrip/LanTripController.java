@@ -18,74 +18,84 @@ import com.tjoeunit.biz.lantrip.LanTripService;
 import com.tjoeunit.biz.lantrip.LanTripVO;
 
 @Controller
-@RequestMapping("/lantrip")
+
 public class LanTripController {
 	
 	@Autowired
 	private LanTripService lanTripService;
+		
+	// 관리자메인에서 랜선여행 관리자 페이지로 이동
+	@RequestMapping(value="/admin/adminLanTrip.do", method=RequestMethod.GET)
+		public String adminLanTrip(LanTripVO vo, Model model) {
+			System.out.println("랜선여행 페이지 이동 ");
+				
+			List<LanTripVO> lanTripList = lanTripService.getLanTripList(vo);
+					
+			model.addAttribute("lanTripList", lanTripList);
+					
+			return "admin/adminLanTrip";
+		}
+			
+	// 랜선여행 관리자 등록 페이지 이동
+	@RequestMapping(value="/adminLanTrip/insertLanTrip.do", method=RequestMethod.GET)
+	public String insertLanTrip(LanTripVO vo, Model model) {
+		System.out.println("랜선여행 등록하기 ");
+		return "adminLanTrip/insertLanTrip";
+	}
+			
+	// 랜선여행 관리자 상세보기
 	
-// 글 등록
-	@RequestMapping( value = "/insertLanTrip.do", method = RequestMethod.POST)
+	
+	
+	// 랜선여행 새글 등록
+	@RequestMapping( value = "/lantrip/insertLanTrip.do", method = RequestMethod.POST)
 	public String insertLanTrip(LanTripVO vo, HttpSession session, MultipartFile[] lanTripImgUpload, Model model) throws Exception {
 		System.out.println("랜선여행 등록 처리");
-		
+				
 		// 파일 업로드 처리
 		String lanTripImg = session.getServletContext().getRealPath("/lanTripUpload/");
 		System.out.println("==>"+lanTripImgUpload.length);
-		
+				
 		for(int i = 0; i < lanTripImgUpload.length; i++) {
 			System.out.println("==>"+lanTripImgUpload[i].isEmpty());
-			
+					
 			if(!lanTripImgUpload[i].isEmpty()) {
 				String lanTripUploadName = lanTripImgUpload[i].getOriginalFilename();
 				lanTripImgUpload[i].transferTo(new File(lanTripImg+lanTripUploadName));
 				switch(i) {
-				case 0 : vo.setLantrip_thumb(lanTripUploadName);
-				break;
-				
-				case 1 : vo.setLantrip_img1(lanTripUploadName);
-				break;
-				
-				case 2 : vo.setLantrip_img2(lanTripUploadName);
-				break;
-				
-				case 3 : vo.setLantrip_img3(lanTripUploadName);
-				break;
-				
-				case 4 : vo.setLantrip_img4(lanTripUploadName);
-				break;
-				
-				default : vo.setLantrip_img5(lanTripUploadName);
-				break;
+					case 0 : vo.setLantrip_thumb(lanTripUploadName);
+					break;
+							
+					case 1 : vo.setLantrip_img1(lanTripUploadName);
+					break;
 				}
-				
 			}else {
 				switch(i) {
-				case 0 : vo.setLantrip_thumb(null);
-				
-				case 1 : vo.setLantrip_img1(null);
-				break;
-				
-				case 2 : vo.setLantrip_img2(null);
-				break;
-				
-				case 3 : vo.setLantrip_img3(null);
-				break;
-				
-				case 4 : vo.setLantrip_img4(null);
-				break;
-				
-				default : vo.setLantrip_img5(null);
-				break;
+					case 0 : vo.setLantrip_thumb(null);
+					break;
+						
+					case 1 : vo.setLantrip_img1(null);
+					break;
 				}
 			}
 		}
-		
+				
+		// 영상주소 처리 : DB에 저장할 때 변경된 주소로 저장하기 위함
+		String lan_url = vo.getLantrip_video();
+		lan_url = "https://www.youtube.com/embed"+lan_url.substring(16);
+				
+		vo.setLantrip_video(lan_url); // 변경된 주소 저장
+				
+		System.out.println(lan_url);
+				
 		// DB연동처리
 		lanTripService.insertLanTrip(vo);
-		
+				
+		List<LanTripVO> lanTripList = lanTripService.getLanTripList(vo);
+		model.addAttribute("lanTripList", lanTripList);
+					
 		// 화면전환
-		return "redirect:getLanTripList.do";
+		return "admin/adminLanTrip";
 	}
 
 // 글 수정
@@ -97,7 +107,7 @@ public class LanTripController {
 		return "redirect:getLanTripList.do";
 	}
 	
-	// 글 삭제
+// 글 삭제
 	@RequestMapping("/deleteLanTrip.do")
 	public String deleteLanTrip(LanTripVO vo) {
 		System.out.println("글 삭제 처리");
@@ -108,12 +118,11 @@ public class LanTripController {
 
 	
 // 글 목록 보기
-	@RequestMapping(value="/getLanTripList.do", method = RequestMethod.GET)
+	@RequestMapping(value="/lantrip/getLanTripList.do", method = RequestMethod.GET)
 	public String getLanTripList(LanTripVO vo, Model model) {
 		System.out.println("랜선여행 목록 뷰");
 		
 		List<LanTripVO> lanTripList = lanTripService.getLanTripList(vo);
-		
 		model.addAttribute("lanTripList", lanTripList);
 		
 		return "lantrip/getLanTripList";
@@ -121,15 +130,15 @@ public class LanTripController {
 	
 
 // 글 상세 조회
-	 @RequestMapping(value="/getLanTrip.do", method = RequestMethod.GET)
+	 @RequestMapping(value="/lantrip/getLanTrip.do", method = RequestMethod.GET)
 	 public String getLanTrip(LanTripVO vo, Model model) {
 		 System.out.println("랜선여행 상세 조회 처리");
 		 
 		 LanTripVO lanTrip = lanTripService.getLanTrip(vo);
-
+		 
 		 model.addAttribute("lantrip", lanTrip);
 		 
-	 return "lantrip/getLanTrip";
+		 return "lantrip/getLanTrip";
 	 }
 	
 }

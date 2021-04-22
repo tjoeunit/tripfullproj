@@ -3,11 +3,10 @@ package com.tjoeunit.biz.lantrip;
 public class test {
 
 	public static void main(String[] args) {
-		
-		String lanVideo = "https://www.youtube.com/watch?v=VE2nlThIjPs";
-		String sublanvideo = lanVideo.substring(0, 24)+"embeded/"+lanVideo.substring(24);
-		System.out.println(sublanvideo);
-
+	
+		String lan_url = "https://youtu.be/5tW7R3R8410";
+		lan_url = "https://www.youtube.com/embed"+lan_url.substring(16);
+		System.out.println(lan_url);
 	}
 
 }
