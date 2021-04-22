@@ -1,17 +1,23 @@
 package com.tjoeunit.view.admin;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.tjoeunit.biz.admin.AdminService;
 import com.tjoeunit.biz.admin.AdminVO;
+import com.tjoeunit.biz.lantrip.LanTripService;
+import com.tjoeunit.biz.lantrip.LanTripVO;
+import com.tjoeunit.view.lantrip.LanTripController;
+
+
 
 @Controller
 /* @RequestMapping("/adminLogin") */
@@ -19,6 +25,12 @@ public class AdminController {
 
 	@Autowired
 	private AdminService adminService;
+	
+	@Autowired
+	private LanTripController lanTrip;
+	
+	@Autowired
+	private LanTripService lanTripService;
 	
 	//로깅을 위한 변수
    // private static final Logger logger= 
@@ -44,14 +56,14 @@ public class AdminController {
             
             mav.setViewName("admin/adminIndex"); //admin페이지를 보여줌
             mav.addObject("message", "success"); //mav안에 있는 addObject()메소드를 사용해 message라는 키에 sucess라는 value를 담아 보낸다
-            
-            }else { 
-                //로그인이 실패했을 시에 다시 관리자 로그인 페이지로 이동함
-                mav.setViewName("adminLogin/adminLogin");
-                //뷰에 전달할 값
-                mav.addObject("message", "관리자의 아이디 혹은 비밀번호가 일치하지 않습니다.");
-            }
-        
+            System.out.println("관리자 로그인 체크성공");
+        }else { 
+            //로그인이 실패했을 시에 다시 관리자 로그인 페이지로 이동함
+            mav.setViewName("adminLogin/adminLogin");
+            //뷰에 전달할 값
+            mav.addObject("message", "관리자의 아이디 혹은 비밀번호가 일치하지 않습니다.");
+        }
+        		System.out.println("관리자 로그인 확인2");
                 return mav;
         }
 		
@@ -80,9 +92,14 @@ public class AdminController {
 		@RequestMapping(value="/admin/adminLanTrip.do", method=RequestMethod.GET)
 		public String adminLanTrip() {
 			System.out.println("랜선여행 페이지 이동 ");
-			return "admin/adminLanTrip";
+			return "adminLanTrip/insertLanTrip";
 		}
 		
+		@RequestMapping(value="/admin/membersManage.do", method=RequestMethod.GET)
+		public String membersManage() {
+			System.out.println("회원관리 페이지 이동 ");
+			return "admin/membersManage";
+		}
 		
 		
 		 //관리자 로그아웃 
@@ -94,5 +111,17 @@ public class AdminController {
 	        System.out.println("관리자 로그아웃 ");
 	        return "redirect:/adminLogin/adminLogin_View.do";
 	    }
+	    
+	 // 글 목록 보기
+		@RequestMapping(value="/getLanTripList.do", method = RequestMethod.GET)
+		public String getLanTripList(LanTripVO vo, Model model) {
+			System.out.println("랜선여행 목록 뷰");
+			
+			List<LanTripVO> lanTripList = lanTripService.getLanTripList(vo);
+			
+			model.addAttribute("lanTripList", lanTripList);
+			
+			return "lantrip/getLanTripList";
+		}
 	
 }

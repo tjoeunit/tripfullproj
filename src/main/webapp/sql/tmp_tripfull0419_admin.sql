@@ -15,10 +15,9 @@ ALTER TABLE admin
 			admin_id
 		);
 
-		select * from admin;
 
 /*관리자 아이디 생성*/
 INSERT INTO admin ( admin_no, admin_id, admin_pw, admin_name)
-VALUES ( 9999, 'admin', '1004', '운영자');
+VALUES ( 9, 'admin', '1004', '운영자');
 
 commit
