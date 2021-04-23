@@ -48,45 +48,61 @@
 
 
 
+<script>
+	$('#story_modify_a').click(function() {
+		if ($('#members_id').val() != $('#story_writer').val()) {
+			alert('수정 권한이 없습니다.');
+			event.preventDefault();
+			return false;
+		}
+	}
+	
+</script>
+
 <main>
-			<input name="story_no" type="hidden" value="${story.story_no}" />
-			<br><br>
-			
-			<div class="get_story_title">
-				<h2>${story.story_title}</h2>
-			</div>
-			
-			<br>
-			
-			<div class="get_story_inform">
-				<b> 작성자&nbsp;&nbsp;&nbsp;${story.story_writer}</b>
-				
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				
-				<fmt:formatDate value="${ story.story_date }" dateStyle="full" timeStyle="full"/>
-				
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				
-				조회수 <b>${story.story_cnt}</b>회
-			</div>
-			
-			<br><br><br>
-			
-				${story.story_content}
-				
-			<br><br><br>
-			
-		<hr><br>
+
+	<input type="hidden" id="story_writer" value="${story.story_writer}">
+	<input type="hidden" name="story_no" value="${story.story_no}" />
+	<input type="hidden" id="members_id" value="${members_id}">
+	
+	<br><br>
+	
+	<div class="get_story_title">
+		<h2>${story.story_title}</h2>
+	</div>
+	
+	<br>
+	
+	<div class="get_story_inform">
+		<b> 작성자&nbsp;&nbsp;&nbsp;${story.story_writer}</b>
 		
-		<div class="get_story_bottom" >
-			<a href="updateStoryPage.do?story_no=${story.story_no}">수정하기</a>&nbsp;&nbsp;&nbsp;&nbsp; 
-			<a href="deleteStory.do?story_no=${story.story_no}">삭제하기</a>&nbsp;&nbsp;&nbsp;&nbsp; 
-			<a href="getStoryList.do">목록보기</a>
-		</div>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		
-		<br><br>
+		<fmt:formatDate value="${ story.story_date }" dateStyle="full" timeStyle="full"/>
+		
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		
+		조회수 <b>${story.story_cnt}</b>회
+		
+	</div>
+	
+	<br><br><br>
+	
+		${story.story_content}
+		
+	<br><br><br>
+			
+	<hr><br>
+	
+	<div class="get_story_bottom" >
+		<a id= "story_modify_a" href="updateStoryPage.do?story_no=${story.story_no}">수정하기</a>&nbsp;&nbsp;&nbsp;&nbsp; 
+		<a href="deleteStory.do?story_no=${story.story_no}">삭제하기</a>&nbsp;&nbsp;&nbsp;&nbsp; 
+		<a href="getStoryList.do">목록보기</a>
+	</div>
+	
+	<br><br>
 </main>
 
 <%@ include file="../import/bottom.jsp" %>
