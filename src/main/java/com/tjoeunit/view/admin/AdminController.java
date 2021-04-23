@@ -40,7 +40,7 @@ public class AdminController {
         session.setAttribute("admin_id", vo.getAdmin_id());
         session.setAttribute("admin_name", vo.getAdmin_name());
 
-        mav.setViewName("admin/adminIndex"); //admin페이지를 보여줌
+        mav.setViewName("admin/adminFlight"); //admin페이지를 보여줌
         mav.addObject("message", "success"); //mav안에 있는 addObject()메소드를 사용해 message라는 키에 sucess라는 value를 담아 보낸다
         System.out.println("관리자 로그인 체크성공");
     }else {

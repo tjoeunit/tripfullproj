@@ -24,21 +24,21 @@ public class LanTripController {
 	private LanTripService lanTripService;
 		
 	// 관리자메인에서 랜선여행 관리자 페이지로 이동
-	@RequestMapping(value="/admin/adminLanTrip.do", method=RequestMethod.GET)
+	@RequestMapping(value="/adminLanTrip/adminLanTrip.do", method=RequestMethod.GET)
 	public String adminLanTrip(LanTripVO vo, Model model) {
-		System.out.println("랜선여행 페이지 이동 ");
+		System.out.println("랜선여행 페이지 이동");
 			
 		List<LanTripVO> lanTripList = lanTripService.getLanTripList(vo);
 				
 		model.addAttribute("lanTripList", lanTripList);
 				
-		return "admin/adminLanTrip";
+		return "adminLanTrip/adminLanTrip";
 	}
 			
 	// 랜선여행 관리자 등록 페이지 이동
 	@RequestMapping(value="/adminLanTrip/insertLanTrip.do", method=RequestMethod.GET)
 	public String insertLanTrip(LanTripVO vo, Model model) {
-		System.out.println("랜선여행 등록하기 ");
+		System.out.println("랜선여행 등록하기");
 		return "adminLanTrip/insertLanTrip";
 	}
 			

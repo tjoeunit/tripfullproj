@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+
 <%@ include file="../import/top.jsp" %>
 
 <style type="text/css">	
@@ -9,6 +12,9 @@
 
 	.main_title {
 		align-content: left;
+		font-size: 30px;
+		margin-bottom: 20px;
+		font-weight: 600;
 	}
 	
 	.lan_filter {
@@ -103,7 +109,7 @@
 <main>
 	
 	<br>
-	<h1 class="main_title">	랜선여행</h1>
+	<div class="main_title">랜선여행</div>
 	
 	<div class="lan_filter">
 		<ul class="lan_filter_name">여행지
@@ -136,7 +142,17 @@
 					<td class="lan_product_city">${ lantrip.lantrip_area }</td>
 				</tr>
 				<tr>
-					<td class="lan_product_detail">${ lantrip.lantrip_content }</td>
+					<td class="lan_product_detail">
+						<c:choose>
+							<c:when test="${ fn:length(lantrip.lantrip_content) > 80 }">
+								<c:out value="${ fn:substring(lantrip.lantrip_content, 0, 80) }" />...
+							</c:when>
+							<c:otherwise>
+								<c:out value="${ lantrip.lantrip_content }"/>
+							</c:otherwise>
+						</c:choose>
+						
+					</td>
 					<td class="lan_price" onclick="location.href='#'">${ lantrip.lantrip_price }원에<br>구매하기</td>
 				</tr>
 			</table>
@@ -144,8 +160,7 @@
 		</tr>
 	</table>
 	<br>
-
-<!-- 랜선여행 등록 페이지 ============================================================================== -->
+	
 		
 </main>
 
