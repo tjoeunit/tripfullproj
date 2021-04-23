@@ -22,15 +22,15 @@
     color: white;    
 }
 
-/*
-.admin_content_goods{              컨텐츠 상세 영역 
+
+.admin_content_goods{              /*컨텐츠 상세 영역 */
     height: 500px;
     padding-left: 15px;
     background-color: aqua;
     margin-bottom: 20px;
 }
 
-.admin_content_goods_submit{            컨텐츠 submit
+.admin_content_goods_submit{           /* 컨텐츠 submit*/
     height: 100px;
     float:left;
     background-color:white;
@@ -105,4 +105,3 @@ float 속성 해제
 .clearfix{
     clear: both;
 }
-*/

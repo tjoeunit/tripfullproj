@@ -2,6 +2,93 @@
     pageEncoding="UTF-8"%>    
 <%@ include file="../import/top.jsp" %>
 
+<!-- //#58CCFF  -->
+<style>
+
+	.total_div {
+		width: 1000px;
+		background-color: #EEEFF1;
+		border-radius: 10px;	
+		margin-left: 100px;
+		margin-top: 20px;
+		margin-bottom: 20px;
+	}
+	
+	.input_st {
+		border-radius: 6px;
+	  	border: none;
+	  	font-size: 15px;
+	  	padding: 5px 5px;
+	}
+	
+	.tt_table {
+		border-spacing: 0 10px;
+	}	
+		
+	.ti_div {
+		margin-left: 120px;
+		font-weight: bold;
+		font-size: 25px;
+	}
+	
+	.yg_div {
+		margin-left: 60px;
+	}
+	
+	.pi_div {
+		margin-left: 60px;
+	}
+	
+	.ii_div{
+		margin-left: 60px;
+	}
+	
+	.members_tel1 {
+		width:32px;
+		border-radius: 6px;
+	  	border: none;
+	  	font-size: 15px;
+	  	padding: 5px 5px;
+	}
+	
+	.members_tel2 {
+		width:52px;
+		border-radius: 6px;
+	  	border: none;
+	  	font-size: 15px;
+	  	padding: 5px 5px;
+	}
+	
+	.members_tel3 {
+		width:52px;
+		border-radius: 6px;
+	  	border: none;
+	  	font-size: 15px;
+	  	padding: 5px 5px;
+	}
+	
+	.members_gender {
+		border-radius: 6px;
+		border: none;
+		padding: 5px 5px;
+		font-size: 15px;
+	}
+	
+	.btn_div {
+		text-align: right;
+		margin-right: 80px;
+	}
+	
+	.btn_button {
+		border-radius: 5px;
+		font-size: 15px;
+		font-weight: bold;
+		background-color: #58CCFF;
+		border: none;
+		padding: 15px 20px;
+	}
+	
+</style>
 <script type="text/javascript">
 	$(function() {
 		$("#checkbox1").change(function(){
@@ -241,11 +328,13 @@
 	}
 </script>
 <main>
-	
-	<div>
+	<div><br>
+	<div class="ti_div">
 		회원가입
+	</div>	
+	<div class="total_div">
 		<form name="frm" action="<c:url value='/members/insertMembers.do'/>" method="post">
-			<div>
+			<div class="yg_div"><br>
 				이용약관<br>
 				<textarea name="policy" rows="8" cols="120">
 제1조(목적)
@@ -400,7 +489,7 @@
 				</textarea><br>
 				<input type="checkbox" id="checkbox1" name="checkbox1"> 이용약관에 동의합니다
 			</div><br>
-			<div>
+			<div class="pi_div">
 				개인정보 수집 및 이용<br>
 				<textarea name="personalInfo" rows="8" cols="120">
 정보통신망법 규정에 따라 트립풀에 회원가입 신청하시는 분께 수집하는 개인정보의 항목, 개인정보의 수집 및 이용목적, 개인정보의 보유 및 이용기간을 안내 드리오니 자세히 읽은 후 동의하여 주시기 바랍니다.
@@ -456,33 +545,34 @@
 			<input type="hidden" id="checkyn1" name="checkyn1" value="no">
 			<input type="hidden" id="checkyn2" name="checkyn2" value="no">
 			
-			<table>
+			<div class="ii_div">
+			<table class="tt_table">
 				<tr>
 					<td>아이디 :</td>
-					<td><input type="text" name="members_id" id="members_id"></td>
+					<td><input type="text" name="members_id" id="members_id" class="input_st"></td>
 					<td><div id="chkId2"></div></td>
 				</tr>
 				<tr>
 					<td>비밀번호 :</td>
-					<td><input type="password" name="members_pw" id="members_pw"></td>
+					<td><input type="password" name="members_pw" id="members_pw" class="input_st"></td>
 					<td><div id="chkpw1"></div></td>
 				</tr>
 				<tr>
 					<td>비밀번호확인 :</td>
-					<td><input type="password" name="members_pw2" id="members_pw2"></td>
+					<td><input type="password" name="members_pw2" id="members_pw2" class="input_st"></td>
 					<td><div id="chkpw2"></div></td>			
 				</tr>
 				<tr>
 					<td>이름 :</td>
-					<td><input type="text" name="members_name" id="members_name"></td>
+					<td><input type="text" name="members_name" id="members_name" class="input_st"></td>
 					<td><div id="chkName"></div></td>
 				</tr>
 				<tr>
 					<td>휴대전화 :</td>
 					<td>
-						<input type="text" name="members_tel1" id="members_tel1" maxlength="3" value="010" readonly>
-						- <input type="text" name="members_tel2" id="members_tel2" maxlength="4">
-						- <input type="text" name="members_tel3" id="members_tel3" maxlength="4">
+						<input type="text" name="members_tel1" id="members_tel1" class="members_tel1" maxlength="3" value="010" readonly>
+						- <input type="text" name="members_tel2" id="members_tel2" class="members_tel2" maxlength="4">
+						- <input type="text" name="members_tel3" id="members_tel3" class="members_tel3" maxlength="4">
 					</td>
 					<td>
 						<div id="chkTel"></div>
@@ -490,13 +580,13 @@
 				</tr>
 				<tr>
 					<td>이메일 :</td>
-					<td><input type="text" name="members_email" id="members_email"></td>
+					<td><input type="text" name="members_email" id="members_email" class="input_st"></td>
 					<td><div id="chkEmail"></div></td>
 				</tr>
 				<tr>
 					<td>성별 :</td>
 					<td>
-						<select name="members_gender" id="members_gender">
+						<select name="members_gender" id="members_gender" class="members_gender">
 							<option value="남자" selected>남자</option>
 						    <option value="여자">여자</option>
 						</select>
@@ -504,23 +594,26 @@
 				</tr>
 				<tr>
 					<td>우편번호 :</td>
-					<td><input type="text" id="members_zipcode" name="members_zipcode" onclick="sample4_execDaumPostcode()" placeholder="주소검색" Readonly></td>
+					<td><input type="text" id="members_zipcode" name="members_zipcode" class="input_st" onclick="sample4_execDaumPostcode()" placeholder="주소검색" Readonly></td>
 				</tr>
 				<tr>
 					<td>주소 :</td>
-					<td><input type="text" id="members_address" name="members_address"></td>
+					<td><input type="text" id="members_address" name="members_address" class="input_st"></td>
 				</tr>
 				<tr>
 					<td>주소상세 :</td>
-					<td><input type="text" id="members_address_detail" name="members_address_detail"></td>
+					<td><input type="text" id="members_address_detail" name="members_address_detail" class="input_st"></td>
 				</tr>
 			</table>
-			<br>			
-			<input type="submit" value="가입하기">
-			<button type="button" onclick="history.back()">뒤로가기</button>			
+			<br>
+			<div class="btn_div">
+				<input type="submit" value="가입하기" class="btn_button">
+				<button type="button" class="btn_button" onclick="history.back()">뒤로가기</button>
+			</div>
+			</div>						
 		</form>
 		<br>
 	</div>
-	
+	</div>	
 </main>
 <%@ include file="../import/bottom.jsp" %>

@@ -51,17 +51,20 @@ public class FlightController {
 				switch(i) {
 					case 0 : vo.setFlight_thumb(flightUploadName);
 					break;
-					
+					/* CKEDITOR 사용으로 img 사용하지 않음
 					case 1 : vo.setFlight_img1(flightUploadName);
 					break;
-				}
+					*/
+				}		
 				
 			}else {
-				switch(i) {
-				case 0 : vo.setFlight_thumb(null);
 				
-				case 1 : vo.setFlight_img1(null);
-				break;
+				switch(i) {
+					case 0 : vo.setFlight_thumb(null);
+					/* CKEDITOR 사용으로 img 사용하지 않음
+					case 1 : vo.setFlight_img1(null);
+					break;
+					*/
 				}
 			}
 		}
