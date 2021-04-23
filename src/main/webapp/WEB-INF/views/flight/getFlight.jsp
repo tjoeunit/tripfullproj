@@ -60,12 +60,6 @@
 		text-align: right;
 	}	
 	
-	.flight_product_img {
-		width: 1200px;
-		height: auto;
-		background-color: #58CCFF;
-	}
-	
 	.thumb_div {
 		float: left;
 		width: 400px;
@@ -124,14 +118,15 @@
 			<!-- float: left 제거를 위함 -->
 		</div>
 			
-		<!-- 랜선여행 상세 설명 -->	
+		<!-- 항공권 상세 설명 -->	
 		<div class="flight_product_detail">
 			설명 : ${flight.flight_content}
-		</div>				
-		<div>
-			<img class="flight_product_img" src="<c:url value='/flightUpload/${flight.flight_img1}'/>">
 		</div>
+		
+		<!-- 씨케이 에디터 사용으로 삭제 (img태그) -->
+		<!-- 주석처리만으로는 오류나서 지워놨습니다 -->
 	</div>
 	<br>
 </main>
+
 <%@ include file="../import/bottom.jsp" %>
