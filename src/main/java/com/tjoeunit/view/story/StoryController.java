@@ -74,7 +74,7 @@ public class StoryController {
 
 		if(cnt>0) {
 			msg="수정되었습니다.";
-			url="/story/getStoryList.do";
+			url="/story/getStory.do";
 		}
 
 		model.addAttribute("msg", msg);

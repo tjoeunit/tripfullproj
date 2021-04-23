@@ -48,22 +48,36 @@
 
 
 
-<script>
-	$('#story_modify_a').click(function() {
-		if ($('#members_id').val() != $('#story_writer').val()) {
-			alert('수정 권한이 없습니다.');
-			event.preventDefault();
-			return false;
-		}
-	}
+<script type="text/javascript">
+
+/* 	var htw
+ */
+	$(function(){
+		$('#story_modify_a').click(function() {
+			if ($('#members_id').val() != $('#story_writer').val()) {
+				alert('수정 권한이 없습니다.');
+				event.preventDefault();
+				return false;
+			}
+		});
+		
+		$('#story_delete_a').click(function() {
+			if ($('#members_id').val() != $('#story_writer').val()) {
+				alert('삭제 권한이 없습니다.');
+				event.preventDefault();
+				return false;
+			}
+		});
+	});
+	
 	
 </script>
 
 <main>
 
-	<input type="hidden" id="story_writer" value="${story.story_writer}">
+	<input type="hidden" id="story_writer" value="${story.story_writer}">		<!-- 작성자 -->
 	<input type="hidden" name="story_no" value="${story.story_no}" />
-	<input type="hidden" id="members_id" value="${members_id}">
+	<input type="hidden" id="members_id" value="${members_id}"> 		<!-- 세션 로그인된 id -->
 	
 	<br><br>
 	
@@ -98,7 +112,7 @@
 	
 	<div class="get_story_bottom" >
 		<a id= "story_modify_a" href="updateStoryPage.do?story_no=${story.story_no}">수정하기</a>&nbsp;&nbsp;&nbsp;&nbsp; 
-		<a href="deleteStory.do?story_no=${story.story_no}">삭제하기</a>&nbsp;&nbsp;&nbsp;&nbsp; 
+		<a id= "story_delete_a" href="deleteStory.do?story_no=${story.story_no}">삭제하기</a>&nbsp;&nbsp;&nbsp;&nbsp; 
 		<a href="getStoryList.do">목록보기</a>
 	</div>
 	

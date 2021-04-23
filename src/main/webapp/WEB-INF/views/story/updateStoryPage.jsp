@@ -60,6 +60,9 @@
 				CKEDITOR.instances['story_content'].focus();
 				event.preventDefault();
 				return false;
+			} else if($("#sessionID").val() == ""){
+				// 새글 등록 버튼 숨기기
+				$("#new_story_post").hide();
 			}
 			
 		});
