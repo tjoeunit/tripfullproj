@@ -3,7 +3,11 @@
 <%@ include file="../import/top.jsp" %>
 
 <main>
-항공권
+	<!-- ckeditor 4 -->	
+ 	<script type="text/javascript" src="<c:url value='/ckeditor/ckeditor.js'/>"></script>
+	<br>
+	<span>항공권 등록</span>
+	<br>
 	<form action="<c:url value='/flight/insertFlight.do'/>" method="post" enctype="multipart/form-data">
 		<table>
 			<tr>
@@ -34,14 +38,21 @@
 			</tr>
 			<tr>
 				<td>내용</td>
-				<td><textarea name="flight_content" cols="80" rows="10"></textarea></td>
+				<td>
+					<textarea name="flight_content" class="ckeditor"></textarea>
+					<script type="text/javascript">						
+						<!-- CKEDITOR 사용 시 VO에 IMG 사용하지 않으므로 VO 수정 필요 -->
+						<!-- VO 수정하므로 xxxxx-mapping.xml 수정 필요 -->
+						<!-- 인서트 POST 컨트롤러 수정 필요-->
+						<!-- filebrowserUploadUrl 을 통해 .do 요청 (패키지에 업로드에 대한 자신의 xxxxxCkeditorController.java 생성과 매핑) -->
+						<!-- getFlight에서 사용중인 이미지 영역 주석처리 -->
+						<!-- getFlightList에서 content를 보여주기 때문에 getFlightList 부분 컨텐트 주석처리 -->
+						CKEDITOR.replace('flight_content', {height: 700, width: 900, filebrowserUploadUrl:'/flightImage/imageUpload.do'});
+					</script>
+				</td>				
 			</tr>			
 			<tr>
 				<td>썸네일</td>
-				<td><input type="file" name="flightImgUpload"/></td>
-			</tr>
-			<tr>
-				<td>설명파일</td>
 				<td><input type="file" name="flightImgUpload"/></td>
 			</tr>
 			<tr>

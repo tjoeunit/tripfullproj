@@ -8,7 +8,10 @@ public class FlightVO {
 	private String flight_price;
 	private String flight_departure;
 	private String flight_arrival;
+	
+	/* 삭제 후 게터 세터 투스트링 새로 생성
 	private String flight_img1;
+	*/
 	
 	public int getFlight_no() {
 		return flight_no;
@@ -52,19 +55,12 @@ public class FlightVO {
 	public void setFlight_arrival(String flight_arrival) {
 		this.flight_arrival = flight_arrival;
 	}
-	public String getFlight_img1() {
-		return flight_img1;
-	}
-	public void setFlight_img1(String flight_img1) {
-		this.flight_img1 = flight_img1;
-	} 
 	
 	@Override
 	public String toString() {
 		return "FlightVO [flight_no=" + flight_no + ", flight_title=" + flight_title + ", flight_content="
 				+ flight_content + ", flight_thumb=" + flight_thumb + ", flight_price=" + flight_price
-				+ ", flight_departure=" + flight_departure + ", flight_arrival=" + flight_arrival + ", flight_img1="
-				+ flight_img1 + "]";
+				+ ", flight_departure=" + flight_departure + ", flight_arrival=" + flight_arrival + "]";
 	}	
 	
 }
