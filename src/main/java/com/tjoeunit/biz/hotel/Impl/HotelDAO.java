@@ -6,6 +6,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.tjoeunit.biz.common.PagingVO;
+import com.tjoeunit.biz.flight.FlightVO;
 import com.tjoeunit.biz.hotel.HotelVO;
 
 @Repository
@@ -35,4 +37,14 @@ public class HotelDAO {
 		  return mybatis.selectList("hotelDAOTemplate.getHotelList", vo);
 	
     } 
+	
+	//페이징처리를 위해 생성
+	public int countHotel() {
+		return mybatis.selectOne("hotelDAOTemplate.countHotel");
+	}
+	
+	//페이징처리를 위해 생성
+	public List<HotelVO> selectHotel(PagingVO vo) {
+		return mybatis.selectList("hotelDAOTemplate.selectHotel", vo);
+	}		
 }

@@ -9,8 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.tjoeunit.biz.common.PagingVO;
 import com.tjoeunit.biz.hotel.HotelService;
 import com.tjoeunit.biz.hotel.HotelVO;
 
@@ -164,8 +166,8 @@ public class HotelController {
 	}
 
 
-	// 글 목록 보기
-	@RequestMapping(value="/hotel/getHotelList.do", method = RequestMethod.GET)
+	//  글 목록 보기 : 페이징 처리 전 목록 컨트롤러
+	/*@RequestMapping(value="/hotel/getHotelList.do", method = RequestMethod.GET)
 	public String getHotelList(HotelVO vo, Model model){
 		System.out.println("숙박 목록 검색 처리");
 
@@ -174,7 +176,29 @@ public class HotelController {
 		model.addAttribute("hotelList", hotelList);
 
 		return "hotel/getHotelList";
-	}	// 모델에는 2개의 값이 담긴다. 모델엔 뷰니까 모델값과 뷰값
+	}	// 모델에는 2개의 값이 담긴다. 모델엔 뷰니까 모델값과 뷰값*/
+	
+	// 글 목록 보기 : 페이징 처리 후 목록 컨트롤러
+	@RequestMapping(value="/hotel/getHotelList.do", method = RequestMethod.GET)
+	public String hotelListPaging(PagingVO vo, Model model,
+			@RequestParam(value="nowPage", required=false) String nowPage,
+			@RequestParam(value="cntPerPage", required=false) String cntPerPage) {
+		
+		int total = hotelService.countHotel();
+		if (nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "5";
+		} else if (nowPage == null) {
+			nowPage = "1";
+		} else if (cntPerPage == null) { 
+			cntPerPage = "5";
+		}
+		
+		vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		model.addAttribute("paging", vo);
+		model.addAttribute("hotelList", hotelService.selectHotel(vo));
+		return "hotel/getHotelList";
+	}
 
 	// 글 상세 조회
 	@RequestMapping(value="/hotel/getHotel.do", method = RequestMethod.GET)
@@ -187,4 +211,6 @@ public class HotelController {
 
 		return "hotel/getHotel";
 	}
+	
+	
 }
