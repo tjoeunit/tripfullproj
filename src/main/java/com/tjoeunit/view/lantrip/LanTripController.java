@@ -47,7 +47,7 @@ public class LanTripController {
 	
 	
 	// 랜선여행 새글 등록
-	@RequestMapping( value = "/lantrip/insertLanTrip.do", method = RequestMethod.POST)
+	@RequestMapping( value = "/adminLanTrip/insertLanTrip.do", method = RequestMethod.POST)
 	public String insertLanTrip(LanTripVO vo, HttpSession session, MultipartFile[] lanTripImgUpload, Model model) throws Exception {
 		System.out.println("랜선여행 등록 처리");
 				
@@ -64,17 +64,13 @@ public class LanTripController {
 				switch(i) {
 					case 0 : vo.setLantrip_thumb(lanTripUploadName);
 					break;
-							
-					case 1 : vo.setLantrip_img1(lanTripUploadName);
-					break;
+					
 				}
 			}else {
 				switch(i) {
 					case 0 : vo.setLantrip_thumb(null);
 					break;
-						
-					case 1 : vo.setLantrip_img1(null);
-					break;
+					
 				}
 			}
 		}
@@ -94,7 +90,7 @@ public class LanTripController {
 		model.addAttribute("lanTripList", lanTripList);
 					
 		// 화면전환
-		return "admin/adminLanTrip";
+		return "adminLanTrip/adminLanTrip";
 	}
 
 // 글 수정

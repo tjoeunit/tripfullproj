@@ -38,16 +38,20 @@
 </style>
 
 <main>
+
+	<!-- ckeditor 4 -->	
+	<script type="text/javascript" src="<c:url value='/ckeditor/ckeditor.js'/>"></script>
+
 	<div class="admin_subtitle">
 		<span class="admin_subtitle_name">랜선투어 상품등록</span>
 	</div>
 	
 	<div>
-		<form action="<c:url value='/lantrip/insertLanTrip.do'/>" method="post"  enctype="multipart/form-data">
+		<form action="<c:url value='/adminLanTrip/insertLanTrip.do'/>" method="post"  enctype="multipart/form-data">
 			<table class="insert_table">
 				<tr>
 					<td class="table_td1">제목</td>
-					<td><input type="text" name="insert_product_title" /></td>
+					<td><input type="text" name="lantrip_title" /></td>
 				</tr>
 				
 				<tr>
@@ -81,14 +85,14 @@
 				
 				<tr>
 					<td class="table_td1">내용</td>
-					<td><textarea name="lantrip_content" cols="80" rows="10"></textarea></td>
+					<td>
+						<textarea name="lantrip_content" class="ckeditor"></textarea>
+						<script type="text/javascript">
+							CKEDITOR.replace('lantrip_content', {height: 700, width: 900, filebrowserUploadUrl:'/lanTripImage/imageUpload.do'});
+						</script>
+					</td>
 				</tr>
-				
-				<tr>
-					<td class="table_td1">상세설명 이미지</td>
-					<td><input type="file" name="lanTripImgUpload"/></td>
-				</tr>
-				
+								
 				<tr>
 					<td colspan="2" align="center">
 						<input type="submit" value=" 새글 등록 " />

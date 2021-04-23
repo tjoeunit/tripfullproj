@@ -10,7 +10,6 @@ public class LanTripVO {
 	private String	lantrip_price;
 	private String	lantrip_area;
 	private String	lantrip_video;
-	private String	lantrip_img1;
 	
 	public int getLantrip_no() {
 		return lantrip_no;
@@ -66,14 +65,6 @@ public class LanTripVO {
 
 	public void setLantrip_video(String lantrip_video) {
 		this.lantrip_video = lantrip_video;
-	}
-
-	public String getLantrip_img1() {
-		return lantrip_img1;
-	}
-
-	public void setLantrip_img1(String lantrip_img1) {
-		this.lantrip_img1 = lantrip_img1;
 	}
 
 	// 콜솔에서 확인 가능
