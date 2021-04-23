@@ -158,8 +158,10 @@
 					<td class="flight_product_title"><a href="<c:url value='getFlight.do?flight_no=${flight.flight_no}'/>">${flight.flight_title}</td></a>
 					<td class="flight_product_departure">${flight.flight_departure}</td>
 				</tr>
-				<tr>
-					<td class="flight_product_detail">${flight.flight_content }</td>
+				<tr>				
+					<!-- CK 에디터 사용 시 삭제해야함 ! 목록에 이미지가 뜸
+						<td class="flight_product_detail">${flight.flight_content}</td>
+					-->
 					<td class="flight_price" onclick="location.href='#'">${flight.flight_price}원에<br>구매하기</td>
 				</tr>
 			</table>

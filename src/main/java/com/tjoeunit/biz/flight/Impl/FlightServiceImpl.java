@@ -52,6 +52,5 @@ public class FlightServiceImpl implements FlightService {
 	@Override
 	public List<FlightVO> selectFlight(PagingVO vo) {
 		return flightDAO.selectFlight(vo);
-	}
-	
+	}	
 }

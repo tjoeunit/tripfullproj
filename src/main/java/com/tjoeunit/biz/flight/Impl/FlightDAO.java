@@ -36,9 +36,7 @@ public class FlightDAO {
 		return mybatis.selectList("flightDAOTemplate.getFlightList", vo);		 
     }
 	
-	
-	
-	
+
 	//페이징처리를 위해 생성
 	public int countFlight() {
 		return mybatis.selectOne("flightDAOTemplate.countFlight");

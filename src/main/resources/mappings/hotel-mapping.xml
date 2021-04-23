@@ -4,9 +4,6 @@
 <mapper namespace="hotelDAOTemplate">
 
 <!-- 숙박권 등록 -->
-
-<!-- 숙박권 등록 -->
-
 	<insert id="insertHotel">
 		<selectKey keyProperty="hotel_no" resultType="int" order="BEFORE">
 			select hotel_seq.nextval from dual
@@ -53,4 +50,22 @@
 					hotel_no=#{hotel_no}
 		]]>
 	</update>
+	
+	<!-- 페이징 처리 쿼리 (항공권 총 개수) -->
+	<select id="countHotel" resultType="int">
+		select count(*) from hotel
+	</select>
+
+	<!-- 페이징 처리 쿼리 -->
+	<select id="selectHotel" resultType="com.tjoeunit.biz.hotel.HotelVO">
+		select * from (
+			select rownum as rn, a.*
+				from (
+					select * from hotel
+					order by hotel_no desc
+					) a		
+		)
+		where rn between #{start} and #{end}
+	</select>	
+	
 </mapper>

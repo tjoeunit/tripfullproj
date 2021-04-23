@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<!-- 파일 넣기 확인 다시 해야 함, 작성자랑 members_no 못하겠음, 댓글 넣기 기능 추가해야 함 -->
-<!-- story_no, members_no, story_title, story_content, story_re_ref, story_re_lev, story_re_seq, story_cnt, story_date, storyfilename, storyuploadfile, ckeditorfuncnum -->
- <mapper namespace="storyDAOTemplate" >
+<mapper namespace="storyDAOTemplate" >
 
 <!-- 글 등록 -->	
 	<insert id="insertStory">
@@ -38,6 +36,23 @@
 <!-- 글 목록 보기 -->
 	<select id="getStoryList" resultType="com.tjoeunit.biz.story.StoryVO">
 		select * from story order by story_no desc
+	</select>
+	
+<!-- 페이징 처리 쿼리 (항공권 총 개수) -->
+	<select id="countStory" resultType="int">
+		select count(*) from story
+	</select>
+
+<!-- 페이징 처리 쿼리 -->
+	<select id="selectStory" resultType="com.tjoeunit.biz.story.StoryVO">
+		select * from (
+			select rownum as rn, a.*
+				from (
+					select * from story
+					order by story_no desc
+					) a		
+		)
+		where rn between #{start} and #{end}
 	</select>
 	
 </mapper>

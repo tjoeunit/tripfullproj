@@ -10,11 +10,11 @@
 		</selectKey>
 		insert into flight(
 			flight_no, flight_title, flight_content, flight_thumb, flight_price,
-			flight_departure, flight_arrival, flight_img1
+			flight_departure, flight_arrival <!-- , flight_img1 (CKEDITOR 사용으로 삭제) -->
 		)
 		values(
 			#{flight_no}, #{flight_title}, #{flight_content}, #{flight_thumb}, #{flight_price},
-			#{flight_departure}, #{flight_arrival}, #{flight_img1}
+			#{flight_departure}, #{flight_arrival} <!-- , #{flight_img1} (CKEDITOR 사용으로 삭제) -->
 		)
 	</insert>
 

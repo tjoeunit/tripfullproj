@@ -135,9 +135,7 @@
 					allowfullscreen>
 				</iframe>
 			</div>
-			<div>
-				<img class="lan_product_img" src="<c:url value='/lanTripUpload/${ lantrip.lantrip_img1 }'/>">
-			</div>
+			
 	</div>
 	<br>
 </main>

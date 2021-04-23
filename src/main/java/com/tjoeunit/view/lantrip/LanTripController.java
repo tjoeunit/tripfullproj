@@ -24,21 +24,21 @@ public class LanTripController {
 	private LanTripService lanTripService;
 		
 	// 관리자메인에서 랜선여행 관리자 페이지로 이동
-	@RequestMapping(value="/admin/adminLanTrip.do", method=RequestMethod.GET)
+	@RequestMapping(value="/adminLanTrip/adminLanTrip.do", method=RequestMethod.GET)
 	public String adminLanTrip(LanTripVO vo, Model model) {
-		System.out.println("랜선여행 페이지 이동 ");
+		System.out.println("랜선여행 페이지 이동");
 			
 		List<LanTripVO> lanTripList = lanTripService.getLanTripList(vo);
 				
 		model.addAttribute("lanTripList", lanTripList);
 				
-		return "admin/adminLanTrip";
+		return "adminLanTrip/adminLanTrip";
 	}
 			
 	// 랜선여행 관리자 등록 페이지 이동
 	@RequestMapping(value="/adminLanTrip/insertLanTrip.do", method=RequestMethod.GET)
 	public String insertLanTrip(LanTripVO vo, Model model) {
-		System.out.println("랜선여행 등록하기 ");
+		System.out.println("랜선여행 등록하기");
 		return "adminLanTrip/insertLanTrip";
 	}
 			
@@ -47,7 +47,7 @@ public class LanTripController {
 	
 	
 	// 랜선여행 새글 등록
-	@RequestMapping( value = "/lantrip/insertLanTrip.do", method = RequestMethod.POST)
+	@RequestMapping( value = "/adminLanTrip/insertLanTrip.do", method = RequestMethod.POST)
 	public String insertLanTrip(LanTripVO vo, HttpSession session, MultipartFile[] lanTripImgUpload, Model model) throws Exception {
 		System.out.println("랜선여행 등록 처리");
 				
@@ -64,17 +64,13 @@ public class LanTripController {
 				switch(i) {
 					case 0 : vo.setLantrip_thumb(lanTripUploadName);
 					break;
-							
-					case 1 : vo.setLantrip_img1(lanTripUploadName);
-					break;
+					
 				}
 			}else {
 				switch(i) {
 					case 0 : vo.setLantrip_thumb(null);
 					break;
-						
-					case 1 : vo.setLantrip_img1(null);
-					break;
+					
 				}
 			}
 		}
@@ -94,7 +90,7 @@ public class LanTripController {
 		model.addAttribute("lanTripList", lanTripList);
 					
 		// 화면전환
-		return "admin/adminLanTrip";
+		return "adminLanTrip/adminLanTrip";
 	}
 
 // 글 수정
