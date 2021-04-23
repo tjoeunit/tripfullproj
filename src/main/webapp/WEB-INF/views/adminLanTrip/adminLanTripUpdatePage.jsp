@@ -64,11 +64,11 @@
 	<!-- ckeditor 4 -->	
 	<script type="text/javascript" src="<c:url value='/ckeditor/ckeditor.js'/>"></script>
 	
-	<form action="<c:url value='/adminLanTrip/insertLanTrip.do'/>" method="post"  enctype="multipart/form-data">
+	<form action="<c:url value='/adminLanTrip/adminLanTripUpdate.do'/>" method="post"  enctype="multipart/form-data">
 		<div class="admin_subtitle">
-			<span class="admin_subtitle_name">랜선투어 상품등록</span>
+			<span class="admin_subtitle_name">랜선투어 상품 수정</span>
 			<span class="new_upload">
-				<input type="submit" class="insert_submit" value=" 새글 등록 " />
+				<input type="submit" class="insert_submit" value=" 수정완료 " />
 			</span>
 		</div>
 		
@@ -76,7 +76,7 @@
 			<table class="insert_table">
 				<tr>
 					<td class="table_td1">제목</td>
-					<td><input type="text" class="insert_input" name="lantrip_title" /></td>
+					<td><input type="text" class="insert_input" name="lantrip_title" value="${ lantrip.lantrip_title }"/></td>
 				</tr>
 				
 				<tr>
@@ -90,28 +90,30 @@
 							<option value="아프리카">아프리카</option>
 							<option value="오세아니아">오세아니아</option>
 						</select>
+						
+						<span>지역을 꼭 선택해주세요</span>
 					</td>
 				</tr>
 				
 				<tr>
 					<td class="table_td1">가격</td>
-					<td><input type="text" class="insert_input" name="lantrip_price" placeholder="숫자만 입력해주세요"/></td>
+					<td><input type="text" class="insert_input" name="lantrip_price" value="${lantrip.lantrip_price}"/></td>
 				</tr>
 				
 				<tr>
 					<td class="table_td1">썸네일</td>
-					<td><input type="file" class="insert_input" name="lanTripImgUpload"/></td>
+					<td><input type="file" class="insert_input" name="lanTripImgUpload" value="${ lantrip.lantrip_thumb }"/></td>
 				</tr>
 				
 				<tr>
 					<td class="table_td1">영상url</td>
-					<td><input type="text" class="insert_input" name="lantrip_video"/></td>
+					<td><input type="text" class="insert_input" name="lantrip_video" value="${ lantrip.lantrip_video }"/></td>
 				</tr>
 				
 				<tr>
 					<td class="table_td1">내용</td>
 					<td>
-						<textarea name="lantrip_content" class="ckeditor"></textarea>
+						<textarea name="lantrip_content" class="ckeditor">${ lantrip.lantrip_content }</textarea>
 						<script type="text/javascript">
 							CKEDITOR.replace('lantrip_content', {height: 700, width: 900, filebrowserUploadUrl:'/lanTripImage/imageUpload.do'});
 						</script>

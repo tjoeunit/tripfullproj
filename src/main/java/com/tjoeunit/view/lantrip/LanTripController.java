@@ -1,6 +1,7 @@
 package com.tjoeunit.view.lantrip;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,19 +17,22 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.tjoeunit.biz.common.PagingVO;
+import com.tjoeunit.biz.hotel.HotelVO;
 import com.tjoeunit.biz.lantrip.LanTripService;
 import com.tjoeunit.biz.lantrip.LanTripVO;
+import com.tjoeunit.biz.story.StoryVO;
 
 @Controller
 public class LanTripController {
 	
 	@Autowired
 	private LanTripService lanTripService;
-		
-	// 관리자메인에서 랜선여행 관리자 페이지로 이동
+
+/*관리자 컨트롤*/
+// adminLanTripList로 이동
 	@RequestMapping(value="/adminLanTrip/adminLanTrip.do", method=RequestMethod.GET)
 	public String adminLanTrip(LanTripVO vo, Model model) {
-		System.out.println("랜선여행 페이지 이동");
+		System.out.println("랜선투어 관리자 목록으로 이동");
 			
 		List<LanTripVO> lanTripList = lanTripService.getLanTripList(vo);
 				
@@ -40,15 +44,12 @@ public class LanTripController {
 	// 랜선여행 관리자 등록 페이지 이동
 	@RequestMapping(value="/adminLanTrip/insertLanTrip.do", method=RequestMethod.GET)
 	public String insertLanTrip(LanTripVO vo, Model model) {
-		System.out.println("랜선여행 등록하기");
+		System.out.println("랜선투어 등록하기");
 		return "adminLanTrip/insertLanTrip";
 	}
-			
-	// 랜선여행 관리자 상세보기
+
 	
-	
-	
-	// 랜선여행 새글 등록
+// 관리자에서 랜선여행 새글 등록
 	@RequestMapping( value = "/adminLanTrip/insertLanTrip.do", method = RequestMethod.POST)
 	public String insertLanTrip(LanTripVO vo, HttpSession session, MultipartFile[] lanTripImgUpload, Model model) throws Exception {
 		System.out.println("랜선여행 등록 처리");
@@ -86,34 +87,119 @@ public class LanTripController {
 		System.out.println(lan_url);
 				
 		// DB연동처리
-		lanTripService.insertLanTrip(vo);
-				
-		List<LanTripVO> lanTripList = lanTripService.getLanTripList(vo);
-		model.addAttribute("lanTripList", lanTripList);
-					
+		System.out.println(vo);
+		int cnt = lanTripService.insertLanTrip(vo);
+		
+		String msg="랜선투어 등록 실패", url="/adminLanTrip/insertLanTrip.do";
+
+		if(cnt>0) {
+			msg="랜선투어 등록 성공";
+			url="/adminLanTrip/adminLanTrip.do";
+		}
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
 		// 화면전환
-		return "adminLanTrip/adminLanTrip";
+		return "common/message";		
 	}
 
+	
+// 관리자에서 글 상세보기
+	@RequestMapping(value="/adminLanTrip/adminLanTripDetail.do", method = RequestMethod.GET)
+	 public String getAdminLanTrip(LanTripVO vo, Model model) {
+		 System.out.println("랜선여행 관리자 상세 조회 처리");
+		 
+		 LanTripVO lanTrip = lanTripService.getLanTrip(vo);
+		 
+		 model.addAttribute("lantrip", lanTrip);
+		 
+		 return "adminLanTrip/adminLanTripDetail";
+	 }
+	
+// 글 수정 페이지 불러오기
+	@RequestMapping(value="/adminLanTrip/adminLanTripUpdatePage.do", method = RequestMethod.GET)
+	public String updateLanTripPage(LanTripVO vo, Model model) {
+		
+		System.out.println("랜선투어 수정 페이지 호출");
+		LanTripVO lanTrip = lanTripService.getLanTrip(vo);
+		
+		model.addAttribute("lantrip", lanTrip);
+		return null;
+		
+	}
+
+	
 // 글 수정
-	@RequestMapping("/updateLanTrip.do")
-	public String updateLanTrip(@ModelAttribute("lanTrip") LanTripVO vo) {
+	@RequestMapping(value="/adminLanTrip/adminLanTripUpdate.do", method = RequestMethod.GET)
+	public String updateLanTrip(LanTripVO vo, HttpSession session, MultipartFile[] lanTripImgUpload, Model model) throws Exception {
 		System.out.println("글 수정 처리" + vo);
 		
-		lanTripService.updateLanTrip(vo);
-		return "redirect:getLanTripList.do";
+		/*
+		System.out.println("랜선투어 수정 페이지 호출");
+		// 파일 업로드 처리
+				String lanTripImg = session.getServletContext().getRealPath("/lanTripUpload/");
+				System.out.println("==>"+lanTripImgUpload.length);
+						
+				for(int i = 0; i < lanTripImgUpload.length; i++) {
+					System.out.println("==>"+lanTripImgUpload[i].isEmpty());
+							
+					if(!lanTripImgUpload[i].isEmpty()) {
+						String lanTripUploadName = lanTripImgUpload[i].getOriginalFilename();
+						lanTripImgUpload[i].transferTo(new File(lanTripImg+lanTripUploadName));
+						switch(i) {
+							case 0 : vo.setLantrip_thumb(lanTripUploadName);
+							break;
+							
+						}
+					}else {
+						switch(i) {
+							case 0 : vo.setLantrip_thumb(null);
+							break;
+							
+						}
+					}
+				}
+				
+				// 영상주소를 새로 입력하는 경우에는 이걸쓰면 되지만 기존 주소를 사용한다면 다른 방법 필요
+				// 영상주소 처리 : DB에 저장할 때 변경된 주소로 저장하기 위함
+				
+				String lan_url = vo.getLantrip_video();
+				lan_url = "https://www.youtube.com/embed"+lan_url.substring(16);
+						
+				vo.setLantrip_video(lan_url); // 변경된 주소 저장
+						
+				System.out.println(lan_url);
+				*/
+		
+				// DB연동처리
+				System.out.println(vo);
+				int cnt = lanTripService.insertLanTrip(vo);
+				
+				String msg="랜선투어 수정 실패", url="/adminLanTrip/adminLanTripUpdate.do";
+
+				if(cnt>0) {
+					msg="랜선투어 수정 성공";
+					url="/adminLanTrip/adminLanTripUpdate.do";
+				}
+				
+				model.addAttribute("msg", msg);
+				model.addAttribute("url", url);
+				
+				// 화면전환
+				return "common/message";		
 	}
 	
 // 글 삭제
-	@RequestMapping("/deleteLanTrip.do")
-	public String deleteLanTrip(LanTripVO vo) {
+	@RequestMapping(value="/adminLanTrip/adminLanTripDelete.do", method = RequestMethod.GET)
+	public String deleteLanTrip(LanTripVO vo, Model model) {
 		System.out.println("글 삭제 처리");
 		
-		lanTripService.deleteLanTrip(vo);
-		return "redirect:getLanTripList.do";
+	
+		return "adminLanTrip/adminLanTrip";
 	}
 
-	
+/*고객이 보는 화면 컨트롤*/	
 // 글 목록 보기
 	@RequestMapping(value="/lantrip/getLanTripList.do", method = RequestMethod.GET)
 	public String lanTripListPaging(PagingVO vo, Model model,

@@ -14,8 +14,12 @@
 	.admin_subtitle_name {
 		font-size: 30px;
 		display: inline-block;
-		width: 85%;
+		width: 1000px;
 		font-weight: 600;
+	}
+	
+	.new_upload {
+		width: 150px;
 	}
 	
 	.new_upload a {
@@ -96,7 +100,7 @@
 		<c:forEach items="${ lanTripList }" var="lantrip">
 			<tr>
 				<td>${ lantrip.lantrip_no }</td>
-				<td class="list_product_title"><a href="<c:url value='getLanTrip.do?lantrip_no=${ lantrip.lantrip_no }'/>">${ lantrip.lantrip_title }</a></td>
+				<td class="list_product_title"><a href="<c:url value='adminLanTripDetail.do?lantrip_no=${ lantrip.lantrip_no }'/>">${ lantrip.lantrip_title }</a></td>
 				<td>${ lantrip.lantrip_area }</td>
 				<td>${ lantrip.lantrip_price }원</td>
 			</tr>

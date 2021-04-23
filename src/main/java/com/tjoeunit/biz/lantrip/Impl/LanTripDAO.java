@@ -25,7 +25,7 @@ public class LanTripDAO {
 	}
 	  
 	public void deleteLanTrip(LanTripVO vo){
-		  mybatis.delete("lanTripDAOTemplate.deleteLanTrip", vo);
+		mybatis.delete("lanTripDAOTemplate.deleteLanTrip", vo);
 	}  
 	  
 	public LanTripVO getLanTrip(LanTripVO vo) { 
