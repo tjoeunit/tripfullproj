@@ -7,7 +7,7 @@ public class LanTripVO {
 	private String	lantrip_title;
 	private String	lantrip_content;
 	private String	lantrip_thumb;
-	private int		lantrip_price;
+	private String	lantrip_price;
 	private String	lantrip_area;
 	private String	lantrip_video;
 	private String	lantrip_img1;
@@ -44,11 +44,11 @@ public class LanTripVO {
 		this.lantrip_thumb = lantrip_thumb;
 	}
 
-	public int getLantrip_price() {
+	public String getLantrip_price() {
 		return lantrip_price;
 	}
 
-	public void setLantrip_price(int lantrip_price) {
+	public void setLantrip_price(String lantrip_price) {
 		this.lantrip_price = lantrip_price;
 	}
 
