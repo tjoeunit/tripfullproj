@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.tjoeunit.biz.common.PagingVO;
 import com.tjoeunit.biz.hotel.HotelService;
 import com.tjoeunit.biz.hotel.HotelVO;
 
@@ -40,5 +41,16 @@ public class HotelServiceImpl implements HotelService {
 	public void deleteHotel(HotelVO vo) {
 		hotelDAO.deleteHotel(vo);
 	}
-
+	
+	//페이징처리를 위해 생성	
+	@Override
+	public int countHotel() {
+		return hotelDAO.countHotel();		
+	}
+	
+	//페이징처리를 위해 생성
+	@Override
+	public List<HotelVO> selectHotel(PagingVO vo) {
+		return hotelDAO.selectHotel(vo);
+	}
 }
