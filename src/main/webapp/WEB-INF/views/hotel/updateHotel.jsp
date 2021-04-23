@@ -51,9 +51,6 @@
 		}
 	});
 });
-	
-	
-	
 </script>
 
 <main>
@@ -89,7 +86,7 @@
 			</tr>
 			<tr>
 				<td>썸네일</td>
-				<td><input type="file" name="hotelImgUpload" id="hotel_thumb" /><span>현재 '${hotel.hotel_thumb}'파일이 업로드 되어있습니다.</span>		
+				<td><input type="file" name="hotelImgUpload" id="hotel_thumb" />현재 '${hotel.hotel_thumb}'파일을 수정하시겠습니까?	
 				</td>
 				
 			</tr>
