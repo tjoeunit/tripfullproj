@@ -105,7 +105,7 @@
 <script>
 	function selChange() {
 		var sel = document.getElementById('cntPerPage').value;
-		location.href="boardList?nowPage=${paging.nowPage}&cntPerPage="+sel;
+		location.href="getFlightList.do?nowPage=${paging.nowPage}&cntPerPage="+sel;
 	}
 </script>
 <!-- 페이징 옵션 처리 자바스크립트 끝 -->

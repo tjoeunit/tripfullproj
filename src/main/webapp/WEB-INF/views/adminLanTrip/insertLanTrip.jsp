@@ -12,10 +12,10 @@
 	}
 	
 	.admin_subtitle_name {
-		font-size: 30px;
 		display: inline-block;
 		width: 85%;
 		font-weight: 600;
+		font-size: 30px;
 	}
 	
 	table {
@@ -24,14 +24,22 @@
 	}
 	
 	.table_td1 {
-		width: 150px;
+		width: 100px;
 	}
 	
 	input {
 		padding: 5px;
-		width: %;
+		width: 900px;
 		border: none;
 		background-color: lightgray;
+	}
+	
+	.insert_submit {
+		cursor: pointer;
+	}
+	.insert_submit:hover {
+		background-color: black;
+		color: white;
 	}
 	
 	
@@ -70,7 +78,7 @@
 				
 				<tr>
 					<td class="table_td1">가격</td>
-					<td><input type="text" name="lantrip_price" /> 원</td>
+					<td><input type="text" name="lantrip_price" placeholder="숫자만 입력해주세요"/></td>
 				</tr>
 				
 				<tr>
@@ -94,8 +102,9 @@
 				</tr>
 								
 				<tr>
-					<td colspan="2" align="center">
-						<input type="submit" value=" 새글 등록 " />
+					<td></td>
+					<td>
+						<input type="submit" class="insert_submit"value=" 새글 등록 " />
 					</td>
 				</tr>
 			</table>

@@ -12,8 +12,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.tjoeunit.biz.common.PagingVO;
 import com.tjoeunit.biz.lantrip.LanTripService;
 import com.tjoeunit.biz.lantrip.LanTripVO;
 
@@ -114,11 +116,26 @@ public class LanTripController {
 	
 // 글 목록 보기
 	@RequestMapping(value="/lantrip/getLanTripList.do", method = RequestMethod.GET)
-	public String getLanTripList(LanTripVO vo, Model model) {
-		System.out.println("랜선여행 목록 뷰");
+	public String lanTripListPaging(PagingVO vo, Model model,
+			@RequestParam(value="nowPage", required=false) String nowPage,
+			@RequestParam(value="cntPerPage", required=false) String cntPerPage) {
 		
-		List<LanTripVO> lanTripList = lanTripService.getLanTripList(vo);
-		model.addAttribute("lanTripList", lanTripList);
+		int total = lanTripService.countLanTrip();
+		if (nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "5";
+		} else if (nowPage == null) {
+			nowPage = "1";
+		} else if (cntPerPage == null) { 
+			cntPerPage = "5";
+		}
+		
+		vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		
+		model.addAttribute("paging", vo);
+		model.addAttribute("lanTripList", lanTripService.selectLanTrip(vo));
+
+		System.out.println("랜선여행 목록 뷰");
 		
 		return "lantrip/getLanTripList";
 	}
