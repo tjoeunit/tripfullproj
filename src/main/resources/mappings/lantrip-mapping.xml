@@ -15,11 +15,7 @@
 			lantrip_price,
 			lantrip_area,
 			lantrip_video,
-			lantrip_img1,
-			lantrip_img2,
-			lantrip_img3,
-			lantrip_img4,
-			lantrip_img5
+			lantrip_img1
 			)
 		values(
 			#{lantrip_no},
@@ -29,11 +25,7 @@
 			#{lantrip_price},
 			#{lantrip_area},
 			#{lantrip_video},
-			#{lantrip_img1}, 
-			#{lantrip_img2}, 
-			#{lantrip_img3}, 
-			#{lantrip_img4}, 
-			#{lantrip_img5}
+			#{lantrip_img1}
 			)
 	</insert>
 

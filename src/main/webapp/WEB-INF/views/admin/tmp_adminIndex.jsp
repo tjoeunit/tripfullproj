@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>     
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+   
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>adminIndex</title>
 
-<link rel="stylesheet" href="../css/admin/lanTripEnroll.css">
+<link rel="stylesheet" href="../css/admin/adminIndex.css">
  
 <script
   src="https://code.jquery.com/jquery-3.4.1.js"
@@ -17,14 +18,20 @@
 
 </head>
 <body>
+<%-- <c:if test="${message == 'success' }"> <!-- controller에서 보낸 메시지의 값이 success면 c:if문이 실행.-->
+<h2>
+    ${sessionScope.admin_name}(${sessionScope.admin_id})님 환영합니다.
+    	<!--sessionScope는 세션에 담은 setAttribute()메소드 안에 있는 값을 jsp에서 JSTL로 간단히 사용. -->
+</h2>
+</c:if> --%>
 
   <div class="wrapper">
         <div class="wrap">
             <!-- gnv_area -->    
             <div class="top_gnb_area">
                 <ul class="list">    
-                    <li><a href="<c:url value='../index/index.do'/>">메인 페이지</a></li>
-                    <li><a href="/member/logout.do">로그아웃</a></li>
+                    <li><a href="<c:url value='../index.do'/>">메인 페이지</a></li>
+                    <li><a href="../adminLogin/adminLogout.do">로그아웃</a></li>
                     <li>고객센터</li>            
                 </ul>
             </div>
@@ -51,71 +58,31 @@
 	                          <a class="admin_list_04" href="../admin/adminLanTrip.do">랜선여행</a>                            
 	                      </li>
 	                    </ul>
-	                <h2>고객</h2>
+		                <h2>회원</h2>
 	                  <ul>
-	                      <li >
-	                          <a class="admin_list_05" href="/admin/memberEnroll">고객등록</a>
-	                      </li>
 	                      <li>
-	                          <a class="admin_list_06" href="/admin/membersList">고객목록</a>
-	                      </li>
-	                      <li>
-	                          <a class="admin_list_07" href="/admin/membersManage">고객관리</a>                            
+	                          <a class="admin_list_05" href="../admin/membersManage.do">회원관리</a>                            
 	                      </li>                                                                                             
 	                  </ul><br>
 	                <h2>여행이야기</h2>                  
                 </div> 
                 <div class="admin_content_wrap">
-                    <div class="admin_content_subject"><span>랜선여행 관리</span></div>
-                    <div class="admin_content_lantrip">
-                    	<form  class="lan_table" action="insertLanTrip.do" method="post"  enctype="multipart/form-data">
-							<table class="lan_enroll" border="1" cellpadding="0" cellspacing="0">
-								<tr >
-									<td bgcolor="#58CCFF" width="80%">제목</td>
-									<td align="left" width="80%"><input type="text" name="lantrip_title" /></td>
-								</tr>
-								<tr>
-									<td bgcolor="#58CCFF" width="70">지역</td>
-									<td align="left"><input type="text" name="lantrip_area" /></td>
-								</tr>
-								<tr>
-									<td bgcolor="#58CCFF" width="70">가격</td>
-									<td align="left"><input type="number" name="lantrip_price" />원</td>
-								</tr>
-								<tr>
-									<td bgcolor="#58CCFF">내용</td>
-									<td align="left"><textarea name="lantrip_content" cols="40" rows="10"></textarea></td>
-								</tr>
-								<tr>
-									<td bgcolor="#58CCFF">썸네일</td>
-									<td><input type="file" name="lantrip_thumb"/></td>
-								</tr>
-								<tr>
-									<td bgcolor="#58CCFF">설명파일</td>
-									<td><input type="file" name="lantrip_img" multiple="multiple"/></td>
-								</tr>
-								<tr>
-									<td colspan="2" align="center"><input type="submit"
-										value=" 새글 등록 " /><input type="submit"
-										value=" 뒤로가기 " /></td>
-								</tr>
-							</table>
-						</form>
-                    </div>
+                    <div class="admin_content_subject"><span>관리자 메인화면</span></div>
+                    <div class="admin_content_goods"></div>
 					<div class="admin_content_goods_submit">                    
-	                    <form action="./lanTripEnroll.do">
+	<!--                     <form action="">
 	                   		 <input type="submit" value="등록">
 	                    </form>
 	                </div>
 	                <div class="admin_content_goods_submit">    
-	                   <form action="updateLanTrip.do">
+	                   <form action="">
 	                   		 <input type="submit" value="수정">
 	                    </form>
 	                </div>
-	                <div class="admin_content_goods_submit">    
-	                   <form action="deleteLanTrip.do">
+	                <div class="admin_content_flight_submit">    
+	                   <form action="">
 	                   		 <input type="submit" value="삭제">
-	                    </form>  
+	                    </form>   -->
                      </div>                                     
                 </div> 
                 <div class="clearfix"></div> 

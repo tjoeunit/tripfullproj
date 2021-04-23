@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.tjoeunit.biz.common.PagingVO;
 import com.tjoeunit.biz.flight.FlightVO;
 
 @Repository
@@ -16,7 +17,7 @@ public class FlightDAO {
 	
 	public int insertFlight(FlightVO vo){
 		return mybatis.insert("flightDAOTemplate.insertFlight", vo);
-	  }
+	}
 	
     public void updateFlight(FlightVO vo){
     	mybatis.update("flightDAOTemplate.updateFlight", vo);
@@ -38,14 +39,15 @@ public class FlightDAO {
 	
 	
 	
-	////////////////////////////////////////////////페이징
+	//페이징처리를 위해 생성
 	public int countFlight() {
 		return mybatis.selectOne("flightDAOTemplate.countFlight");
 	}
 	
-	public List<FlightVO> selectFlight(FlightVO vo){
+	//페이징처리를 위해 생성
+	public List<FlightVO> selectFlight(PagingVO vo) {
 		return mybatis.selectList("flightDAOTemplate.selectFlight", vo);
 	}	
-	////////////////////////////////////////////////페이징
+	
 	
 }

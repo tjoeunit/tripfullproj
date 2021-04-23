@@ -98,8 +98,7 @@
 
 <main>
 	<div class="flight_div">
-		<div class="info_div">
-		
+		<div class="info_div">		
 			<div class="thumb_div">
 				<img class="flight_product_thumb" src="<c:url value='/flightUpload/${flight.flight_thumb}'/>">			
 			</div>
@@ -121,23 +120,14 @@
 			
 		</div>
 		
-		<div class="clear_div"></div>
+		<div class="clear_div">
+			<!-- float: left 제거를 위함 -->
+		</div>
 			
 		<!-- 랜선여행 상세 설명 -->	
 		<div class="flight_product_detail">
-						
-		</div>		
-		<div>
-				설명 : ${flight.flight_content}
-			</div>
-		<div class="flight_video">
-			<iframe width="1200" height="675" src="https://www.youtube.com/embed/${flight.flight_video}" title="YouTube video player" 
-				frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-			</iframe>
-		</div>
-		
-		<!-- core의 if문 이용해서 코드 실행할 수 있게 함 null인 경우 skip될 수 있게 처리  jstl 이용해서  -->
-		
+			설명 : ${flight.flight_content}
+		</div>				
 		<div>
 			<img class="flight_product_img" src="<c:url value='/flightUpload/${flight.flight_img1}'/>">
 		</div>

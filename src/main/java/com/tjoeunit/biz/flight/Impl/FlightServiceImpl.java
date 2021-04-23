@@ -40,22 +40,18 @@ public class FlightServiceImpl implements FlightService {
 	@Override
 	public void deleteFlight(FlightVO vo) {
 		flightDAO.deleteFlight(vo);
-	}
-
+	}	
 	
-	
-	///////////////////////////////////////////////////페이징
+	//페이징처리를 위해 생성
 	@Override
 	public int countFlight() {		
 		return flightDAO.countFlight();
 	}
-
+	
+	//페이징처리를 위해 생성
 	@Override
 	public List<FlightVO> selectFlight(PagingVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+		return flightDAO.selectFlight(vo);
 	}
-
 	
-	///////////////////////////////////////////////////페이징
 }
