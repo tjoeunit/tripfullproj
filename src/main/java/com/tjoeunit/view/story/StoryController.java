@@ -1,20 +1,15 @@
 package com.tjoeunit.view.story;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
-
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import com.tjoeunit.biz.members.MembersService;
-import com.tjoeunit.biz.members.MembersVO;
+import com.tjoeunit.biz.common.PagingVO;
 import com.tjoeunit.biz.story.StoryService;
 import com.tjoeunit.biz.story.StoryVO;
 
@@ -79,7 +74,7 @@ public class StoryController {
 
 		if(cnt>0) {
 			msg="수정되었습니다.";
-			url="/story/getStoryList.do";
+			url="/story/getStory.do";
 		}
 
 		model.addAttribute("msg", msg);
@@ -106,7 +101,7 @@ public class StoryController {
 	
 
 	
-// 글 목록 보기
+/* 글 목록 보기 : 페이징 처리 전
 	@RequestMapping(value="/getStoryList.do",  method = RequestMethod.GET)
 	public String getStoryList(StoryVO vo, Model model) {	//ModelAndView의 Model 딴에 있는 변수를 매개변수로
 
@@ -118,6 +113,30 @@ public class StoryController {
 		return "story/getStoryList";
 
 	}
+*/
+	
+// 글 목록 보기 : 페이징 처리 후
+	@RequestMapping(value="/getStoryList.do", method = RequestMethod.GET)
+	public String storyListPaging(PagingVO vo, Model model,
+			@RequestParam(value="nowPage", required=false) String nowPage,
+			@RequestParam(value="cntPerPage", required=false) String cntPerPage) {
+		
+		int total = storyService.countStory();
+		if (nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "5";
+		} else if (nowPage == null) {
+			nowPage = "1";
+		} else if (cntPerPage == null) { 
+			cntPerPage = "5";
+		}
+		
+		vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		model.addAttribute("paging", vo);
+		model.addAttribute("storyList", storyService.selectStory(vo));
+		return "story/getStoryList";
+	}		
+	
 
 // 글 상세 조회
 	@RequestMapping(value="/getStory.do",  method = RequestMethod.GET)

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.tjoeunit.biz.common.PagingVO;
 import com.tjoeunit.biz.story.StoryService;
 import com.tjoeunit.biz.story.StoryVO;
 
@@ -45,6 +46,18 @@ public class StoryServiceImpl implements StoryService {
 	@Override
 	public void deleteStory(StoryVO vo) {
 		storyDAO.deleteStory(vo);
+	}
+	
+	//페이징처리를 위해 생성
+	@Override
+	public int countStory() {		
+		return storyDAO.countStory();
+	}
+	
+	//페이징처리를 위해 생성
+	@Override
+	public List<StoryVO> selectStory(PagingVO vo) {
+		return storyDAO.selectStory(vo);
 	}
 
 }

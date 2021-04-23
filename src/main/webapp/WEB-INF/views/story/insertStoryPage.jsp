@@ -44,17 +44,39 @@
 
 </style>
 
+<!-- 제목, 내용 null check -->
+<script type="text/javascript">
+	$(function() {
+		$('form[name=enroll_story]').submit(function() {
+						
+			if($('#story_title').val().length < 1) {
+				alert('제목을 입력하세요.');
+				$('#story_title').focus();
+				event.preventDefault();
+				return false;	
+				
+			} else if(CKEDITOR.instances['story_content'].getData()=="") {
+				alert('내용을 입력하세요.');
+				CKEDITOR.instances['story_content'].focus();
+				event.preventDefault();
+				return false;
+			}
+			
+		});
+	});
+</script>
+
 <main>
 
 <!-- ckeditor 4 -->
  	<script type="text/javascript" src = "<c:url value = '/ckeditor/ckeditor.js' />"></script>
 			<br><h1>여행 이야기 등록</h1><hr><br>
-			<form action="insertStory.do" method="post" enctype="multipart/form-data">
+			<form action="insertStory.do" name="enroll_story" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="members_no" value="${members_no}">
 				<table class="story_insert">
 					<tr>
-						<td class="insert_story_subject">제목</td>
-						<td><input type="text" name="story_title" placeholder = "제목을 입력하세요"/></td>
+						<td class="insert_story_subject" >제목</td>
+						<td><input type="text" name="story_title" id="story_title" placeholder = "제목을 입력하세요"/></td>
 					</tr>
 					
 					<tr>
@@ -64,7 +86,7 @@
 					<tr>
 						<td class="insert_story_content">내용</td>
 						<td>
-							<textarea id="story_content"  class="ckeditor" name="story_content"></textarea>
+							<textarea id="story_content"  name="story_content"></textarea>
 							<script type="text/javascript">
 								CKEDITOR.replace('story_content', {height: 700, width: 900, filebrowserUploadUrl:'/storyImage/imageUpload.do'});
 							</script>
