@@ -9,11 +9,6 @@ public class FlightVO {
 	private String flight_departure;
 	private String flight_arrival;
 	private String flight_img1;
-	private String flight_img2;
-	private String flight_img3;
-	private String flight_img4;
-	private String flight_img5;
-	private String flight_video;
 	
 	public int getFlight_no() {
 		return flight_no;
@@ -62,45 +57,14 @@ public class FlightVO {
 	}
 	public void setFlight_img1(String flight_img1) {
 		this.flight_img1 = flight_img1;
-	}
-	public String getFlight_img2() {
-		return flight_img2;
-	}
-	public void setFlight_img2(String flight_img2) {
-		this.flight_img2 = flight_img2;
-	}
-	public String getFlight_img3() {
-		return flight_img3;
-	}
-	public void setFlight_img3(String flight_img3) {
-		this.flight_img3 = flight_img3;
-	}
-	public String getFlight_img4() {
-		return flight_img4;
-	}
-	public void setFlight_img4(String flight_img4) {
-		this.flight_img4 = flight_img4;
-	}
-	public String getFlight_img5() {
-		return flight_img5;
-	}
-	public void setFlight_img5(String flight_img5) {
-		this.flight_img5 = flight_img5;
-	}
-	public String getFlight_video() {
-		return flight_video;
-	}
-	public void setFlight_video(String flight_video) {
-		this.flight_video = flight_video;
-	}
+	} 
 	
 	@Override
 	public String toString() {
 		return "FlightVO [flight_no=" + flight_no + ", flight_title=" + flight_title + ", flight_content="
 				+ flight_content + ", flight_thumb=" + flight_thumb + ", flight_price=" + flight_price
 				+ ", flight_departure=" + flight_departure + ", flight_arrival=" + flight_arrival + ", flight_img1="
-				+ flight_img1 + ", flight_img2=" + flight_img2 + ", flight_img3=" + flight_img3 + ", flight_img4="
-				+ flight_img4 + ", flight_img5=" + flight_img5 + ", flight_video=" + flight_video + "]";
-	}
+				+ flight_img1 + "]";
+	}	
 	
 }

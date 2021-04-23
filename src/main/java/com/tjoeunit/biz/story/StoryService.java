@@ -16,7 +16,7 @@ public interface StoryService {
 	StoryVO getStory(StoryVO vo);
 	
 	//글 수정
-	void updateStory(StoryVO vo);
+	int updateStory(StoryVO vo);
 	
 	//글 삭제
 	void deleteStory(StoryVO vo);

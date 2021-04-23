@@ -8,11 +8,14 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.tjoeunit.biz.common.PagingVO;
 import com.tjoeunit.biz.flight.FlightService;
 import com.tjoeunit.biz.flight.FlightVO;
 
@@ -27,8 +30,7 @@ public class FlightController {
 	@RequestMapping(value="/insertFlight.do", method = RequestMethod.GET)
 	public String insertFlightPage() {
 		return "flight/insertFlight";
-	}
-	
+	}	
 	
 	// 글 등록 처리
 	@RequestMapping(value = "/insertFlight.do", method = RequestMethod.POST)
@@ -52,18 +54,6 @@ public class FlightController {
 					
 					case 1 : vo.setFlight_img1(flightUploadName);
 					break;
-					
-					case 2 : vo.setFlight_img2(flightUploadName);
-					break;
-					
-					case 3 : vo.setFlight_img3(flightUploadName);
-					break;
-					
-					case 4 : vo.setFlight_img4(flightUploadName);
-					break;
-					
-					default : vo.setFlight_img5(flightUploadName);
-					break;
 				}
 				
 			}else {
@@ -72,31 +62,10 @@ public class FlightController {
 				
 				case 1 : vo.setFlight_img1(null);
 				break;
-				
-				case 2 : vo.setFlight_img2(null);
-				break;
-				
-				case 3 : vo.setFlight_img3(null);
-				break;
-				
-				case 4 : vo.setFlight_img4(null);
-				break;
-				
-				default : vo.setFlight_img5(null);
-				break;
 				}
 			}
 		}
-		
-		// DB연동처리
-		String youUrl = vo.getFlight_video();
-		String subUrl = "";
-		
-		if(youUrl.length() > 17) {
-			subUrl = youUrl.substring(17);
-			vo.setFlight_video(subUrl);
-		}		
-		
+				
 		System.out.println(vo);
 		
 		int cnt = flightService.insertFlight(vo);
@@ -132,21 +101,39 @@ public class FlightController {
 		flightService.deleteFlight(vo);
 		return "redirect:getFlightList.do";
 	}
-
 		
-	// 글 목록 보기
+	/* 글 목록 보기 : 페이징 처리 전 목록 컨트롤러
 	@RequestMapping(value="/getFlightList.do", method = RequestMethod.GET)
 	public String getFlightList(FlightVO vo, Model model) {
 		System.out.println("항공권 목록 페이지");
-		
-		List<FlightVO> flightList = flightService.getFlightList(vo);
-		
-		model.addAttribute("flightList", flightList);
-		
+		List<FlightVO> flightList = flightService.getFlightList(vo);		
+		model.addAttribute("flightList", flightList);		
 		return "flight/getFlightList";
 	}
+	*/
+	
+	// 글 목록 보기 : 페이징 처리 후 목록 컨트롤러
+	@RequestMapping(value="/getFlightList.do", method = RequestMethod.GET)
+	public String flightListPaging(PagingVO vo, Model model,
+			@RequestParam(value="nowPage", required=false) String nowPage,
+			@RequestParam(value="cntPerPage", required=false) String cntPerPage) {
 		
-
+		int total = flightService.countFlight();
+		if (nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "5";
+		} else if (nowPage == null) {
+			nowPage = "1";
+		} else if (cntPerPage == null) { 
+			cntPerPage = "5";
+		}
+		
+		vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		model.addAttribute("paging", vo);
+		model.addAttribute("flightList", flightService.selectFlight(vo));
+		return "flight/getFlightList";
+	}	
+	
 	// 글 상세 조회
 	@RequestMapping(value="/getFlight.do", method = RequestMethod.GET)
 	public String getFlight(FlightVO vo, Model model) {

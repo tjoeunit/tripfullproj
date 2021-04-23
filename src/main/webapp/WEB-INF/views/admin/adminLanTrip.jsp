@@ -10,7 +10,7 @@
 
   <div class="wrapper">
         <div class="wrap">
-           
+
             <!-- contents-area -->
             <div class="admin_wrap">
                 <!-- 네비영역 -->
@@ -24,10 +24,10 @@
 	                          <a class="admin_list_02" href="../admin/adminAccomodations.do">숙박</a>
 	                      </li>
 	                      <li>
-	                          <a class="admin_list_03" href="../admin/adminActivity.do">액티비티</a>                            
+	                          <a class="admin_list_03" href="../admin/adminActivity.do">액티비티</a>
 	                      </li>
 	                      <li>
-	                          <a class="admin_list_04" href="../admin/adminLanTrip.do">랜선여행</a>                            
+	                          <a class="admin_list_04" href="../admin/adminLanTrip.do">랜선여행</a>
 	                      </li>
 	                    </ul>
 	                <h2>고객</h2>
@@ -39,21 +39,21 @@
 	                          <a class="admin_list_06" href="/admin/membersList">고객목록</a>
 	                      </li>
 	                      <li>
-	                          <a class="admin_list_07" href="/admin/membersManage">고객관리</a>                            
-	                      </li>                                                                                             
+	                          <a class="admin_list_07" href="/admin/membersManage">고객관리</a>
+	                      </li>
 	                  </ul><br>
-	                <h2>여행이야기</h2>                  
-                </div> 
+	                <h2>여행이야기</h2>
+                </div>
                 <div class="admin_content_wrap">
                     <div class="admin_content_top">
                     	<span class="admin_content_subject">랜선여행 관리</span>
-	                    <span class="admin_content_goods_submit">                    
+	                    <span class="admin_content_goods_submit">
 		                    <a href="<c:url value='/adminLanTrip/insertLanTrip.do'/>">등록</a>
 		                </span>
                     </div>
-                    
+
                     <div class="admin_content_goods">
-	                    
+
 	                    <table class=lan_list_table>
 	                    	<tr class="top_lan_list">
 								<th class="lan_no">번호</th>
@@ -61,7 +61,7 @@
 								<th class="lan_area">지역</th>
 								<th class="lan_price">가격</th>
 	                    	</tr>
-	                    
+
 	                    	<c:forEach items="${ lanTripList }" var="lantrip">
 								<tr>
 									<td>${ lantrip.lantrip_no }</td>
@@ -71,14 +71,14 @@
 								</tr>
 							</c:forEach>
 						</table>
-						
+
 
                     </div>
-					                                 
-                </div> 
-                <div class="clearfix"></div> 
+
+                </div>
+                <div class="clearfix"></div>
             </div>
-        
+
     </div>    <!-- class="wrap" -->
 </div>    <!-- class="wrapper" -->
 
