@@ -33,13 +33,13 @@ public class FlightServiceImpl implements FlightService {
 	}
 
 	@Override
-	public void updateFlight(FlightVO vo) {
-		flightDAO.updateFlight(vo);
+	public int updateFlight(FlightVO vo) {
+		return flightDAO.updateFlight(vo);
 	}
 
 	@Override
-	public void deleteFlight(FlightVO vo) {
-		flightDAO.deleteFlight(vo);
+	public int deleteFlight(FlightVO vo) {
+		return flightDAO.deleteFlight(vo);
 	}	
 	
 	//페이징처리를 위해 생성

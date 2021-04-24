@@ -17,10 +17,10 @@ public interface FlightService {
 	FlightVO getFlight(FlightVO vo);
 	
 	// 항공권 수정
-	void updateFlight(FlightVO vo);
+	int updateFlight(FlightVO vo);
 	
 	// 항공권 삭제
-	void deleteFlight(FlightVO vo);
+	int deleteFlight(FlightVO vo);
 		
 	//페이징처리를 위해 생성 : 게시물 총 개수
 	int countFlight();

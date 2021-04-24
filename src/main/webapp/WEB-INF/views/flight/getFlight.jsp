@@ -90,9 +90,42 @@
 	
 </style>
 
+<script type="text/javascript">
+	$(function(){
+		$('#delete_flight').click(function() {
+			var msg = confirm('${flight.flight_title} 을(를) 삭제하시겠습니까?');	
+			if (msg) {
+				//true
+				location.href = "<c:url value ='/flight/deleteFlight.do?flight_no=${flight.flight_no}'/>";
+			} else {
+				//false
+				event.preventDefault;
+				location.href = "<c:url value='getFlight.do?flight_no=${flight.flight_no}'/>"
+			}
+		});
+		
+		$('#update_flight').click(function() {
+			var msg = confirm('${flight.flight_title} 을(를) 수정하시겠습니까?');	
+			if (msg) {
+				//true
+				location.href = "<c:url value='/flight/updateFlight.do?flight_no=${flight.flight_no}'/>";
+			} else {
+				//false
+				event.preventDefault;
+				location.href = "<c:url value='getFlight.do?flight_no=${flight.flight_no}'/>"
+			}
+		});	
+	});	
+</script>
 <main>
 	<div class="flight_div">
-		<div class="info_div">		
+		<div class="info_div">
+			<div class="edit_div">
+				<input type="button" value="항공권 수정하기" id="update_flight">			
+			</div>
+			<div class="delete_flight_div">
+				<input type="button" value="항공권 삭제하기" id="delete_flight">
+			</div>
 			<div class="thumb_div">
 				<img class="flight_product_thumb" src="<c:url value='/flightUpload/${flight.flight_thumb}'/>">			
 			</div>
@@ -104,25 +137,20 @@
 				<div>
 					<span>출발 : ${flight.flight_departure}</span><br>
 					<span>도착 : ${flight.flight_arrival}</span><br>
-					<span>가격 : ${flight.flight_price}원</span>
-					
+					<span>가격 : ${flight.flight_price}원</span>					
 				</div>
 				<div class="buy_div">
 					<a href="#"><span class="flight_buy">구매하기</span></a>
 				</div>
-			</div>
-			
-		</div>
-		
+			</div>			
+		</div>		
 		<div class="clear_div">
 			<!-- float: left 제거를 위함 -->
-		</div>
-			
+		</div>			
 		<!-- 항공권 상세 설명 -->	
 		<div class="flight_product_detail">
 			설명 : ${flight.flight_content}
-		</div>
-		
+		</div>		
 		<!-- 씨케이 에디터 사용으로 삭제 (img태그) -->
 		<!-- 주석처리만으로는 오류나서 지워놨습니다 -->
 	</div>
