@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.tjoeunit.biz.common.PagingVO;
+import com.tjoeunit.biz.flight.FlightVO;
 import com.tjoeunit.biz.lantrip.LanTripService;
 import com.tjoeunit.biz.lantrip.LanTripVO;
 
@@ -40,7 +42,18 @@ public class LanTripServiceImpl implements LanTripService {
 	@Override
 	public void deleteLanTrip(LanTripVO vo) {
 		lanTripDAO.deleteLanTrip(vo);
-		
 	}
 
+//페이징처리를 위해 생성
+	@Override
+	public int countLanTrip() {		
+		return lanTripDAO.countLanTrip();
+	}
+		
+//페이징처리를 위해 생성
+	@Override
+	public List<LanTripVO> selectLanTrip(PagingVO vo) {
+		return lanTripDAO.selectLanTrip(vo);
+	}
+	
 }

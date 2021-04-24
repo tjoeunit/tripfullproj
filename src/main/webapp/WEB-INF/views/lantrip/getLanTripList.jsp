@@ -106,6 +106,17 @@
 	
 </style>
 
+<!-- 페이징 JSP 추가작업 1 -->
+<!-- 페이징 옵션 처리 자바스크립트 시작 -->
+<script>
+	function selChange() {
+		var sel = document.getElementById('cntPerPage').value;
+		location.href="getLanTripList.do?nowPage=${paging.nowPage}&cntPerPage="+sel;
+	}
+</script>
+<!-- 페이징 옵션 처리 자바스크립트 끝 -->
+
+
 <main>
 	
 	<br>
@@ -130,6 +141,20 @@
 		</ul>
 	</div>
 	
+	<!-- 페이징 JSP 추가작업 2 -->
+	<!-- 페이징 옵션 시작 -->
+	<select id="cntPerPage" name="sel" onchange="selChange()">
+		<option value="5"
+			<c:if test="${paging.cntPerPage == 5}">selected</c:if>>5개 보기</option>
+		<option value="10"
+			<c:if test="${paging.cntPerPage == 10}">selected</c:if>>10개 보기</option>
+		<option value="15"
+			<c:if test="${paging.cntPerPage == 15}">selected</c:if>>15개 보기</option>
+		<option value="20"
+			<c:if test="${paging.cntPerPage == 20}">selected</c:if>>20개 보기</option>
+	</select>
+	<!-- 페이징 옵션 끝 -->
+	
 	<table class="lan_products">
 	
 		<tr>
@@ -149,6 +174,29 @@
 		</tr>
 	</table>
 	<br>
+	<!-- 페이징 JSP 추가작업 3 -->
+	<!-- 페이징 하단 숫자 시작 -->
+	<div style="display: block; text-align: center;">		
+		<c:if test="${paging.startPage != 1 }">
+			<a href="<c:url value='/lantrip/getLanTripList.do?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}'/>">&lt;</a>
+		</c:if>
+		<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
+			<c:choose>
+				<c:when test="${p == paging.nowPage }">
+					<b>${p }</b>
+				</c:when>
+				<c:when test="${p != paging.nowPage }">							
+					<a href="<c:url value='/lantrip/getLanTripList.do?nowPage=${p }&cntPerPage=${paging.cntPerPage}'/>">${p }</a>
+				</c:when>
+			</c:choose>
+		</c:forEach>
+		<c:if test="${paging.endPage != paging.lastPage}">					
+			<a href="<c:url value='/lantrip/getLanTripList.do?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}'/>">&gt;</a>
+		</c:if>
+	</div>
+	<br>
+	<!-- 페이징 하단 숫자 끝 -->
+	
 	
 		
 </main>

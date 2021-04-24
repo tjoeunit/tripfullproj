@@ -2,6 +2,9 @@ package com.tjoeunit.biz.lantrip;
 
 import java.util.List;
 
+import com.tjoeunit.biz.common.PagingVO;
+import com.tjoeunit.biz.flight.FlightVO;
+
 public interface LanTripService {
 	// CRUD 기능의 메서드 구현
 	
@@ -19,6 +22,12 @@ public interface LanTripService {
 	
 	// 랜선여행 삭제
 	void deleteLanTrip(LanTripVO vo);
+	
+	//페이징처리를 위해 생성 : 게시물 총 개수
+		int countLanTrip();
+		
+	//페이징처리를 위해 생성 : 항공권 조회
+		List<LanTripVO> selectLanTrip(PagingVO vo);
 }
 
 
