@@ -160,14 +160,14 @@ public class HotelController {
 		 return "common/message";
 	}
 
-	// 글 삭제
-	@RequestMapping(value ="/hotel/deleteHotel.do")
+	// 관리자 글 삭제 처리 
+	@RequestMapping(value ="/adminHotel/adminHotelDelete.do")
 	public String deleteBoard(HotelVO vo,Model model){
 		System.out.println("숙박권 삭제 처리");
 
 		hotelService.deleteHotel(vo);
 
-		String msg="숙박권 삭제 성공", url="/hotel/getHotelList.do";
+		String msg="숙박권 삭제 성공", url="/adminHotel/adminHotel.do";
 
 		model.addAttribute("msg", msg);
 		model.addAttribute("url", url);
