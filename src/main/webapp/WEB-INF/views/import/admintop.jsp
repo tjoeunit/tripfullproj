@@ -146,7 +146,7 @@
 				<ul>
 					<li><a href="<c:url value='#'/>">회원관리</a></li>
 					<li><a href="<c:url value='#'/>">항공권</a></li>
-					<li><a href="<c:url value='#'/>">숙소</a></li>
+					<li><a href="<c:url value='/adminHotel/adminHotel.do'/>">숙박</a></li>
 					<li><a href="<c:url value='#'/>">렌터카 & 교통</a></li>
 					<li><a href="<c:url value='#'/>">액티비티</a></li>
 					<li><a href="<c:url value='/adminLanTrip/adminLanTrip.do'/>">랜선투어</a></li>

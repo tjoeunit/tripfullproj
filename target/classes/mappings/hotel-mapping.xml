@@ -9,11 +9,11 @@
 			select hotel_seq.nextval from dual
 		</selectKey>
 		insert into hotel(
-			hotel_no, hotel_title,hotel_content, hotel_img, hotel_thumb,
+			hotel_no, hotel_title,hotel_content, hotel_thumb,
 			hotel_category, hotel_price, hotel_area
 		)
 		values(
-			#{hotel_no}, #{hotel_title}, #{hotel_content}, #{hotel_img}, #{hotel_thumb},
+			#{hotel_no}, #{hotel_title}, #{hotel_content}, #{hotel_thumb},
 			#{hotel_category}, #{hotel_price},	#{hotel_area}
 		)
 	</insert>
@@ -44,14 +44,14 @@
 		<![CDATA[
 			update hotel
 				set hotel_title=#{hotel_title}, hotel_content=#{hotel_content},
-					hotel_img=#{hotel_img},hotel_thumb=#{hotel_thumb},hotel_category=#{hotel_category},
+					hotel_thumb=#{hotel_thumb},hotel_category=#{hotel_category},
 					hotel_price=#{hotel_price},hotel_area=#{hotel_area}
 				where
 					hotel_no=#{hotel_no}
 		]]>
 	</update>
 	
-	<!-- 페이징 처리 쿼리 (항공권 총 개수) -->
+	<!-- 페이징 처리 쿼리 (숙박권 총 개수) -->
 	<select id="countHotel" resultType="int">
 		select count(*) from hotel
 	</select>
