@@ -19,12 +19,12 @@ public class FlightDAO {
 		return mybatis.insert("flightDAOTemplate.insertFlight", vo);
 	}
 	
-    public void updateFlight(FlightVO vo){
-    	mybatis.update("flightDAOTemplate.updateFlight", vo);
+    public int updateFlight(FlightVO vo){
+    	return mybatis.update("flightDAOTemplate.updateFlight", vo);
 	}
 	  
-	public void deleteFlight(FlightVO vo){
-		mybatis.delete("flightDAOTemplate.deleteFlight", vo);
+	public int deleteFlight(FlightVO vo){
+		return mybatis.delete("flightDAOTemplate.deleteFlight", vo);
 	}  
 	  
 	public FlightVO getFlight(FlightVO vo) { 
@@ -34,8 +34,7 @@ public class FlightDAO {
 	public List<FlightVO> getFlightList(FlightVO vo) {
 		// 검색 기능 전 
 		return mybatis.selectList("flightDAOTemplate.getFlightList", vo);		 
-    }
-	
+    }	
 
 	//페이징처리를 위해 생성
 	public int countFlight() {
@@ -45,7 +44,7 @@ public class FlightDAO {
 	//페이징처리를 위해 생성
 	public List<FlightVO> selectFlight(PagingVO vo) {
 		return mybatis.selectList("flightDAOTemplate.selectFlight", vo);
-	}	
+	}
 	
 	
 }
