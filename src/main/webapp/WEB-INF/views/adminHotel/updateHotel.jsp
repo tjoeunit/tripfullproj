@@ -108,6 +108,7 @@
 	<form name="update_Hotel" action="<c:url value='/adminHotel/adminHotelUpdate.do'/>" method="post"  enctype="multipart/form-data">
 		<input type="hidden" id="test" value="${hotel.hotel_category}">
 		<input type="hidden" id="test1" value="${hotel.hotel_area}">
+		<input type="hidden" name="hotel_no" value="${ hotel.hotel_no }"/>
 		
 		<div class="admin_subtitle">
 			<span class="admin_subtitle_name">숙박 상품 수정</span>

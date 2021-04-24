@@ -62,17 +62,12 @@ public class HotelController {
 				switch(i) {
 					case 0 : vo.setHotel_thumb(hotelUploadName);
 					break;
-
-					case 1 : vo.setHotel_img(hotelUploadName);
-					break;
 				}
 
 				}else {
 					switch(i) {
 					case 0 : vo.setHotel_thumb(null);
 
-					case 1 : vo.setHotel_img(null);
-					break;
 					}
 				}
 			}
@@ -144,26 +139,21 @@ public class HotelController {
 					case 0 : vo.setHotel_thumb(hotelUploadName);
 					break;
 
-					case 1 : vo.setHotel_img(hotelUploadName);
-					break;
 				}
 
 				}else {
 					switch(i) {
 					case 0 : vo.setHotel_thumb(null);
 
-					case 1 : vo.setHotel_img(null);
-					break;
 					}
 				}
 			}
 
 		// DB연동처리
 		 System.out.println(vo);
-		 int cnt = hotelService.insertHotel(vo);
-		 String msg="숙박권 수정 실패", url="/adminHotel/adminHotelUpdate.do";
-		
-		 if(cnt>0) { msg="숙박권 수정 성공"; url="/adminHotel/adminHotel.do"; }
+		 hotelService.updateHotel(vo);
+		 String msg="숙박권 수정 성공", url="/adminHotel/adminHotel.do";
+			 
 		 	model.addAttribute("msg", msg); 
 		 	model.addAttribute("url", url);
 		 
