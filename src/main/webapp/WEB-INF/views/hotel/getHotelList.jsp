@@ -114,7 +114,7 @@
 	<br>
 	<h1 class="main_title">	숙박권</h1>
 	<div style="text-align: right; width: 1000px;">
-			<a href="<c:url value='/hotel/insertHotel.do'/>">숙박권 등록하기</a>
+			
 		</div>
 	<div class="hotel_filter">
 		<ul class="hotel_filter_name">카테고리
