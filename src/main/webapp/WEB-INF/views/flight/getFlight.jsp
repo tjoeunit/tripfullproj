@@ -100,7 +100,7 @@
 			} else {
 				//false
 				event.preventDefault;
-				location.href = "<c:url value='getFlight.do?flight_no=${flight.flight_no}'/>"
+				location.href = "<c:url value='/flight/getFlight.do?flight_no=${flight.flight_no}'/>";
 			}
 		});
 		
@@ -112,7 +112,7 @@
 			} else {
 				//false
 				event.preventDefault;
-				location.href = "<c:url value='getFlight.do?flight_no=${flight.flight_no}'/>"
+				location.href = "<c:url value='/flight/getFlight.do?flight_no=${flight.flight_no}'/>";
 			}
 		});	
 	});	

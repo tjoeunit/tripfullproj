@@ -21,7 +21,12 @@ public class MembersServiceImpl implements MembersService{
 	public int checkIdDup(String members_id) {
 		return membersDAO.checkIdDup(members_id);
 	}
-
+	
+	@Override
+	public int deleteMembers(int members_no) {
+		return membersDAO.deleteMembers(members_no);
+	}
+	
 	@Override
 	public int loginMembers(String members_id, String members_pw) {
 		//기본값 설정
@@ -67,6 +72,23 @@ public class MembersServiceImpl implements MembersService{
 		return membersDAO.selectByMembersNo(members_no);
 		
 	}
+
+	@Override
+	public String checkPwById(String members_id) {
+		return membersDAO.checkPwById(members_id);
+	}
+
+	@Override
+	public int updatePw(MembersVO vo) {
+		return membersDAO.updatePw(vo);
+	}
+
+	@Override
+	public int updateMembers(MembersVO vo) {
+		return membersDAO.updateMembers(vo);
+	}
+
+	
 
 
 }
