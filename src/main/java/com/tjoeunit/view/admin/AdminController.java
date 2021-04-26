@@ -54,30 +54,30 @@ public class AdminController {
     }
 
 
-	@RequestMapping(value="/admin/adminAccomodations.do", method=RequestMethod.GET)
+	@RequestMapping(value="/adminHotel/adminHotel.do'/", method=RequestMethod.GET)
 	public String adminAccomodations() {
 		System.out.println("숙박 페이지 이동 ");
-		return "admin/adminAccomodations";
+		return "/adminHotel/adminHotel";
 	}
 
 
-	@RequestMapping(value="/admin/adminFlight.do", method=RequestMethod.GET)
-	public String adminFlight() {
-		System.out.println("항공 페이지 이동 ");
-		return "/admin/adminFlight";
-	}
+	/*
+	 * @RequestMapping(value="/adminFlight/adminFlight.do",
+	 * method=RequestMethod.GET) public String adminFlight() {
+	 * System.out.println("항공 페이지 이동 "); return "/adminFlight/adminFlight"; }
+	 */
 
 
-	@RequestMapping(value="/admin/adminActivity.do", method=RequestMethod.GET)
+	@RequestMapping(value="/adminActivity/adminActivity.do", method=RequestMethod.GET)
 	public String adminActivity() {
 		System.out.println("액티비티 페이지 이동 ");
-		return "admin/adminActivity";
+		return "adminActivity/adminActivity";
 	}
 
-	@RequestMapping(value="/admin/membersManage.do", method=RequestMethod.GET)
+	@RequestMapping(value="/adminMembers/adminMembers.do", method=RequestMethod.GET)
 	public String membersManage() {
 		System.out.println("회원관리 페이지 이동 ");
-		return "admin/membersManage";
+		return "adminMembers/adminMembers";
 	}
 
 
