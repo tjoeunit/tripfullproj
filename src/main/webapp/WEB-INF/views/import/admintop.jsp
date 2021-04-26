@@ -3,8 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<% String members_id = (String)session.getAttribute("members_id"); %>
-<% int members_no = (Integer)session.getAttribute("members_no"); %>
+<% String admin_id = (String)session.getAttribute("admin_id"); %>
+<% int admin_no = (Integer)session.getAttribute("admin_no"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -113,13 +113,13 @@
 		margin-top: 20px;
 		margin-bottom: 20px;
 	}
-	
+
 
 </style>
 
 <body>
 <header>
-	<input type="hidden" id="sessionID" value="${members_id}">
+	<input type="hidden" id="sessionID" value="${admin_id}">
 	<nav class="nav">
 		<div class="navDiv">
 			<div class="navImgDiv">
@@ -132,23 +132,22 @@
 					<li><a href="<c:url value='../index.do'/>">메인 페이지</a></li>
 					<li id="signin_li"><a href="#">고객센터</a></li>
 					<li id="logout_li"><a href="../adminLogin/adminLogout.do">로그아웃</a></li>
-					<li id="admin_li"><a href="<c:url value='/admin/adminIndex.do'/>">관리자</a></li>
+					<%-- <li id="admin_li"><a href="<c:url value='/adminLogin/adminLogin_View.do'/>">관리자</a></li> --%>
 				</ul>
 			</div>
-			
+
 			<div class="navListDiv">
 				<ul>
 					<li><a href="<c:url value='#'/>">회원관리</a></li>
 					<li><a href="<c:url value='/adminFlight/adminFlight.do'/>">항공권</a></li>
 					<li><a href="<c:url value='/adminHotel/adminHotel.do'/>">숙박</a></li>
 					<li><a href="<c:url value='#'/>">렌터카 & 교통</a></li>
-					<li><a href="<c:url value='#'/>">액티비티</a></li>
+					<li><a href="<c:url value='/adminActivity/adminActivity.do'/>">액티비티</a></li>
 					<li><a href="<c:url value='/adminLanTrip/adminLanTrip.do'/>">랜선투어</a></li>
 					<li><a href="<c:url value='#'/>">여행이야기</a></li>
 				</ul>
 			</div>
-			
+
 		</div>
 	</nav>
 </header>
-

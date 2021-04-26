@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="activityDAOTemplate">
+
+<!-- 액티비티 글 등록 -->
+	<insert id="insertActivity">
+		<selectKey keyProperty="activity_no" resultType="int" order="BEFORE">
+			select activity_seq.nextval from dual
+		</selectKey>
+		insert into activity(
+			activity_no,
+			activity_title,
+			activity_content,
+			activity_thumb,
+			activity_price, 
+			activity_area
+	<!-- 		activity_video,
+			activity_img1,
+			activity_img2,
+			activity_img3,
+			activity_img4,
+			activity_img5 -->
+			)
+		values(
+			#{activity_no},
+			#{activity_title},
+			#{activity_content},
+			#{activity_thumb},
+			#{activity_price},
+			#{activity_area}
+<!-- 			#{activity_video},
+			#{activity_img1}, 
+			#{activity_img2}, 
+			#{activity_img3}, 
+			#{activity_img4}, 
+			#{activity_img5} -->
+			)
+	</insert>
+
+<!-- 액티비티 글 목록보기 -->
+	<select id="getActivityList" resultType="activity">
+		<![CDATA[
+			select * from activity order by activity_no desc
+		]]>
+	</select>
+
+<!-- 액티비티 글 상세보기-->
+	<select id="getActivity" resultType="activity">
+		<![CDATA[
+			select * from activity where activity_no=#{activity_no}
+		]]>
+	</select>
+
+	<!-- 페이징 처리 쿼리 (항공권 총 개수) -->
+	<select id="countActivity" resultType="int">
+		select count(*) from activity
+	</select>
+
+	<!-- 페이징 처리 쿼리 -->
+	<select id="selectActivity" resultType="activity">
+		select * from (
+			select rownum as rn, a.*
+				from (
+					select * from activity
+					order by activity_no desc
+					) a		
+		)
+		where rn between #{start} and #{end}
+	</select>
+		
+
+</mapper>

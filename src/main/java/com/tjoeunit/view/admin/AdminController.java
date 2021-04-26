@@ -59,7 +59,7 @@ public class AdminController {
 		System.out.println("관리자 메인페이지로 이동");
 		return "admin/adminIndex";
 	}
-	
+
 
 	//관리자 로그아웃
     @RequestMapping("/adminLogin/adminLogout.do")
