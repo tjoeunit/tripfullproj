@@ -6,6 +6,7 @@
 /////////////////////////////////////////////////////////////
 ////////////////////db 1111입력 오류 방지////////////////////////
 /////////////////////////////////////////////////////////////
+
 $(function(){	
 	
 	$('form[name=update_Hotel]').submit(function(){ 
@@ -97,6 +98,10 @@ $(function(){
 	<!-- ckeditor 4 -->	
 	<script type="text/javascript" src="<c:url value='/ckeditor/ckeditor.js'/>"></script>
 	
+	<!--/////////////////////////////////-->
+	<!--/////// 1.form name 이름 설정 //////-->
+	<!--//////////////////////////////////-->
+	
 	<form name="update_Hotel" action="<c:url value='/adminHotel/insertHotel.do'/>" method="post"  enctype="multipart/form-data">
 		<div class="admin_subtitle">
 			<span class="admin_subtitle_name">숙박권 등록</span>
@@ -110,7 +115,9 @@ $(function(){
 				<tr>
 					<td class="table_td1">제목</td>
 					<td><input type="text" class="insert_input" name="hotel_title" id="hotel_title" /></td>
-				</tr>
+																				<!--/////////////////////////////////-->
+				</tr>															<!--////////각 input 태그에 id 설정 ///////-->	
+																				<!--//////////////////////////////////-->			
 				
 				<tr>
 					<td class="table_td1">카테고리</td>
