@@ -14,7 +14,7 @@ public class HotelServiceImpl implements HotelService {
 
 	@Autowired
 	private HotelDAO hotelDAO;
-
+ 
 	@Override
 	public int insertHotel(HotelVO vo) {
 		return hotelDAO.insertHotel(vo);
@@ -33,13 +33,13 @@ public class HotelServiceImpl implements HotelService {
 	}
 
 	@Override
-	public void updateHotel(HotelVO vo) {
-		hotelDAO.updateHotel(vo);
+	public int updateHotel(HotelVO vo) {
+		return hotelDAO.updateHotel(vo);		
 	}
 
 	@Override
-	public void deleteHotel(HotelVO vo) {
-		hotelDAO.deleteHotel(vo);
+	public int deleteHotel(HotelVO vo) {
+		return hotelDAO.deleteHotel(vo);
 	}
 	
 	//페이징처리를 위해 생성	

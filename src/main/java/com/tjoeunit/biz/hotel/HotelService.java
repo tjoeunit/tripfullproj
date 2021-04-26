@@ -17,10 +17,10 @@ public interface HotelService {
 	HotelVO getHotel(HotelVO vo);
 	
 	//숙박권 수정 
-	void updateHotel(HotelVO vo);
+	int updateHotel(HotelVO vo);
 	
 	//숙박권 삭제.
-	void deleteHotel(HotelVO vo);
+	int deleteHotel(HotelVO vo);
 	
 	//페이징처리를 위해 생성 : 게시물 총 개수
 	int countHotel();
