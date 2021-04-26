@@ -96,10 +96,42 @@
 
 </style>
 
+<script type="text/javascript">
+	$(function(){
+		$('#delete_hotel').click(function() {
+			var msg = confirm('${hotel.hotel_title} 을(를) 삭제하시겠습니까?');	
+			if (msg) {
+				//true
+				location.href = "<c:url value ='/hotel/deleteHotel.do?hotel_no=${hotel.hotel_no}'/>";
+			} else {
+				//false
+				event.preventDefault;
+				location.href = "<c:url value='/hotel/getHotel.do?hotel_no=${hotel.hotel_no}'/>";
+			}
+		});
+		
+		$('#update_hotel').click(function() {
+			var msg = confirm('${hotel.hotel_title} 을(를) 수정하시겠습니까?');	
+			if (msg) {
+				//true
+				location.href = "<c:url value='/hotel/updateHotel.do?hotel_no=${hotel.hotel_no}'/>";
+			} else {
+				//false
+				event.preventDefault;
+				location.href = "<c:url value='/hotel/getHotel.do?hotel_no=${hotel.hotel_no}'/>";
+			}
+		});	
+	});	
+</script>
 <main>
 	<div class="hotel_div">
 		<div class="info_div">
-
+		<div class="edit_div">
+				<input type="button" value="숙박권 수정하기" id="update_hotel">			
+			</div>
+			<div class="delete_hotel_div">
+				<input type="button" value="숙박권 삭제하기" id="delete_hotel">
+			</div>
 			<div class="thumb_div">
 				<img class="hotel_product_thumb" src="<c:url value='/hotelUpload/${hotel.hotel_thumb}'/>">
 			</div>
@@ -122,16 +154,13 @@
 
 		</div>
 
-		<div class="clear_div"></div>
-
+		<div class="clear_div">
+		<!-- float: left 제거를 위함 -->
+		</div>
 		<!-- 숙박 상세 설명 -->
 		<div class="hotel_product_detail">
-
-		</div>
-		<div>
-				설명 : ${hotel.hotel_content}
-		</div>
-		
+			설명 : ${hotel.hotel_content}
+		</div>		
 	</div>
 	<br>
 </main>

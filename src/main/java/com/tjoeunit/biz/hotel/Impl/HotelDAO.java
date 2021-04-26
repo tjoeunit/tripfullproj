@@ -20,12 +20,12 @@ public class HotelDAO {
 		return mybatis.insert("hotelDAOTemplate.insertHotel", vo);
 	  }
 	
-    public void updateHotel(HotelVO vo){
-    	mybatis.update("hotelDAOTemplate.updateHotel", vo);
+    public int updateHotel(HotelVO vo){
+    	return mybatis.update("hotelDAOTemplate.updateHotel", vo);
 	}
 	  
-	public void deleteHotel(HotelVO vo){
-		mybatis.delete("hotelDAOTemplate.deleteHotel", vo);
+	public int deleteHotel(HotelVO vo){
+		return mybatis.delete("hotelDAOTemplate.deleteHotel", vo);
 	}  
 	  
 	public HotelVO getHotel(HotelVO vo) {

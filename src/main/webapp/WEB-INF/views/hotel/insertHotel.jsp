@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
-<%@ include file="../import/admintop.jsp" %>
+<%@ include file="../import/top.jsp" %>
 <script type="text/javascript">
 /////////////////////////////////////////////////////////////
 ////////////////////db 1111입력 오류 방지////////////////////////
@@ -27,24 +27,23 @@ $(function(){
 			event.preventDefault();
 			return false;		
 			
-		}else if ($('#hotel_content').val().length < 1){
+		}else if ($('#ckeditor').val().length < 1){
 			alert('내용을 확인하세요');
-			$('#hotel_content').focus();
+			$('#ckeditor').focus();
 			event.preventDefault();
 			return false;				
 		} 
 	});
 });	
 </script>
-
 <style type="text/css">
 
-	.admin_subtitle {
+	.subtitle {
 		background-color: lightgray;
 		padding: 10px 10px 10px 20px;
 	}
 	
-	.admin_subtitle_name {
+	.subtitle_name {
 		display: inline-block;
 		width: 85%;
 		font-weight: 600;
@@ -97,9 +96,9 @@ $(function(){
 	<!-- ckeditor 4 -->	
 	<script type="text/javascript" src="<c:url value='/ckeditor/ckeditor.js'/>"></script>
 	
-	<form name="update_Hotel" action="<c:url value='/adminHotel/insertHotel.do'/>" method="post"  enctype="multipart/form-data">
-		<div class="admin_subtitle">
-			<span class="admin_subtitle_name">숙박권 등록</span>
+	<form name="update_Hotel" action="<c:url value='/hotel/insertHotel.do'/>" method="post"  enctype="multipart/form-data">
+		<div class="subtitle">
+			<span class="subtitle_name">숙박권 등록</span>
 			<span class="new_upload">
 				<input type="submit" class="insert_submit" value=" 새글 등록 " />
 			</span>
@@ -149,7 +148,7 @@ $(function(){
 				<tr>
 					<td class="table_td1">내용</td>
 					<td>
-						<textarea name="hotel_content" class="ckeditor" id="hotel_content"></textarea>
+						<textarea name="hotel_content" class="ckeditor" id="ckeditor"></textarea>
 						<script type="text/javascript">
 							CKEDITOR.replace('hotel_content', {height: 700, width: 900, filebrowserUploadUrl:'/hotelImage/imageUpload.do'});
 						</script>

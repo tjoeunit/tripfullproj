@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 
 <%@ include file="../import/admintop.jsp" %>
 
@@ -56,12 +55,15 @@
 		width: 5%;
 	}
 	.list_th2 {
-		width: 75%;
+		width: 65%;
 	}
 	.list_th3 {
 		width: 10%;
 	}
-	.list_th3 {
+	.list_th4 {
+		width: 10%;
+	}
+	.list_th5 {
 		width: 10%;
 	}
 	
@@ -83,9 +85,9 @@
 
 <main>
 	<div class="admin_subtitle">
-		<span class="admin_subtitle_name">숙박 관리</span>
+		<span class="admin_subtitle_name">숙박권 관리</span>
 		<span class="new_upload">
-			<a href="<c:url value='/adminHotel/insertHotel.do'/>">상품등록</a>
+			<a href="<c:url value='/adminHotel/insertHotel.do'/>">상품 등록</a>
 		</span>
 	</div>
 	
@@ -93,14 +95,16 @@
 		<tr>
 			<th class="list_th1">번호</th>
 			<th class="list_th2">제목</th>
-			<th class="list_th3">지역</th>
-			<th class="list_th4">가격</th>
+			<th class="list_th3">출발</th>
+			<th class="list_th4">도착</th>
+			<th class="list_th5">가격</th>
 		</tr>
 		
-		<c:forEach items="${ HotelList }" var="hotel">
+		<c:forEach items="${ hotelList }" var="hotel">
 			<tr>
 				<td>${ hotel.hotel_no }</td>
-				<td class="list_product_title"><a href="<c:url value='adminHotelDetail.do?hotel_no=${ hotel.hotel_no }'/>">${ hotel.hotel_title }</a></td>
+				<td class="list_product_title"><a href="<c:url value='/adminHotel/adminHotelDetail.do?hotel_no=${ hotel.hotel_no }'/>">${ hotel.hotel_title }</a></td>
+				<td>${ hotel.hotel_category }</td>
 				<td>${ hotel.hotel_area }</td>
 				<td>${ hotel.hotel_price }원</td>
 			</tr>
