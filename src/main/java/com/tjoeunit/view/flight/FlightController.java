@@ -1,6 +1,7 @@
 package com.tjoeunit.view.flight;
 
 import java.io.File;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -16,22 +17,22 @@ import org.springframework.web.multipart.MultipartFile;
 import com.tjoeunit.biz.common.PagingVO;
 import com.tjoeunit.biz.flight.FlightService;
 import com.tjoeunit.biz.flight.FlightVO;
+import com.tjoeunit.biz.lantrip.LanTripVO;
 
 @Controller
-@RequestMapping("/flight")
 public class FlightController {
 	
 	@Autowired
 	private FlightService flightService;
 	
 	// 항공권 등록 페이지
-	@RequestMapping(value="/insertFlight.do", method = RequestMethod.GET)
+	@RequestMapping(value="/flight/insertFlight.do", method = RequestMethod.GET)
 	public String insertFlightPage() {
 		return "flight/insertFlight";
 	}	
 	
 	// 항공권 등록 처리
-	@RequestMapping(value = "/insertFlight.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/flight/insertFlight.do", method = RequestMethod.POST)
 	public String insertFlight(FlightVO vo, HttpSession session, MultipartFile[] flightImgUpload, Model model) throws Exception {
 		System.out.println("항공권 등록 처리");
 		
@@ -96,7 +97,7 @@ public class FlightController {
 	*/
 	
 	// 항공권 목록 보기 : 페이징 처리 후 목록 컨트롤러
-	@RequestMapping(value="/getFlightList.do", method = RequestMethod.GET)
+	@RequestMapping(value="/flight/getFlightList.do", method = RequestMethod.GET)
 	public String flightListPaging(PagingVO vo, Model model,
 			@RequestParam(value="nowPage", required=false) String nowPage,
 			@RequestParam(value="cntPerPage", required=false) String cntPerPage) {
@@ -118,7 +119,7 @@ public class FlightController {
 	}	
 	
 	// 항공권 상세 조회
-	@RequestMapping(value="/getFlight.do", method = RequestMethod.GET)
+	@RequestMapping(value="/flight/getFlight.do", method = RequestMethod.GET)
 	public String getFlight(FlightVO vo, Model model) {
 		//vo에 flight_no 값이 저장되어 있는지 확인
 		System.out.println("항공권 상세 페이지 flight_no = " + vo.getFlight_no());
@@ -136,7 +137,7 @@ public class FlightController {
 	}
 	
 	// 항공권 수정 페이지
-	@RequestMapping(value="/updateFlight.do", method=RequestMethod.GET)
+	@RequestMapping(value="/flight/updateFlight.do", method=RequestMethod.GET)
 	public String updateFlightPage(FlightVO vo, Model model) {
 		//vo에 flight_no 값이 저장되어 있는지 확인
 		System.out.println("항공권 수정 페이지 flight_no = " + vo.getFlight_no());
@@ -153,7 +154,7 @@ public class FlightController {
 	}
 	
 	// 항공권 수정 처리
-	@RequestMapping(value = "/updateFlight.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/flight/updateFlight.do", method = RequestMethod.POST)
 	public String updateFlight(FlightVO vo, HttpSession session, MultipartFile[] flightImgUpload, HttpServletRequest request, Model model) throws Exception {
 		System.out.println("수정 처리 전 항공권 vo = " + vo);
 				
@@ -200,7 +201,7 @@ public class FlightController {
 	}
 	
 	// 항공권 삭제
-	@RequestMapping("/deleteFlight.do")
+	@RequestMapping("/flight/deleteFlight.do")
 	public String deleteFlight(FlightVO vo, Model model) {
 		
 		System.out.println("항공권 삭제 처리 flight_no = " + vo.getFlight_no());
@@ -219,5 +220,172 @@ public class FlightController {
 
 		return "common/message";
 	}
+	
+//////////////////////////////////////////////////관리자////////////////////////////////////////////////////////
+//////////////////////////////////////////////////관리자////////////////////////////////////////////////////////
+//////////////////////////////////////////////////관리자////////////////////////////////////////////////////////
+//////////////////////////////////////////////////관리자////////////////////////////////////////////////////////
+//////////////////////////////////////////////////관리자////////////////////////////////////////////////////////
+//////////////////////////////////////////////////관리자////////////////////////////////////////////////////////
+	
+	// 관리자 항공권 목록 페이지로 이동
+	@RequestMapping(value="/adminFlight/adminFlight.do", method=RequestMethod.GET)
+	public String adminFlightPage(FlightVO vo, Model model) {
+		System.out.println("항공권 관리자 목록으로 이동");
+			
+		List<FlightVO> flightList = flightService.getFlightList(vo);
+				
+		model.addAttribute("flightList", flightList);
+				
+		return "adminFlight/adminFlight";
+	}
+	
+	// 관리자 항공권 등록 페이지로 이동
+	@RequestMapping(value="/adminFlight/insertFlight.do", method=RequestMethod.GET)
+	public String adminInsertFlightPage() {
+		return "adminFlight/insertFlight";
+	}
+	
+	// 관리자 항공권 등록 처리
+	@RequestMapping(value="/adminFlight/insertFlight.do", method=RequestMethod.POST)
+	public String adminInsertFlight(FlightVO vo, HttpSession session, MultipartFile[] flightImgUpload, Model model) throws Exception {
+		System.out.println("항공권 등록 처리");
+				
+		// 파일 업로드 처리
+		String flightImg = session.getServletContext().getRealPath("/flightUpload/");
+		System.out.println("==>"+flightImgUpload.length);
+				
+		for(int i = 0; i < flightImgUpload.length; i++) {
+			System.out.println("==>"+flightImgUpload[i].isEmpty());
+					
+			if(!flightImgUpload[i].isEmpty()) {
+				String flightUploadName = flightImgUpload[i].getOriginalFilename();
+				flightImgUpload[i].transferTo(new File(flightImg+flightUploadName));
+				switch(i) {
+					case 0 : vo.setFlight_thumb(flightUploadName);
+					break;					
+				}
+			}else {
+				switch(i) {
+					case 0 : vo.setFlight_thumb(null);
+					break;					
+				}
+			}
+		}				
+				
+		// DB연동처리
+		System.out.println(vo);
+		int cnt = flightService.insertFlight(vo);
 		
+		String msg="항공권 등록 실패", url="/adminFlight/insertFlight.do";
+
+		if(cnt>0) {
+			msg="항공권 등록 성공";
+			url="/adminFlight/adminFlight.do";
+		}
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		// 화면전환
+		return "common/message";		
+	}
+	
+	// 관리자 항공권 상세보기
+	@RequestMapping(value="/adminFlight/adminFlightDetail.do", method = RequestMethod.GET)
+	 public String adminFlightDetail(FlightVO vo, Model model) {
+		 System.out.println("항공권 상세 페이지");
+		 
+		 FlightVO flight = flightService.getFlight(vo);
+		 
+		 model.addAttribute("flight", flight);
+		 
+		 return "adminFlight/adminFlightDetail";
+	 }
+	
+	// 관리자 항공권 삭제 처리
+	@RequestMapping("/adminFlight/adminFlightDelete.do")
+	public String adminFlightDelete(FlightVO vo, Model model) {
+		
+		System.out.println("항공권 삭제 처리 flight_no = " + vo.getFlight_no());
+		
+		int cnt = flightService.deleteFlight(vo);
+		
+		String msg="항공권 삭제 실패", url="/adminFlight/adminFlightDetail.do?flight_no="+vo.getFlight_no();
+		
+		if(cnt>0) {
+			msg="항공권 삭제 성공";
+			url="/adminFlight/adminFlight.do";
+		}
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+
+		return "common/message";
+	}
+	
+	// 관리자 항공권 수정 페이지로 이동
+	@RequestMapping(value="/adminFlight/adminFlightUpdate.do", method=RequestMethod.GET)
+	public String adminFlightUpdatePage(FlightVO vo, Model model) {
+		//vo에 flight_no 값이 저장되어 있는지 확인
+		System.out.println("항공권 수정 페이지 flight_no = " + vo.getFlight_no());
+		
+		//flight_no 를 이용하여 전체 정보를 flight에 저장
+		FlightVO flight = flightService.getFlight(vo);
+		
+		System.out.println("항공권 정보 " + flight);
+		
+		//flight에 저장된 값을 모델에 키 밸류로 저장
+		model.addAttribute("flight", flight);
+		
+		return "adminFlight/adminFlightUpdate";
+	}
+	
+	// 관리자 항공권 수정 처리
+	@RequestMapping(value = "/adminFlight/adminFlightUpdate.do", method = RequestMethod.POST)
+	public String adminFlightUpdate(FlightVO vo, HttpSession session, MultipartFile[] flightImgUpload, HttpServletRequest request, Model model) throws Exception {
+		System.out.println("수정 처리 전 항공권 vo = " + vo);
+				
+		// 1. flightImg 에 경로 지정 
+		String flightImg = session.getServletContext().getRealPath("/flightUpload/");
+		
+		// 2. 업로드 할 이미지 개수 확인
+		System.out.println("==>"+flightImgUpload.length);
+		
+		// 3. 업로드 할 사진이 존재하지 않을 때 (기존 썸네일 선택 시 input 태그의 type 설정을 text로 지정하고 페이지를 불러들일 때 부터 DB 저장된 값을 value 에 넣어둠)  
+		if(flightImgUpload.length < 1) {
+			
+			// DB 에서 읽어 온 값을 그대로 vo 에 저장시킴
+			String flight_thumb = request.getParameter("flightImgUpload");
+			System.out.println("기존 썸네일 사용 시 파일명 : " + flight_thumb);
+			vo.setFlight_thumb(flight_thumb);
+			
+		// 4. 업로드 할 사진이 존재할 때
+		}else {
+			for(int i=0; i<flightImgUpload.length; i++) {
+				String flightUploadName = flightImgUpload[i].getOriginalFilename();
+				flightImgUpload[i].transferTo(new File(flightImg+flightUploadName));
+				System.out.println("변경 썸네일 사용 시 파일명 : " + flightUploadName);
+				vo.setFlight_thumb(flightUploadName);
+			}
+		}
+				
+		System.out.println("수정 처리 될 항공권 vo = " + vo);
+		
+		int cnt = flightService.updateFlight(vo);
+		
+		String msg="항공권 수정 실패", url="/adminFlight/adminFlightUpdate.do?flight_no="+vo.getFlight_no();		
+		
+		if(cnt>0) {
+			msg="항공권 수정 성공";
+			url="/adminFlight/adminFlightDetail.do?flight_no="+vo.getFlight_no();
+		}
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+
+		return "common/message";
+		
+	}	
+	
 }
