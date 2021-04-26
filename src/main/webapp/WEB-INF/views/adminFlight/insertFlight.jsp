@@ -2,7 +2,50 @@
     pageEncoding="UTF-8"%>
 
 <%@ include file="../import/admintop.jsp" %>
+<script type="text/javascript">
+	//숫자 정규식!
+	var numReg = /^[0-9]+$/;	
+		
+	$(function(){
+			
+		$('form[name=frm]').submit(function() {			
+			if ($('#flight_title').val().length < 1) {
+				alert('제목을 확인하세요');
+				$('#flight_title').focus();
+				event.preventDefault();
+				return false;
+				
+			} else if ($('#flight_price').val().length < 1) {
+				alert('가격을 확인하세요');
+				$('#flight_price').focus();
+				event.preventDefault();
+				return false;				
+			} else if ($('#flight_price').val().length < 1) {
+				alert('가격을 확인하세요');
+				$('#flight_price').focus();
+				event.preventDefault();
+				return false;				
+			} else if (!numReg.test($('#flight_price').val())) {
+				alert('가격을 확인하세요');
+				$('#flight_price').focus();
+				event.preventDefault();
+				return false;			
+			} else if ($('#flightImgUpload').val().length < 1) {
+				alert('썸네일을 확인하세요');
+				$('#flightImgUpload').focus();
+				event.preventDefault();
+				return false;
+			} else if ($('#flight_content').val().length < 1){
+				alert('내용을 확인하세요');
+				$('#flight_content').focus();
+				event.preventDefault();
+				return false;
+			}
+			
+		});	
+	});
 
+</script>
 <style type="text/css">
 
 	.admin_subtitle {
@@ -57,48 +100,7 @@
 	
 	
 </style>
-<script type="text/javascript">
-	//숫자 정규식!
-	var numReg = /^[0-9]+$/;
 
-	$(function(){
-		$('form[name=frm]').submit(function() {
-			if ($('#flight_title').val().length < 1) {
-				alert('제목을 확인하세요');
-				$('#flight_title').focus();
-				event.preventDefault();
-				return false;
-				
-			} else if ($('#flight_price').val().length < 1) {
-				alert('가격을 확인하세요');
-				$('#flight_price').focus();
-				event.preventDefault();
-				return false;				
-			} else if ($('#flight_price').val().length < 1) {
-				alert('가격을 확인하세요');
-				$('#flight_price').focus();
-				event.preventDefault();
-				return false;				
-			} else if (!numReg.test($('#flight_price').val())) {
-				alert('가격을 확인하세요');
-				$('#flight_price').focus();
-				event.preventDefault();
-				return false;			
-			} else if ($('#flightImgUpload').val().length < 1) {
-				alert('썸네일을 확인하세요');
-				$('#flightImgUpload').focus();
-				event.preventDefault();
-				return false;
-			} else if ($('#flight_content').val().length < 1) {
-				alert('내용을 확인하세요');
-				$('#flight_content').focus();
-				event.preventDefault();
-				return false;				
-			}
-		});	
-	});
-
-</script>
 <main>
 
 	<!-- ckeditor 4 -->	
