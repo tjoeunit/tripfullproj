@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.tjoeunit.biz.story.StoryReplyService;
@@ -33,6 +34,7 @@ public class StoryReplyController{
     }
     
     @RequestMapping("/storyReplyinsert.do") //세부적인 url pattern
+    @ResponseBody
     public String storyReplyinsert(StoryReplyVO rvo) {
         
         //댓글이 테이블에 저장됨
