@@ -35,6 +35,7 @@
 		font-size: 32px;
 		margin-top: 0;
 		margin-bottom: 10px;
+		font-weight: 600;
 	}
 	
 </style>
@@ -44,7 +45,8 @@
 		<img src="<c:url value='/img/indeximg1.jpg'/>" id="indexImage" style="width: 1200px;">		
 		<script type="text/javascript">
 			var myImage=document.getElementById("indexImage");
-			var imageArray=["<c:url value='/img/indeximg1.jpg'/>", "<c:url value='/img/indeximg2.jpg'/>", "<c:url value='/img/indeximg3.jpg'/>"];
+			var imageArray=["<c:url value='/img/indeximg1.jpg'/>", "<c:url value='/img/indeximg2.jpg'/>", "<c:url value='/img/indeximg3.jpg'/>"
+				, "<c:url value='/img/indeximg4.jpg'/>", "<c:url value='/img/indeximg5.jpg'/>"];
 			var imageIndex=0;
 			
 			function changeImage(){
@@ -65,26 +67,44 @@
 			<div>
 				
 				<div class="productDiv">
-					<div class="productThumDiv">항공이미지</div>
-					<div>설명</div>
-				</div>
-				<div class="productDiv">
-					<div class="productThumDiv">숙박이미지</div>
-					<div>설명</div>					
-				</div>
-				<div class="productDiv">
-					<div class="productThumDiv">액티비티이미지</div>
-					<div>설명</div>
-				</div>
-				<div class="productDiv">
-					<div class="productThumDiv">랜선투어이미지</div>
-					<div>설명</div>
-				</div>
+				    <img src="<c:url value='/img/indexthumb1.jpg'/>" class="productThumDiv">
+				    	<div class="productDivInfo">
+					      <div class="productDivInfoName">항공권</div>
+					      <div>트립풀이 준비한 특가 항공권</div>
+				    	</div>
+				  </div>
+				  
+				  <div class="productDiv">
+				    <img src="<c:url value='/img/indexthumb2.jpg'/>" class="productThumDiv">
+				    	<div class="productDivInfo">
+					      <div class="productDivInfoName">숙박</div>
+					      <div>호텔 예약 할인받고 떠나요!</div>
+				    	</div>
+				  </div>
+				  
+				  <div class="productDiv">
+				    <img src="<c:url value='/img/indexthumb3.jpg'/>" class="productThumDiv">
+				    	<div class="productDivInfo">
+					      <div class="productDivInfoName">액티비티</div>
+					      <div>전국 방방곡곡 액티비티</div>
+				    	</div>
+				  </div>
+				  
+				  <div class="productDiv">
+				    <img src="<c:url value='/img/indexthumb4.jpg'/>" class="productThumDiv">
+				    	<div class="productDivInfo">
+					      <div class="productDivInfoName">랜선투어</div>
+					      <div>영상으로는 어디든 떠날 수 있다!</div>
+				    	</div>
+				  </div>
+				
 			</div>
 		</div>
 		
 		<div>
-			<img src="<c:url value='/img/tripstoryimg.png'/>" style="width:1200px">			
+			<img src="<c:url value='/img/story01.jpg'/>" style="width:1200px">
+			<img src="<c:url value='/img/story02.jpg'/>" style="width:1200px">
+			<img src="<c:url value='/img/story03.jpg'/>" style="width:1200px">
 		</div>		
 	</div>
 </main>

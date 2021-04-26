@@ -65,8 +65,9 @@
 		$('#lantrip_area').val($("#test").val()).prop("selected", true);
 	});
 
-// 자바스크립트 기반 제이쿼리
 	$(function(){
+		
+// 영상 url 변경 시 변경된 주소값으로 변경 저장하는 기능
 		$('#lantrip_video_view').keyup(function(){
 			var url = $('#lantrip_video_view').val();
 			//https://youtu.be/Y4ALU0B561g
@@ -75,10 +76,19 @@
 			var url2 = url.substring(16);
 			var chgurl = url1+url2;
 			$('#lantrip_video').val(chgurl);
-			
 		});
-	});
-	
+		
+// Radio 를 이용하여 기존 썸네일 이용 또는 변경 썸네일 선택가능 
+		$('#edRadio').click(function(){
+			$('#svDiv').remove();
+			$('#thumbDiv').append('<div id="edDiv">변경 썸네일 : <input type="file" name="lanTripImgUpload"></div>');
+		});		
+		$('#svRadio').click(function(){
+			$('#edDiv').remove();
+			$('#thumbDiv').append('<div id="svDiv">현재 썸네일 : <input type="text" name="lanTripImgUpload" value="${ lantrip.lantrip_thumb }" readonly></div>')
+		});
+		
+	});	
 	
 	//db 1111입력 오류 방지
 	$(function(){
@@ -165,7 +175,16 @@
 				
 				<tr>
 					<td class="table_td1">썸네일</td>
-					<td><input type="file" class="insert_input" name="lanTripImgUpload" id="lantrip_thumb"/><br/>현재 '${ lantrip.lantrip_thumb }' 파일이 업로드 되어있습니다.</td>
+					<td>
+						<div id="thumbDiv">
+							<input type="radio" name="radioThumb" value="기존 썸네일 사용" id="svRadio" checked="checked"><label for="기존 썸네일 사용">기존 썸네일 사용</label>
+							<input type="radio" name="radioThumb" value="변경 썸네일 사용" id="edRadio"><label for="변경 썸네일 사용">변경 썸네일 사용</label><br>
+						
+							<div id="svDiv">
+								현재 썸네일 : <input type="text" name="lanTripImgUpload" value="${ lantrip.lantrip_thumb }" readonly="readonly">
+							</div>
+						</div>
+					</td>
 				</tr>
 				
 				<tr>
