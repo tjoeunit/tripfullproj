@@ -17,7 +17,7 @@
                  	<h2>상품</h2>
 	                  <ul>
 	                      <li >
-	                          <a class="admin_list_01" href="../admin/adminFlight.do">항공</a>
+	                          <a class="admin_list_01" href="#">항공</a>
 	                      </li>
 	                      <li>
 	                          <a class="admin_list_02" href="../admin/adminAccomodations.do">숙박</a>
