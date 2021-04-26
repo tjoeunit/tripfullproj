@@ -105,7 +105,7 @@
 <script>
 	function selChange() {
 		var sel = document.getElementById('cntPerPage').value;
-		location.href="boardList?nowPage=${paging.nowPage}&cntPerPage="+sel;
+		location.href="getFlightList.do?nowPage=${paging.nowPage}&cntPerPage="+sel;
 	}
 </script>
 <!-- 페이징 옵션 처리 자바스크립트 끝 -->
@@ -115,7 +115,7 @@
 	<h1 class="main_title">항공권</h1>
 	<div style="text-align: right; width: 1000px;">
 			<a href="<c:url value='/flight/insertFlight.do'/>">항공권 등록하기 ^^</a>
-		</div>
+	</div>
 	<div class="flight_filter">		
 		<ul class="flight_filter_name">여행지
 			<li><input type="checkbox">아시아</li>
@@ -155,7 +155,7 @@
 			<table class="flight_product">			
 				<tr>
 					<td rowspan="3"><img class="flight_product_thumb" src="<c:url value='/flightUpload/${flight.flight_thumb}'/>"></td>
-					<td class="flight_product_title"><a href="<c:url value='getFlight.do?flight_no=${flight.flight_no}'/>">${flight.flight_title}</td></a>
+					<td class="flight_product_title"><a href="<c:url value='getFlight.do?flight_no=${flight.flight_no}'/>">${flight.flight_title}</a></td>
 					<td class="flight_product_departure">${flight.flight_departure}</td>
 				</tr>
 				<tr>				

@@ -19,6 +19,10 @@ public class MembersDAO {
 	public int checkIdDup(String members_id) {
 		return mybatis.selectOne("membersDAOTemplate.checkIdDup", members_id);
 	}
+	
+	public int deleteMembers(int members_no) {
+		return mybatis.delete("membersDAOTemplate.deleteMembers", members_no);
+	}
 
 	public String checkMembersPw(String members_id) {
 		return mybatis.selectOne("membersDAOTemplate.checkMembersPw", members_id);
@@ -31,5 +35,16 @@ public class MembersDAO {
 	public MembersVO selectByMembersNo(int members_no) {
 		return mybatis.selectOne("membersDAOTemplate.selectByMembersNo" ,members_no);
 	}
+	
+	public String checkPwById(String members_id) {
+		return mybatis.selectOne("membersDAOTemplate.checkPwById", members_id);
+	}
+	
+	public int updatePw(MembersVO vo) {
+		return mybatis.update("membersDAOTemplate.updatePw", vo);
+	}
 
+	public int updateMembers(MembersVO vo) {
+		return mybatis.update("membersDAOTemplate.updateMembers", vo);
+	}
 }

@@ -22,12 +22,12 @@
 </script>
 
 <meta charset="UTF-8">
-<title>Tripfull</title>
+<title>관리자::Tripfull</title>
 </head>
 
 <style>
 	.nav {
-		background-color: white;
+		background-color: lightgray;
 		/*position: fixed;*/
 		width: 100%;
 		top: 0;
@@ -60,7 +60,6 @@
 		outline: 0;
 		font-weight: 600;
 		border-radius: 8px;
-		color: black;
 		height: 2.5em;
 		line-height: 2.5em;
 		padding: 0 1.25em;
@@ -112,7 +111,7 @@
 
 	.navListDiv {
 		clear: both;
-		text-align: center;
+		text-align: left;
 	}
 
 	main {
@@ -120,6 +119,7 @@
 		width: 1200px;
 		margin-top: 20px;
 	}
+	
 
 </style>
 
@@ -129,7 +129,7 @@
 	<nav class="nav">
 		<div class="navDiv">
 			<div class="navImgDiv">
-				<a style="all: unset; cursor: pointer;" href="<c:url value='/index.do'/>">
+				<a style="all: unset; cursor: pointer;" href="<c:url value='/#'/>">
 					<img src="<c:url value='/img/tripfulllogo.png'/>">
 				</a>
 			</div>
@@ -138,9 +138,23 @@
 					<li><a href="<c:url value='../index.do'/>">메인 페이지</a></li>
 					<li id="signin_li"><a href="#">고객센터</a></li>
 					<li id="logout_li"><a href="../adminLogin/adminLogout.do">로그아웃</a></li>
-					<li><a href="<c:url value='/adminLogin/adminLogin_View.do'/>">관리자</a></li>
+					<li id="admin_li"><a href="<c:url value='/adminLogin/adminLogin_View.do'/>">관리자</a></li>
 				</ul>
 			</div>
+			
+			<div class="navListDiv">
+				<ul>
+					<li><a href="<c:url value='#'/>">회원관리</a></li>
+					<li><a href="<c:url value='#'/>">항공권</a></li>
+					<li><a href="<c:url value='/adminHotel/adminHotel.do'/>">숙박</a></li>
+					<li><a href="<c:url value='#'/>">렌터카 & 교통</a></li>
+					<li><a href="<c:url value='#'/>">액티비티</a></li>
+					<li><a href="<c:url value='/adminLanTrip/adminLanTrip.do'/>">랜선투어</a></li>
+					<li><a href="<c:url value='#'/>">여행이야기</a></li>
+				</ul>
+			</div>
+			
 		</div>
 	</nav>
 </header>
+

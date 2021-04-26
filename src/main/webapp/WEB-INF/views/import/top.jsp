@@ -147,7 +147,7 @@
 				<ul>
 					<li id="signin_li"><a href="<c:url value='/members/insertMembers.do'/>">회원가입</a></li>
 					<li id="login_li"><a href="<c:url value='/members/loginMembers.do'/>">로그인</a></li>
-					<li id="mypage_li"><a href="#">회원정보</a></li>
+					<li id="mypage_li"><a href="<c:url value='/members/indexMembers.do'/>">마이페이지</a></li>
 					<li id="logout_li"><a href="<c:url value='/members/logoutMembers.do'/>">로그아웃</a></li>
 					<li><a href="<c:url value='/adminLogin/adminLogin_View.do'/>">관리자</a></li>
 				</ul>
@@ -158,7 +158,7 @@
 					<li><a href="<c:url value='/practice/insertPractice.do'/>">연습(CK입력)</a></li>
 					<li><a href="<c:url value='/practice/getPracticeList.do'/>">연습(CK출력)</a></li>
 					<li><a href="<c:url value='/flight/getFlightList.do'/>">항공권</a></li>
-					<li><a href="<c:url value='/hotel/getHotelList.do'/>">숙소</a></li>
+					<li><a href="<c:url value='/hotel/getHotelList.do'/>">숙박</a></li>
 					<li><a href="<c:url value='#'/>">렌터카 & 교통</a></li>
 					<li><a href="#">액티비티</a></li>
 					<li><a href="<c:url value='/lantrip/getLanTripList.do'/>">랜선투어</a></li>

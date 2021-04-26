@@ -9,26 +9,42 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.tjoeunit.biz.common.PagingVO;
 import com.tjoeunit.biz.hotel.HotelService;
 import com.tjoeunit.biz.hotel.HotelVO;
 
-@Controller
 
+@Controller
 public class HotelController {
+	
 	@Autowired
 	private HotelService hotelService;
 
-	//글 등록 페이지
-	@RequestMapping(value="/hotel/insertHotel.do", method = RequestMethod.GET)
+/*관리자 컨트롤러*/	
+// adminHotelList 로 이동 
+	@RequestMapping(value="/adminHotel/adminHotel.do", method=RequestMethod.GET)
+	public String adminHotel(HotelVO vo, Model model) {
+		System.out.println("숙박 관리자 목록으로 이동");
+			
+		List<HotelVO> HotelList = hotelService.getHotelList(vo);
+				
+		model.addAttribute("HotelList", HotelList);
+				
+		return "adminHotel/adminHotel";
+	}	
+	
+	//숙박 관리자 등록 페이지
+	@RequestMapping(value="/adminHotel/insertHotel.do", method = RequestMethod.GET)
 	public String insertHotelPage(){
 		System.out.println("숙박 등록 화면 보기 처리");
-		return "hotel/insertHotel";
+		return "adminHotel/insertHotel";
 	}
 
-	// 글 등록 처리
-	@RequestMapping(value ="/hotel/insertHotel.do", method = RequestMethod.POST)
+	// 숙박 등록 처리
+	@RequestMapping(value ="/adminHotel/insertHotel.do", method = RequestMethod.POST)
 	public String insertHotel(HotelVO vo, HttpSession session, MultipartFile[] hotelImgUpload, Model model) throws Exception {
 		System.out.println("숙박권 등록 처리");
 
@@ -46,17 +62,12 @@ public class HotelController {
 				switch(i) {
 					case 0 : vo.setHotel_thumb(hotelUploadName);
 					break;
-
-					case 1 : vo.setHotel_img(hotelUploadName);
-					break;
 				}
 
 				}else {
 					switch(i) {
 					case 0 : vo.setHotel_thumb(null);
 
-					case 1 : vo.setHotel_img(null);
-					break;
 					}
 				}
 			}
@@ -66,11 +77,11 @@ public class HotelController {
 
 		int cnt = hotelService.insertHotel(vo);
 
-		String msg="숙박권 등록 실패", url="/hotel/insertHotel.do";
+		String msg="숙박권 등록 실패", url="/adminHotel/insertHotel.do";
 
 		if(cnt>0) {
 			msg="숙박권 등록 성공";
-			url="/hotel/getHotelList.do";
+			url="/adminHotel/adminHotel.do";
 		}
 
 		model.addAttribute("msg", msg);
@@ -83,23 +94,36 @@ public class HotelController {
 	//WEB-INF 폴더에 있는 jsp는 직접적으로 view를 볼 수 없다.
 	//또한 직접적으로 볼 수 없기 때문에 <a> 앵커 태그로 이동이 불가하며 Controller를 통해서만 이동을 해야 한다.
 
-	// 글 수정 페이지
-	@RequestMapping(value="/hotel/updateHotel.do", method = RequestMethod.GET)
+	// 관리자 글 상세보기
+		@RequestMapping(value="/adminHotel/adminHotelDetail.do", method = RequestMethod.GET)
+		public String getAdminHotel(HotelVO vo, Model model){
+			System.out.println("숙박권 상세 조회 처리");
+
+			HotelVO hotel = hotelService.getHotel(vo);
+
+			model.addAttribute("hotel",hotel);
+
+			return "adminHotel/adminGetHotel";
+		}
+	
+	
+	// 관리자 수정 페이지
+	@RequestMapping(value="/adminHotel/adminHotelUpdatePage.do", method = RequestMethod.GET)
 	public String updateHotelPage(HotelVO vo,Model model){
 		System.out.println("숙박권 수정 화면 보기 처리");
 		HotelVO hotel = hotelService.getHotel(vo);
 
 		model.addAttribute("hotel",hotel);
-		return "hotel/updateHotel";
+		return "adminHotel/updateHotel";
 	}
 
 
 
-	// 글 수정
-	@RequestMapping(value = "/hotel/updateHotel.do", method = RequestMethod.POST)
+	// 관리자 수정 처리 
+	@RequestMapping(value = "/adminHotel/adminHotelUpdate.do", method = RequestMethod.POST)
 	public String updateHotel(HotelVO vo, HttpSession session, MultipartFile[] hotelImgUpload, Model model) throws Exception {
 		System.out.println("숙박권 수정 처리");
-
+		
 		// 파일 업로드 처리
 		String hotelImg = session.getServletContext().getRealPath("/hotelUpload/");
 		System.out.println("==>"+hotelImgUpload.length);
@@ -115,47 +139,35 @@ public class HotelController {
 					case 0 : vo.setHotel_thumb(hotelUploadName);
 					break;
 
-					case 1 : vo.setHotel_img(hotelUploadName);
-					break;
 				}
 
 				}else {
 					switch(i) {
 					case 0 : vo.setHotel_thumb(null);
 
-					case 1 : vo.setHotel_img(null);
-					break;
 					}
 				}
 			}
 
 		// DB연동처리
-		System.out.println(vo);
-
-		int cnt = hotelService.insertHotel(vo);
-
-		String msg="숙박권 수정 실패", url="/hotel/insertHotel.do";
-
-		if(cnt>0) {
-			msg="숙박권 수정 성공";
-			url="/hotel/getHotelList.do";
-		}
-
-		model.addAttribute("msg", msg);
-		model.addAttribute("url", url);
-
-		return "common/message";
-
+		 System.out.println(vo);
+		 hotelService.updateHotel(vo);
+		 String msg="숙박권 수정 성공", url="/adminHotel/adminHotel.do";
+			 
+		 	model.addAttribute("msg", msg); 
+		 	model.addAttribute("url", url);
+		 
+		 return "common/message";
 	}
 
-	// 글 삭제
-	@RequestMapping(value ="/hotel/deleteHotel.do")
+	// 관리자 글 삭제 처리 
+	@RequestMapping(value ="/adminHotel/adminHotelDelete.do")
 	public String deleteBoard(HotelVO vo,Model model){
 		System.out.println("숙박권 삭제 처리");
 
 		hotelService.deleteHotel(vo);
 
-		String msg="숙박권 삭제 성공", url="/hotel/getHotelList.do";
+		String msg="숙박권 삭제 성공", url="/adminHotel/adminHotel.do";
 
 		model.addAttribute("msg", msg);
 		model.addAttribute("url", url);
@@ -164,8 +176,8 @@ public class HotelController {
 	}
 
 
-	// 글 목록 보기
-	@RequestMapping(value="/hotel/getHotelList.do", method = RequestMethod.GET)
+	//  글 목록 보기 : 페이징 처리 전 목록 컨트롤러
+	/*@RequestMapping(value="/hotel/getHotelList.do", method = RequestMethod.GET)
 	public String getHotelList(HotelVO vo, Model model){
 		System.out.println("숙박 목록 검색 처리");
 
@@ -174,7 +186,29 @@ public class HotelController {
 		model.addAttribute("hotelList", hotelList);
 
 		return "hotel/getHotelList";
-	}	// 모델에는 2개의 값이 담긴다. 모델엔 뷰니까 모델값과 뷰값
+	}	// 모델에는 2개의 값이 담긴다. 모델엔 뷰니까 모델값과 뷰값*/
+	
+	// 글 목록 보기 : 페이징 처리 후 목록 컨트롤러
+	@RequestMapping(value="/hotel/getHotelList.do", method = RequestMethod.GET)
+	public String hotelListPaging(PagingVO vo, Model model,
+			@RequestParam(value="nowPage", required=false) String nowPage,
+			@RequestParam(value="cntPerPage", required=false) String cntPerPage) {
+		
+		int total = hotelService.countHotel();
+		if (nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "5";
+		} else if (nowPage == null) {
+			nowPage = "1";
+		} else if (cntPerPage == null) { 
+			cntPerPage = "5";
+		}
+		
+		vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		model.addAttribute("paging", vo);
+		model.addAttribute("hotelList", hotelService.selectHotel(vo));
+		return "hotel/getHotelList";
+	}
 
 	// 글 상세 조회
 	@RequestMapping(value="/hotel/getHotel.do", method = RequestMethod.GET)
@@ -187,4 +221,6 @@ public class HotelController {
 
 		return "hotel/getHotel";
 	}
+	
+	
 }
