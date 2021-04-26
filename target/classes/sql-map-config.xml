@@ -19,6 +19,7 @@
 		<mapper resource="mappings/hotel-mapping.xml"/>
 		<mapper resource="mappings/practice-mapping.xml"/>
 		<mapper resource="mappings/flight-mapping.xml"/>
+		<mapper resource="mappings/storyReply-mapping.xml"/>
 	</mappers>
 	
 	
