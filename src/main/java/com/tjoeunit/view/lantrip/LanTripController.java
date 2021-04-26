@@ -132,29 +132,26 @@ public class LanTripController {
 	
 // 글 수정
 	@RequestMapping(value="/adminLanTrip/adminLanTripUpdate.do", method = RequestMethod.POST)
-	public String updateLanTrip(LanTripVO vo, HttpSession session, MultipartFile[] lanTripImgUpload, Model model) throws Exception {
+	public String updateLanTrip(LanTripVO vo, HttpSession session, MultipartFile[] lanTripImgUpload, HttpServletRequest request, Model model) throws Exception {
 		System.out.println("랜선투어 수정 처리");
 		
 		// 파일 업로드 처리
 		String lanTripImg = session.getServletContext().getRealPath("/lanTripUpload/");
 		System.out.println("==>"+lanTripImgUpload.length);
 		
-		for(int i = 0; i < lanTripImgUpload.length; i++) {
-			System.out.println("==>"+lanTripImgUpload[i].isEmpty());
+		if(lanTripImgUpload.length<1) {
 			
-			if(!lanTripImgUpload[i].isEmpty()) {
+			String lantrip_thumb = request.getParameter("lanTripImgUpload");
+			System.out.println("기존 썸네일 사용 시 파일명 : " + lantrip_thumb);
+			vo.setLantrip_thumb(lantrip_thumb);
+		}else {		
+			for(int i = 0; i < lanTripImgUpload.length; i++) {
+				System.out.println("==>"+lanTripImgUpload[i].isEmpty());
+				
 				String lanTripUploadName = lanTripImgUpload[i].getOriginalFilename();
 				lanTripImgUpload[i].transferTo(new File(lanTripImg+lanTripUploadName));
-				
-				switch(i) {
-					case 0 : vo.setLantrip_thumb(lanTripUploadName);
-					break;
-				}
-			}else {
-				switch(i) {
-				case 0 : vo.setLantrip_thumb(null);
-				break;
-				}
+				System.out.println("변경 썸네일 사용 시 파일명 : " + lanTripUploadName);
+				vo.setLantrip_thumb(lanTripUploadName);
 			}
 		}
 		

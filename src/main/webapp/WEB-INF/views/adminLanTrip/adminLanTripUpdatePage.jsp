@@ -80,12 +80,17 @@
 		
 // Radio 를 이용하여 기존 썸네일 이용 또는 변경 썸네일 선택가능 
 		$('#edRadio').click(function(){
-			$('#svDiv').remove();
-			$('#thumbDiv').append('<div id="edDiv">변경 썸네일 : <input type="file" name="lanTripImgUpload"></div>');
+			if($('#svDiv').length > 0){
+				$('#svDiv').remove();
+				$('#thumbDiv').append('<div id="edDiv">변경 썸네일 : <input type="file" name="flightImgUpload"></div>');
+			}
 		});		
+		
 		$('#svRadio').click(function(){
-			$('#edDiv').remove();
-			$('#thumbDiv').append('<div id="svDiv">현재 썸네일 : <input type="text" name="lanTripImgUpload" value="${ lantrip.lantrip_thumb }" readonly></div>')
+			if($('#edDiv').length > 0){
+				$('#edDiv').remove();
+				$('#thumbDiv').append('<div id="svDiv">현재 썸네일 : <input type="text" name="flightImgUpload" value="${flight.flight_thumb}" readonly></div>');
+			}
 		});
 		
 	});	

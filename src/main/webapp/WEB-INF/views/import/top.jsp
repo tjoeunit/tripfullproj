@@ -109,6 +109,7 @@
 
 	main {
 		margin-left: 360px;
+		margin-bottom: 20px;
 		width: 1200px;
 	}
 

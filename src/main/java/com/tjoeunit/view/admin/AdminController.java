@@ -40,7 +40,7 @@ public class AdminController {
         session.setAttribute("admin_id", vo.getAdmin_id());
         session.setAttribute("admin_name", vo.getAdmin_name());
 
-        mav.setViewName("adminLanTrip/adminLanTrip"); //admin페이지를 보여줌
+        mav.setViewName("admin/adminIndex"); //admin페이지를 보여줌
         mav.addObject("message", "success"); //mav안에 있는 addObject()메소드를 사용해 message라는 키에 sucess라는 value를 담아 보낸다
         System.out.println("관리자 로그인 체크성공");
     }else {
@@ -54,32 +54,12 @@ public class AdminController {
     }
 
 
-	@RequestMapping(value="/admin/adminAccomodations.do", method=RequestMethod.GET)
-	public String adminAccomodations() {
-		System.out.println("숙박 페이지 이동 ");
-		return "admin/adminAccomodations";
+	@RequestMapping(value="/admin/adminIndex.do", method=RequestMethod.GET)
+	public String adminIndex() {
+		System.out.println("관리자 메인페이지로 이동");
+		return "admin/adminIndex";
 	}
-
-
-	@RequestMapping(value="/admin/adminFlight.do", method=RequestMethod.GET)
-	public String adminFlight() {
-		System.out.println("항공 페이지 이동 ");
-		return "/admin/adminFlight";
-	}
-
-
-	@RequestMapping(value="/admin/adminActivity.do", method=RequestMethod.GET)
-	public String adminActivity() {
-		System.out.println("액티비티 페이지 이동 ");
-		return "admin/adminActivity";
-	}
-
-	@RequestMapping(value="/admin/membersManage.do", method=RequestMethod.GET)
-	public String membersManage() {
-		System.out.println("회원관리 페이지 이동 ");
-		return "admin/membersManage";
-	}
-
+	
 
 	//관리자 로그아웃
     @RequestMapping("/adminLogin/adminLogout.do")
