@@ -20,21 +20,29 @@ import com.tjoeunit.biz.activity.ActivityVO;
 import com.tjoeunit.biz.common.PagingVO;
 
 @Controller
+
 //@RequestMapping("/activity")
+
+@RequestMapping("/activity")
+
 public class ActivityController {
 	
 	@Autowired
 	private ActivityService activityService;
 	
 	// 글 등록 페이지
+
 	@RequestMapping(value="/adminActivity/insertActivity.do", method = RequestMethod.GET)
 	public String insertActivityPage() {
 		return "adminActivity/insertActivity";
+
 	}
 
 	
 	// 글 등록
+
 	@RequestMapping( value = "/adminActivity/insertActivity.do", method = RequestMethod.POST)
+
 	public String insertActivity(ActivityVO vo, HttpSession session, MultipartFile[] activityImgUpload, Model model) throws Exception {
 		System.out.println("액티비티 등록 처리");
 		

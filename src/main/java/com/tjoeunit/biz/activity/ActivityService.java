@@ -8,6 +8,7 @@ import com.tjoeunit.biz.activity.ActivityVO;
 public interface ActivityService {
 	// CRUD 기능의 메서드 구현
 	
+
 	// 액티비티 등록
 	int insertActivity(ActivityVO vo);
 	
@@ -21,6 +22,8 @@ public interface ActivityService {
 	void updateActivity(ActivityVO vo);
 	
 	// 액티비티 삭제
+
+
 	void deleteActivity(ActivityVO vo);
 	
 	//페이징처리를 위해 생성 : 게시물 총 개수
