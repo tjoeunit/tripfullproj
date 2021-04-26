@@ -1,8 +1,42 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>     
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 <%@ include file="../import/admintop.jsp" %>
+<script type="text/javascript">
+/////////////////////////////////////////////////////////////
+////////////////////db 1111입력 오류 방지////////////////////////
+/////////////////////////////////////////////////////////////
+
+$(function(){	
+	
+	$('form[name=update_Hotel]').submit(function(){ 
+		if($('#hotel_title').val().length < 1) {
+			alert('제목을 확인하세요');
+			$('#hotel_title').focus();
+			event.preventDefault();
+			return false;
+			
+		}else if ($('#hotel_price').val().length < 1){
+			alert('가격을 확인하세요');
+			$('#hotel_price').focus();
+			event.preventDefault();
+			return false;
+			
+		}else if ($('#hotel_thumb').val().length < 1){
+			alert('썸네일 파일을 확인하세요');
+			$('#hotel_thumb').focus();
+			event.preventDefault();
+			return false;		
+			
+		}else if ($('#hotel_content').val().length < 1){
+			alert('내용을 확인하세요');
+			$('#hotel_content').focus();
+			event.preventDefault();
+			return false;				
+		} 
+	});
+});	
+</script>
 
 <style type="text/css">
 
@@ -64,7 +98,11 @@
 	<!-- ckeditor 4 -->	
 	<script type="text/javascript" src="<c:url value='/ckeditor/ckeditor.js'/>"></script>
 	
-	<form action="<c:url value='/adminHotel/insertHotel.do'/>" method="post"  enctype="multipart/form-data">
+	<!--/////////////////////////////////-->
+	<!--/////// 1.form name 이름 설정 //////-->
+	<!--//////////////////////////////////-->
+	
+	<form name="update_Hotel" action="<c:url value='/adminHotel/insertHotel.do'/>" method="post"  enctype="multipart/form-data">
 		<div class="admin_subtitle">
 			<span class="admin_subtitle_name">숙박권 등록</span>
 			<span class="new_upload">
@@ -76,8 +114,10 @@
 			<table class="insert_table">
 				<tr>
 					<td class="table_td1">제목</td>
-					<td><input type="text" class="insert_input" name="hotel_title" /></td>
-				</tr>
+					<td><input type="text" class="insert_input" name="hotel_title" id="hotel_title" /></td>
+																				<!--/////////////////////////////////-->
+				</tr>															<!--////////각 input 태그에 id 설정 ///////-->	
+																				<!--//////////////////////////////////-->			
 				
 				<tr>
 					<td class="table_td1">카테고리</td>
@@ -105,18 +145,18 @@
 				
 				<tr>
 					<td class="table_td1">가격</td>
-					<td><input type="text" class="insert_input" name="hotel_price" placeholder="숫자만 입력해주세요"/></td>
+					<td><input type="text" class="insert_input" name="hotel_price" id="hotel_price" placeholder="숫자만 입력해주세요"/></td>
 				</tr>
 				
 				<tr>
 					<td class="table_td1">썸네일</td>
-					<td><input type="file" class="insert_input" name="hotelImgUpload"/></td>
+					<td><input type="file" class="insert_input" name="hotelImgUpload" id="hotel_thumb"/></td>
 				</tr>
 					
 				<tr>
 					<td class="table_td1">내용</td>
 					<td>
-						<textarea name="hotel_content" class="ckeditor"></textarea>
+						<textarea name="hotel_content" class="ckeditor" id="hotel_content"></textarea>
 						<script type="text/javascript">
 							CKEDITOR.replace('hotel_content', {height: 700, width: 900, filebrowserUploadUrl:'/hotelImage/imageUpload.do'});
 						</script>

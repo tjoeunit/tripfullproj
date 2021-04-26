@@ -3,8 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<% String members_id = (String)session.getAttribute("members_id"); %>
-<% int members_no = (Integer)session.getAttribute("members_no"); %>
+<% String admin_id = (String)session.getAttribute("admin_id"); %>
+<% int admin_no = (Integer)session.getAttribute("admin_no"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,13 +13,6 @@
 
 <!-- 제이쿼리 -->
 <script type="text/javascript" src="<c:url value='/js/jquery-3.5.1.min.js'/>"></script>
-
-<!-- 어드민 인덱스 스크립트 -->
-<script
-  src="https://code.jquery.com/jquery-3.4.1.js"
-  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-  crossorigin="anonymous">
-</script>
 
 <meta charset="UTF-8">
 <title>관리자::Tripfull</title>
@@ -118,14 +111,15 @@
 		margin-left: 360px;
 		width: 1200px;
 		margin-top: 20px;
+		margin-bottom: 20px;
 	}
-	
+
 
 </style>
 
 <body>
 <header>
-	<input type="hidden" id="sessionID" value="${members_id}">
+	<input type="hidden" id="sessionID" value="${admin_id}">
 	<nav class="nav">
 		<div class="navDiv">
 			<div class="navImgDiv">
@@ -138,23 +132,22 @@
 					<li><a href="<c:url value='../index.do'/>">메인 페이지</a></li>
 					<li id="signin_li"><a href="#">고객센터</a></li>
 					<li id="logout_li"><a href="../adminLogin/adminLogout.do">로그아웃</a></li>
-					<li id="admin_li"><a href="<c:url value='/adminLogin/adminLogin_View.do'/>">관리자</a></li>
+					<%-- <li id="admin_li"><a href="<c:url value='/adminLogin/adminLogin_View.do'/>">관리자</a></li> --%>
 				</ul>
 			</div>
-			
+
 			<div class="navListDiv">
 				<ul>
 					<li><a href="<c:url value='#'/>">회원관리</a></li>
 					<li><a href="<c:url value='/adminFlight/adminFlight.do'/>">항공권</a></li>
 					<li><a href="<c:url value='/adminHotel/adminHotel.do'/>">숙박</a></li>
 					<li><a href="<c:url value='#'/>">렌터카 & 교통</a></li>
-					<li><a href="<c:url value='#'/>">액티비티</a></li>
+					<li><a href="<c:url value='/adminActivity/adminActivity.do'/>">액티비티</a></li>
 					<li><a href="<c:url value='/adminLanTrip/adminLanTrip.do'/>">랜선투어</a></li>
 					<li><a href="<c:url value='#'/>">여행이야기</a></li>
 				</ul>
 			</div>
-			
+
 		</div>
 	</nav>
 </header>
-

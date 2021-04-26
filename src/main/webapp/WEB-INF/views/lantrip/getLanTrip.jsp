@@ -124,7 +124,6 @@
 			</table>
 
 			<!-- 랜선여행 상세 설명 -->
-			<div class="lan_product_detail">${ lantrip.lantrip_content }</div>
 			<div class="lan_video">
 				<h3>랜선투어 맛보기 영상</h3>
 				<iframe width="1200" height="675"
@@ -135,6 +134,7 @@
 					allowfullscreen>
 				</iframe>
 			</div>
+			<div class="lan_product_detail">${ lantrip.lantrip_content }</div>
 			
 	</div>
 	<br>

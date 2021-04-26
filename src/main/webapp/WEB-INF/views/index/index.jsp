@@ -30,11 +30,12 @@
 		text-align: center;
 	}
 	
-	.productDivInfo h4 {
+	.productDivInfoName {
 		color: #58595b;
 		font-size: 32px;
 		margin-top: 0;
 		margin-bottom: 10px;
+		font-weight: 600;
 	}
 	
 </style>
@@ -68,7 +69,7 @@
 				<div class="productDiv">
 				    <img src="<c:url value='/img/indexthumb1.jpg'/>" class="productThumDiv">
 				    	<div class="productDivInfo">
-					      <h4>항공권</h4>
+					      <div class="productDivInfoName">항공권</div>
 					      <div>트립풀이 준비한 특가 항공권</div>
 				    	</div>
 				  </div>
@@ -76,7 +77,7 @@
 				  <div class="productDiv">
 				    <img src="<c:url value='/img/indexthumb2.jpg'/>" class="productThumDiv">
 				    	<div class="productDivInfo">
-					      <h4>숙박</h4>
+					      <div class="productDivInfoName">숙박</div>
 					      <div>호텔 예약 할인받고 떠나요!</div>
 				    	</div>
 				  </div>
@@ -84,7 +85,7 @@
 				  <div class="productDiv">
 				    <img src="<c:url value='/img/indexthumb3.jpg'/>" class="productThumDiv">
 				    	<div class="productDivInfo">
-					      <h4>액티비티</h4>
+					      <div class="productDivInfoName">액티비티</div>
 					      <div>전국 방방곡곡 액티비티</div>
 				    	</div>
 				  </div>
@@ -92,7 +93,7 @@
 				  <div class="productDiv">
 				    <img src="<c:url value='/img/indexthumb4.jpg'/>" class="productThumDiv">
 				    	<div class="productDivInfo">
-					      <h4>랜선투어</h4>
+					      <div class="productDivInfoName">랜선투어</div>
 					      <div>영상으로는 어디든 떠날 수 있다!</div>
 				    	</div>
 				  </div>
@@ -101,7 +102,9 @@
 		</div>
 		
 		<div>
-			<img src="<c:url value='/img/tripstoryimg.png'/>" style="width:1200px">			
+			<img src="<c:url value='/img/story01.jpg'/>" style="width:1200px">
+			<img src="<c:url value='/img/story02.jpg'/>" style="width:1200px">
+			<img src="<c:url value='/img/story03.jpg'/>" style="width:1200px">
 		</div>		
 	</div>
 </main>
