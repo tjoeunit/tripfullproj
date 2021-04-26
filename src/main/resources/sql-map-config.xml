@@ -8,10 +8,12 @@
 
 	<typeAliases>
 		<typeAlias alias="lantrip" type="com.tjoeunit.biz.lantrip.LanTripVO"/>
+		<typeAlias alias="activity" type="com.tjoeunit.biz.activity.ActivityVO"/>
 	</typeAliases>
 
 	<!-- Sql Mapper 설정 -->
 	<mappers>
+		<mapper resource="mappings/activity-mapping.xml"/>
 		<mapper resource="mappings/admin-mapping.xml"/>
 		<mapper resource="mappings/members-mapping.xml"/>
 		<mapper resource="mappings/lantrip-mapping.xml"/>
