@@ -228,7 +228,8 @@ public class FlightController {
 //////////////////////////////////////////////////관리자////////////////////////////////////////////////////////
 //////////////////////////////////////////////////관리자////////////////////////////////////////////////////////
 	
-	// 관리자 항공권 목록 페이지로 이동
+	// 관리자 항공권 목록 페이지
+	/*
 	@RequestMapping(value="/adminFlight/adminFlight.do", method=RequestMethod.GET)
 	public String adminFlightPage(FlightVO vo, Model model) {
 		System.out.println("항공권 관리자 목록으로 이동");
@@ -239,6 +240,29 @@ public class FlightController {
 				
 		return "adminFlight/adminFlight";
 	}
+	*/
+	
+	// 관리자 항공권 목록 페이지 : 페이징 처리 후 목록 컨트롤러
+	@RequestMapping(value="/adminFlight/adminFlight.do", method = RequestMethod.GET)
+	public String adminFlightListPaging(PagingVO vo, Model model,
+			@RequestParam(value="nowPage", required=false) String nowPage,
+			@RequestParam(value="cntPerPage", required=false) String cntPerPage) {
+		
+		int total = flightService.countFlight();
+		if (nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "5";
+		} else if (nowPage == null) {
+			nowPage = "1";
+		} else if (cntPerPage == null) { 
+			cntPerPage = "5";
+		}
+		
+		vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		model.addAttribute("paging", vo);
+		model.addAttribute("flightList", flightService.selectFlight(vo));
+		return "adminFlight/adminFlight";
+	}	
 	
 	// 관리자 항공권 등록 페이지로 이동
 	@RequestMapping(value="/adminFlight/insertFlight.do", method=RequestMethod.GET)
