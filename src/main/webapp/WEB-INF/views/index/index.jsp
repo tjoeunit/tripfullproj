@@ -30,7 +30,7 @@
 		text-align: center;
 	}
 	
-	.productDivInfo h4 {
+	.productDivInfoName {
 		color: #58595b;
 		font-size: 32px;
 		margin-top: 0;
@@ -44,8 +44,7 @@
 		<img src="<c:url value='/img/indeximg1.jpg'/>" id="indexImage" style="width: 1200px;">		
 		<script type="text/javascript">
 			var myImage=document.getElementById("indexImage");
-			var imageArray=["<c:url value='/img/indeximg1.jpg'/>", "<c:url value='/img/indeximg2.jpg'/>", "<c:url value='/img/indeximg3.jpg'/>"
-				, "<c:url value='/img/indeximg4.jpg'/>", "<c:url value='/img/indeximg5.jpg'/>"];
+			var imageArray=["<c:url value='/img/indeximg1.jpg'/>", "<c:url value='/img/indeximg2.jpg'/>", "<c:url value='/img/indeximg3.jpg'/>"];
 			var imageIndex=0;
 			
 			function changeImage(){
@@ -66,37 +65,21 @@
 			<div>
 				
 				<div class="productDiv">
-				    <img src="<c:url value='/img/indexthumb1.jpg'/>" class="productThumDiv">
-				    	<div class="productDivInfo">
-					      <h4>항공권</h4>
-					      <div>트립풀이 준비한 특가 항공권</div>
-				    	</div>
-				  </div>
-				  
-				  <div class="productDiv">
-				    <img src="<c:url value='/img/indexthumb2.jpg'/>" class="productThumDiv">
-				    	<div class="productDivInfo">
-					      <h4>숙박</h4>
-					      <div>호텔 예약 할인받고 떠나요!</div>
-				    	</div>
-				  </div>
-				  
-				  <div class="productDiv">
-				    <img src="<c:url value='/img/indexthumb3.jpg'/>" class="productThumDiv">
-				    	<div class="productDivInfo">
-					      <h4>액티비티</h4>
-					      <div>전국 방방곡곡 액티비티</div>
-				    	</div>
-				  </div>
-				  
-				  <div class="productDiv">
-				    <img src="<c:url value='/img/indexthumb4.jpg'/>" class="productThumDiv">
-				    	<div class="productDivInfo">
-					      <h4>랜선투어</h4>
-					      <div>영상으로는 어디든 떠날 수 있다!</div>
-				    	</div>
-				  </div>
-				
+					<div class="productThumDiv">항공이미지</div>
+					<div>설명</div>
+				</div>
+				<div class="productDiv">
+					<div class="productThumDiv">숙박이미지</div>
+					<div>설명</div>					
+				</div>
+				<div class="productDiv">
+					<div class="productThumDiv">액티비티이미지</div>
+					<div>설명</div>
+				</div>
+				<div class="productDiv">
+					<div class="productThumDiv">랜선투어이미지</div>
+					<div>설명</div>
+				</div>
 			</div>
 		</div>
 		

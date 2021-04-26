@@ -14,13 +14,6 @@
 <!-- 제이쿼리 -->
 <script type="text/javascript" src="<c:url value='/js/jquery-3.5.1.min.js'/>"></script>
 
-<!-- 어드민 인덱스 스크립트 -->
-<script
-  src="https://code.jquery.com/jquery-3.4.1.js"
-  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-  crossorigin="anonymous">
-</script>
-
 <meta charset="UTF-8">
 <title>관리자::Tripfull</title>
 </head>
