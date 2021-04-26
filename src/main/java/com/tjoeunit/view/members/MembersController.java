@@ -117,72 +117,154 @@ public class MembersController {
 		model.addAttribute("url", url);
 
 		return "common/messageLogout";
-	}	
+	}
 	
-/*	
-	// 글 수정
-		@RequestMapping("/updateMembers.do")
-												//사용자로부터 전달 받은 TITLE과 CONTENT 값 업데이트
-		public String updateMembers(@ModelAttribute("members") MembersVO vo) {		
-			System.out.println("고객정보 수정 처리" +vo);
-			// 1. 사용자 입력 정보 추출(Spring이 대신 해줌.생략 가능)
-			
-			// 2. DB 연동 처리
-			membersService.updateMembers(vo);
-			// 3. 화면 전환
-			return "redirect:getMembersList.do";
+	//회원 로그인 페이지
+	@RequestMapping(value="/indexMembers.do", method=RequestMethod.GET)
+	public String indexMembersPage() {
+		System.out.println("마이페이지 첫 화면");
+		return "members/indexMembers";
+	}
+	
+	//회원 정보 페이지
+	@RequestMapping(value="/infoMembers.do", method=RequestMethod.GET)
+	public String infoMembersPage(HttpSession session, Model model) {
+		System.out.println("회원정보 페이지");
+		
+		String members_id = (String)session.getAttribute("members_id");
+		MembersVO members = membersService.selectByMembersId(members_id);
+		
+		model.addAttribute("members", members);		
+		
+		return "members/infoMembers";
+	}
+	
+	//회원 탈퇴
+	@RequestMapping("/deleteMembers.do")
+	public String deleteMembers(HttpSession session, Model model) {
+		
+		int members_no = (Integer)session.getAttribute("members_no");
+		String members_id = (String)session.getAttribute("members_id");
+		System.out.println("회원 탈퇴 처리 members_no = " + members_no);
+		System.out.println("회원 탈퇴 처리 members_id = " + members_id);
+		
+		String msg="회원 삭제 실패", url="/members/infoMembers.do";
+		
+		int cnt = membersService.deleteMembers(members_no);
+		
+		if(cnt>0) {
+			msg= members_id + "님 탈퇴 처리되었습니다";
+			url="/index.do";
 		}
 		
-	// 글 삭제
-		@RequestMapping("/deleteMembers.do")
-		public void deleteMembers(MembersVO vo) {
-			System.out.println("고객 삭제 기능 처리");
-					
-			membersService.deleteMembers(vo);
-			
-			return;
-		}
+		// 세션 전체 제거, 무효화 
+		session.invalidate();
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+
+		return "common/messageLogout";
+	}
+
+	//비밀번호 변경 페이지
+	@RequestMapping(value="/updatePw.do", method=RequestMethod.GET)
+	public String updatePwPage() {
+		System.out.println("비밀번호 변경 페이지");
+		return "members/updatePw";
+	}
 	
-	// RequestMapping이 실행되기 직전에 이 메소드가 먼저 호출 되어진다.(model에 값이 들어감)
-		@ModelAttribute("/conditionMap.do")		//"conditionMap"에 return 값을 저장
-		public Map<String, String> searchConditionMap() {
-			Map<String, String> conditionMap = new HashMap<String, String>();
-			conditionMap.put("제목", "TITLE");
-			conditionMap.put("내용", "CONTENT");
-			return conditionMap;
-		}
-
-	// 고객 목록 보기
-		@RequestMapping("/getMembersList.do")
-//		public String getMembersList(MembersVO vo, Model model) {	//ModelAndView의 Model 딴에 있는 변수를 매개변수로
-			System.out.println("글 목록 검색 처리");
-		// 검색 기능 추가 Null check
-
-			if(vo.getMembersSearchCondition() == null) {
-				vo.setMembersSearchCondition("TITLE");
+	//비밀번호 변경
+	@RequestMapping(value="/updatePw.do", method=RequestMethod.POST)
+	public String updatePw(HttpSession session, HttpServletRequest request, MembersVO vo, Model model) {
+		
+		System.out.println("비밀번호 변경 처리");
+		
+		//로그인 되어있는 아이디
+		String members_id = (String)session.getAttribute("members_id");
+		
+		//기존 비밀번호 입력 값
+		String members_pw_use = request.getParameter("members_pw_use");
+		
+		//새 비밀번호 입력 값
+		String members_pw = request.getParameter("members_pw");
+		
+		System.out.println("members_id = " + members_id);
+		System.out.println("members_pw_use = " + members_pw_use);
+		System.out.println("members_pw = " + members_pw);
+				
+		//1. 기존 비밀번호가 일치하는지 확인 (아이디를 통해 비밀번호 일치 여부 확인)
+		
+		//아이디를 통해 비밀번호를 가져옴
+		String members_pw_db = membersService.checkPwById(members_id);
+		System.out.println("members_pw_db = " + members_pw_db);		
+		
+		String msg="";
+		String url="";
+		
+		//일치하지 않을 경우 : 비밀번호 불일치를 알려주고 비밀번호 변경 페이지로 이동
+		if(!members_pw_db.equals(members_pw_use)) {
+			
+			msg = "비밀번호를 확인하세요";
+			url = "/members/updatePw.do";
+			
+		//일치 할 경우	: 새 비밀번호로 변경시키고 회원정보 페이지로 이동
+		}else {
+			
+			vo.setMembers_id(members_id);
+			vo.setMembers_pw(members_pw);
+			
+			int result = membersService.updatePw(vo);
+			System.out.println("result = " + result);
+			
+			msg = "비밀번호 변경 실패";
+			url = "/members/updatePw.do";
+			
+			if(result > 0) {
+				msg = "비밀번호가 변경되었습니다";
+				url = "/members/infoMembers.do";
 			}
 			
-			if(vo.getMembersSearchKeyword() == null) {
-				vo.setMembersSearchKeyword("");
-			}
-			
-			model.addAttribute("membersList", membersService.getMembersList(vo));		//key Value
-			
-			return "/members/getMembersList.jsp";
-
 		}
-
-	// 글 상세 조회
-		@RequestMapping("/getMembers.do")
-		public String getMembers(MembersVO vo, Model model) {
-			System.out.println("글 상세 조회 처리");
-			
-	//		MembersVO members = membersService.getMembers(vo);
-			
-	//		model.addAttribute("members", members);
-			
-			return "/members/getMembers.jsp";
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		return "common/message";
+	
+	}
+	
+	//회원정보 변경 페이지
+	@RequestMapping(value="/updateMembers.do", method=RequestMethod.GET)
+	public String updateMembersPage(HttpSession session, Model model) {
+		System.out.println("회원정보 변경 페이지");
+		
+		String members_id = (String)session.getAttribute("members_id");
+		MembersVO members = membersService.selectByMembersId(members_id);
+		
+		model.addAttribute("members", members);
+		
+		return "members/updateMembers";
+	}
+	
+	@RequestMapping(value="/updateMembers.do", method=RequestMethod.POST)
+	public String updateMembers(MembersVO vo, Model model) {
+		System.out.println("회원정보 변경 처리");
+		
+		int cnt = membersService.updateMembers(vo);
+		
+		String msg="회원정보 변경 실패", url="/members/updateMembers.do";
+		
+		if(cnt > 0) {
+			msg = "회원정보 변경 성공";
+			url = "/members/infoMembers.do";
 		}
-	}	
-*/
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		return "common/message";
+	}
+	
+	
+	
 }

@@ -48,5 +48,21 @@
 		)
 		where rn between #{start} and #{end}
 	</select>
-		
+	
+	<!-- 항공권 수정하기 -->
+	<update id="updateFlight">
+		update flight set 
+			flight_title=#{flight_title},
+			flight_content = #{flight_content},
+			flight_thumb = #{flight_thumb},
+			flight_price = #{flight_price},
+			flight_departure=#{flight_departure},
+			flight_arrival=#{flight_arrival}
+		where flight_no=#{flight_no}
+	</update>
+	
+	<!-- 항공권 삭제하기 -->
+	<delete id="deleteFlight">
+		delete from flight where flight_no=#{flight_no}
+	</delete>
 </mapper>

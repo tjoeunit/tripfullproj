@@ -608,7 +608,7 @@
 			<br>
 			<div class="btn_div">
 				<input type="submit" value="가입하기" class="btn_button">
-				<button type="button" class="btn_button" onclick="history.back()">뒤로가기</button>
+				<input type="button" value="뒤로가기" class="btn_button" onclick="history.back()">
 			</div>
 			</div>						
 		</form>

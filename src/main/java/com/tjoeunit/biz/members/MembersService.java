@@ -13,18 +13,18 @@ public interface MembersService {
 
 	//고객 아이디로 고객 VO 조회
 	MembersVO selectByMembersId(String members_id);
-
-	//고객 목록 조회
-	//List<MembersVO> getMembersList(MembersVO vo);
-
-	//고객 상세 조회
-	//MembersVO getMembers(MembersVO vo);
-
+	
+	//고객 아이디로 비밀번호 조회
+	String checkPwById(String members_id);
+	
+	//고객 비밀번호 변경
+	int updatePw(MembersVO vo);
+	
 	//고객 정보 수정
-	//void updateMembers(MembersVO vo);
+	int updateMembers(MembersVO vo);
 
 	//고객 삭제
-	//void deleteMembers(MembersVO vo);
+	int deleteMembers(int members_no);
 
 	//고객 번호로 아이디 가져오기
 	MembersVO selectByMembersNo(int members_no);

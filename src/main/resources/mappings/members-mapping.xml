@@ -39,4 +39,32 @@
 		select * from members
 		where members_no=#{members_no}
 	</select>
+
+	<delete id="deleteMembers">
+		delete from members 
+		where members_no=#{members_no}
+	</delete>
+	
+	<select id="checkPwById" resultType="string">
+		select members_pw from members
+		where members_id=#{members_id}
+	</select>
+	
+	<update id="updatePw">
+		update members set members_pw=#{members_pw}
+		where members_id=#{members_id}
+	</update>
+	
+	<update id="updateMembers">
+		update members set 
+			members_name=#{members_name},
+			members_tel=#{members_tel},
+			members_email=#{members_email},
+			members_gender=#{members_gender},
+			members_zipcode=#{members_zipcode},
+			members_address=#{members_address},
+			members_address_detail=#{members_address_detail}
+		where members_id=#{members_id}
+	</update>
+	
 </mapper>
