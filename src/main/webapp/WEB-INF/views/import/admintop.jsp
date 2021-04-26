@@ -138,7 +138,7 @@
 					<li><a href="<c:url value='../index.do'/>">메인 페이지</a></li>
 					<li id="signin_li"><a href="#">고객센터</a></li>
 					<li id="logout_li"><a href="../adminLogin/adminLogout.do">로그아웃</a></li>
-					<li id="admin_li"><a href="<c:url value='/adminLogin/adminLogin_View.do'/>">관리자</a></li>
+					<%-- <li id="admin_li"><a href="<c:url value='/adminLogin/adminLogin_View.do'/>">관리자</a></li> --%>
 				</ul>
 			</div>
 			
