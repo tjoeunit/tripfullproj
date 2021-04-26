@@ -57,13 +57,54 @@
 	
 	
 </style>
+<script type="text/javascript">
+	//숫자 정규식!
+	var numReg = /^[0-9]+$/;
 
+	$(function(){
+		$('form[name=frm]').submit(function() {
+			if ($('#flight_title').val().length < 1) {
+				alert('제목을 확인하세요');
+				$('#flight_title').focus();
+				event.preventDefault();
+				return false;
+				
+			} else if ($('#flight_price').val().length < 1) {
+				alert('가격을 확인하세요');
+				$('#flight_price').focus();
+				event.preventDefault();
+				return false;				
+			} else if ($('#flight_price').val().length < 1) {
+				alert('가격을 확인하세요');
+				$('#flight_price').focus();
+				event.preventDefault();
+				return false;				
+			} else if (!numReg.test($('#flight_price').val())) {
+				alert('가격을 확인하세요');
+				$('#flight_price').focus();
+				event.preventDefault();
+				return false;			
+			} else if ($('#flightImgUpload').val().length < 1) {
+				alert('썸네일을 확인하세요');
+				$('#flightImgUpload').focus();
+				event.preventDefault();
+				return false;
+			} else if ($('#flight_content').val().length < 1) {
+				alert('내용을 확인하세요');
+				$('#flight_content').focus();
+				event.preventDefault();
+				return false;				
+			}
+		});	
+	});
+
+</script>
 <main>
 
 	<!-- ckeditor 4 -->	
 	<script type="text/javascript" src="<c:url value='/ckeditor/ckeditor.js'/>"></script>
 	
-	<form action="<c:url value='/adminFlight/insertFlight.do'/>" method="post" enctype="multipart/form-data">
+	<form name="frm" action="<c:url value='/adminFlight/insertFlight.do'/>" method="post" enctype="multipart/form-data">
 		<div class="admin_subtitle">
 			<span class="admin_subtitle_name">항공권 상품등록</span>
 			<span class="new_upload">
@@ -75,7 +116,7 @@
 			<table class="insert_table">
 				<tr>
 					<td class="table_td1">제목</td>
-					<td><input type="text" class="insert_input" name="flight_title" /></td>
+					<td><input type="text" id="flight_title" class="insert_input" name="flight_title" /></td>
 				</tr>
 				
 				<tr>
@@ -98,18 +139,18 @@
 				</tr>
 				<tr>
 					<td class="table_td1">가격</td>
-					<td><input type="text" class="insert_input" name="flight_price" placeholder="숫자만 입력해주세요"/></td>
+					<td><input type="text" id="flight_price" class="insert_input" name="flight_price" placeholder="숫자만 입력해주세요"/></td>
 				</tr>
 				
 				<tr>
 					<td class="table_td1">썸네일</td>
-					<td><input type="file" class="insert_input" name="flightImgUpload"/></td>
+					<td><input type="file" id="flightImgUpload" class="insert_input" name="flightImgUpload"/></td>
 				</tr>
 				
 				<tr>
 					<td class="table_td1">내용</td>
 					<td>
-						<textarea name="flight_content" class="ckeditor"></textarea>
+						<textarea id="flight_content" name="flight_content" class="ckeditor"></textarea>
 						<script type="text/javascript">
 							CKEDITOR.replace('flight_content', {height: 700, width: 900, filebrowserUploadUrl:'/flightImage/imageUpload.do'});
 						</script>
