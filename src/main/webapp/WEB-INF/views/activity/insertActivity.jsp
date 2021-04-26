@@ -40,17 +40,16 @@
 						<!-- getActivity에서 사용중인 이미지 영역 주석처리 -->
 						<!-- getActivityList에서 content를 보여주기 때문에 getActivityList 부분 컨텐트 주석처리 -->
 						CKEDITOR.replace('activity_content', {height: 700, width: 900, filebrowserUploadUrl:'/activityImage/imageUpload.do'});
-					</script>				
-				
+					</script>	
 				</td>
-			</tr>
-<!-- 			<tr>
-				<td>영상</td>
-				<td><input type="text" name="activity_video"/></td>
 			</tr>
 			<tr>
 				<td>썸네일</td>
 				<td><input type="file" name="activityImgUpload"/></td>
+			</tr>
+<!-- 		<tr>
+				<td>영상</td>
+				<td><input type="text" name="activity_video"/></td>
 			</tr>
 			<tr>
 				<td>설명파일</td>

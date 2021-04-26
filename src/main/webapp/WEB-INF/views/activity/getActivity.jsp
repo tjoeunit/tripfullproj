@@ -106,14 +106,14 @@
 		
 		<!-- core의 if문 이용해서 코드 실행할 수 있게 함 null인 경우 skip될 수 있게 처리  jstl 이용해서  -->
 		
-		<div>
+<%-- <div>
 			<img class="activity_product_img" src="<c:url value='/activityUpload/${ activity.activity_img1 }'/>">
 			<img class="activity_product_img" src="<c:url value='/activityUpload/${ activity.activity_img2 }'/>">
 			<img class="activity_product_img" src="<c:url value='/activityUpload/${ activity.activity_img3 }'/>">
 			<img class="activity_product_img" src="<c:url value='/activityUpload/${ activity.activity_img4 }'/>">
 			<img class="activity_product_img" src="<c:url value='/activityUpload/${ activity.activity_img5 }'/>">
 		</div>
-
+ --%>
 <!-- =================================================================================== -->
 		<div class="admin_content_wrap">
 			<div class="admin_content_subject"><span>액티비티 관리</span></div>
@@ -145,13 +145,14 @@
 								<td bgcolor="#58CCFF">내용</td>
 								<td align="left"><textarea name="activity_content" cols="80" rows="10"></textarea></td>
 							</tr>
-<!-- 							<tr>
-								<td bgcolor="#58CCFF">영상url</td>
-								<td><input type="text" name="activity_video"/></td>
-							</tr>
 							<tr>
 								<td bgcolor="#58CCFF">썸네일</td>
 								<td><input type="file" name="activityImgUpload"/></td>
+							</tr>
+							
+<!-- 						<tr>
+								<td bgcolor="#58CCFF">영상url</td>
+								<td><input type="text" name="activity_video"/></td>
 							</tr>
 							<tr>
 								<td bgcolor="#58CCFF">설명파일1</td>
