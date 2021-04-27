@@ -105,7 +105,7 @@
 <script>
 	function selChange() {
 		var sel = document.getElementById('cntPerPage').value;
-		location.href="getFlightList.do?nowPage=${paging.nowPage}&cntPerPage="+sel;
+		location.href = "<c:url value='/flight/getFlightList.do?nowPage=${paging.nowPage}&cntPerPage="+sel+"'/>";		
 	}
 </script>
 <!-- 페이징 옵션 처리 자바스크립트 끝 -->
@@ -114,7 +114,7 @@
 	<br>
 	<h1 class="main_title">항공권</h1>
 	<div style="text-align: right; width: 1000px;">
-			<a href="<c:url value='/flight/insertFlight.do'/>">항공권 등록하기 ^^</a>
+		<!-- <a href="<c:url value='/flight/insertFlight.do'/>">항공권 등록하기 ^^</a> -->
 	</div>
 	<div class="flight_filter">		
 		<ul class="flight_filter_name">여행지
@@ -138,12 +138,8 @@
 	<!-- 페이징 JSP 추가작업 2 -->
 	<!-- 페이징 옵션 시작 -->
 	<select id="cntPerPage" name="sel" onchange="selChange()">
-		<option value="5"
-			<c:if test="${paging.cntPerPage == 5}">selected</c:if>>5개 보기</option>
 		<option value="10"
-			<c:if test="${paging.cntPerPage == 10}">selected</c:if>>10개 보기</option>
-		<option value="15"
-			<c:if test="${paging.cntPerPage == 15}">selected</c:if>>15개 보기</option>
+			<c:if test="${paging.cntPerPage == 10}">selected</c:if>>10개 보기</option>	
 		<option value="20"
 			<c:if test="${paging.cntPerPage == 20}">selected</c:if>>20개 보기</option>
 	</select>

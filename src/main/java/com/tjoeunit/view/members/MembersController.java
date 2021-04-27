@@ -1,5 +1,7 @@
 package com.tjoeunit.view.members;
 
+import java.io.File;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -10,27 +12,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
-import com.tjoeunit.biz.flight.FlightVO;
+import com.tjoeunit.biz.common.PagingVO;
 import com.tjoeunit.biz.members.MembersService;
 import com.tjoeunit.biz.members.MembersVO;
 
 @Controller
-@RequestMapping("/members")
 public class MembersController {
 
 	@Autowired
 	private MembersService membersService;
 
 	//회원가입 페이지
-	@RequestMapping(value="/insertMembers.do", method=RequestMethod.GET)
+	@RequestMapping(value="/members/insertMembers.do", method=RequestMethod.GET)
 	public String insertMembersPage() {
 		System.out.println("회원가입 페이지");
 		return "members/insertMembers";
 	}
 
 	//회원가입 처리
-	@RequestMapping(value="/insertMembers.do", method=RequestMethod.POST)
+	@RequestMapping(value="/members/insertMembers.do", method=RequestMethod.POST)
 	public String insertMembers(MembersVO vo, Model model) throws Exception {
 		System.out.println("회원가입 처리");
 
@@ -52,7 +54,7 @@ public class MembersController {
 	}
 	
 	//회원 등록 시 아이디 중복 확인 (Ajax)
-	@RequestMapping("/checkIdDup.do")
+	@RequestMapping("/members/checkIdDup.do")
 	@ResponseBody
 	public int checkIdDup(@RequestParam String members_id) {
 		System.out.println("members_id = " + members_id);
@@ -62,14 +64,14 @@ public class MembersController {
 	}
 	
 	//회원 로그인 페이지
-	@RequestMapping(value="/loginMembers.do", method=RequestMethod.GET)
+	@RequestMapping(value="/members/loginMembers.do", method=RequestMethod.GET)
 	public String loginMembersPage() {
 		System.out.println("회원 로그인 페이지");
 		return "members/loginMembers";
 	}
 	
 	//회원 로그인 처리
-	@RequestMapping(value="/loginMembers.do", method=RequestMethod.POST)
+	@RequestMapping(value="/members/loginMembers.do", method=RequestMethod.POST)
 	public String loginMembers(@RequestParam String members_id, @RequestParam String members_pw,
 			HttpServletRequest request, Model model) {
 		System.out.println("회원 로그인 처리");
@@ -103,7 +105,7 @@ public class MembersController {
 	}
 	
 	//회원 로그아웃 처리
-	@RequestMapping(value="/logoutMembers.do", method=RequestMethod.GET)
+	@RequestMapping(value="/members/logoutMembers.do", method=RequestMethod.GET)
 	public String logoutMembers(Model model, HttpSession session) {
 		
 		String members_id = (String)session.getAttribute("members_id"); 
@@ -120,14 +122,14 @@ public class MembersController {
 	}
 	
 	//회원 로그인 페이지
-	@RequestMapping(value="/indexMembers.do", method=RequestMethod.GET)
+	@RequestMapping(value="/members/indexMembers.do", method=RequestMethod.GET)
 	public String indexMembersPage() {
 		System.out.println("마이페이지 첫 화면");
 		return "members/indexMembers";
 	}
 	
 	//회원 정보 페이지
-	@RequestMapping(value="/infoMembers.do", method=RequestMethod.GET)
+	@RequestMapping(value="/members/infoMembers.do", method=RequestMethod.GET)
 	public String infoMembersPage(HttpSession session, Model model) {
 		System.out.println("회원정보 페이지");
 		
@@ -140,7 +142,7 @@ public class MembersController {
 	}
 	
 	//회원 탈퇴
-	@RequestMapping("/deleteMembers.do")
+	@RequestMapping("/members/deleteMembers.do")
 	public String deleteMembers(HttpSession session, Model model) {
 		
 		int members_no = (Integer)session.getAttribute("members_no");
@@ -167,14 +169,14 @@ public class MembersController {
 	}
 
 	//비밀번호 변경 페이지
-	@RequestMapping(value="/updatePw.do", method=RequestMethod.GET)
+	@RequestMapping(value="/members/updatePw.do", method=RequestMethod.GET)
 	public String updatePwPage() {
 		System.out.println("비밀번호 변경 페이지");
 		return "members/updatePw";
 	}
 	
 	//비밀번호 변경
-	@RequestMapping(value="/updatePw.do", method=RequestMethod.POST)
+	@RequestMapping(value="/members/updatePw.do", method=RequestMethod.POST)
 	public String updatePw(HttpSession session, HttpServletRequest request, MembersVO vo, Model model) {
 		
 		System.out.println("비밀번호 변경 처리");
@@ -234,7 +236,7 @@ public class MembersController {
 	}
 	
 	//회원정보 변경 페이지
-	@RequestMapping(value="/updateMembers.do", method=RequestMethod.GET)
+	@RequestMapping(value="/members/updateMembers.do", method=RequestMethod.GET)
 	public String updateMembersPage(HttpSession session, Model model) {
 		System.out.println("회원정보 변경 페이지");
 		
@@ -246,7 +248,7 @@ public class MembersController {
 		return "members/updateMembers";
 	}
 	
-	@RequestMapping(value="/updateMembers.do", method=RequestMethod.POST)
+	@RequestMapping(value="/members/updateMembers.do", method=RequestMethod.POST)
 	public String updateMembers(MembersVO vo, Model model) {
 		System.out.println("회원정보 변경 처리");
 		
@@ -265,6 +267,103 @@ public class MembersController {
 		return "common/message";
 	}
 	
+	//////////관리자
+	//////////관리자
+	//////////관리자
+	//////////관리자
+	//////////관리자
 	
+	// 관리자 회원관리 회원목록
+	@RequestMapping(value="/adminMembers/adminMembers.do", method = RequestMethod.GET)
+	public String adminMembersListPaging(PagingVO vo, Model model,
+			@RequestParam(value="nowPage", required=false) String nowPage,
+			@RequestParam(value="cntPerPage", required=false) String cntPerPage) {
+		
+		int total = membersService.countMembers();
+		if (nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "10";
+		} else if (nowPage == null) {
+			nowPage = "1";
+		} else if (cntPerPage == null) { 
+			cntPerPage = "10";
+		}
+		
+		vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		model.addAttribute("paging", vo);
+		model.addAttribute("membersList", membersService.selectMembers(vo));
+		return "adminMembers/adminMembers";
+	}
 	
+	// 관리자 회원정보 상세보기
+	@RequestMapping(value="/adminMembers/adminMembersDetail.do", method = RequestMethod.GET)
+	 public String adminMembersDetail(MembersVO vo, Model model) {
+		 System.out.println("항공권 상세 페이지");
+		 
+		 MembersVO members = membersService.getMembers(vo);
+		 
+		 model.addAttribute("members", members);
+		 
+		 return "adminMembers/adminMembersDetail";
+	 }
+	
+	// 관리자 회원정보 업데이트 페이지
+	@RequestMapping(value="/adminMembers/adminMembersUpdate.do", method=RequestMethod.GET)
+	public String adminMembersUpdatePage(MembersVO vo, Model model) {
+		//vo에 members_no 값이 저장되어 있는지 확인
+		System.out.println("항공권 수정 페이지 members_no = " + vo.getMembers_no());
+		
+		//members_no 를 이용하여 전체 정보를 members에 저장
+		MembersVO members = membersService.getMembers(vo);
+		
+		System.out.println("항공권 정보 " + members);
+		
+		//members에 저장된 값을 모델에 키 밸류로 저장
+		model.addAttribute("members", members);
+		
+		return "adminMembers/adminMembersUpdate";
+	}
+	
+	// 관리자 항공권 수정 처리
+	@RequestMapping(value="/adminMembers/adminMembersUpdate.do", method=RequestMethod.POST)
+	public String adminMembersUpdate(MembersVO vo, HttpServletRequest request, Model model) throws Exception {
+		
+		System.out.println("수정 처리 될 회원정보 vo = " + vo);
+		
+		int cnt = membersService.updateMembers(vo);
+		
+		String msg="회원정보 변경 실패", url="/adminMembers/adminMembersUpdate.do?members_no="+vo.getMembers_no();
+		
+		if(cnt > 0) {
+			msg="회원정보 변경 성공";
+			url="/adminMembers/adminMembersDetail.do?members_no="+vo.getMembers_no();
+		}
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		return "common/message";
+		
+	}
+	
+	// 관리자 회원 삭제 처리
+	@RequestMapping("/adminMembers/adminMembersDelete.do")
+	public String adminMembersDelete(MembersVO vo, Model model) {
+		
+		System.out.println("항공권 삭제 처리 members_no = " + vo.getMembers_no());
+		
+		int cnt = membersService.adminMembersDelete(vo);
+		
+		String msg="회원 삭제 실패", url="/adminMembers/adminMembersDetail.do?members_no="+vo.getMembers_no();
+		
+		if(cnt>0) {
+			msg="회원 삭제 성공";
+			url="/adminMembers/adminMembers.do";
+		}
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+
+		return "common/message";
+	}
 }
