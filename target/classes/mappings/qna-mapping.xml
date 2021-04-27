@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="qnaDAOTemplate" >
+
+<!-- 글 등록 -->	
+	<insert id="insertQna">
+		<selectKey keyProperty="qna_no" resultType="int" order="BEFORE">
+			select qna_seq.nextval from dual
+		</selectKey>		
+			insert into qna(qna_no, qna_title, qna_content, members_no, qna_writer)
+			values(
+				#{qna_no}, #{qna_title}, #{qna_content}, #{members_no}, #{qna_writer})
+	</insert>
+
+<!-- 글 수정 -->
+	<update id="updateQna" parameterType="com.tjoeunit.biz.qna.QnaVO">
+		update qna set qna_title=#{qna_title}, qna_content=#{qna_content} where qna_no=#{qna_no}
+	</update>
+
+<!-- 글 삭제 -->
+	<delete id="deleteQna" parameterType="com.tjoeunit.biz.qna.QnaVO">
+		delete qna where qna_no=#{qna_no}
+	</delete>
+
+<!-- 글 상세보기 -->
+	<select id="getQna" resultType="com.tjoeunit.biz.qna.QnaVO">
+		select * from qna where qna_no=#{qna_no}
+	</select>
+
+<!-- 글 목록 보기 -->
+	<select id="getQnaList" resultType="com.tjoeunit.biz.qna.QnaVO">
+		select * from qna order by qna_no desc
+	</select>
+	
+<!-- 페이징 처리 쿼리 -->
+	<select id="countQna" resultType="int">
+		select count(*) from qna
+	</select>
+
+<!-- 페이징 처리 쿼리 -->
+	<select id="selectQna" resultType="com.tjoeunit.biz.qna.QnaVO">
+		select * from (
+			select rownum as rn, a.*
+				from (
+					select * from qna
+					order by qna_no desc
+					) a		
+		)
+		where rn between #{start} and #{end}
+	</select>
+	
+</mapper>

@@ -1,23 +1,48 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-
-
 <style>
 	.footerDiv {
+		margin-left: 360px; 
 		border-top: 1px solid gray;		
 	}
 	
 	.descDiv {
-		margin-left: 360px;
 		color: gray;
 		font-size: 13px;
+	}
+	
+	.footerPolicy {
+		display:inline-block;
+		margin: 10px;
+		padding: 10px;
+		font-size: 15px;
+		font-weight: 600;
+		color: gray;
+		border-radius: 5px;
+		-moz-transition: background-color .2s ease-in-out;
+		-webkit-transition: background-color .2s ease-in-out;
+		-ms-transition: background-color .2s ease-in-out;
+		transition: background-color .2s ease-in-out;
+	}
+	
+	.footerPolicy:hover {
+		color: #87B8FD;
+		background-color: #E6F9FE;
+		cursor: pointer;
 	}
 	
 </style>
 
 <footer>
-	<div class="footerDiv">		
+	<div class="footerDiv">
+		<div>
+			<a href="<c:url value='/index/termService.do'/>"><span class="footerPolicy">이용약관</span></a>
+			<a href="<c:url value='/index/privacyPolicy.do'/>"><span class="footerPolicy">개인정보 처리방침</span></a>
+			<a href="<c:url value='/index/cancelRefund.do'/>"><span class="footerPolicy">취소 및 환불 정책</span></a>
+			<a href="<c:url value='/qna/getQnaList.do'/>"><span class="footerPolicy">자주 묻는 질문</span></a>
+		</div>		
+		
 		<div class="descDiv">		
 		상호명 (주)트립풀 | 대표 이종로 | 개인정보보호책임자 정종로 | 사업자등록번호 000-00-00000 사업자정보확인 | 통신판매업신고번호 0000-종로종로-0000<br>
 		주소 서울특별시 종로구 종로대로 000, 종로종로타워 18층(종로동) | 이메일 tripfull@tripfull.com | 마케팅/제휴 문의 tripfull@tripfull.com<br>

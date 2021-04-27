@@ -102,9 +102,9 @@
 		</div>
 		
 		<div>
-			<img src="<c:url value='/img/story01.jpg'/>" style="width:1200px">
-			<img src="<c:url value='/img/story02.jpg'/>" style="width:1200px">
-			<img src="<c:url value='/img/story03.jpg'/>" style="width:1200px">
+			<a href="<c:url value='/story/getStoryList.do'/>">
+				<img src="<c:url value='/img/story01.jpg'/>" style="width:1200px">
+			</a>
 		</div>		
 	</div>
 </main>
