@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 <%@ include file="../import/admintop.jsp" %>
 
 <style type="text/css">
@@ -57,14 +56,12 @@
 	
 	
 </style>
-
 <script type="text/javascript">
 	$(function(){
 		//DB 저장된 값을 셀렉트 옵션으로 전송
 		$('#members_gender').val($("#hidden_gender").val()).prop("selected", true);
 	});
 </script>
-
 <main>
 	<!-- DB 저장된 값을 hidden에 저장 -->
 	<input type="hidden" id="hidden_gender" value="${members.members_gender}">

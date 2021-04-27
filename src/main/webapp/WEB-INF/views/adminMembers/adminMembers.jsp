@@ -1,10 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 <%@ include file="../import/admintop.jsp" %>
-
-<style type="text/css">
-	
+<style type="text/css">	
 	.admin_subtitle {
 		background-color: lightgray;
 		padding: 10px 10px 10px 20px;
@@ -93,7 +90,6 @@
 		});
 	});
 </script>
-
 
 <!-- 페이징 JSP 추가작업 1 -->
 <!-- 페이징 옵션 처리 자바스크립트 시작 -->
