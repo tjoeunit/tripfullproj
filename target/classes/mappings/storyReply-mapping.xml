@@ -8,7 +8,7 @@
 	    <selectKey keyProperty="reply_no" resultType="int" order="BEFORE">
 			select reply_seq.nextval from dual
 		</selectKey>	
-        insert into reply (reply_no,story_no,reply_text,members_id)
+        insert into reply(reply_no,story_no,reply_text,members_id)
         values(
         	#{reply_no},#{story_no},#{reply_text},#{members_id})
     </insert>

@@ -15,8 +15,8 @@ public class StoryReplyDAO {
 	private SqlSessionTemplate mybatis;
 	 
     //댓글 목록
-    public List<StoryReplyVO> storyReplyList(int story_no) {
-        return mybatis.selectList("storyReplyDAOTemplate.storyReplyList", story_no);
+    public List<StoryReplyVO> storyReplyList(StoryReplyVO rvo) {
+        return mybatis.selectList("storyReplyDAOTemplate.storyReplyList", rvo);
     }
     
     

@@ -17,8 +17,8 @@ public class StoryReplyServiceImpl implements StoryReplyService{
 	
 	//댓글 목록
 	@Override
-	public List<StoryReplyVO> storyReplyList(int story_no) {
-		return replyDao.storyReplyList(story_no);
+	public List<StoryReplyVO> storyReplyList(StoryReplyVO rvo) {
+		return replyDao.storyReplyList(rvo);
 	}
 
 	//댓글 쓰기
