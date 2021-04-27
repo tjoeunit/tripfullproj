@@ -109,6 +109,7 @@
 
 	main {
 		margin-left: 360px;
+		margin-bottom: 20px;
 		width: 1200px;
 	}
 
@@ -160,7 +161,7 @@
 					<li><a href="<c:url value='/flight/getFlightList.do'/>">항공권</a></li>
 					<li><a href="<c:url value='/hotel/getHotelList.do'/>">숙박</a></li>
 					<li><a href="<c:url value='#'/>">렌터카 & 교통</a></li>
-					<li><a href="#">액티비티</a></li>
+					<li><a href="<c:url value='/activity/getActivityList.do'/>">액티비티</a></li>
 					<li><a href="<c:url value='/lantrip/getLanTripList.do'/>">랜선투어</a></li>
 					<li><a href="<c:url value='/story/getStoryList.do'/>">여행이야기</a></li>
 				</ul>

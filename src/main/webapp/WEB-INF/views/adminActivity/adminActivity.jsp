@@ -1,0 +1,112 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%@ include file="../import/admintop.jsp" %>
+
+<style type="text/css">
+	
+	.admin_subtitle {
+		background-color: lightgray;
+		padding: 10px 10px 10px 20px;
+	}
+	
+	.admin_subtitle_name {
+		font-size: 30px;
+		display: inline-block;
+		width: 1000px;
+		font-weight: 600;
+	}
+	
+	.new_upload {
+		width: 150px;
+	}
+	
+	.new_upload a {
+		display: inline-block;
+		font-size: 25px;
+		text-decoration: none;
+		color: black;
+		font-weight: 600;
+		border-radius: 5px;
+		-moz-transition: background-color .2s ease-in-out;
+		-webkit-transition: background-color .2s ease-in-out;
+		-ms-transition: background-color .2s ease-in-out;
+		transition: background-color .2s ease-in-out;
+		padding: 10px;
+	}
+	
+	.new_upload a:hover {
+		color: #fff !important;
+		background: #383838;
+	}
+	
+	.list_table {
+		width: 1160px;
+		margin: 20px;
+		border-collapse: collapse;
+		border-bottom: 3px solid gray;
+	}
+	.list_table th{
+		border-bottom: 3px solid gray;
+		padding: 5px;
+	}
+	
+	.list_th1 {
+		width: 5%;
+	}
+	.list_th2 {
+		width: 75%;
+	}
+	.list_th3 {
+		width: 10%;
+	}
+	.list_th3 {
+		width: 10%;
+	}
+	
+	td {
+		padding: 5px;
+		text-align: center;
+	}
+	
+	.list_product_title {
+		text-align: left;
+	}
+	
+	.list_product_title a {
+		text-decoration: none;
+		color: black;
+	}
+	
+</style>
+
+<main>
+	<div class="admin_subtitle">
+		<span class="admin_subtitle_name">액티비티 관리</span>
+		<span class="new_upload">
+			<a href="<c:url value='/adminActivity/insertActivity.do'/>">상품등록</a>
+		</span>
+	</div>
+	
+	<table class=list_table>
+		<tr>
+			<th class="list_th1">번호</th>
+			<th class="list_th2">제목</th>
+			<th class="list_th3">지역</th>
+			<th class="list_th4">가격</th>
+		</tr>
+		
+		<c:forEach items="${ activityList }" var="activity">
+			<tr>
+				<td>${ activity.activity_no }</td>
+				<td class="list_product_title"><a href="<c:url value='adminActivityDetail.do?activity_no=${ activity.activity_no }'/>">${ activity.activity_title }</a></td>
+				<td>${ activity.activity_area }</td>
+				<td>${ activity.activity_price }원</td>
+			</tr>
+		</c:forEach>
+	</table>
+
+</main>
+
+<%@ include file="../import/bottom.jsp" %>

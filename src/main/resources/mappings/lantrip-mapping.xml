@@ -41,6 +41,25 @@
 		]]>
 	</select>
 	
+<!-- 숙박권 삭제하기 -->
+	<delete id="deleteLanTrip">
+		<![CDATA[
+			delete lantrip where lantrip_no=#{lantrip_no}
+		]]>
+	</delete>
+
+<!-- 숙박권 수정하기 -->
+ 	<update id="updateLanTrip">
+		<![CDATA[
+			update lantrip
+				set lantrip_title=#{lantrip_title}, lantrip_content=#{lantrip_content},
+					lantrip_thumb=#{lantrip_thumb}, lantrip_video=#{lantrip_video},
+					lantrip_price=#{lantrip_price}, lantrip_area=#{lantrip_area}
+				where
+					lantrip_no=#{lantrip_no}
+		]]>
+	</update>
+	
 	<!-- 페이징 처리 쿼리 (항공권 총 개수) -->
 	<select id="countLanTrip" resultType="int">
 		select count(*) from lantrip
