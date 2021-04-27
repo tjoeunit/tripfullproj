@@ -9,6 +9,7 @@ public class MembersVO {
 	private String members_name;
 	private String members_tel;
 	private String members_email;
+	private Date members_regdate;
 	private Date members_outdate;
 	private String members_gender;
 	private String members_zipcode;
@@ -51,6 +52,12 @@ public class MembersVO {
 	public void setMembers_email(String members_email) {
 		this.members_email = members_email;
 	}
+	public Date getMembers_regdate() {
+		return members_regdate;
+	}
+	public void setMembers_regdate(Date members_regdate) {
+		this.members_regdate = members_regdate;
+	}
 	public Date getMembers_outdate() {
 		return members_outdate;
 	}
@@ -86,9 +93,9 @@ public class MembersVO {
 	public String toString() {
 		return "MembersVO [members_no=" + members_no + ", members_id=" + members_id + ", members_pw=" + members_pw
 				+ ", members_name=" + members_name + ", members_tel=" + members_tel + ", members_email=" + members_email
-				+ ", members_outdate=" + members_outdate + ", members_gender=" + members_gender + ", members_zipcode="
-				+ members_zipcode + ", members_address=" + members_address + ", members_address_detail="
-				+ members_address_detail + "]";
-	}	
+				+ ", members_regdate=" + members_regdate + ", members_outdate=" + members_outdate + ", members_gender="
+				+ members_gender + ", members_zipcode=" + members_zipcode + ", members_address=" + members_address
+				+ ", members_address_detail=" + members_address_detail + "]";
+	}
 		
 }

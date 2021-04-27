@@ -86,8 +86,7 @@
 	
 	.clear_div {
 		clear: both;
-	}
-	
+	}	
 </style>
 
 <script type="text/javascript">
@@ -117,22 +116,15 @@
 		});	
 	});	
 </script>
+
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+
 <main>
 	<div class="flight_div">
 		<div class="info_div">
-			<!-- 사용하지 않음 -->
-			<!-- 
-			<div class="edit_div">
-				<input type="button" value="항공권 수정하기" id="update_flight">			
-			</div>
-			<div class="delete_flight_div">
-				<input type="button" value="항공권 삭제하기" id="delete_flight">
-			</div>
-			-->
 			<div class="thumb_div">
 				<img class="flight_product_thumb" src="<c:url value='/flightUpload/${flight.flight_thumb}'/>">			
-			</div>
-			
+			</div>			
 			<div class="title_div">
 				<div>
 					<span class="flight_product_title">${flight.flight_title}</span>
@@ -142,22 +134,34 @@
 					<span>도착 : ${flight.flight_arrival}</span><br>
 					<span>가격 : ${flight.flight_price}원</span>					
 				</div>
-				<div class="buy_div">
-					<a href="#"><span class="flight_buy">구매하기</span></a>
-				</div>
+				<!-- 결제를 위해 form 태그 추가 -->
+				<form action="<c:url value='/flight/flightPayment.do'/>" method="post" enctype="multipart/form-data">
+					<div class="buy_div">
+						<!-- 두개중에 무엇을 쓸지 고민중 일단 서브밋 버튼으로 구현해 봄 -->
+						
+						<input type="submit" id="flight_buy" value="구매하기">
+						<a href="#"><span class="flight_buy">구매하기</span></a>
+						
+						<!-- post 방식을 통해 payment.jsp 로 넘길 자료 (유저 설정 o) -->
+						<input type="date" name="payment_bookdate">
+						<input type="text" name="payment_quantity">
+						<!-- post 방식을 통해 payment.jsp 로 넘길 자료 (유저 설정 x)-->
+						<input type="hidden" name="members_no" value="${members_no}">
+						<input type="hidden" name="flight_no" value="${flight.flight_no}">
+						<input type="hidden" name="payment_price" value="${flight.flight_price}">
+					</div>
+				</form>
+				
 			</div>			
 		</div>		
 		<div class="clear_div">
 			<!-- float: left 제거를 위함 -->
-		</div>			
-		<!-- 항공권 상세 설명 -->	
+		</div>
 		<div class="flight_product_detail">
-			설명 : ${flight.flight_content}
-		</div>		
-		<!-- 씨케이 에디터 사용으로 삭제 (img태그) -->
-		<!-- 주석처리만으로는 오류나서 지워놨습니다 -->
+			${flight.flight_content}
+		</div>
 	</div>
-	<br>
+	<br>	
 </main>
 
 <%@ include file="../import/bottom.jsp" %>

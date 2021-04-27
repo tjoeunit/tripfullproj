@@ -5,12 +5,17 @@
 	$(function(){		
 		// Radio 를 이용하여 기존 썸네일 이용 또는 변경 썸네일 선택가능 
 		$('#edRadio').click(function(){
-			$('#svDiv').remove();
-			$('#thumbDiv').append('<div id="edDiv">변경 썸네일 : <input type="file" id="hotel_thumb" name="hotelImgUpload"></div>');
+			if($('#svDiv').length > 0){
+				$('#svDiv').remove();
+				$('#thumbDiv').append('<div id="edDiv">변경 썸네일 : <input type="file" id="hotel_thumb" name="hotelImgUpload"></div>');
+			}		
 		});		
+		
 		$('#svRadio').click(function(){
-			$('#edDiv').remove();
-			$('#thumbDiv').append('<div id="svDiv">현재 썸네일 : <input type="text" name="hotelImgUpload" value="${hotel.hotel_thumb}" readonly></div>')
+			if($('#edDiv').length > 0){
+				$('#edDiv').remove();
+				$('#thumbDiv').append('<div id="svDiv">현재 썸네일 : <input type="text" name="hotelImgUpload" value="${hotel.hotel_thumb}" readonly></div>')
+			}
 		});
 		
 		// DB 저장된 값을 셀렉트 옵션으로 전송

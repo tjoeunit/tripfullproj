@@ -105,7 +105,7 @@
 <script>
 	function selChange() {
 		var sel = document.getElementById('cntPerPage').value;
-		location.href="boardList?nowPage=${paging.nowPage}&cntPerPage="+sel;
+		location.href="getHotelList.do?nowPage=${paging.nowPage}&cntPerPage="+sel;
 	}
 </script>
 <!-- 페이징 옵션 처리 자바스크립트 끝 -->
@@ -136,12 +136,8 @@
 	<!-- 페이징 JSP 추가작업 2 -->
 	<!-- 페이징 옵션 시작 -->
 	<select id="cntPerPage" name="sel" onchange="selChange()">
-		<option value="5"
-			<c:if test="${paging.cntPerPage == 5}">selected</c:if>>5개 보기</option>
 		<option value="10"
 			<c:if test="${paging.cntPerPage == 10}">selected</c:if>>10개 보기</option>
-		<option value="15"
-			<c:if test="${paging.cntPerPage == 15}">selected</c:if>>15개 보기</option>
 		<option value="20"
 			<c:if test="${paging.cntPerPage == 20}">selected</c:if>>20개 보기</option>
 	</select>
@@ -155,9 +151,9 @@
 					<td rowspan="3"><img class="hotel_product_thumb" src="<c:url value='/hotelUpload/${hotel.hotel_thumb}'/>"></td>
 					<td class="hotel_product_title"><a href="<c:url value='getHotel.do?hotel_no=${hotel.hotel_no}'/>">${hotel.hotel_title}</td></a>
 					<td class="hotel_product_area">${hotel.hotel_area}</td>
+					<td class="hotel_product_category">${hotel.hotel_category}</td>
 				</tr>
 				<tr>
-					<td class="hotel_product_detail">${hotel.hotel_content }</td>
 					<td class="hotel_price" onclick="location.href='#'">${hotel.hotel_price}원에<br>구매하기</td>
 				</tr>
 			</table>
