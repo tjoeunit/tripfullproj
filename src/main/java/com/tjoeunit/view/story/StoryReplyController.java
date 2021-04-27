@@ -39,7 +39,6 @@ public class StoryReplyController{
         
         //댓글이 테이블에 저장됨
         replyService.createStoryReply(rvo);
-        //jsp 페이지로 가거나 데이터를 리턴하지 않음
         return "story/getStory";
     }
 }
