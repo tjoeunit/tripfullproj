@@ -22,6 +22,7 @@
 		<mapper resource="mappings/practice-mapping.xml"/>
 		<mapper resource="mappings/flight-mapping.xml"/>
 		<mapper resource="mappings/storyReply-mapping.xml"/>
+		<mapper resource="mappings/payment-mapping.xml"/>
 	</mappers>
 	
 	

@@ -91,6 +91,10 @@
 
 <script type="text/javascript">
 	$(function(){
+		
+		//숫자 정규식
+		var numReg = /^[0-9]+$/;		
+		
 		$('#delete_flight').click(function() {
 			var msg = confirm('${flight.flight_title} 을(를) 삭제하시겠습니까?');	
 			if (msg) {
@@ -113,7 +117,21 @@
 				event.preventDefault;
 				location.href = "<c:url value='/flight/getFlight.do?flight_no=${flight.flight_no}'/>";
 			}
-		});	
+		});
+				
+		$('form[name=frm]').submit(function() {
+			if (!$("#members_no").val()) {
+				alert('로그인이 필요한 서비스입니다');
+				event.preventDefault();
+				return false;
+				
+			} else if (!numReg.test($("#payment_quantity").val())) {
+				alert('수량은 숫자만 입력하세요');
+				$('#payment_quantity').focus();
+				event.preventDefault();
+				return false;
+			}
+		});		
 	});	
 </script>
 
@@ -135,7 +153,7 @@
 					<span>가격 : ${flight.flight_price}원</span>					
 				</div>
 				<!-- 결제를 위해 form 태그 추가 -->
-				<form action="<c:url value='/flight/flightPayment.do'/>" method="post" enctype="multipart/form-data">
+				<form name="frm" id="frm" action="<c:url value='/flight/flightPayment.do'/>" method="post" enctype="multipart/form-data">
 					<div class="buy_div">
 						<!-- 두개중에 무엇을 쓸지 고민중 일단 서브밋 버튼으로 구현해 봄 -->
 						
@@ -143,15 +161,14 @@
 						<a href="#"><span class="flight_buy">구매하기</span></a>
 						
 						<!-- post 방식을 통해 payment.jsp 로 넘길 자료 (유저 설정 o) -->
-						<input type="date" name="payment_bookdate">
-						<input type="text" name="payment_quantity">
+						예약일자 : <input type="date" name="payment_bookdate">
+						수량 : <input type="text" name="payment_quantity" id="payment_quantity">
 						<!-- post 방식을 통해 payment.jsp 로 넘길 자료 (유저 설정 x)-->
-						<input type="hidden" name="members_no" value="${members_no}">
+						<input type="hidden" name="members_no" id="members_no" value="${members_no}">
 						<input type="hidden" name="flight_no" value="${flight.flight_no}">
 						<input type="hidden" name="payment_price" value="${flight.flight_price}">
 					</div>
-				</form>
-				
+				</form>				
 			</div>			
 		</div>		
 		<div class="clear_div">

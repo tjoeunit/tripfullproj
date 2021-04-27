@@ -23,22 +23,23 @@
 			name : 'Tripfull 여행 상품 결제',
 			amount : parseInt(payment_price),
 		}, function(rsp) {
-		//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
+			
 			$.ajax({
 				url: "<c:url value='/flight/flightPaymentDBEx.do'/>",
 				type: "post",
 				data: $('#formPayment').serialize(),
 				success: function(result){
 					if(result > 0){
-						alert("결제 성공했습니다");
+						alert("결제 성공");
 						location.href = "<c:url value='/flight/getFlight.do?flight_no="+flight_no+"'/>";
 					}else{
-						alert("결제 실패했습니다");
+						alert("결제 실패");
 						location.href = "<c:url value='/flight/getFlight.do?flight_no="+flight_no+"'/>";
 					}
 				},
 				error : function(xhr, status, error) {
-					alert(status + ", " + error);
+					alert('결제 중지');
+					location.href = "<c:url value='/flight/getFlight.do?flight_no="+flight_no+"'/>";
 				}			
 			});
 		})

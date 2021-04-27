@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.tjoeunit.biz.common.PagingVO;
@@ -30,6 +31,7 @@ public class FlightController {
 	
 	
 	// 항공권 결제 페이지 (카카오페이 이용)
+	
 	@RequestMapping(value="/flight/flightPayment.do", method=RequestMethod.POST)
 	public String payment(HttpServletRequest request, Model model) {
 		
@@ -56,7 +58,8 @@ public class FlightController {
 	
 	// 항공권 결제 처리
 	@RequestMapping(value="/flight/flightPaymentDBEx.do", method=RequestMethod.POST)
-	public String paymentDBEx(HttpServletRequest request, PaymentVO vo) {	
+	@ResponseBody
+	public int paymentDBEx(HttpServletRequest request, PaymentVO vo) {	
 		String members_no = request.getParameter("members_no");
 		String flight_no = request.getParameter("flight_no");
 		String payment_quantity = request.getParameter("payment_quantity");
@@ -76,11 +79,10 @@ public class FlightController {
 		vo.setPayment_price(payment_price);
 		vo.setPayment_bookdate(payment_bookdate);
 		
-		paymentService.insertPayment(vo);
+		int result = paymentService.insertPayment(vo);
 		
-		return "";
-	}
-	
+		return result;
+	}	
 	
 	// 항공권 등록 페이지
 	@RequestMapping(value="/flight/insertFlight.do", method = RequestMethod.GET)
