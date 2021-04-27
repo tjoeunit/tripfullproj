@@ -53,13 +53,11 @@ public class AdminController {
             return mav;
     }
 
-
-	@RequestMapping(value="/adminHotel/adminHotel.do'/", method=RequestMethod.GET)
-	public String adminAccomodations() {
-		System.out.println("숙박 페이지 이동 ");
-		return "/adminHotel/adminHotel";
-	}
-
+	/*
+	 * @RequestMapping(value="/adminHotel/adminHotel.do'/",
+	 * method=RequestMethod.GET) public String adminAccomodations() {
+	 * System.out.println("숙박 페이지 이동 "); return "/adminHotel/adminHotel"; }
+	 */
 
 	/*
 	 * @RequestMapping(value="/adminFlight/adminFlight.do",
@@ -68,11 +66,11 @@ public class AdminController {
 	 */
 
 
-	@RequestMapping(value="/adminActivity/adminActivity.do", method=RequestMethod.GET)
-	public String adminActivity() {
-		System.out.println("액티비티 페이지 이동 ");
-		return "adminActivity/adminActivity";
-	}
+	/*
+	 * @RequestMapping(value="/adminActivity/adminActivity.do",
+	 * method=RequestMethod.GET) public String adminActivity() {
+	 * System.out.println("액티비티 페이지 이동 "); return "adminActivity/adminActivity"; }
+	 */
 
 	@RequestMapping(value="/adminMembers/adminMembers.do", method=RequestMethod.GET)
 	public String membersManage() {

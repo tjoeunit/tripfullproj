@@ -15,12 +15,7 @@
 			activity_thumb,
 			activity_price, 
 			activity_area
-	<!-- 		activity_video,
-			activity_img1,
-			activity_img2,
-			activity_img3,
-			activity_img4,
-			activity_img5 -->
+
 			)
 		values(
 			#{activity_no},
@@ -29,12 +24,7 @@
 			#{activity_thumb},
 			#{activity_price},
 			#{activity_area}
-<!-- 			#{activity_video},
-			#{activity_img1}, 
-			#{activity_img2}, 
-			#{activity_img3}, 
-			#{activity_img4}, 
-			#{activity_img5} -->
+
 			)
 	</insert>
 
@@ -68,6 +58,20 @@
 		)
 		where rn between #{start} and #{end}
 	</select>
-		
+		<!-- 액티비티 수정하기 -->
+	<update id="updateActivity">
+		update activity set 
+			activity_title=#{activity_title},
+			activity_content = #{activity_content},
+			activity_thumb = #{activity_thumb},
+			activity_price = #{activity_price},
+			activity_area= #{activity_area}
+		where activity_no=#{activity_no}
+	</update>
+	
+		<!-- 액티비티 삭제하기 -->
+	<delete id="deleteActivity">
+		delete from activity where activity_no=#{activity_no}
+	</delete>	
 
 </mapper>

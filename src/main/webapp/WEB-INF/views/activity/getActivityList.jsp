@@ -116,7 +116,7 @@
 	<br>
 	<h1 class="main_title">	액티비티 </h1>
 	<div style="text-align: right; width: 1000px;">
-			<a href="<c:url value='/activity/insertActivity.do'/>">액티비티 등록하기 ^^</a>
+			<a href="<c:url value='/adminActivity/insertActivity.do'/>">액티비티 등록하기 ^^</a>
 	</div>
 	<div class="activity_filter">
 		<ul class="activity_filter_name">카테고리
