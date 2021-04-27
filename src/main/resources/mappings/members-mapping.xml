@@ -17,7 +17,7 @@
 	</insert>
 	
 	<select id="getMembers" resultType="com.tjoeunit.biz.members.MembersVO">
-		select * from members where members_id=#{members_id}, members_pw=#{members_pw}
+		select * from members where members_no=#{members_no}
 	</select>
 
 	<select id="checkIdDup" parameterType="string" resultType="int">
@@ -67,4 +67,25 @@
 		where members_id=#{members_id}
 	</update>
 	
+	<!-- 페이징 처리 쿼리 (항공권 총 개수) -->
+	<select id="countMembers" resultType="int">
+		select count(*) from members
+	</select>
+
+	<!-- 페이징 처리 쿼리 -->
+	<select id="selectMembers" resultType="com.tjoeunit.biz.members.MembersVO">
+		select * from (
+			select rownum as rn, a.*
+				from (
+					select * from members
+					order by members_no desc
+					) a		
+		)
+		where rn between #{start} and #{end}
+	</select>
+	
+	<delete id="adminMembersDelete">
+		delete from members 
+		where members_no=#{members_no}
+	</delete>
 </mapper>
