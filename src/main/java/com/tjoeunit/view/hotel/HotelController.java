@@ -372,7 +372,7 @@ public class HotelController {
 		String msg="숙박권 수정 실패", url="/adminHotel/adminHotelUpdate.do?hotel_no="+vo.getHotel_no();		
 		
 		if(cnt>0) {
-			msg="항공권 수정 성공";
+			msg="숙박권 수정 성공";
 			url="/adminHotel/adminHotelDetail.do?hotel_no="+vo.getHotel_no();
 		}
 		
