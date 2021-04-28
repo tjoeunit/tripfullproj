@@ -2,8 +2,7 @@ package com.tjoeunit.biz.payment;
 
 import java.sql.Date;
 
-public class PaymentVO {
-	
+public class PaymentVO {	
 	private int payment_no;
 	private int members_no;
 	private int flight_no;
