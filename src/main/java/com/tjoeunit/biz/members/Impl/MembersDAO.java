@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.tjoeunit.biz.common.PagingVO;
-import com.tjoeunit.biz.flight.FlightVO;
 import com.tjoeunit.biz.members.MembersVO;
 
 @Repository

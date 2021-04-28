@@ -1,6 +1,6 @@
 package com.tjoeunit.view.members;
 
-import java.io.File;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -12,18 +12,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.tjoeunit.biz.common.PagingVO;
 import com.tjoeunit.biz.members.MembersService;
 import com.tjoeunit.biz.members.MembersVO;
+import com.tjoeunit.biz.payment.PaymentService;
+import com.tjoeunit.biz.payment.PaymentVO;
 
 @Controller
 public class MembersController {
 
-	@Autowired
-	private MembersService membersService;
-
+	@Autowired private MembersService membersService;
+	@Autowired private PaymentService paymentService;
+	
 	//회원가입 페이지
 	@RequestMapping(value="/members/insertMembers.do", method=RequestMethod.GET)
 	public String insertMembersPage() {
@@ -139,7 +140,7 @@ public class MembersController {
 		model.addAttribute("members", members);		
 		
 		return "members/infoMembers";
-	}
+	}	
 	
 	//회원 탈퇴
 	@RequestMapping("/members/deleteMembers.do")
@@ -248,6 +249,7 @@ public class MembersController {
 		return "members/updateMembers";
 	}
 	
+	//회원정보 변경 처리	
 	@RequestMapping(value="/members/updateMembers.do", method=RequestMethod.POST)
 	public String updateMembers(MembersVO vo, Model model) {
 		System.out.println("회원정보 변경 처리");
@@ -267,11 +269,30 @@ public class MembersController {
 		return "common/message";
 	}
 	
-	//////////관리자
-	//////////관리자
-	//////////관리자
-	//////////관리자
-	//////////관리자
+	////////////////////////////////////////결제정보////////////////////////////////////////
+	////////////////////////////////////////결제정보////////////////////////////////////////
+	
+	//회원 결제 페이지
+	@RequestMapping(value="/members/payMainMembers.do", method=RequestMethod.GET)
+	public String payMainMembersPage(HttpSession session, PaymentVO vo, Model model) {
+		System.out.println("회원 결제정보 메인 페이지");
+		
+		int members_no = (Integer)session.getAttribute("members_no");
+		vo.setMembers_no(members_no);
+		
+		//1. 로그인 한 회원의 결제 내역 전체를 가져옴
+		List<PaymentVO> paymentList = paymentService.getPayList(vo);
+		
+		model.addAttribute("paymentList", paymentList);
+				
+		return "members/payMainMembers";
+	}
+	
+	
+	////////////////////////////////////////관리자////////////////////////////////////////
+	////////////////////////////////////////관리자////////////////////////////////////////
+	////////////////////////////////////////관리자////////////////////////////////////////
+	
 	
 	// 관리자 회원관리 회원목록
 	@RequestMapping(value="/adminMembers/adminMembers.do", method = RequestMethod.GET)
