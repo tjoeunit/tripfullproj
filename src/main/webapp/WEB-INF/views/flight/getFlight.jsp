@@ -120,12 +120,15 @@
 <main>
 	<div class="flight_div">
 		<div class="info_div">
+			<!-- 사용하지 않음 -->
+			<!-- 
 			<div class="edit_div">
 				<input type="button" value="항공권 수정하기" id="update_flight">			
 			</div>
 			<div class="delete_flight_div">
 				<input type="button" value="항공권 삭제하기" id="delete_flight">
 			</div>
+			-->
 			<div class="thumb_div">
 				<img class="flight_product_thumb" src="<c:url value='/flightUpload/${flight.flight_thumb}'/>">			
 			</div>

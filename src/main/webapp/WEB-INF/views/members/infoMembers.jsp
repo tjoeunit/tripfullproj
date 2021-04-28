@@ -7,28 +7,12 @@
 		
 		// 회원정보 수정
 		$('#editMembers').click(function() {
-			var msg = confirm('${members.members_id}님 회원정보를 수정하시겠습니까?');	
-			if (msg) {
-				//true
-				location.href = "<c:url value='/members/updateMembers.do?members_no=${members.members_no}'/>";
-			} else {
-				//false
-				event.preventDefault;
-				location.href = "<c:url value='/members/infoMembers.do'/>";
-			}
+			location.href = "<c:url value='/members/updateMembers.do?members_no=${members.members_no}'/>";			
 		});
 		
 		// 비밀번호 변경
 		$('#pwChange').click(function() {
-			var msg = confirm('${members.members_id}님 비밀번호를 변경하시겠습니까?');	
-			if (msg) {
-				//true
-				location.href = "<c:url value='/members/updatePw.do'/>";
-			} else {
-				//false
-				event.preventDefault;
-				location.href = "<c:url value='/members/infoMembers.do'/>";
-			}
+			location.href = "<c:url value='/members/updatePw.do'/>";			
 		});
 		
 		// 회원 탈퇴

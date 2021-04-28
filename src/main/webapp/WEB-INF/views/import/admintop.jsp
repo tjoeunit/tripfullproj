@@ -123,7 +123,7 @@
 	<nav class="nav">
 		<div class="navDiv">
 			<div class="navImgDiv">
-				<a style="all: unset; cursor: pointer;" href="<c:url value='/#'/>">
+				<a style="all: unset; cursor: pointer;" href="<c:url value='/admin/adminIndex.do'/>">
 					<img src="<c:url value='/img/tripfulllogo.png'/>">
 				</a>
 			</div>
@@ -138,7 +138,7 @@
 
 			<div class="navListDiv">
 				<ul>
-					<li><a href="<c:url value='#'/>">회원관리</a></li>
+					<li><a href="<c:url value='/adminMembers/adminMembers.do'/>">회원관리</a></li>
 					<li><a href="<c:url value='/adminFlight/adminFlight.do'/>">항공권</a></li>
 					<li><a href="<c:url value='/adminHotel/adminHotel.do'/>">숙박</a></li>
 					<li><a href="<c:url value='#'/>">렌터카 & 교통</a></li>
