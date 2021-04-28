@@ -86,7 +86,7 @@
 <script>
 	function selChange() {
 		var sel = document.getElementById('cntPerPage').value;
-		location.href = "getLanTripList.do?nowPage=${paging.nowPage}&cntPerPage="+sel;	
+		location.href = "<c:url value='/adminLanTrip/adminLanTrip.do?nowPage=${paging.nowPage}&cntPerPage="+sel+"'/>";
 	}
 </script>
 <!-- 페이징 옵션 처리 자바스크립트 끝 -->
@@ -103,9 +103,9 @@
 	<!-- 페이징 옵션 시작 -->
 	<select id="cntPerPage" name="sel" onchange="selChange()">
 		<option value="10"
-			<c:if test="${paging.cntPerPage == 10}">selected</c:if>>10개 보기</option>
+			<c:if test="${paging.cntPerPage == 10}">selected</c:if>>10개씩 보기</option>
 		<option value="20"
-			<c:if test="${paging.cntPerPage == 20}">selected</c:if>>20개 보기</option>
+			<c:if test="${paging.cntPerPage == 20}">selected</c:if>>20개씩 보기</option>
 	</select>
 	<!-- 페이징 옵션 끝 -->
 	

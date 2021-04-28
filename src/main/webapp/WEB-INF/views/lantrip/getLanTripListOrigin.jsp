@@ -1,67 +1,87 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+
 <%@ include file="../import/top.jsp" %>
 
 <style type="text/css">	
 	a{
-		text-decoration: none;
-	}
+			text-decoration: none;
+		}
 
 	.main_title {
 		align-content: left;
-		font-size: 40px;
-		font-weight: 600;
 	}
 	
-	.flight_products{
-		width: 1000px;
+	.filter {
+		border: 1px solid gray;
+		border-radius: 5px;
+		width: 1200px;
 		margin-right: auto;
+		margin-bottom: 20px;
+	}
+	
+	.filter_name {
+		display: inline-block;
+		width: 100px;
+		font-weight: 600px;
+	}
+	
+	.filter ul li {
+		color: #000000;
+		padding-left: 30px;
+		display: inline;
+	}
+	
+	.product_table{
+		width: 1200px;
 		margin-bottom: 30px;
 	}
 	
-	.flight_product {
+	.lan_product {
 		border-bottom: 1px solid gray;
 		border-top: 1px solid gray;
 		margin-right: auto;
 		padding: 5px;
 	}
 
-	.flight_product_thumb {
+	.lan_product_thumb {
 		width: 200px;
 		height: 200px;
 		border: 1px solid gray;
 	}
 	
-	.flight_product_title {
+	.lan_product_title {
 		width : 600px;
 		height : 90px;
 		padding: 10px;
 	}
 	
-	.flight_product_title a{
+	.lan_product_title a{
 		color: black;
 		font-size: 2em;
 		font-weight: 600;
 	}
 	
-	.flight_product_title:hover {
+	.lan_product_title:hover {
 		font-size: 1.2em;
 	}
 	
-	.flight_product_detail {
+	.lan_product_detail {
 		width : 600px;
 		height : 90px;
 		padding: 10px;
 		color: gray;
 	}
 	
-	.flight_product_departure{
+	.lan_product_city{
 		width: 150px;
 		padding: 10px;
 		text-align: right;
 	}
 	
-	.flight_price {
+	.lan_price {
 		width: 150px;
 		position: relative;
 		box-sizing: border-box;
@@ -76,7 +96,7 @@
 		transition: background-color .2s ease-in-out;
 	}
 	
-	.flight_price:hover{
+	.lan_price:hover{
 		text-decoration: none;
 		color: #fff !important;
 		background: #383838;
@@ -90,14 +110,35 @@
 <script>
 	function selChange() {
 		var sel = document.getElementById('cntPerPage').value;
-		location.href="getFlightList.do?nowPage=${paging.nowPage}&cntPerPage="+sel;
+		location.href="getLanTripList.do?nowPage=${paging.nowPage}&cntPerPage="+sel;
 	}
 </script>
 <!-- 페이징 옵션 처리 자바스크립트 끝 -->
 
-<main>	
+
+<main>
+	
 	<br>
-	<div class="main_title">항공권</div>
+	<div class="main_title">랜선투어</div>
+	
+	<div class="filter">
+		<ul><span class="filter_name">여행지</span>
+			<li><input type="checkbox">아시아</li>
+			<li><input type="checkbox">유럽</li>
+			<li><input type="checkbox">북아메리카</li>
+			<li><input type="checkbox">남아메리카</li>
+			<li><input type="checkbox">아프리카</li>
+			<li><input type="checkbox">오세아니아</li>
+		</ul>
+		<ul><span class="filter_name">평점</span>
+			<li><input type="radio" checked="checked">전체</li>
+			<li><input type="radio">4점 이상</li>
+			<li><input type="radio">5점만</li>
+		</ul>
+		<ul><span class="filter_name">가격대</span>
+			<li><input type="number"> 원 이하</li>
+		</ul>
+	</div>
 	
 	<!-- 페이징 JSP 추가작업 2 -->
 	<!-- 페이징 옵션 시작 -->
@@ -113,31 +154,30 @@
 	</select>
 	<!-- 페이징 옵션 끝 -->
 	
-	<table class="flight_products">	
+	<table class="product_table">
+	
 		<tr>
-			<c:forEach items="${flightList}" var="flight">
-			<table class="flight_product">			
+			<c:forEach items="${ lanTripList }" var="lantrip">
+			<table class="lan_product">
+			
 				<tr>
-					<td rowspan="3"><img class="flight_product_thumb" src="<c:url value='/flightUpload/${flight.flight_thumb}'/>"></td>
-					<td class="flight_product_title"><a href="<c:url value='getFlight.do?flight_no=${flight.flight_no}'/>">${flight.flight_title}</a></td>
-					<td class="flight_product_departure">${flight.flight_departure}</td>
+					<td rowspan="3"><img class="lan_product_thumb" src="<c:url value='/lanTripUpload/${ lantrip.lantrip_thumb }'/>"></td>
+					<td class="lan_product_title"><a href="<c:url value='getLanTrip.do?lantrip_no=${ lantrip.lantrip_no }'/>">${ lantrip.lantrip_title }</td></a>
+					<td class="lan_product_city">${ lantrip.lantrip_area }</td>
 				</tr>
-				<tr>				
-					<!-- CK 에디터 사용 시 삭제해야함 ! 목록에 이미지가 뜸
-						<td class="flight_product_detail">${flight.flight_content}</td>
-					-->
-					<td class="flight_price" onclick="location.href='#'">${flight.flight_price}원에<br>구매하기</td>
+				<tr>
+					<td class="lan_price" onclick="location.href='#'">${ lantrip.lantrip_price }원에<br>구매하기</td>
 				</tr>
 			</table>
 			</c:forEach>
 		</tr>
 	</table>
-	
+	<br>
 	<!-- 페이징 JSP 추가작업 3 -->
 	<!-- 페이징 하단 숫자 시작 -->
 	<div style="display: block; text-align: center;">		
 		<c:if test="${paging.startPage != 1 }">
-			<a href="<c:url value='/flight/getFlightList.do?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}'/>">&lt;</a>
+			<a href="<c:url value='/lantrip/getLanTripList.do?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}'/>">&lt;</a>
 		</c:if>
 		<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
 			<c:choose>
@@ -145,17 +185,19 @@
 					<b>${p }</b>
 				</c:when>
 				<c:when test="${p != paging.nowPage }">							
-					<a href="<c:url value='/flight/getFlightList.do?nowPage=${p }&cntPerPage=${paging.cntPerPage}'/>">${p }</a>
+					<a href="<c:url value='/lantrip/getLanTripList.do?nowPage=${p }&cntPerPage=${paging.cntPerPage}'/>">${p }</a>
 				</c:when>
 			</c:choose>
 		</c:forEach>
 		<c:if test="${paging.endPage != paging.lastPage}">					
-			<a href="<c:url value='/flight/getFlightList.do?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}'/>">&gt;</a>
+			<a href="<c:url value='/lantrip/getLanTripList.do?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}'/>">&gt;</a>
 		</c:if>
 	</div>
+	<br>
 	<!-- 페이징 하단 숫자 끝 -->
 	
-	<br>
+		
 </main>
+
 
 <%@ include file="../import/bottom.jsp" %>

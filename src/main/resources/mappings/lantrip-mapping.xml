@@ -60,7 +60,7 @@
 		]]>
 	</update>
 	
-	<!-- 페이징 처리 쿼리 (항공권 총 개수) -->
+<!-- 페이징 처리 쿼리 (총 개수) -->
 	<select id="countLanTrip" resultType="int">
 		select count(*) from lantrip
 	</select>

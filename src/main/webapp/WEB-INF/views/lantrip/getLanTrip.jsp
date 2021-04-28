@@ -71,6 +71,7 @@
 		background-color: white;
 		text-align: center;
 		margin: 0px 10px;
+		font-size: 15px;
 	}
 
 	.lan_product_buy:hover{
@@ -118,7 +119,7 @@
 				<tr>
 					<td height="70">
 						<span class="lan_product_price">${lantrip.lantrip_price} 원</span>
-						<span class="lan_product_buy">구매하기</span>
+						<input type="button" class="lan_product_buy" value="구매하기" />
 					</td>
 				</tr>
 			</table>

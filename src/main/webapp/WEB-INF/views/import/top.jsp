@@ -112,6 +112,11 @@
 		margin-bottom: 20px;
 		width: 1200px;
 	}
+	
+	a {
+		text-decoration: none;
+		color: black;
+	}
 
 </style>
 
@@ -156,8 +161,6 @@
 
 			<div class="navListDiv">
 				<ul>
-					<li><a href="<c:url value='/practice/insertPractice.do'/>">연습(CK입력)</a></li>
-					<li><a href="<c:url value='/practice/getPracticeList.do'/>">연습(CK출력)</a></li>
 					<li><a href="<c:url value='/flight/getFlightList.do'/>">항공권</a></li>
 					<li><a href="<c:url value='/hotel/getHotelList.do'/>">숙박</a></li>
 					<li><a href="<c:url value='#'/>">렌터카 & 교통</a></li>

@@ -335,8 +335,8 @@
 	<div class="total_div">
 		<form name="frm" action="<c:url value='/members/insertMembers.do'/>" method="post">
 			<div class="yg_div"><br>
-				이용약관<br>
-				<textarea name="policy" rows="8" cols="120">
+				이용약관<br><br>
+				<textarea name="policy" rows="8" cols="130">
 제1조(목적)
 이 약관은 트립풀(전자거래 사업자)이 운영하는 홈페이지(이하 "쇼핑몰"이라 한다)에서 제공하는 인터넷 관련 서비스(이하 "서비스"라 한다)를 이용함에 있어 트립풀와 이용자의 권리·의무 및 책임사항을 규정함을 목적으로 합니다.
 ※ 「PC통신 등을 이용하는 전자거래에 대해서도 그 성질에 반하지 않는 한 이 약관을 준용합니다」
