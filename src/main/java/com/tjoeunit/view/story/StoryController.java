@@ -1,6 +1,7 @@
 package com.tjoeunit.view.story;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.tjoeunit.biz.common.PagingVO;
+import com.tjoeunit.biz.story.StoryReplyService;
+import com.tjoeunit.biz.story.StoryReplyVO;
 import com.tjoeunit.biz.story.StoryService;
 import com.tjoeunit.biz.story.StoryVO;
 
@@ -19,6 +22,9 @@ public class StoryController {
 	
 	@Autowired
 	private StoryService storyService;
+	
+	@Autowired
+	private StoryReplyService replyService;
 
 // 글 등록 페이지 불러오기
 	@RequestMapping(value="/insertStoryPage.do", method=RequestMethod.GET)
@@ -138,17 +144,88 @@ public class StoryController {
 	}		
 	
 
-// 글 상세 조회
-	@RequestMapping(value="/getStory.do",  method = RequestMethod.GET)
-	public String getStory(StoryVO vo, Model model) {
-		System.out.println("여행 이야기 상세 조회 처리");
+	// 글 상세 조회
+		@RequestMapping(value="/getStory.do",  method = RequestMethod.GET)
+		public String getStory(StoryVO vo, Model model) {
+			System.out.println("여행 이야기 상세 조회 처리");
+			
+			storyService.viewCountStory(vo);
+			StoryVO story = storyService.getStory(vo);
+			model.addAttribute("story", story);
+			
+			//댓글 목록 조회
+			List<StoryReplyVO> replyList = replyService.storyReplyList(vo.getStory_no());
+			model.addAttribute("replyList", replyList);
+			
+			return "story/getStory";
+		}
+
+	// 댓글 작성
+		@RequestMapping(value="/replyWrite.do", method = RequestMethod.POST)
+		public String replyWrite(StoryReplyVO rvo, Model model){
+			System.out.println("여행 이야기 댓글 등록 처리");
+	 
+			int cnt = replyService.createStoryReply(rvo);
+			
+			String msg="댓글 등록 실패", url="/story/getStory.do";
+	 
+			if(cnt>0) {
+				msg="댓글이 등록되었습니다.";
+				url="/story/getStory.do?story_no="+rvo.getStory_no();
+			}
+	 
+			model.addAttribute("msg", msg);
+			model.addAttribute("url", url);
+	 
+			return "common/message";
+		}
+
+/*	
+	// 댓글 수정 뷰 불러오기 (GET)
+		@RequestMapping(value="/replyUpdateView.do", method = RequestMethod.GET)
+		public String replyUpdateView(StoryReplyVO rvo, Model model) {
+			System.out.println("댓글 수정 뷰 호출");
+			StoryReplyVO reply = replyService.selectStoryReply(rvo);
+			
+			model.addAttribute("reply", reply);
+			return null;
+		}	
 		
-		storyService.viewCountStory(vo);
 		
-		StoryVO story = storyService.getStory(vo);
+	// 댓글 수정 (POST)
+		@RequestMapping(value="/replyUpdate.do", method = RequestMethod.POST)
+		public String replyUpdate(StoryReplyVO rvo, Model model) {
+			System.out.println("댓글 수정 처리");
+	 
+			int cnt = replyService.updateStoryReply(rvo);
+			
+			String msg="수정 실패", url="/story/replyUpdateView.do";
+	 
+			if(cnt>0) {
+				msg="댓글이 수정되었습니다.";
+				url="/story/getStory.do?story_no="+rvo.getStory_no();
+			}
+	 
+			model.addAttribute("msg", msg);
+			model.addAttribute("url", url);
+	 
+			return "common/message";
+		}
+*/
 		
-		model.addAttribute("story", story);
-		
-		return "story/getStory";
-	}
+	// 댓글 삭제
+		@RequestMapping("/replyDelete.do")
+		public String replyDelete(StoryReplyVO rvo, Model model) throws Exception {
+			System.out.println("댓글 삭제 처리");
+			
+			replyService.deleteStoryReply(rvo);
+			
+			String msg="댓글이 삭제되었습니다.";
+			String url="/story/getStory.do";
+			
+			model.addAttribute("msg", msg);
+			model.addAttribute("url", url);
+	 
+			return "common/message";
+		}
 }
