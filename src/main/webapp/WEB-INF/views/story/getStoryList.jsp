@@ -98,7 +98,7 @@
 
 		<c:forEach items="${ storyList }" var="story">
 			<tr>
-				<td class="story_subject_title"><a href="getStory.do?story_no=${ story.story_no }"> ${ story.story_title }</a></td>
+				<td class="story_subject_title"><a href="<c:url value='/story/getStory.do?story_no=${ story.story_no }'/>"> ${ story.story_title }</a></td>
 				<td>${ story.story_writer }</td>
 				<td><fmt:formatDate value="${ story.story_date }" pattern="yy-MM-dd"/>
 				</td>
