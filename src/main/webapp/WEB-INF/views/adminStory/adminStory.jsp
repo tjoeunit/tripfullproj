@@ -5,15 +5,29 @@
 
 <style type="text/css">
 
-	.top_story_list{
-		color: white;
-		background-color: #58CCFF;
+	.admin_subtitle {
+		background-color: lightgray;
+		padding: 10px 10px 10px 20px;
 	}
-	.story_top{
+	
+	.admin_subtitle_name_story {
+		font-size: 30px;
+		display: inline-block;
 		width: 1000px;
-	 	border: 1px solid gray;
-	 	text-align: center;
-	 	padding: 7px;
+		font-weight: 600;
+		padding: 10px 10px 10px 0px;
+	}
+	
+	.list_table {
+		width: 1160px;
+		margin: 20px;
+		border-collapse: collapse;
+		border-bottom: 3px solid gray;
+	}
+	
+	.list_table th{
+		border-bottom: 3px solid gray;
+		padding: 5px;
 	}
 
 	.story_subject_title{
@@ -34,28 +48,14 @@
 	.story_views{
 		width: 10%;
 	}
-	.new_story_post{
+	
+	td{
+		padding: 5px;
 		text-align: center;
 	}
-/*	.story_top a:hover {
-		color: #fff !important;
-		background: #58CCFF;
-	}
-*/
 
 </style>
 
-<script type="text/javascript">
- 	$(function(){
-
-		//세션에 로그인 된 아이디 값이 관리자가 아니라면
-		if($("#sessionID").val() != "admin"){
-			// 새글 등록 버튼 숨기기
-			$("#new_story_post").hide();
-		}
-
-	});
-</script>
 
 <!-- 페이징 JSP 추가작업 1 -->
 <!-- 페이징 옵션 처리 자바스크립트 시작 -->
@@ -69,7 +69,9 @@
 
 <main>
 
-	<br><h1>여행 이야기 관리하기</h1>
+	<div class="admin_subtitle">
+		<span class="admin_subtitle_name_story">여행이야기 관리</span>
+	</div>
 
 	<!-- 페이징 JSP 추가작업 2 -->
 	<!-- 페이징 옵션 시작 -->
@@ -85,11 +87,9 @@
 	</select>
 	<!-- 페이징 옵션 끝 -->
 	
-	<br><br>
 	
-	<table class = "story_top">
-
-		<tr class="top_story_list">
+	<table class = "list_table">
+		<tr>
 			<th class="story_subject">제목</th>
 			<th class="story_writer">작성자</th>
 			<th class="story_date">등록일</th>
@@ -100,17 +100,13 @@
 			<tr>
 				<td class="story_subject_title"><a href="adminStoryDetail.do?story_no=${ story.story_no }"> ${ story.story_title }</a></td>
 				<td>${ story.story_writer }</td>
-				<td><fmt:formatDate value="${ story.story_date }" pattern="yy-MM-dd"/>
-				</td>
-				<td>${ story.story_cnt }</td>
+				<td><fmt:formatDate value="${ story.story_date }" pattern="yy-MM-dd"/></td>
+				<td>${ story.story_cnt }회</td>
 			</tr>
 		</c:forEach>
-
 	</table>
 
-	<br><br>
-	
-<!-- 페이징 JSP 추가작업 3 -->
+	<!-- 페이징 JSP 추가작업 3 -->
 	<!-- 페이징 하단 숫자 시작 -->
 	<div style="display: block; text-align: center;">		
 		<c:if test="${paging.startPage != 1 }">
@@ -132,11 +128,6 @@
 	</div>
 	<!-- 페이징 하단 숫자 끝 -->
 	
-	
-	<div id="new_story_post" class="new_story_post">
-		<br>
-	 	<a href="adminInsertStoryPage.do">공지사항 등록하기</a>
-	</div><br><br>
 </main>
 
 <%@ include file="../import/bottom.jsp" %>

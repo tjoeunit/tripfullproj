@@ -157,7 +157,7 @@ public class StoryController {
 			//댓글 목록 조회
 			List<StoryReplyVO> replyList = replyService.storyReplyList(vo.getStory_no());
 			model.addAttribute("replyList", replyList);
-			
+			System.out.println("22222222222222");
 			return "story/getStory";
 		}
 
@@ -215,7 +215,7 @@ public class StoryController {
 */
 		
 	// 댓글 삭제
-		@RequestMapping("/story/replyDelete.do")
+		@RequestMapping(value= "/story/replyDelete.do", method=RequestMethod.GET)
 		public String replyDelete(StoryReplyVO rvo, Model model) throws Exception {
 			System.out.println("댓글 삭제 처리");
 			
@@ -334,11 +334,13 @@ public class StoryController {
 		
 	// 부적합한 게시글 삭제
 		@RequestMapping("/adminStory/adminStoryDelete.do")
-		public String adminStoryDelete(StoryVO vo, Model model) throws Exception {
-			System.out.println("여행 이야기 '공지사항' 삭제 기능 처리");
+		public String adminStoryDelete(StoryVO vo, Model model, StoryReplyVO rvo) throws Exception {
+			System.out.println("여행 이야기 관리자 게시글 삭제 기능 처리");
 			
+			replyService.deleteStoryReply(rvo);
 			storyService.deleteStory(vo);
-			String msg="공지사항이 삭제되었습니다.";
+			
+			String msg="[관리자] 게시글을 삭제했습니다.";
 			String url="/adminStory/adminStory.do";
 			
 			model.addAttribute("msg", msg);

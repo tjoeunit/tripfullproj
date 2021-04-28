@@ -48,30 +48,6 @@
 
 </style>
 
-
-
-<!-- <script type="text/javascript">
-
-	$(function(){
-		$('#story_modify_a').click(function() {
-			if ($('#members_id').val() != $('#story_writer').val()) {
-				alert('수정 권한이 없습니다.');
-				event.preventDefault();
-				return false;
-			}
-		});
-
-		$('#story_delete_a').click(function() {
-			if ($('#members_id').val() != $('#story_writer').val()) {
-				alert('삭제 권한이 없습니다.');
-				event.preventDefault();
-				return false;
-			}
-		});
-	});
-
-</script> -->
-
  
 
 <main>
@@ -81,51 +57,51 @@
 	<input type="hidden" id="members_id" name="members_id" value="${members_id}"> 		<!-- 세션 로그인된 id -->
 	<input type="hidden" id="members_id" name="members_id" value="${reply.members_id}"> 		<!-- 세션 로그인된 id -->
 
-	<br><br>
-
-	<div class="get_story_title">
-		<h2>${story.story_title}</h2>
+	<div class="admin_subtitle">
+		<span class="admin_subtitle_name">여행이야기 상세보기</span>
+		<span class="update_delete">
+			<a href="<c:url value='/adminFlight/adminStoryDelete.do?story_no=${story.story_no}'/>">상품삭제</a>
+		</span>
 	</div>
 
-	<br>
+	<div>
+		<table class="detail_table">
+			<tr>
+				<td class="table_td1">제목</td>
+				<td class="table_td2">${story.story_title}</td>
+			</tr>
+			
+			<tr>
+				<td class="table_td1">작성자</td>
+				<td class="table_td2">${story.story_writer}</td>
+			</tr>
+			
+			<tr>
+				<td class="table_td1">조회수</td>
+				<td class="table_td2">${story.story_cnt}회</td>
+			</tr>
+			
+			<tr>
+				<td class="table_td1">가격</td>
+				<td class="table_td2">${flight.flight_price} 원</td>
+			</tr>
+			
+			<tr>
+				<td class="table_td1">작성날짜</td>
+				<td class="table_td2"><fmt:formatDate value="${ story.story_date }" dateStyle="full" timeStyle="full"/></td>
+			</tr>
+			
+			<tr>
+				<td class="table_td1">내용</td>
+				<td></td>
+			</tr>
+		</table>
+			
+		<div class="ck_content">${story.story_content}</div>
 
-	<div class="get_story_inform">
-		<b> 작성자&nbsp;&nbsp;&nbsp;${story.story_writer}</b>
-
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<fmt:formatDate value="${ story.story_date }" dateStyle="full" timeStyle="full"/>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-		조회수 <b>${story.story_cnt}</b>회
 	</div>
-
-	<br><br><br>
-		${story.story_content}
-	<br><br><br>
-
-	<hr><br>
-
-<!-- 너비와 정렬방식 설정 -->
-<%-- 
-	<div style="width:700px; text-align:center;">
 	
-	 <!-- 댓글 등록 (로그인 되어있을 시에만 보이도록) -->
-	     <c:if test="${members_id != null}">
-		     <form action="replyWrite.do" name="replyForm" method="post">
-		         <textarea rows="2" cols="120" id="reply_text" name="reply_text" placeholder="댓글을 작성하세요."></textarea>
-				 <input type="hidden" id="story_no" name="story_no" value="${story.story_no}" />
-				 <input type="hidden" id="members_id" name="members_id" value="${members_id}">
-	
-		         <br>
-		
-		         <button type="submit" id="replyWriteBtn">댓글쓰기</button>
-			</form>
-	    </c:if>
-	
-	</div>
---%>
+
 
 <!-- 댓글 조회 -->
 
