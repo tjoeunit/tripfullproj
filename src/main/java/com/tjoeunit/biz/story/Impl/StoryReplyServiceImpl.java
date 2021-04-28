@@ -36,8 +36,8 @@ public class StoryReplyServiceImpl implements StoryReplyService{
 	
 	//댓글 삭제
 	@Override
-	public void deleteStoryReply(StoryReplyVO rvo) {
-		replyDao.deleteStoryReply(rvo);
+	public void deleteStoryReply(int reply_no) {
+		replyDao.deleteStoryReply(reply_no);
 	}
  
 	//선택된 댓글 조회

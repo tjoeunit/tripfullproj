@@ -3,6 +3,8 @@ package com.tjoeunit.view.story;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -149,15 +151,20 @@ public class StoryController {
 		@RequestMapping(value="/story/getStory.do",  method = RequestMethod.GET)
 		public String getStory(StoryVO vo, Model model) {
 			System.out.println("여행 이야기 상세 조회 처리");
+			System.out.println("vo = "+vo);
 			
 			storyService.viewCountStory(vo);
+			
 			StoryVO story = storyService.getStory(vo);
+			System.out.println("story = "+story);
+			
 			model.addAttribute("story", story);
 			
 			//댓글 목록 조회
 			List<StoryReplyVO> replyList = replyService.storyReplyList(vo.getStory_no());
+			System.out.println("replyList = "+replyList);
+			
 			model.addAttribute("replyList", replyList);
-			System.out.println("22222222222222");
 			return "story/getStory";
 		}
 
@@ -216,22 +223,23 @@ public class StoryController {
 		
 	// 댓글 삭제
 		@RequestMapping(value= "/story/replyDelete.do", method=RequestMethod.GET)
-		public String replyDelete(StoryReplyVO rvo, Model model) throws Exception {
-			System.out.println("댓글 삭제 처리");
+		public String replyDelete(StoryReplyVO rvo, Model model) {
+			System.out.println("댓글 삭제 처리 rvo = "+rvo);
+			System.out.println("댓글 삭제 처리 reply_no = "+rvo.getReply_no());
 			
-			replyService.deleteStoryReply(rvo);
+			int reply_no = rvo.getReply_no();
+			int story_no = rvo.getStory_no();
+			replyService.deleteStoryReply(reply_no);
 			
 			String msg="댓글이 삭제되었습니다.";
-			String url="/story/getStory.do";
+			String url="/story/getStory.do?story_no="+story_no;
 			
 			model.addAttribute("msg", msg);
 			model.addAttribute("url", url);
 	 
 			return "common/message";
+				
 		}
-		
-		
-		
 		
 /* 관리자 관련 컨트롤러 */
 
@@ -334,10 +342,12 @@ public class StoryController {
 		
 	// 부적합한 게시글 삭제
 		@RequestMapping("/adminStory/adminStoryDelete.do")
-		public String adminStoryDelete(StoryVO vo, Model model, StoryReplyVO rvo) throws Exception {
+		public String adminStoryDelete(StoryVO vo, Model model, StoryReplyVO rvo)  {
 			System.out.println("여행 이야기 관리자 게시글 삭제 기능 처리");
 			
-			replyService.deleteStoryReply(rvo);
+			int reply_no = rvo.getReply_no();
+			
+			replyService.deleteStoryReply(reply_no);
 			storyService.deleteStory(vo);
 			
 			String msg="[관리자] 게시글을 삭제했습니다.";

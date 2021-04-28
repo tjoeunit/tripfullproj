@@ -15,7 +15,7 @@
 
     <!-- 댓글 목록 보기 -->
     <select id="storyReplyList" resultType="com.tjoeunit.biz.story.StoryReplyVO">
-        select reply_no,members_id,reply_text,reply_date from reply
+        select reply_no, story_no, members_id, reply_text, reply_date from reply
         where story_no = #{story_no}
         order by reply_no desc
     </select>
@@ -28,7 +28,7 @@
 -->
 
 	<!-- 댓글 삭제 -->
-	<delete id="deleteStoryReply" parameterType="com.tjoeunit.biz.story.StoryReplyVO">
+	<delete id="deleteStoryReply">
 		delete reply where reply_no=#{reply_no}
 	</delete>
 

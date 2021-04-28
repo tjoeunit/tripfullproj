@@ -31,8 +31,8 @@ public class StoryReplyDAO {
     */
 
     //댓글 삭제
-    public void deleteStoryReply(StoryReplyVO rvo) {
-    	mybatis.delete("storyReplyDAOTemplate.createStoryReply", rvo); 
+    public void deleteStoryReply(int reply_no) {
+    	mybatis.delete("storyReplyDAOTemplate.deleteStoryReply", reply_no); 
     }
 
     //선택된 댓글 조회

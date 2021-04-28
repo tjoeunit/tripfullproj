@@ -17,7 +17,7 @@ public interface StoryReplyService {
     */
    
 //댓글 삭제
-    public void deleteStoryReply(StoryReplyVO rvo);
+    public void deleteStoryReply(int reply_no);
  
 
 //선택된 댓글 조회

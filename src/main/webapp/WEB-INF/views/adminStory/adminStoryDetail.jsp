@@ -116,7 +116,7 @@
 						<p>${replyList.reply_text}</p>
 						<div>
 							<%-- <input type="button" class="replyDeleteBtn" onclick = "location.href ='/replyDelete?reply_no=${reply.reply_no}">삭제</button> --%>
-							<input type="button" id="replyDeleteBtn" onclick = "location.href ='/replyDelete.do?reply_no='+${replyList.reply_no}" value="사용자 댓글 삭제"></input>
+							<input type="button" id="replyDeleteBtn" onclick = "location.href =/story/replyDelete.do?reply_no='+${replyList.reply_no}" value="사용자 댓글 삭제"></input>
 						</div>
 					</li>
 				</c:forEach>   

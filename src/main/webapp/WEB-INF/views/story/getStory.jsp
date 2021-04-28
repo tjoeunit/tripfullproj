@@ -53,10 +53,7 @@
 <script type="text/javascript">
 
 	$(function(){
-		
-		/* var reply_no = ${replyList.reply_no}+"";
-		var story_no = ${story.story_no}; */
-		
+			
 		$('#story_modify_a').click(function() {
 			if ($('#members_id').val() != $('#story_writer').val()) {
 				alert('수정 권한이 없습니다.');
@@ -64,7 +61,7 @@
 				return false;
 			}
 		});
-
+		
 		$('#story_delete_a').click(function() {
 			if ($('#members_id').val() != $('#story_writer').val()) {
 				alert('삭제 권한이 없습니다.');
@@ -72,18 +69,11 @@
 				return false;
 			}
 		});
-		/* $('#replyDeleteBtn').click(function() {
-			var msg = confirm('댓글을 삭제하시겠습니까?');	
-			if (msg) {
-				//true
-				location.href = "<c:url value ='/story/replyDelete.do?reply_no="+reply_no+"'/>";
-			} else {
-				//false
-				event.preventDefault;
-				location.href = "<c:url value='/story/getStory.do?story_no="+story_no+"'/>";
-			}
-		});
-		 */
+		/* 로그인 아이디 */
+		if ($('#members_id').val() != $('#reply_id').val()) {
+			$("#delete_story_reply").hide();
+		}
+		
 	});
 
 </script>
@@ -95,7 +85,7 @@
 	<input type="hidden" id="story_writer" name="story_writer" value="${story.story_writer}">		<!-- 작성자 -->
 	<input type="hidden" id="story_no" name="story_no" value="${story.story_no}" />
 	<input type="hidden" id="members_id" name="members_id" value="${members_id}"> 		<!-- 세션 로그인된 id -->
-	<input type="hidden" id="members_id" name="members_id" value="${reply.members_id}"> 		<!-- 세션 로그인된 id -->
+	<input type="hidden" id="reply_id" name="reply_id" value="${reply.members_id}"> 	
 	
 	<br><br>
 
@@ -154,14 +144,13 @@
 						</p>
 						<p>${replyList.reply_text}</p>
 						<div>
-							<%-- <input type="button" class="replyDeleteBtn" onclick = "location.href ='/replyDelete?reply_no=${reply.reply_no}">삭제</button> --%>
-							<input type="button" id="replyDeleteBtn" onclick = "location.href ='/replyDelete.do?reply_no='+${replyList.reply_no}" value="사용자 댓글 삭제"></input>
+							 <a id="delete_story_reply" href="<c:url value='/story/replyDelete.do?reply_no=${replyList.reply_no}&story_no=${story.story_no}' />">삭제</a>
 						</div>
 					</li>
 				</c:forEach>   
 			</ol>
 		</div>
-		S
+
 	<div class="get_story_bottom" >
 		<a id= "story_modify_a" href="updateStoryPage.do?story_no=${story.story_no}">수정하기</a>&nbsp;&nbsp;&nbsp;&nbsp; 
 		<a id= "story_delete_a" href="deleteStory.do?story_no=${story.story_no}">삭제하기</a>&nbsp;&nbsp;&nbsp;&nbsp; 

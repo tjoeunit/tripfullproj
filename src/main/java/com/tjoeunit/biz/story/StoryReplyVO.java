@@ -40,6 +40,11 @@ public class StoryReplyVO {
 	public void setReply_date(Date reply_date) {
 		this.reply_date = reply_date;
 	}
+	@Override
+	public String toString() {
+		return "StoryReplyVO [reply_no=" + reply_no + ", story_no=" + story_no + ", reply_text=" + reply_text
+				+ ", members_id=" + members_id + ", reply_date=" + reply_date + "]";
+	}
     
 	
 }
