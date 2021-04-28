@@ -135,8 +135,6 @@
 	});	
 </script>
 
-<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
-
 <main>
 	<div class="flight_div">
 		<div class="info_div">
@@ -166,7 +164,9 @@
 						<!-- post 방식을 통해 payment.jsp 로 넘길 자료 (유저 설정 x)-->
 						<input type="hidden" name="members_no" id="members_no" value="${members_no}">
 						<input type="hidden" name="flight_no" value="${flight.flight_no}">
+						<input type="hidden" name="flight_title" value="${flight.flight_title}">
 						<input type="hidden" name="payment_price" value="${flight.flight_price}">
+						<input type="hidden" name="product_category" value="항공">
 					</div>
 				</form>				
 			</div>			

@@ -14,5 +14,6 @@ ALTER TABLE payment ADD flight_title VARCHAR2(600);
 ALTER TABLE payment ADD hotel_title VARCHAR2(600);
 ALTER TABLE payment ADD activity_title VARCHAR2(600);
 ALTER TABLE payment ADD lantrip_title VARCHAR2(600);
+ALTER TABLE payment ADD product_category VARCHAR2(600);
 
 commit

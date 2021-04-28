@@ -14,6 +14,11 @@ public class PaymentVO {
 	private String payment_quantity;
 	private String payment_price;
 	private Date payment_date;
+	private String flight_title;
+	private String hotel_title;
+	private String activity_title;
+	private String lantrip_title;
+	private String product_category;
 	
 	public int getPayment_no() {
 		return payment_no;
@@ -75,13 +80,48 @@ public class PaymentVO {
 	public void setPayment_date(Date payment_date) {
 		this.payment_date = payment_date;
 	}
+	public String getFlight_title() {
+		return flight_title;
+	}
+	public void setFlight_title(String flight_title) {
+		this.flight_title = flight_title;
+	}
+	public String getHotel_title() {
+		return hotel_title;
+	}
+	public void setHotel_title(String hotel_title) {
+		this.hotel_title = hotel_title;
+	}
+	public String getActivity_title() {
+		return activity_title;
+	}
+	public void setActivity_title(String activity_title) {
+		this.activity_title = activity_title;
+	}
+	public String getLantrip_title() {
+		return lantrip_title;
+	}
+	public void setLantrip_title(String lantrip_title) {
+		this.lantrip_title = lantrip_title;
+	}	
+	public String getProduct_category() {
+		return product_category;
+	}
+	public void setProduct_category(String product_category) {
+		this.product_category = product_category;
+	}
 	
 	@Override
 	public String toString() {
 		return "PaymentVO [payment_no=" + payment_no + ", members_no=" + members_no + ", flight_no=" + flight_no
 				+ ", hotel_no=" + hotel_no + ", activity_no=" + activity_no + ", lantrip_no=" + lantrip_no
 				+ ", payment_bookdate=" + payment_bookdate + ", payment_quantity=" + payment_quantity
-				+ ", payment_price=" + payment_price + ", payment_date=" + payment_date + "]";
+				+ ", payment_price=" + payment_price + ", payment_date=" + payment_date + ", flight_title="
+				+ flight_title + ", hotel_title=" + hotel_title + ", activity_title=" + activity_title
+				+ ", lantrip_title=" + lantrip_title + ", product_category=" + product_category + "]";
 	}
+	
+	
+	
 	
 }

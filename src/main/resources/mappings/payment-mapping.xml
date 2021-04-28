@@ -10,11 +10,13 @@
 		</selectKey>
 		insert into payment(
 			payment_no, members_no, flight_no, hotel_no, activity_no, lantrip_no,
-			payment_bookdate, payment_quantity, payment_price
+			payment_bookdate, payment_quantity, payment_price,
+			flight_title, hotel_title, activity_title, lantrip_title, product_category
 		)
 		values(
 			#{payment_no}, #{members_no}, #{flight_no}, #{hotel_no}, #{activity_no}, #{lantrip_no}, 
-			#{payment_bookdate}, #{payment_quantity}, #{payment_price}
+			#{payment_bookdate}, #{payment_quantity}, #{payment_price},
+			#{flight_title}, #{hotel_title}, #{activity_title}, #{lantrip_title}, #{product_category}
 		)
 	</insert>
 	

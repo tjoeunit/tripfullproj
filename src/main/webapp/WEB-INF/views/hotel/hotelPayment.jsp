@@ -14,7 +14,7 @@
 		var price = $('#payment_price').val();
 		var payment_price = Number(quantity) * Number(price) ;
 				
-		var flight_no = $('#flight_no').val()
+		var hotel_no = $('#hotel_no').val()
 		
 		IMP.request_pay({
 			pg : 'kakaopay',
@@ -25,21 +25,21 @@
 		}, function(rsp) {
 			
 			$.ajax({
-				url: "<c:url value='/flight/flightPaymentDBEx.do'/>",
+				url: "<c:url value='/hotel/hotelPaymentDBEx.do'/>",
 				type: "post",
 				data: $('#formPayment').serialize(),
 				success: function(result){
 					if(result > 0){
 						alert("결제 성공");
-						location.href = "<c:url value='/flight/getFlight.do?flight_no="+flight_no+"'/>";
+						location.href = "<c:url value='/hotel/getHotel.do?hotel_no="+hotel_no+"'/>";
 					}else{
 						alert("결제 실패");
-						location.href = "<c:url value='/flight/getFlight.do?flight_no="+flight_no+"'/>";
+						location.href = "<c:url value='/hotel/getHotel.do?hotel_no="+hotel_no+"'/>";
 					}
 				},
 				error : function(xhr, status, error) {
 					alert('결제 중지');
-					location.href = "<c:url value='/flight/getFlight.do?flight_no="+flight_no+"'/>";
+					location.href = "<c:url value='/hotel/getHotel.do?hotel_no="+hotel_no+"'/>";
 				}			
 			});
 		})
@@ -47,8 +47,8 @@
 	</script>
 	<form id="formPayment" name="formPayment">
 		멤버번호 : <input type="text" name="members_no" id="members_no" value="${members_no}"><br>
-		항공번호 : <input type="text" name="flight_no" id="flight_no" value="${flight_no}"><br>
-		항공제목 : <input type="text" name="flight_title" id="flight_title" value="${flight_title}"><br>
+		항공번호 : <input type="text" name="hotel_no" id="hotel_no" value="${hotel_no}"><br>
+		항공제목 : <input type="text" name="hotel_title" id="hotel_title" value="${hotel_title}"><br>
 		결제수량 : <input type="text" name="payment_quantity" id="payment_quantity" value="${payment_quantity}"><br>
 		결제금액 : <input type="text" name="payment_price" id="payment_price" value="${payment_price}"><br>
 		예약일 : <input type="text" name="payment_bookdate" id="payment_bookdate" value="${payment_bookdate}">
