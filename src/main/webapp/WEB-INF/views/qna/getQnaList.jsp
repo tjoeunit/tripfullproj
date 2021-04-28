@@ -194,74 +194,165 @@
 </script>
 <!-- 페이징 옵션 처리 자바스크립트 끝 -->
 
+<style type="text/css">
+
+	.qna_list{
+		border: 1px solid gray;
+		border-radius: 5px;
+		padding: 30px;
+	}
+	
+	.QnacntPerPage {
+		padding: 5px;
+	}
+	
+	.qna_table {
+		margin: 20px 0px;
+		width: 100%;
+		border-top: 3px solid black;
+		border-collapse: collapse;
+	}
+	
+	th {
+		border-bottom: 3px solid black;
+		padding: 10px 0px;
+	}
+	
+	td {
+		text-align: center;
+		border-bottom: 1px solid gray;
+		padding: 10px 0px;
+		color: gray;
+	}
+	
+	.qna_top {
+		padding: 5px;
+	}
+	
+	.qna_th1 {
+		width: 10%;
+	}
+	
+	.qna_th2 {
+		width: 70%;
+	}
+	
+	.qna_th3 {
+		width: 10%;
+	}
+	
+	.qna_th4 {
+		width: 10%;
+	}
+	
+	.qna_post_title {
+		text-align: left;
+	}
+	
+	.qna_post_title a {
+		text-decoration: none;
+		color: black;
+	}
+	
+	.new_post_button {
+		text-align: right;
+	}
+	
+	.new_qna_post {
+		text-decoration: none;
+		display:inline-block;
+		margin: 10px;
+		padding: 10px;
+		border-radius: 5px;
+		border: 1px solid gray;
+		color: black;
+	}
+	
+	.new_qna_post:hover {
+		box-shadow: 1px 1px 3px gray;
+		border: 1px solid gray;
+	}
+	
+	a {
+		text-decoration: none;
+		color: black;
+	}
+	
+</style>
+
 <main>
 
-	<br><h1>자주 묻는 질문</h1>
-
-	<!-- 페이징 JSP 추가작업 2 -->
-	<!-- 페이징 옵션 시작 -->
-	<select id="cntPerPage" name="sel" onchange="selChange()" class="QnacntPerPage">
-		<option value="5"
-			<c:if test="${paging.cntPerPage == 5}">selected</c:if>>5개 보기</option>
-		<option value="10"
-			<c:if test="${paging.cntPerPage == 10}">selected</c:if>>10개 보기</option>
-		<option value="15"
-			<c:if test="${paging.cntPerPage == 15}">selected</c:if>>15개 보기</option>
-		<option value="20"
-			<c:if test="${paging.cntPerPage == 20}">selected</c:if>>20개 보기</option>
-	</select>
-	<!-- 페이징 옵션 끝 -->
+	<h1>자주 묻는 질문</h1>
 	
-	<br><br>
+	<hr>
+
+	<div class="qna_list">
+		<!-- 페이징 JSP 추가작업 2 -->
+		<!-- 페이징 옵션 시작 -->
+		<select id="cntPerPage" name="sel" onchange="selChange()" class="QnacntPerPage">
+			<option value="5"
+				<c:if test="${paging.cntPerPage == 5}">selected</c:if>>5개씩 보기</option>
+			<option value="10"
+				<c:if test="${paging.cntPerPage == 10}">selected</c:if>>10개씩 보기</option>
+			<option value="15"
+				<c:if test="${paging.cntPerPage == 15}">selected</c:if>>15개씩 보기</option>
+			<option value="20"
+				<c:if test="${paging.cntPerPage == 20}">selected</c:if>>20개씩 보기</option>
+		</select>
+		<!-- 페이징 옵션 끝 -->
 	
-	<table class = "qna_top">
-
-		<tr class="top_qna_list">
-			<th class="qna_subject">제목</th>
-			<th class="qna_writer">작성자</th>
-			<th class="qna_date">등록일</th>
-		</tr>
-
-		<c:forEach items="${ qnaList }" var="qna">
-			<tr>
-				<td class="qna_subject_title"><a href="getQna.do?qna_no=${ qna.qna_no }"> ${ qna.qna_title }</a></td>
-				<td>${ qna.qna_writer }</td>
-				<td><fmt:formatDate value="${ qna.qna_date }" pattern="yy-MM-dd"/>
-				</td>
+		<table class = "qna_table">
+	
+			<tr class="qna_top">
+				<th class="qna_th1">번호</th>
+				<th class="qna_th2">제목</th>
+				<th class="qna_th3">작성자</th>
+				<th class="qna_th4">등록일</th>
 			</tr>
-		</c:forEach>
-
-	</table>
-
-	<br><br>
 	
-<!-- 페이징 JSP 추가작업 3 -->
-	<!-- 페이징 하단 숫자 시작 -->
-	<div style="display: block; text-align: center;">		
-		<c:if test="${paging.startPage != 1 }">
-			<a href="<c:url value='/qna/getQnaList.do?nowPage=${paging.startPage - 1}&cntPerPage=${paging.cntPerPage}'/>">&lt;</a>
-		</c:if>
-		<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
-			<c:choose>
-				<c:when test="${p == paging.nowPage }">
-					<b>${p }</b>
-				</c:when>
-				<c:when test="${p != paging.nowPage }">							
-					<a href="<c:url value='/qna/getQnaList.do?nowPage=${p}&cntPerPage=${paging.cntPerPage}'/>">${p }</a>
-				</c:when>
-			</c:choose>
-		</c:forEach>
-		<c:if test="${paging.endPage != paging.lastPage}">					
-			<a href="<c:url value='/qna/getQnaList.do?nowPage=${paging.endPage+1}&cntPerPage=${paging.cntPerPage}'/>">&gt;</a>
-		</c:if>
+			<c:forEach items="${ qnaList }" var="qna">
+				<tr>
+					<td>${ qna.qna_no }</td>
+					<td class="qna_post_title"><a href="getQna.do?qna_no=${ qna.qna_no }"> ${ qna.qna_title }</a></td>
+					<td>${ qna.qna_writer }</td>
+					<td>
+						<fmt:formatDate value="${ qna.qna_date }" pattern="yy-MM-dd"/>
+					</td>
+				</tr>
+			</c:forEach>
+		</table>
+		
+		<!-- 페이징 JSP 추가작업 3 -->
+		<!-- 페이징 하단 숫자 시작 -->
+		<div style="display: block; text-align: center;">		
+			<c:if test="${paging.startPage != 1 }">
+				<a href="<c:url value='/qna/getQnaList.do?nowPage=${paging.startPage - 1}&cntPerPage=${paging.cntPerPage}'/>">&lt;</a>
+			</c:if>
+		
+			<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
+				<c:choose>
+					<c:when test="${p == paging.nowPage }">
+						<b>${p }</b>
+					</c:when>
+					<c:when test="${p != paging.nowPage }">							
+						<a href="<c:url value='/qna/getQnaList.do?nowPage=${p}&cntPerPage=${paging.cntPerPage}'/>">${p }</a>
+					</c:when>
+				</c:choose>
+			</c:forEach>
+			
+			<c:if test="${paging.endPage != paging.lastPage}">					
+				<a href="<c:url value='/qna/getQnaList.do?nowPage=${paging.endPage+1}&cntPerPage=${paging.cntPerPage}'/>">&gt;</a>
+			</c:if>
+		</div>
+		
+		<div class="new_post_button">
+			<a href="<c:url value='/qna/insertQnaPage.do'/>" id="new_qna_post" class=" new_qna_post">문의하기</a>
+		</div>
 	</div>
 	<!-- 페이징 하단 숫자 끝 -->
 	
 	
-	<div id="new_qna_post" class="new_qna_post">
-		<br>
-	 	<a href="<c:url value='/qna/insertQnaPage.do'/>">새글 등록</a>
-	</div><br><br>
+	
 </main>
 
 <%@ include file="../import/bottom.jsp" %>

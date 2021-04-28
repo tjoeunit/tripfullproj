@@ -79,6 +79,16 @@
 		color: black;
 	}
 	
+	.QnacntPerPage {
+		margin: 20px;
+		padding: 5px;
+	}
+	
+	a {
+		text-decoration: none;
+		color: black;
+	}
+	
 </style>
 
 <!-- 페이징 JSP 추가작업 1 -->
@@ -86,7 +96,7 @@
 <script>
 	function selChange() {
 		var sel = document.getElementById('cntPerPage').value;
-		location.href="getQnaList.do?nowPage=${paging.nowPage}&cntPerPage="+sel;
+		location.href="adminQna.do?nowPage=${paging.nowPage}&cntPerPage="+sel;
 	}
 </script>
 <!-- 페이징 옵션 처리 자바스크립트 끝 -->
@@ -98,20 +108,18 @@
 	</div>
 
 	<!-- 페이징 JSP 추가작업 2 -->
-	<!-- 페이징 옵션 시작 -->
-	<select id="cntPerPage" name="sel" onchange="selChange()" class="QnacntPerPage">
-		<option value="5"
-			<c:if test="${paging.cntPerPage == 5}">selected</c:if>>5개 보기</option>
-		<option value="10"
-			<c:if test="${paging.cntPerPage == 10}">selected</c:if>>10개 보기</option>
-		<option value="15"
-			<c:if test="${paging.cntPerPage == 15}">selected</c:if>>15개 보기</option>
-		<option value="20"
-			<c:if test="${paging.cntPerPage == 20}">selected</c:if>>20개 보기</option>
-	</select>
-	<!-- 페이징 옵션 끝 -->
-	
-	<br><br>
+		<!-- 페이징 옵션 시작 -->
+		<select id="cntPerPage" name="sel" onchange="selChange()" class="QnacntPerPage">
+			<option value="5"
+				<c:if test="${paging.cntPerPage == 5}">selected</c:if>>5개씩 보기</option>
+			<option value="10"
+				<c:if test="${paging.cntPerPage == 10}">selected</c:if>>10개씩 보기</option>
+			<option value="15"
+				<c:if test="${paging.cntPerPage == 15}">selected</c:if>>15개씩 보기</option>
+			<option value="20"
+				<c:if test="${paging.cntPerPage == 20}">selected</c:if>>20개씩 보기</option>
+		</select>
+		<!-- 페이징 옵션 끝 -->
 	
 	<table class=list_table>
 		<tr>
@@ -131,10 +139,7 @@
 				</td>
 			</tr>
 		</c:forEach>
-
 	</table>
-
-	<br><br>
 	
 <!-- 페이징 JSP 추가작업 3 -->
 	<!-- 페이징 하단 숫자 시작 -->

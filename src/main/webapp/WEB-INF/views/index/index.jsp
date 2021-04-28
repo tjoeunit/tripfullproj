@@ -60,12 +60,9 @@
 			
 			setInterval(changeImage, 4000);		
 		</script>
-		
+
 		<div>
-			세션에 저장되었는지 보여주기 위해 임시로 생성
-			<input type="text" value="${members_id}">
-			<div>
-				
+			<a href="<c:url value='/flight/getFlightList.do'/>">	
 				<div class="productDiv">
 				    <img src="<c:url value='/img/indexthumb1.jpg'/>" class="productThumDiv">
 				    	<div class="productDivInfo">
@@ -73,7 +70,9 @@
 					      <div>트립풀이 준비한 특가 항공권</div>
 				    	</div>
 				  </div>
-				  
+			  </a>
+			  
+			  <a href="<c:url value='/hotel/getHotelList.do'/>">
 				  <div class="productDiv">
 				    <img src="<c:url value='/img/indexthumb2.jpg'/>" class="productThumDiv">
 				    	<div class="productDivInfo">
@@ -81,7 +80,9 @@
 					      <div>호텔 예약 할인받고 떠나요!</div>
 				    	</div>
 				  </div>
-				  
+			  </a>
+			  
+			  <a href="<c:url value='/activity/getActivityList.do'/>">
 				  <div class="productDiv">
 				    <img src="<c:url value='/img/indexthumb3.jpg'/>" class="productThumDiv">
 				    	<div class="productDivInfo">
@@ -89,7 +90,9 @@
 					      <div>전국 방방곡곡 액티비티</div>
 				    	</div>
 				  </div>
-				  
+			  </a>
+			  
+			  <a href="<c:url value='/lantrip/getLanTripList.do'/>">
 				  <div class="productDiv">
 				    <img src="<c:url value='/img/indexthumb4.jpg'/>" class="productThumDiv">
 				    	<div class="productDivInfo">
@@ -97,8 +100,7 @@
 					      <div>영상으로는 어디든 떠날 수 있다!</div>
 				    	</div>
 				  </div>
-				
-			</div>
+			  </a>
 		</div>
 		
 		<div>
