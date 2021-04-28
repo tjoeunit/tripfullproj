@@ -126,7 +126,6 @@ public class LanTripController {
 		
 		model.addAttribute("lantrip", lanTrip);
 		return "adminLanTrip/adminLanTripUpdatePage";
-		
 	}
 
 	

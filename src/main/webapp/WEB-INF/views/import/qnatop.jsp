@@ -3,8 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<% String admin_id = (String)session.getAttribute("admin_id"); %>
-<% int admin_no = (Integer)session.getAttribute("admin_no"); %>
+<% String members_id = (String)session.getAttribute("members_id"); %>
+<% int members_no = (Integer)session.getAttribute("members_no"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,13 +15,12 @@
 <script type="text/javascript" src="<c:url value='/js/jquery-3.5.1.min.js'/>"></script>
 
 <meta charset="UTF-8">
-<title>관리자::Tripfull</title>
+<title>Tripfull::서비스센터</title>
 </head>
 
 <style>
 	.nav {
-		background-color: lightgray;
-		/*position: fixed;*/
+		background-color: white;
 		width: 100%;
 		top: 0;
 		cursor: default;
@@ -53,6 +52,7 @@
 		outline: 0;
 		font-weight: 600;
 		border-radius: 8px;
+		color: black;
 		height: 2.5em;
 		line-height: 2.5em;
 		padding: 0 1.25em;
@@ -78,6 +78,11 @@
 		border-right: solid 0.75em transparent;
 		border-top: solid 0.6em #282828;
 	}
+	
+	.serviceCheck {
+		color: #fff !important;
+		background: #383838;
+	}
 
 	.navDiv {
 		margin-left: 360px;
@@ -98,56 +103,71 @@
 	.navAccDiv {
 		float:right;
 		height: 60px;
+
 		text-align: center;
-		margin-top: 15px;
 	}
 
 	.navListDiv {
 		clear: both;
-		text-align: left;
 	}
 
 	main {
 		margin-left: 360px;
-		width: 1200px;
-		margin-top: 20px;
 		margin-bottom: 20px;
+		width: 1200px;
 	}
-
 
 </style>
 
+<script type="text/javascript">
+	$(function(){
+
+		//세션에 로그인 된 아이디 값이 없다면
+		if($("#sessionID").val() == ""){
+			//마이페이지x 로그아웃x 회원가입o 로그인o
+			$("#mypage_li").hide();
+			$("#logout_li").hide();
+
+		//세션에 로그인 된 아이디 값이 있다면
+		} else {
+			//마이페이지o 로그아웃o 회원가입x 로그인x
+			$("#signin_li").hide();
+			$("#login_li").hide();
+		}
+	});
+
+</script>
+
 <body>
 <header>
-	<input type="hidden" id="sessionID" value="${admin_id}">
+	<input type="hidden" id="sessionID" value="${members_id}">
 	<nav class="nav">
 		<div class="navDiv">
 			<div class="navImgDiv">
-				<a style="all: unset; cursor: pointer;" href="<c:url value='/admin/adminIndex.do'/>">
+				<a style="all: unset; cursor: pointer;" href="<c:url value='/index.do'/>">
 					<img src="<c:url value='/img/tripfulllogo.png'/>">
 				</a>
 			</div>
 			<div class="navAccDiv">
 				<ul>
-					<li><a href="<c:url value='/admin/adminIndex.do'/>">관리자 페이지</a></li>
-					<li id="signin_li"><a href="<c:url value='/adminQna/adminQna.do'/>">고객센터</a></li>
-					<li id="logout_li"><a href="../adminLogin/adminLogout.do">로그아웃</a></li>
-					<%-- <li id="admin_li"><a href="<c:url value='/adminLogin/adminLogin_View.do'/>">관리자</a></li> --%>
+					<li id="signin_li"><a href="<c:url value='/members/insertMembers.do'/>">회원가입</a></li>
+					<li id="login_li"><a href="<c:url value='/members/loginMembers.do'/>">로그인</a></li>
+					<li id="mypage_li"><a href="<c:url value='/members/indexMembers.do'/>">마이페이지</a></li>
+					<li id="logout_li"><a href="<c:url value='/members/logoutMembers.do'/>">로그아웃</a></li>
+					<li><a href="<c:url value='/adminLogin/adminLogin_View.do'/>">관리자</a></li>
 				</ul>
 			</div>
 
 			<div class="navListDiv">
 				<ul>
-					<li><a href="<c:url value='/adminMembers/adminMembers.do'/>">회원관리</a></li>
-					<li><a href="<c:url value='/adminFlight/adminFlight.do'/>">항공권</a></li>
-					<li><a href="<c:url value='/adminHotel/adminHotel.do'/>">숙박</a></li>
-					<li><a href="<c:url value='#'/>">렌터카 & 교통</a></li>
-					<li><a href="<c:url value='/adminActivity/adminActivity.do'/>">액티비티</a></li>
-					<li><a href="<c:url value='/adminLanTrip/adminLanTrip.do'/>">랜선투어</a></li>
-					<li><a href="<c:url value='#'/>">여행이야기</a></li>
+					<li><a href="<c:url value='/index/termService.jsp'/>">이용약관</a></li>
+					<li><a href="<c:url value='/index/privacyPolicy.jsp'/>">개인정보 처리방침</a></li>
+					<li><a href="<c:url value='/index/cancelRefund.jsp'/>">취소 및 환불 정책</a></li>
+					<li><a href="<c:url value='/qna/getQnaList.do'/>"class="serviceCheck">자주 묻는 질문</a></li>
 				</ul>
 			</div>
 
 		</div>
 	</nav>
 </header>
+<body>
