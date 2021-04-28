@@ -19,7 +19,7 @@
 		<tr>
 			<td><input type="text" id="payment_no" value="${payment.payment_no}"></td>
 			<td><input type="text" id="product_category" value="${payment.product_category}"></td>			
-			<td><input type="text" id="x" value="${payment.flight_title}${payment.hotel_title}${payment.activity_title}${payment.lantrip_title}">			</td>
+			<td><input type="text" id="xx" value="${payment.flight_title}${payment.hotel_title}${payment.activity_title}${payment.lantrip_title}">			</td>
 			<td><input type="text" id="payment_bookdate" value="${payment.payment_bookdate}"></td>
 			<td><input type="text" id="payment_quantity" value="${payment.payment_quantity}"></td>
 			<td><input type="text" id="payment_price" value="${payment.payment_price}"></td>
