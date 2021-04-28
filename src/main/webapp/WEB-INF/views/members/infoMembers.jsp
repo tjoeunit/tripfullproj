@@ -46,20 +46,97 @@
 	});	
 </script>
 
+<style type="text/css">
+	
+	.small_navi {
+		display: inline-block;
+		margin: 5px;
+		padding: 5px;
+		text-decoration: none;
+		font-size: 12px;
+	}
+	
+	.main_title {
+		align-content: left;
+		font-size: 40px;
+		font-weight: 600;
+		margin: 20px 0px;
+	}
+	
+	.info_change_button {
+		
+	}
+	
+	.user_table {
+		margin: 20px;
+	}
+	
+	.user_table_th1 {
+		width: 100px;
+	}
+	
+	.user_table_th2 {
+	
+	}
+	
+	
+</style>
+
 <main>
 
-아이디 : ${members.members_id}<br>
-이름 : ${members.members_name}<br>
-전화번호 : ${members.members_tel}<br>
-이메일 : ${members.members_email}<br>
-성별 : ${members.members_gender}<br>
-우편번호 : ${members.members_zipcode}<br>
-주소 : ${members.members_address}<br>
-주소상세 : ${members.members_address_detail}<br>
+	<span class="small_navi"><a href="<c:url value='/members/indexMembers.do'/>">마이페이지</a></span>
+	>
+	<span class="small_navi"><a href="<c:url value='/members/infoMembers.do'/>">회원정보</a></span>
+	
+	<div class="main_title">회원정보</div>
+	<hr>
+	
+	<table class="user_table">
+		<tr>
+			<td class="user_table_th1">아이디</td>
+			<td class="user_table_th2">${members.members_id}</td>
+		</tr>
+		
+		<tr>
+			<td class="user_table_th1">비밀번호</td>
+			<td class="user_table_th2"><input type="button" id="pwChange" value="비밀번호변경" class="info_change_button"></td>
+		</tr>
+		
+		<tr>
+			<td class="user_table_th1">이름</td>
+			<td class="user_table_th2">${members.members_name}</td>
+		</tr>
+		
+		<tr>
+			<td class="user_table_th1">성별</td>
+			<td class="user_table_th2">${members.members_gender}</td>
+		</tr>
+		
+		<tr>
+			<td class="user_table_th1">전화번호</td>
+			<td class="user_table_th2">${members.members_tel}</td>
+		</tr>
+		
+		<tr>
+			<td class="user_table_th1">이메일</td>
+			<td class="user_table_th2">${members.members_email}</td>
+		</tr>
+		
+		<tr>
+			<td class="user_table_th1">우편번호</td>
+			<td class="user_table_th2">${members.members_zipcode}</td>
+		</tr>
+		
+		<tr>
+			<td class="user_table_th1">주소</td>
+			<td class="user_table_th2">${members.members_address}, ${members.members_address_detail}</td>
+		</tr>
+		
+	</table>
 
-<input type="button" id="editMembers" value="회원정보수정" >
-<input type="button" id="pwChange" value="비밀번호변경">
-<input type="button" id="outMembers" value="회원탈퇴">
+	<input type="button" id="editMembers" value="회원정보수정" >
+	<input type="button" id="outMembers" value="회원탈퇴">
+	
 </main>
 
 <%@ include file="../import/bottom.jsp" %>

@@ -1,167 +1,127 @@
-<%@page import="com.tjoeunit.biz.lantrip.LanTripVO"%>
+<%@page import="com.tjoeunit.biz.hotel.HotelVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 <%@ include file="../import/top.jsp" %>
 
 <style type="text/css">
-	main {
-		margin-left: 360px;
-	}
 
-	.hotel_div{
+	.product {
+		margin: 10px;
 		width: 1200px;
 	}
 
-	.hotel_product_thumb{
+	.product_top{
+		padding: 10px;
+		margin-bottom: 20px;
+		width: 1200px;
+		border-bottom: 1px solid gray;
+	}
+
+	.product_thumb {
 		width: 400px;
 		height: 300px;
 	}
 
-	.hotel_product_title {
+	.product_title {
 		display: inline-block;
-		width: 1200px;
 		font-size: 40px;
 		font-weight: 600;
 		text-align: left;
+		padding: 10px;
 	}
 
-	.hotel_buy {
+	.product_city {
+		text-align: left;
+		padding: 0px 10px;
+	}
+
+	.product_city span	{
 		display: inline-block;
-		position: relative;
-		box-sizing: border-box;
-		color: black;
-		text-decoration: none;
+		margin: 0px 5px;
 		text-align: center;
-		font-weight: 600;
-		border-radius: 8px;
-		height: 2.5em;
-		width: 800px;
-		line-height: 2.5em;
-		padding: 0 1.25em;
+		border-radius: 5px;
+		background-color: #D9E3E8;
+		padding: 5px 10px;
+	}
+
+	.product_price {
+		display: inline-block;
+		width: 350px;
+		margin: 0px 10px;
+		text-align: right;
+	}
+
+	.product_buy {
 		-moz-transition: background-color .2s ease-in-out;
 		-webkit-transition: background-color .2s ease-in-out;
 		-ms-transition: background-color .2s ease-in-out;
 		transition: background-color .2s ease-in-out;
+		position: relative;
+		display: inline-block;
+		color: black;
+		text-decoration: none;
+		outline: 0;
+		font-weight: 600;
+		border-radius: 8px;
+		border: 1px solid lightgray;
+		color: black;
+		height: 2.5em;
+		line-height: 2.5em;
+		width: 350px;
+		background-color: white;
+		text-align: center;
+		margin: 0px 10px;
+		font-size: 15px;
 	}
 
-	.hotel_buy:hover {
+	.product_buy:hover{
 		color: #fff !important;
 		background: #383838;
+		cursor: pointer;
 	}
 
-	.hotel_product_detail{
-		width: 1200px;
+	.product_detail{
+		border-bottom: 1px solid gray;
 		padding: 10px;
+		margin: 10px;
 	}
 
-	.hotel_product_detail_area{
-		color: gray;
-		text-align: right;
-	}
-
-	.hotel_product_img {
+	.product_img {
 		width: 1200px;
-		height: auto;
 		background-color: #58CCFF;
-	}
-
-	.thumb_div {
-		float: left;
-		width: 400px;
-		height: 300px;
-	}
-
-	.info_div {
-		height: 300px;
-		width: 1200px;
-		margin-top: 10px;
-	}
-
-	.title_div {
-		margin-top: 10px;
-		float: left;
-		width: 800px;
-		height: 300px;
-	}
-
-	.buy_div {
-		margin-top: 10px;
-		text-align: right;
-	}
-
-	.clear_div {
-		clear: both;
 	}
 
 </style>
 
-<script type="text/javascript">
-	$(function(){
-		$('#delete_hotel').click(function() {
-			var msg = confirm('${hotel.hotel_title} 을(를) 삭제하시겠습니까?');	
-			if (msg) {
-				//true
-				location.href = "<c:url value ='/hotel/deleteHotel.do?hotel_no=${hotel.hotel_no}'/>";
-			} else {
-				//false
-				event.preventDefault;
-				location.href = "<c:url value='/hotel/getHotel.do?hotel_no=${hotel.hotel_no}'/>";
-			}
-		});
-		
-		$('#update_hotel').click(function() {
-			var msg = confirm('${hotel.hotel_title} 을(를) 수정하시겠습니까?');	
-			if (msg) {
-				//true
-				location.href = "<c:url value='/hotel/updateHotel.do?hotel_no=${hotel.hotel_no}'/>";
-			} else {
-				//false
-				event.preventDefault;
-				location.href = "<c:url value='/hotel/getHotel.do?hotel_no=${hotel.hotel_no}'/>";
-			}
-		});	
-	});	
-</script>
 <main>
-	<div class="hotel_div">
-		<div class="info_div">
-		<div class="edit_div">
-				<input type="button" value="숙박권 수정하기" id="update_hotel">			
-			</div>
-			<div class="delete_hotel_div">
-				<input type="button" value="숙박권 삭제하기" id="delete_hotel">
-			</div>
-			<div class="thumb_div">
-				<img class="hotel_product_thumb" src="<c:url value='/hotelUpload/${hotel.hotel_thumb}'/>">
-			</div>
 
-			<div class="title_div">
-				<div>
-					<span class="hotel_product_title">${hotel.hotel_title}</span>
-				</div>
-				<div>
-					<span>카테고리 : ${hotel.hotel_category}</span><br>
-					<span>지역 : ${hotel.hotel_area}</span><br>
-					<span>가격 : ${hotel.hotel_price}원</span><br>
-					
+	<div class="product">
 
-				</div>
-				<div class="buy_div">
-					<a href="#"><span class="hotel_buy">구매하기</span></a>
-				</div>
-			</div>
-
-		</div>
-
-		<div class="clear_div">
-		<!-- float: left 제거를 위함 -->
-		</div>
-		<!-- 숙박 상세 설명 -->
-		<div class="hotel_product_detail">
-			설명 : ${hotel.hotel_content}
-		</div>		
+		<table class="product_top">
+			<tr>
+				<td rowspan="3"><img class="product_thumb" src="<c:url value='/hotelUpload/${hotel.hotel_thumb}'/>"></td>
+				<td class="product_title">${hotel.hotel_title}</td>
+			</tr>
+			<tr>
+				<td class="product_city" headers="70">
+					<span>#${hotel.hotel_area}</span>
+					<span>#${hotel.hotel_category}</span>
+					<span>#편안한 숙박</span>
+					<span>#안전여행</span>
+				</td>
+			</tr>
+			<tr>
+				<td height="70">
+					<span class="product_price">${hotel.hotel_price} 원</span>
+					<input type="button" class="product_buy" value="구매하기" />
+				</td>
+			</tr>
+		</table>
+		
+		<div class="product_detail">${hotel.hotel_content}</div>
+			
 	</div>
 	<br>
 </main>
+
 <%@ include file="../import/bottom.jsp" %>

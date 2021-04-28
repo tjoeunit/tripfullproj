@@ -10,19 +10,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.tjoeunit.biz.common.PagingVO;
-import com.tjoeunit.biz.lantrip.LanTripVO;
-import com.tjoeunit.biz.qna.QnaReplyService;
-import com.tjoeunit.biz.qna.QnaReplyVO;
 import com.tjoeunit.biz.qna.QnaService;
 import com.tjoeunit.biz.qna.QnaVO;
-import com.tjoeunit.biz.story.StoryVO;
 
 @Controller
 public class QnaController {
 
 	@Autowired
 	private QnaService qnaService;
-	private QnaReplyService qnaReplyService;
 	
 	// 글 목록 보기
 	@RequestMapping(value="/qna/getQnaList.do", method = RequestMethod.GET)
