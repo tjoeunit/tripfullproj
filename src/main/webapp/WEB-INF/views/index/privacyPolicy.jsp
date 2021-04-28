@@ -172,8 +172,20 @@
 </header>
 <body>
 
+<style type="text/css">
+	
+	.main_title {
+		align-content: left;
+		font-size: 40px;
+		font-weight: 600;
+		margin: 20px 0px;
+	}
+	
+</style>
+
 <main>
-	<h1>개인정보 처리 방침</h1>
+	<div class="main_title">개인정보 처리 방침</div>
+	<hr>
 	
 	<p>
 		주식회사 트립풀 (이하 "당사")은 고객의 개인정보를 중요시하며, 개인정보의 보호와 관련하여 「정보통신망 이용촉진 및 정보보호 등에 관한 법률」 및 「개인정보보호법」 등

@@ -1,15 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-
 <%@ include file="../import/top.jsp" %>
 
 <style type="text/css">
-
-	a{
-		text-decoration: none;
-	}
 
 	.main_title {
 		align-content: left;
@@ -30,7 +23,6 @@
 
 	.product_list {
 		padding: 20px 0px;
-		text-align: center;
 	}
 	
 	.product {
@@ -68,12 +60,13 @@
 		margin: 5px;
 		text-align: left;
 		padding: 0px 15px;
-		height: 50px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 	
 	.product_price {
 		color: #58ccff;
-		font-weight: 600;
 		text-align: left;
 		padding: 0px 20px 20px 20px;
 	}
@@ -126,7 +119,6 @@
 		</c:forEach>
 	</div>
 	
-	<br>
 	<!-- 페이징 JSP 추가작업 3 -->
 	<!-- 페이징 하단 숫자 시작 -->
 	<div style="display: block; text-align: center;">		
@@ -147,9 +139,9 @@
 			<a href="<c:url value='/lantrip/getLanTripList.do?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}'/>">&gt;</a>
 		</c:if>
 	</div>
-	<br>
-	<!-- 페이징 하단 숫자 끝 -->
 	
+	<!-- 페이징 하단 숫자 끝 -->
+	<br>
 		
 </main>
 

@@ -3,84 +3,71 @@
 <%@ include file="../import/top.jsp" %>
 
 <style type="text/css">	
-	a{
-		text-decoration: none;
-	}
-
 	.main_title {
 		align-content: left;
 		font-size: 40px;
 		font-weight: 600;
+		margin: 20px 0px;
 	}
 	
-	.flight_products{
-		width: 1000px;
-		margin-right: auto;
-		margin-bottom: 30px;
-	}
-	
-	.flight_product {
-		border-bottom: 1px solid gray;
-		border-top: 1px solid gray;
-		margin-right: auto;
-		padding: 5px;
-	}
-
-	.flight_product_thumb {
-		width: 200px;
-		height: 200px;
-		border: 1px solid gray;
-	}
-	
-	.flight_product_title {
-		width : 600px;
-		height : 90px;
-		padding: 10px;
-	}
-	
-	.flight_product_title a{
-		color: black;
-		font-size: 2em;
-		font-weight: 600;
-	}
-	
-	.flight_product_title:hover {
-		font-size: 1.2em;
-	}
-	
-	.flight_product_detail {
-		width : 600px;
-		height : 90px;
-		padding: 10px;
-		color: gray;
-	}
-	
-	.flight_product_departure{
-		width: 150px;
-		padding: 10px;
+	.page_select_box {
 		text-align: right;
 	}
 	
-	.flight_price {
-		width: 150px;
-		position: relative;
-		box-sizing: border-box;
-		color: black;
-		text-align: center;
-		font-weight: 600;
-		line-height: 1.5em;
-		padding: 0 1.25em;
-		-moz-transition: background-color .2s ease-in-out;
-		-webkit-transition: background-color .2s ease-in-out;
-		-ms-transition: background-color .2s ease-in-out;
-		transition: background-color .2s ease-in-out;
+	.page_select {
+		padding: 5px;
+		border: 1px solid gray;
+		margin-right: 20px;
+	}
+
+	.product_list {
+		padding: 20px 0px;
 	}
 	
-	.flight_price:hover{
-		text-decoration: none;
-		color: #fff !important;
-		background: #383838;
-		cursor: pointer;
+	.product {
+		width: 270px;
+		background-color: white;
+		display: inline-block;
+		margin: 20px 10px;
+		border-radius: 5px;
+		border: 1px solid gray;
+		overflow: hidden;
+	}
+	
+	.product:hover {
+		box-shadow: 2px 2px 5px gray;
+	}
+	
+	.product_thumb {
+		width: 270px;
+		height: 195px;
+		margin-left: auto;
+		margin-right: auto;
+		margin-bottom: 10px;
+	}
+	
+	.product_area {
+		color: gray;
+		text-align: left;
+		padding-left: 20px;
+	}
+	
+	.product_title {
+		color: black;
+		font-size: 20px;
+		font-weight: 600;
+		margin: 5px;
+		text-align: left;
+		padding: 0px 15px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+	
+	.product_price {
+		color: #58ccff;
+		text-align: left;
+		padding: 0px 20px 20px 20px;
 	}
 	
 </style>
@@ -96,42 +83,40 @@
 <!-- 페이징 옵션 처리 자바스크립트 끝 -->
 
 <main>	
-	<br>
+
 	<div class="main_title">항공권</div>
-	
+	<hr>
+
 	<!-- 페이징 JSP 추가작업 2 -->
 	<!-- 페이징 옵션 시작 -->
-	<select id="cntPerPage" name="sel" onchange="selChange()">
+	<div class="page_select_box">
+	<select id="cntPerPage" name="sel" onchange="selChange()" class="page_select">
 		<option value="5"
-			<c:if test="${paging.cntPerPage == 5}">selected</c:if>>5개 보기</option>
+			<c:if test="${paging.cntPerPage == 5}">selected</c:if>>5개씩 보기</option>
 		<option value="10"
-			<c:if test="${paging.cntPerPage == 10}">selected</c:if>>10개 보기</option>
+			<c:if test="${paging.cntPerPage == 10}">selected</c:if>>10개씩 보기</option>
 		<option value="15"
-			<c:if test="${paging.cntPerPage == 15}">selected</c:if>>15개 보기</option>
+			<c:if test="${paging.cntPerPage == 15}">selected</c:if>>15개씩 보기</option>
 		<option value="20"
-			<c:if test="${paging.cntPerPage == 20}">selected</c:if>>20개 보기</option>
+			<c:if test="${paging.cntPerPage == 20}">selected</c:if>>20개씩 보기</option>
 	</select>
+	</div>
 	<!-- 페이징 옵션 끝 -->
 	
-	<table class="flight_products">	
-		<tr>
-			<c:forEach items="${flightList}" var="flight">
-			<table class="flight_product">			
-				<tr>
-					<td rowspan="3"><img class="flight_product_thumb" src="<c:url value='/flightUpload/${flight.flight_thumb}'/>"></td>
-					<td class="flight_product_title"><a href="<c:url value='getFlight.do?flight_no=${flight.flight_no}'/>">${flight.flight_title}</a></td>
-					<td class="flight_product_departure">${flight.flight_departure}</td>
-				</tr>
-				<tr>				
-					<!-- CK 에디터 사용 시 삭제해야함 ! 목록에 이미지가 뜸
-						<td class="flight_product_detail">${flight.flight_content}</td>
-					-->
-					<td class="flight_price" onclick="location.href='#'">${flight.flight_price}원에<br>구매하기</td>
-				</tr>
-			</table>
-			</c:forEach>
-		</tr>
-	</table>
+	<div	class="product_list">
+		<c:forEach items="${flightList}" var="flight">
+			<a href="<c:url value='getFlight.do?flight_no=${flight.flight_no}'/>">
+				<div class="product">
+					<img class="product_thumb" src="<c:url value='/flightUpload/${flight.flight_thumb}'/>">
+					<div>
+						<div class="product_area">${flight.flight_departure}</div>
+						<div class="product_title">${flight.flight_title}</div>
+						<div class="product_price">${flight.flight_price} 원</div>
+					</div>
+				</div>
+			</a>
+		</c:forEach>
+	</div>
 	
 	<!-- 페이징 JSP 추가작업 3 -->
 	<!-- 페이징 하단 숫자 시작 -->
@@ -153,9 +138,10 @@
 			<a href="<c:url value='/flight/getFlightList.do?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}'/>">&gt;</a>
 		</c:if>
 	</div>
-	<!-- 페이징 하단 숫자 끝 -->
 	
+	<!-- 페이징 하단 숫자 끝 -->
 	<br>
+
 </main>
 
 <%@ include file="../import/bottom.jsp" %>

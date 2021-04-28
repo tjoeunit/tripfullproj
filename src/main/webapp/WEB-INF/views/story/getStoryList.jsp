@@ -5,44 +5,94 @@
 
 <style type="text/css">
 
-	.top_story_list{
-		color: white;
-		background-color: #58CCFF;
+	.main_title {
+		align-content: left;
+		font-size: 40px;
+		font-weight: 600;
+		margin: 20px 0px;
 	}
-	.story_top{
-		width: 1000px;
-	 	border: 1px solid gray;
-	 	text-align: center;
-	 	padding: 7px;
+	
+	.page_select_box {
+		text-align: right;
 	}
-
-	.story_subject_title{
-		text-align: left;
+	
+	.page_select {
 		padding: 5px;
-		padding-left: 20px;
+		border: 1px solid gray;
+		margin-right: 20px;
 	}
-
-	.story_subject{
-		width: 60%;
+	
+	.table_list {
+		margin: 20px 0px;
+		width: 100%;
+		border-top: 3px solid black;
+		border-collapse: collapse;
 	}
-	.story_writer{
-		width: 15%;
+	
+	th {
+		border-bottom: 3px solid black;
+		padding: 10px 0px;
 	}
-	.story_date{
-		width: 15%;
+	
+	td {
+		text-align: center;
+		border-bottom: 1px solid gray;
+		padding: 10px 0px;
+		color: gray;
 	}
-	.story_views{
+	
+	.table_top {
+		padding: 5px;
+	}
+	
+	.table_th1 {
+		width: 5%;
+	}
+	
+	.table_th2 {
+		width: 70%;
+	}
+	
+	.table_th3 {
 		width: 10%;
 	}
-	.new_story_post{
-		text-align: center;
+	
+	.table_th4 {
+		width: 10%;
 	}
-/*	.story_top a:hover {
-		color: #fff !important;
-		background: #58CCFF;
-	}
-*/
 
+	.table_th5 {
+		width: 5%;
+	}
+		
+	.post_title {
+		text-align: left;
+	}
+	
+	.post_title a {
+		text-decoration: none;
+		color: black;
+	}
+	
+	.new_post_button {
+		text-align: right;
+	}
+	
+	.new_post {
+		text-decoration: none;
+		display:inline-block;
+		margin: 10px;
+		padding: 10px;
+		border-radius: 5px;
+		border: 1px solid gray;
+		color: black;
+	}
+	
+	.new_post:hover {
+		box-shadow: 1px 1px 3px gray;
+		border: 1px solid gray;
+	}
+	
 </style>
 
 <script type="text/javascript">
@@ -69,36 +119,38 @@
 
 <main>
 
-	<br><h1>여행 이야기</h1>
+	<div class="main_title">여행이야기</div>
+	<hr>
 
 	<!-- 페이징 JSP 추가작업 2 -->
 	<!-- 페이징 옵션 시작 -->
-	<select id="cntPerPage" name="sel" onchange="selChange()" class="StorycntPerPage">
+	<div class="page_select_box">
+	<select id="cntPerPage" name="sel" onchange="selChange()" class="page_select">
 		<option value="5"
-			<c:if test="${paging.cntPerPage == 5}">selected</c:if>>5개 보기</option>
+			<c:if test="${paging.cntPerPage == 5}">selected</c:if>>5개씩 보기</option>
 		<option value="10"
-			<c:if test="${paging.cntPerPage == 10}">selected</c:if>>10개 보기</option>
+			<c:if test="${paging.cntPerPage == 10}">selected</c:if>>10개씩 보기</option>
 		<option value="15"
-			<c:if test="${paging.cntPerPage == 15}">selected</c:if>>15개 보기</option>
+			<c:if test="${paging.cntPerPage == 15}">selected</c:if>>15개씩 보기</option>
 		<option value="20"
-			<c:if test="${paging.cntPerPage == 20}">selected</c:if>>20개 보기</option>
+			<c:if test="${paging.cntPerPage == 20}">selected</c:if>>20개씩 보기</option>
 	</select>
+	</div>
 	<!-- 페이징 옵션 끝 -->
 	
-	<br><br>
-	
-	<table class = "story_top">
-
-		<tr class="top_story_list">
-			<th class="story_subject">제목</th>
-			<th class="story_writer">작성자</th>
-			<th class="story_date">등록일</th>
-			<th class="story_views">조회수</th>
+	<table class = "table_list">
+		<tr class="table_top">
+			<th class="table_th1">번호</th>
+			<th class="table_th2">제목</th>
+			<th class="table_th3">작성자</th>
+			<th class="table_th4">등록일</th>
+			<th class="table_th5">조회수</th>
 		</tr>
 
 		<c:forEach items="${ storyList }" var="story">
 			<tr>
-				<td class="story_subject_title"><a href="getStory.do?story_no=${ story.story_no }"> ${ story.story_title }</a></td>
+				<td>${ story.story_no }</td>
+				<td class="post_title"><a href="getStory.do?story_no=${ story.story_no }"> ${ story.story_title }</a></td>
 				<td>${ story.story_writer }</td>
 				<td><fmt:formatDate value="${ story.story_date }" pattern="yy-MM-dd"/>
 				</td>
@@ -107,8 +159,6 @@
 		</c:forEach>
 
 	</table>
-
-	<br><br>
 	
 <!-- 페이징 JSP 추가작업 3 -->
 	<!-- 페이징 하단 숫자 시작 -->
@@ -132,11 +182,11 @@
 	</div>
 	<!-- 페이징 하단 숫자 끝 -->
 	
+	<div class="new_post_button">
+			<a href="<c:url value='/story/insertStory.do'/>" id="new_post" class=" new_post">새글등록</a>
+	</div>
 	
-	<div id="new_story_post" class="new_story_post">
-		<br>
-	 	<a href="insertStoryPage.do">새글 등록</a>
-	</div><br><br>
+	
 </main>
 
 <%@ include file="../import/bottom.jsp" %>

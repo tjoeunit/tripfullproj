@@ -44,7 +44,6 @@
 				<input type="text" name="members_id" class="member_login_field" placeholder="아이디">
 				<input type="password" name="members_pw" class="member_login_field" placeholder="비밀번호">
 				<input type="submit" value="로그인" class="member_login_submit">
-				<button type="button" onclick="history.back()">뒤로가기</button>
 			</form>
 		</div>
 	</center>

@@ -3,8 +3,7 @@
 
 <style>
 	.footerDiv {
-		margin-left: 360px; 
-		border-top: 1px solid gray;		
+		margin-left: 360px;		
 	}
 	
 	.descDiv {
@@ -35,6 +34,9 @@
 </style>
 
 <footer>
+
+	<hr>
+
 	<div class="footerDiv">
 		<div>
 			<a href="<c:url value='/index/termService.do'/>"><span class="footerPolicy">이용약관</span></a>
@@ -49,6 +51,7 @@
 		자사는 서울특별시종로협회 종로영업종로보험에 가입되어 있습니다. 트립풀은 통신판매중개자이며 통신판매의 당사자가 아닙니다. 따라서 상품·거래정보 및 거래에 대하여 책임을 지지않습니다.<br>
 		</div>
 	</div>
+	
 </footer>
 </body>
 

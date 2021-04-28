@@ -79,11 +79,6 @@
 		color: black;
 	}
 	
-	.QnacntPerPage {
-		margin: 20px;
-		padding: 5px;
-	}
-	
 	a {
 		text-decoration: none;
 		color: black;

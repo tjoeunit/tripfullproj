@@ -172,9 +172,21 @@
 </header>
 <body>
 
-<main>
+<style type="text/css">
+	
+	.main_title {
+		align-content: left;
+		font-size: 40px;
+		font-weight: 600;
+		margin: 20px 0px;
+	}
+	
+</style>
 
-	<h1>이용약관</h1>
+<main>
+	<div class="main_title">이용약관</div>
+	<hr>
+	
 	<h3>제 1 조 (목적)</h3>
 	<p>이 약관은 주식회사 트립풀(이하 "당사"이라 합니다)이 운영하는 웹사이트(https://www.myrealtrip.com/) 및 어플리케이션(Application,
 	이하 웹사이트와 어플리케이션을 통칭하여 "트립풀 플랫폼")에서 제공하는 서비스(이하 "서비스"라 합니다)를 이용함에 있어 "당사"와 이용자의 권리 및 의무 및 책임사항을

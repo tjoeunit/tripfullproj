@@ -116,6 +116,11 @@
 		margin-bottom: 20px;
 		width: 1200px;
 	}
+	
+	a {
+		text-decoration: none;
+		color: black;
+	}
 
 </style>
 
@@ -172,41 +177,27 @@
 </header>
 <body>
 
-<script type="text/javascript">
- 	$(function(){
-
-		//세션에 로그인 된 아이디 값이 없다면
-		if($("#sessionID").val() == ""){
-			// 새글 등록 버튼 숨기기
-			$("#new_qna_post").hide();
-		}
-
-	});
-</script>
-
-<!-- 페이징 JSP 추가작업 1 -->
-<!-- 페이징 옵션 처리 자바스크립트 시작 -->
-<script>
-	function selChange() {
-		var sel = document.getElementById('cntPerPage').value;
-		location.href="getQnaList.do?nowPage=${paging.nowPage}&cntPerPage="+sel;
-	}
-</script>
-<!-- 페이징 옵션 처리 자바스크립트 끝 -->
 
 <style type="text/css">
 
-	.qna_list{
-		border: 1px solid gray;
-		border-radius: 5px;
-		padding: 30px;
+	.main_title {
+		align-content: left;
+		font-size: 40px;
+		font-weight: 600;
+		margin: 20px 0px;
 	}
 	
-	.QnacntPerPage {
+	.page_select_box {
+		text-align: right;
+	}
+	
+	.page_select {
 		padding: 5px;
+		border: 1px solid gray;
+		margin-right: 20px;
 	}
 	
-	.qna_table {
+	.table_list {
 		margin: 20px 0px;
 		width: 100%;
 		border-top: 3px solid black;
@@ -225,31 +216,31 @@
 		color: gray;
 	}
 	
-	.qna_top {
+	.table_top {
 		padding: 5px;
 	}
 	
-	.qna_th1 {
+	.table_th1 {
 		width: 10%;
 	}
 	
-	.qna_th2 {
+	.table_th2 {
 		width: 70%;
 	}
 	
-	.qna_th3 {
+	.table_th3 {
 		width: 10%;
 	}
 	
-	.qna_th4 {
+	.table_th4 {
 		width: 10%;
 	}
 	
-	.qna_post_title {
+	.post_title {
 		text-align: left;
 	}
 	
-	.qna_post_title a {
+	.post_title a {
 		text-decoration: none;
 		color: black;
 	}
@@ -258,7 +249,7 @@
 		text-align: right;
 	}
 	
-	.new_qna_post {
+	.new_post {
 		text-decoration: none;
 		display:inline-block;
 		margin: 10px;
@@ -268,59 +259,75 @@
 		color: black;
 	}
 	
-	.new_qna_post:hover {
+	.new_post:hover {
 		box-shadow: 1px 1px 3px gray;
 		border: 1px solid gray;
 	}
 	
-	a {
-		text-decoration: none;
-		color: black;
-	}
-	
 </style>
+
+<script type="text/javascript">
+ 	$(function(){
+
+		//세션에 로그인 된 아이디 값이 없다면
+		if($("#sessionID").val() == ""){
+			// 새글 등록 버튼 숨기기
+			$("#new_post").hide();
+		}
+
+	});
+</script>
+
+<!-- 페이징 JSP 추가작업 1 -->
+<!-- 페이징 옵션 처리 자바스크립트 시작 -->
+<script>
+	function selChange() {
+		var sel = document.getElementById('cntPerPage').value;
+		location.href="getQnaList.do?nowPage=${paging.nowPage}&cntPerPage="+sel;
+	}
+</script>
+<!-- 페이징 옵션 처리 자바스크립트 끝 -->
 
 <main>
 
-	<h1>자주 묻는 질문</h1>
-	
+	<div class="main_title">자주 묻는 질문</div>
 	<hr>
+	
+	<!-- 페이징 JSP 추가작업 2 -->
+	<!-- 페이징 옵션 시작 -->
+	<div class="page_select_box">
+	<select id="cntPerPage" name="sel" onchange="selChange()" class="page_select">
+		<option value="5"
+			<c:if test="${paging.cntPerPage == 5}">selected</c:if>>5개씩 보기</option>
+		<option value="10"
+			<c:if test="${paging.cntPerPage == 10}">selected</c:if>>10개씩 보기</option>
+		<option value="15"
+			<c:if test="${paging.cntPerPage == 15}">selected</c:if>>15개씩 보기</option>
+		<option value="20"
+			<c:if test="${paging.cntPerPage == 20}">selected</c:if>>20개씩 보기</option>
+	</select>
+	</div>
+	<!-- 페이징 옵션 끝 -->
+	
+	<table class = "table_list">
+		<tr class="table_top">
+			<th class="table_th1">번호</th>
+			<th class="table_th2">제목</th>
+			<th class="table_th3">작성자</th>
+			<th class="table_th4">등록일</th>
+		</tr>
 
-	<div class="qna_list">
-		<!-- 페이징 JSP 추가작업 2 -->
-		<!-- 페이징 옵션 시작 -->
-		<select id="cntPerPage" name="sel" onchange="selChange()" class="QnacntPerPage">
-			<option value="5"
-				<c:if test="${paging.cntPerPage == 5}">selected</c:if>>5개씩 보기</option>
-			<option value="10"
-				<c:if test="${paging.cntPerPage == 10}">selected</c:if>>10개씩 보기</option>
-			<option value="15"
-				<c:if test="${paging.cntPerPage == 15}">selected</c:if>>15개씩 보기</option>
-			<option value="20"
-				<c:if test="${paging.cntPerPage == 20}">selected</c:if>>20개씩 보기</option>
-		</select>
-		<!-- 페이징 옵션 끝 -->
-	
-		<table class = "qna_table">
-	
-			<tr class="qna_top">
-				<th class="qna_th1">번호</th>
-				<th class="qna_th2">제목</th>
-				<th class="qna_th3">작성자</th>
-				<th class="qna_th4">등록일</th>
+		<c:forEach items="${ qnaList }" var="qna">
+			<tr>
+				<td>${ qna.qna_no }</td>
+				<td class="post_title"><a href="getQna.do?qna_no=${ qna.qna_no }"> ${ qna.qna_title }</a></td>
+				<td>${ qna.qna_writer }</td>
+				<td>
+					<fmt:formatDate value="${ qna.qna_date }" pattern="yy-MM-dd"/>
+				</td>
 			</tr>
-	
-			<c:forEach items="${ qnaList }" var="qna">
-				<tr>
-					<td>${ qna.qna_no }</td>
-					<td class="qna_post_title"><a href="getQna.do?qna_no=${ qna.qna_no }"> ${ qna.qna_title }</a></td>
-					<td>${ qna.qna_writer }</td>
-					<td>
-						<fmt:formatDate value="${ qna.qna_date }" pattern="yy-MM-dd"/>
-					</td>
-				</tr>
-			</c:forEach>
-		</table>
+		</c:forEach>
+	</table>
 		
 		<!-- 페이징 JSP 추가작업 3 -->
 		<!-- 페이징 하단 숫자 시작 -->
@@ -344,12 +351,12 @@
 				<a href="<c:url value='/qna/getQnaList.do?nowPage=${paging.endPage+1}&cntPerPage=${paging.cntPerPage}'/>">&gt;</a>
 			</c:if>
 		</div>
+		<!-- 페이징 하단 숫자 끝 -->
 		
 		<div class="new_post_button">
-			<a href="<c:url value='/qna/insertQnaPage.do'/>" id="new_qna_post" class=" new_qna_post">문의하기</a>
+			<a href="<c:url value='/qna/insertQnaPage.do'/>" id="new_post" class=" new_post">문의하기</a>
 		</div>
-	</div>
-	<!-- 페이징 하단 숫자 끝 -->
+	
 	
 	
 	
