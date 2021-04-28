@@ -1,7 +1,6 @@
 package com.tjoeunit.view.flight;
 
 import java.io.File;
-import java.sql.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,89 +12,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.tjoeunit.biz.common.PagingVO;
 import com.tjoeunit.biz.flight.FlightService;
 import com.tjoeunit.biz.flight.FlightVO;
 import com.tjoeunit.biz.lantrip.LanTripVO;
-import com.tjoeunit.biz.payment.PaymentService;
-import com.tjoeunit.biz.payment.PaymentVO;
 
 @Controller
 public class FlightController {
 	
-	@Autowired private FlightService flightService;
-	@Autowired private PaymentService paymentService;	
-	
-	// 항공권 결제 페이지 (카카오페이 이용)
-	
-	@RequestMapping(value="/flight/flightPayment.do", method=RequestMethod.POST)
-	public String payment(HttpServletRequest request, Model model) {
-		
-		String members_no = request.getParameter("members_no");
-		String flight_no = request.getParameter("flight_no");
-		String flight_title = request.getParameter("flight_title");
-		String payment_quantity = request.getParameter("payment_quantity");
-		String payment_price = request.getParameter("payment_price");
-		String payment_bookdate = request.getParameter("payment_bookdate");
-		String product_category = request.getParameter("product_category");
-		
-		System.out.println("members_no = " + members_no);
-		System.out.println("flight_no = " + flight_no);
-		System.out.println("flight_title = " + flight_title);
-		System.out.println("payment_quantity = " + payment_quantity);
-		System.out.println("payment_price = " + payment_price);
-		System.out.println("payment_bookdate = " + payment_bookdate);
-		System.out.println("product_category = " + product_category);
-		
-		model.addAttribute("members_no", members_no);
-		model.addAttribute("flight_no", flight_no);
-		model.addAttribute("flight_title", flight_title);
-		model.addAttribute("payment_quantity", payment_quantity);
-		model.addAttribute("payment_price", payment_price);
-		model.addAttribute("payment_bookdate", payment_bookdate);
-		model.addAttribute("product_category", product_category);
-		
-		return "flight/flightPayment";
-	}
-	
-	// 항공권 결제 처리
-	@RequestMapping(value="/flight/flightPaymentDBEx.do", method=RequestMethod.POST)
-	@ResponseBody
-	public int paymentDBEx(HttpServletRequest request, PaymentVO vo) {	
-		String members_no = request.getParameter("members_no");
-		String flight_no = request.getParameter("flight_no");
-		String flight_title = request.getParameter("flight_title");
-		String payment_quantity = request.getParameter("payment_quantity");
-		String payment_price = request.getParameter("payment_price");
-		String payment_bookdate = request.getParameter("payment_bookdate");
-		String product_category = request.getParameter("product_category");
-		
-		System.out.println("members_no = " + members_no);
-		System.out.println("flight_no = " + flight_no);
-		System.out.println("flight_title = " + flight_title);		
-		System.out.println("payment_quantity = " + payment_quantity);
-		System.out.println("payment_price = " + payment_price);
-		System.out.println("payment_bookdate = " + payment_bookdate);
-		System.out.println("product_category = " + product_category);
-				
-		vo.setMembers_no(Integer.parseInt(members_no));
-		vo.setFlight_no(Integer.parseInt(flight_no));
-		vo.setFlight_title(flight_title);
-		vo.setHotel_title("");
-		vo.setActivity_title("");
-		vo.setLantrip_title("");		
-		vo.setPayment_quantity(payment_quantity);
-		vo.setPayment_price(payment_price);
-		vo.setPayment_bookdate(payment_bookdate);
-		vo.setProduct_category(product_category);
-		
-		int result = paymentService.insertPayment(vo);
-		
-		return result;
-	}	
+	@Autowired
+	private FlightService flightService;
 	
 	// 항공권 등록 페이지
 	@RequestMapping(value="/flight/insertFlight.do", method = RequestMethod.GET)
@@ -154,7 +82,7 @@ public class FlightController {
 		model.addAttribute("msg", msg);
 		model.addAttribute("url", url);
 
-		return "common/message";
+		return "common/message";		
 		
 	}	
 		
@@ -177,11 +105,11 @@ public class FlightController {
 		int total = flightService.countFlight();
 		if (nowPage == null && cntPerPage == null) {
 			nowPage = "1";
-			cntPerPage = "10";
+			cntPerPage = "5";
 		} else if (nowPage == null) {
 			nowPage = "1";
 		} else if (cntPerPage == null) { 
-			cntPerPage = "10";
+			cntPerPage = "5";
 		}
 		
 		vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
@@ -323,11 +251,11 @@ public class FlightController {
 		int total = flightService.countFlight();
 		if (nowPage == null && cntPerPage == null) {
 			nowPage = "1";
-			cntPerPage = "10";
+			cntPerPage = "5";
 		} else if (nowPage == null) {
 			nowPage = "1";
 		} else if (cntPerPage == null) { 
-			cntPerPage = "10";
+			cntPerPage = "5";
 		}
 		
 		vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));

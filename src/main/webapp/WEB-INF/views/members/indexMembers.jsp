@@ -39,7 +39,7 @@
 		</div>
 		
 		<div class="shopping_Div">
-			<a href="<c:url value='/members/payMainMembers.do'/>">
+			<a href="#">		
 				<img style="width: 450px; height: auto;" src="<c:url value='/img/shopping.png'/>">
 			</a><br>
 			<span>결제정보</span>

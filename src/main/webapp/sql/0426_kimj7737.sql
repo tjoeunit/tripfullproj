@@ -15,12 +15,6 @@ ALTER TABLE REPLY
 			REPLY_NO
 		);
 		
-CREATE SEQUENCE REPLY_SEQ
-increment by 1
-start with 1
-nocache;
-
-
 -- 게시글이 삭제될 때 댓글도 삭제될 수 있도록 외래키 설정
 alter table reply add constraint fk_story
 foreign key(story_no) references story(story_no); 

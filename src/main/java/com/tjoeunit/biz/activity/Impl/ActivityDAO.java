@@ -20,12 +20,12 @@ public class ActivityDAO {
 		return mybatis.insert("activityDAOTemplate.insertActivity", vo);
 	  }
 	
-    public int updateActivity(ActivityVO vo){
-    	return mybatis.update("activityDAOTemplate.updateActivity", vo);
+    public void updateActivity(ActivityVO vo){
+    	mybatis.update("activityDAOTemplate.updateActivity", vo);
 	}
 	  
-	public int deleteActivity(ActivityVO vo){
-		  return mybatis.delete("activityDAOTemplate.deleteActivity", vo);
+	public void deleteActivity(ActivityVO vo){
+		  mybatis.delete("activityDAOTemplate.deleteActivity", vo);
 	}  
 	  
 	public ActivityVO getActivity(ActivityVO vo) { 

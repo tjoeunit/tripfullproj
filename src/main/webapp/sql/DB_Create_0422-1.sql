@@ -295,7 +295,6 @@ increment by 1
 start with 1
 nocache;
 
-
 /* 관리자 정보 입력 */
 INSERT INTO ADMIN (ADMIN_NO, ADMIN_ID, ADMIN_PW, ADMIN_NAME, ADMIN_TEL, JOIN_DATE)
 VALUES(999, 'admin', '1004', '운영자', '010-1004-1004', sysdate);

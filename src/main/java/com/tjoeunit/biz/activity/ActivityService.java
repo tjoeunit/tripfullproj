@@ -19,12 +19,12 @@ public interface ActivityService {
 	ActivityVO getActivity(ActivityVO vo);
 	
 	// 액티비티 수정
-	int updateActivity(ActivityVO vo);
+	void updateActivity(ActivityVO vo);
 	
 	// 액티비티 삭제
 
 
-	int deleteActivity(ActivityVO vo);
+	void deleteActivity(ActivityVO vo);
 	
 	//페이징처리를 위해 생성 : 게시물 총 개수
 	int countActivity();

@@ -10,11 +10,11 @@
 		font-weight: 600;
 		margin: 20px 0px;
 	}
-
+	
 	.page_select_box {
 		text-align: right;
 	}
-
+	
 	.page_select {
 		padding: 5px;
 		border: 1px solid gray;
@@ -24,7 +24,7 @@
 	.product_list {
 		padding: 20px 0px;
 	}
-
+	
 	.product {
 		width: 270px;
 		background-color: white;
@@ -34,11 +34,11 @@
 		border: 1px solid gray;
 		overflow: hidden;
 	}
-
+	
 	.product:hover {
 		box-shadow: 2px 2px 5px gray;
 	}
-
+	
 	.product_thumb {
 		width: 270px;
 		height: 195px;
@@ -46,13 +46,13 @@
 		margin-right: auto;
 		margin-bottom: 10px;
 	}
-
+	
 	.product_area {
 		color: gray;
 		text-align: left;
 		padding-left: 20px;
 	}
-
+	
 	.product_title {
 		color: black;
 		font-size: 20px;
@@ -64,13 +64,13 @@
 		overflow: hidden;
 		text-overflow: ellipsis;
 	}
-
+	
 	.product_price {
 		color: #58ccff;
 		text-align: left;
 		padding: 0px 20px 20px 20px;
 	}
-
+	
 </style>
 
 <!-- 페이징 JSP 추가작업 1 -->
@@ -87,7 +87,7 @@
 
 	<div class="main_title">액티비티</div>
 	<hr>
-
+	
 	<!-- 페이징 JSP 추가작업 2 -->
 	<!-- 페이징 옵션 시작 -->
 	<div class="page_select_box">
@@ -103,7 +103,7 @@
 	</select>
 	</div>
 	<!-- 페이징 옵션 끝 -->
-
+	
 	<div	class="product_list">
 		<c:forEach items="${ activityList }" var="activity">
 			<a href="<c:url value='getActivity.do?activity_no=${ activity.activity_no }'/>">
@@ -121,7 +121,7 @@
 
 	<!-- 페이징 JSP 추가작업 3 -->
 	<!-- 페이징 하단 숫자 시작 -->
-	<div style="display: block; text-align: center;">
+	<div style="display: block; text-align: center;">		
 		<c:if test="${paging.startPage != 1 }">
 			<a href="<c:url value='/activty/getActivtyList.do?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}'/>">&lt;</a>
 		</c:if>
@@ -130,17 +130,17 @@
 				<c:when test="${p == paging.nowPage }">
 					<b>${p }</b>
 				</c:when>
-				<c:when test="${p != paging.nowPage }">
+				<c:when test="${p != paging.nowPage }">							
 					<a href="<c:url value='/activty/getActivtyList.do?nowPage=${p }&cntPerPage=${paging.cntPerPage}'/>">${p }</a>
 				</c:when>
 			</c:choose>
 		</c:forEach>
-		<c:if test="${paging.endPage != paging.lastPage}">
+		<c:if test="${paging.endPage != paging.lastPage}">					
 			<a href="<c:url value='/activty/getActivtyList.do?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}'/>">&gt;</a>
 		</c:if>
 	</div>
 	<!-- 페이징 하단 숫자 끝 -->
-
+	
 	<br>
 </main>
 

@@ -1,12 +1,8 @@
 package com.tjoeunit.biz.members.Impl;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.tjoeunit.biz.common.PagingVO;
-import com.tjoeunit.biz.flight.FlightVO;
 import com.tjoeunit.biz.members.MembersService;
 import com.tjoeunit.biz.members.MembersVO;
 
@@ -29,12 +25,6 @@ public class MembersServiceImpl implements MembersService{
 	@Override
 	public int deleteMembers(int members_no) {
 		return membersDAO.deleteMembers(members_no);
-	}
-	
-	@Override
-	public MembersVO getMembers(MembersVO vo) {
-		MembersVO members = membersDAO.getMembers(vo);
-		return members;
 	}
 	
 	@Override
@@ -98,18 +88,7 @@ public class MembersServiceImpl implements MembersService{
 		return membersDAO.updateMembers(vo);
 	}
 
-	@Override
-	public int countMembers() {
-		return membersDAO.countMembers();
-	}
+	
 
-	@Override
-	public List<MembersVO> selectMembers(PagingVO vo) {
-		return membersDAO.selectMembers(vo);
-	}
 
-	@Override
-	public int adminMembersDelete(MembersVO vo) {
-		return membersDAO.adminMembersDelete(vo);
-	}	
 }

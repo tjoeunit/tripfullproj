@@ -35,13 +35,13 @@ public class ActivityServiceImpl implements ActivityService {
 	}
 
 	@Override
-	public int updateActivity(ActivityVO vo) {
-		return activityDAO.updateActivity(vo);
+	public void updateActivity(ActivityVO vo) {
+		activityDAO.updateActivity(vo);
 	}
 
 	@Override
-	public int deleteActivity(ActivityVO vo) {
-		return activityDAO.deleteActivity(vo);
+	public void deleteActivity(ActivityVO vo) {
+		activityDAO.deleteActivity(vo);
 		
 	}
 	

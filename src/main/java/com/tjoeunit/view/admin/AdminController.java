@@ -37,8 +37,6 @@ public class AdminController {
 	String result = adminService.adminLoginCheck(vo);
 
     if(result != null){//로그인이 성공했을시 출력되는 구문
-
-		session.setAttribute("admin_no", vo.getAdmin_no());
         session.setAttribute("admin_id", vo.getAdmin_id());
         session.setAttribute("admin_name", vo.getAdmin_name());
 
@@ -60,12 +58,6 @@ public class AdminController {
 	public String adminIndex() {
 		System.out.println("관리자 메인페이지로 이동");
 		return "admin/adminIndex";
-	}
-
-	@RequestMapping(value="/adminMembers/adminMembers.do", method=RequestMethod.GET)
-	public String membersManage() {
-		System.out.println("회원관리 페이지 이동 ");
-		return "adminMembers/adminMembers";
 	}
 
 

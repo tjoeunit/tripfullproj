@@ -11,91 +11,19 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.tjoeunit.biz.common.PagingVO;
 import com.tjoeunit.biz.hotel.HotelService;
 import com.tjoeunit.biz.hotel.HotelVO;
-import com.tjoeunit.biz.payment.PaymentService;
-import com.tjoeunit.biz.payment.PaymentVO;
 
 
 @Controller
 public class HotelController {
 	
-	@Autowired private HotelService hotelService;
-	@Autowired private PaymentService paymentService;	
-	
-	// 항공권 결제 페이지 (카카오페이 이용)
-	
-	@RequestMapping(value="/hotel/hotelPayment.do", method=RequestMethod.POST)
-	public String payment(HttpServletRequest request, Model model) {
-		
-		String members_no = request.getParameter("members_no");
-		String hotel_no = request.getParameter("hotel_no");
-		String hotel_title = request.getParameter("hotel_title");
-		String payment_quantity = request.getParameter("payment_quantity");
-		String payment_price = request.getParameter("payment_price");
-		String payment_bookdate = request.getParameter("payment_bookdate");
-		String product_category = request.getParameter("product_category");
+	@Autowired
+	private HotelService hotelService;
 
-		System.out.println("members_no = " + members_no);
-		System.out.println("hotel_no = " + hotel_no);
-		System.out.println("hotel_title = " + hotel_title);
-		System.out.println("payment_quantity = " + payment_quantity);
-		System.out.println("payment_price = " + payment_price);
-		System.out.println("payment_bookdate = " + payment_bookdate);
-		System.out.println("product_category = " + product_category);
-		
-		model.addAttribute("members_no", members_no);
-		model.addAttribute("hotel_no", hotel_no);
-		model.addAttribute("hotel_title", hotel_title);
-		model.addAttribute("payment_quantity", payment_quantity);
-		model.addAttribute("payment_price", payment_price);
-		model.addAttribute("payment_bookdate", payment_bookdate);
-		model.addAttribute("product_category", product_category);
-		
-		return "hotel/hotelPayment";
-	}
-	
-	// 항공권 결제 처리
-	@RequestMapping(value="/hotel/hotelPaymentDBEx.do", method=RequestMethod.POST)
-	@ResponseBody
-	public int paymentDBEx(HttpServletRequest request, PaymentVO vo) {	
-		String members_no = request.getParameter("members_no");
-		String hotel_no = request.getParameter("hotel_no");
-		String hotel_title = request.getParameter("hotel_title");
-		String payment_quantity = request.getParameter("payment_quantity");
-		String payment_price = request.getParameter("payment_price");
-		String payment_bookdate = request.getParameter("payment_bookdate");
-		String product_category = request.getParameter("product_category");
-		
-		System.out.println("members_no = " + members_no);
-		System.out.println("hotel_no = " + hotel_no);
-		System.out.println("hotel_title = " + hotel_title);		
-		System.out.println("payment_quantity = " + payment_quantity);
-		System.out.println("payment_price = " + payment_price);
-		System.out.println("payment_bookdate = " + payment_bookdate);
-		System.out.println("product_category = " + product_category);
-				
-		vo.setMembers_no(Integer.parseInt(members_no));
-		vo.setHotel_no(Integer.parseInt(hotel_no));
-		vo.setFlight_title("");
-		vo.setHotel_title(hotel_title);
-		vo.setActivity_title("");
-		vo.setLantrip_title("");		
-		vo.setPayment_quantity(payment_quantity);
-		vo.setPayment_price(payment_price);
-		vo.setPayment_bookdate(payment_bookdate);
-		vo.setProduct_category(product_category);
-		
-		int result = paymentService.insertPayment(vo);
-		
-		return result;
-	}	
-	
-	
 	//숙박권 등록 페이지
 	@RequestMapping(value="/hotel/insertHotel.do", method = RequestMethod.GET)
 		public String insertHotelPage(){
@@ -444,7 +372,7 @@ public class HotelController {
 		String msg="숙박권 수정 실패", url="/adminHotel/adminHotelUpdate.do?hotel_no="+vo.getHotel_no();		
 		
 		if(cnt>0) {
-			msg="숙박권 수정 성공";
+			msg="항공권 수정 성공";
 			url="/adminHotel/adminHotelDetail.do?hotel_no="+vo.getHotel_no();
 		}
 		

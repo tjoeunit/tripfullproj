@@ -8,34 +8,15 @@
 	    <selectKey keyProperty="reply_no" resultType="int" order="BEFORE">
 			select reply_seq.nextval from dual
 		</selectKey>	
-        insert into reply(reply_no,story_no,reply_text,members_id)
+        insert into reply (reply_no,story_no,reply_text,members_id)
         values(
         	#{reply_no},#{story_no},#{reply_text},#{members_id})
     </insert>
-
+    
     <!-- 댓글 목록 보기 -->
     <select id="storyReplyList" resultType="com.tjoeunit.biz.story.StoryReplyVO">
-        select reply_no, story_no, members_id, reply_text, reply_date from reply
-        where story_no = #{story_no}
-        order by reply_no desc
+        select story_no,reply_date,reply_text from reply
+        order by reply_date desc
     </select>
 
-    <!-- 댓글 수정 
-	<update id="updateStoryReply" parameterType="com.tjoeunit.biz.story.StoryReplyVO">
-		update reply set reply_text=#{reply_text}
-		where reply_no=#{reply_no}
-	</update>
--->
-
-	<!-- 댓글 삭제 -->
-	<delete id="deleteStoryReply">
-		delete reply where reply_no=#{reply_no}
-	</delete>
-
-	<!-- 선택된 댓글 조회 -->
-	<select id="selectStoryReply" resultType="com.tjoeunit.biz.story.StoryReplyVO">
-		select story_no,reply_no,story_no,reply_text,members_id,reply_date from reply
-		where reply_no=#{reply_no}
-	</select>
-		
 </mapper>
