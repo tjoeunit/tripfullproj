@@ -152,7 +152,6 @@
 							<option value="게스트하우스">게스트하우스</option>
 							<option value="캠핑">캠핑</option>
 						</select>						
-						<span>지역을 꼭 선택해주세요</span>
 					</td>
 				</tr>
 				
@@ -165,7 +164,6 @@
 						<option value="부산">부산</option>
 						<option value="인천">인천</option>
 						</select>						
-						<span>지역을 꼭 선택해주세요</span>
 					</td>
 				</tr>
 				
