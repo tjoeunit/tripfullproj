@@ -60,6 +60,12 @@ public class AdminController {
 		return "admin/adminIndex";
 	}
 
+	@RequestMapping(value="/adminMembers/adminMembers.do", method=RequestMethod.GET)
+	public String membersManage() {
+		System.out.println("회원관리 페이지 이동 ");
+		return "adminMembers/adminMembers";
+	}
+
 
 	//관리자 로그아웃
     @RequestMapping("/adminLogin/adminLogout.do")
