@@ -66,7 +66,7 @@
 	<div class="admin_subtitle">
 		<span class="admin_subtitle_name">액티비티 상품 상세보기</span>
 		<span class="update_delete">
-			<a href="<c:url value='/adminActivity/adminActivityUpdatePage.do?activity_no=${ activity.activity_no }'/>">상품수정</a>
+			<a href="<c:url value='/adminActivity/adminActivityUpdate.do?activity_no=${ activity.activity_no }'/>">상품수정</a>
 		</span>
 		<span class="update_delete">
 			<a href="<c:url value='/adminActivity/adminActivityDelete.do?activity_no=${ activity.activity_no }'/>">상품삭제</a>

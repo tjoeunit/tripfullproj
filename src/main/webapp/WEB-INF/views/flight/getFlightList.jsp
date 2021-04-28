@@ -2,18 +2,18 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../import/top.jsp" %>
 
-<style type="text/css">	
+<style type="text/css">
 	.main_title {
 		align-content: left;
 		font-size: 40px;
 		font-weight: 600;
 		margin: 20px 0px;
 	}
-	
+
 	.page_select_box {
 		text-align: right;
 	}
-	
+
 	.page_select {
 		padding: 5px;
 		border: 1px solid gray;
@@ -23,7 +23,7 @@
 	.product_list {
 		padding: 20px 0px;
 	}
-	
+
 	.product {
 		width: 270px;
 		background-color: white;
@@ -33,11 +33,11 @@
 		border: 1px solid gray;
 		overflow: hidden;
 	}
-	
+
 	.product:hover {
 		box-shadow: 2px 2px 5px gray;
 	}
-	
+
 	.product_thumb {
 		width: 270px;
 		height: 195px;
@@ -45,13 +45,13 @@
 		margin-right: auto;
 		margin-bottom: 10px;
 	}
-	
+
 	.product_area {
 		color: gray;
 		text-align: left;
 		padding-left: 20px;
 	}
-	
+
 	.product_title {
 		color: black;
 		font-size: 20px;
@@ -63,13 +63,13 @@
 		overflow: hidden;
 		text-overflow: ellipsis;
 	}
-	
+
 	.product_price {
 		color: #58ccff;
 		text-align: left;
 		padding: 0px 20px 20px 20px;
 	}
-	
+
 </style>
 
 <!-- 페이징 JSP 추가작업 1 -->
@@ -77,12 +77,12 @@
 <script>
 	function selChange() {
 		var sel = document.getElementById('cntPerPage').value;
-		location.href="getFlightList.do?nowPage=${paging.nowPage}&cntPerPage="+sel;
+		location.href = "<c:url value='/flight/getFlightList.do?nowPage=${paging.nowPage}&cntPerPage="+sel+"'/>";
 	}
 </script>
 <!-- 페이징 옵션 처리 자바스크립트 끝 -->
 
-<main>	
+<main>
 
 	<div class="main_title">항공권</div>
 	<hr>
@@ -102,7 +102,7 @@
 	</select>
 	</div>
 	<!-- 페이징 옵션 끝 -->
-	
+
 	<div	class="product_list">
 		<c:forEach items="${flightList}" var="flight">
 			<a href="<c:url value='getFlight.do?flight_no=${flight.flight_no}'/>">
@@ -117,10 +117,10 @@
 			</a>
 		</c:forEach>
 	</div>
-	
+
 	<!-- 페이징 JSP 추가작업 3 -->
 	<!-- 페이징 하단 숫자 시작 -->
-	<div style="display: block; text-align: center;">		
+	<div style="display: block; text-align: center;">
 		<c:if test="${paging.startPage != 1 }">
 			<a href="<c:url value='/flight/getFlightList.do?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}'/>">&lt;</a>
 		</c:if>
@@ -129,16 +129,16 @@
 				<c:when test="${p == paging.nowPage }">
 					<b>${p }</b>
 				</c:when>
-				<c:when test="${p != paging.nowPage }">							
+				<c:when test="${p != paging.nowPage }">
 					<a href="<c:url value='/flight/getFlightList.do?nowPage=${p }&cntPerPage=${paging.cntPerPage}'/>">${p }</a>
 				</c:when>
 			</c:choose>
 		</c:forEach>
-		<c:if test="${paging.endPage != paging.lastPage}">					
+		<c:if test="${paging.endPage != paging.lastPage}">
 			<a href="<c:url value='/flight/getFlightList.do?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}'/>">&gt;</a>
 		</c:if>
 	</div>
-	
+
 	<!-- 페이징 하단 숫자 끝 -->
 	<br>
 

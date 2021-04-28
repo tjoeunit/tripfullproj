@@ -4,6 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <% String members_id = (String)session.getAttribute("members_id"); %>
+<% String members_name = (String)session.getAttribute("members_name"); %>
 <% int members_no = (Integer)session.getAttribute("members_no"); %>
 <!DOCTYPE html>
 <html>

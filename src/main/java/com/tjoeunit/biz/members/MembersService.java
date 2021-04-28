@@ -1,5 +1,10 @@
 package com.tjoeunit.biz.members;
 
+import java.util.List;
+
+import com.tjoeunit.biz.common.PagingVO;
+import com.tjoeunit.biz.flight.FlightVO;
+
 public interface MembersService {
 
 	//고객 등록
@@ -28,4 +33,16 @@ public interface MembersService {
 
 	//고객 번호로 아이디 가져오기
 	MembersVO selectByMembersNo(int members_no);
+	
+	//페이징처리를 위해 생성 : 게시물 총 개수
+	int countMembers();
+		
+	//페이징처리를 위해 생성 : 항공권 조회
+	List<MembersVO> selectMembers(PagingVO vo);
+	
+	//고객 상세 조회
+	MembersVO getMembers(MembersVO vo);
+	
+	//고객 삭제 (관리자)
+	int adminMembersDelete(MembersVO vo);
 }

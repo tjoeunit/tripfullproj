@@ -5,33 +5,28 @@
 <%@ include file="../import/top.jsp" %>
 
 
-<style type="text/css">	
+<style type="text/css">
 	main {
 		margin-left: 360px;
 	}
-	
-	.activity_product_top{
-		padding: 10px;
-		margin-bottom: 20px;
-		width: 1000px;
-		border-bottom: 1px solid gray;
+
+	.activity_div{
+		width: 1200px;
 	}
-	
+
+	.activity_product_thumb{
+		width: 400px;
+		height: 300px;
+	}
+
 	.activity_product_title {
 		display: inline-block;
-		width: 800px;
+		width: 1200px;
 		font-size: 40px;
 		font-weight: 600;
 		text-align: left;
 	}
-	
-	.activity_price {
-		display: inline-block;
-		position: relative;
-		box-sizing: border-box;
-		padding: 5px;
-	}
-	
+
 	.activity_buy {
 		display: inline-block;
 		position: relative;
@@ -42,6 +37,7 @@
 		font-weight: 600;
 		border-radius: 8px;
 		height: 2.5em;
+		width: 800px;
 		line-height: 2.5em;
 		padding: 0 1.25em;
 		-moz-transition: background-color .2s ease-in-out;
@@ -49,41 +45,124 @@
 		-ms-transition: background-color .2s ease-in-out;
 		transition: background-color .2s ease-in-out;
 	}
-	
+
 	.activity_buy:hover {
 		color: #fff !important;
 		background: #383838;
 	}
-	
-	.activity_video {
-		
-	}
-	
+
 	.activity_product_detail{
-		width: 1000px;
-		border-bottom: 1px solid gray;
+		width: 1200px;
 		padding: 10px;
 	}
-	
+
 	.activity_product_detail_area{
 		color: gray;
 		text-align: right;
 	}
-	
-	.activity_product_thumb{
-		width: 900px;
-	}
-	
+
 	.activity_product_img {
-		width: 900px;
-		height: 1000px; /* 나중에 삭제 */
+		width: 1200px;
+		height: auto;
 		background-color: #58CCFF;
 	}
-	
+
+	.thumb_div {
+		float: left;
+		width: 400px;
+		height: 300px;
+	}
+
+	.info_div {
+		height: 300px;
+		width: 1200px;
+		margin-top: 10px;
+	}
+
+	.title_div {
+		margin-top: 10px;
+		float: left;
+		width: 800px;
+		height: 300px;
+	}
+
+	.buy_div {
+		margin-top: 10px;
+		text-align: right;
+	}
+
+	.clear_div {
+		clear: both;
+	}
+
 </style>
 
+<script type="text/javascript">
+	$(function(){
+		$('#delete_activity').click(function() {
+			var msg = confirm('${activity.activity_title} 을(를) 삭제하시겠습니까?');	
+			if (msg) {
+				//true
+				location.href = "<c:url value ='/activity/deleteActivity.do?activity_no=${activity.activity_no}'/>";
+			} else {
+				//false
+				event.preventDefault;
+				location.href = "<c:url value='/activity/getActivity.do?activity_no=${activity.activity_no}'/>";
+			}
+		});
+		
+		$('#update_activity').click(function() {
+			var msg = confirm('${activity.activity_title} 을(를) 수정하시겠습니까?');	
+			if (msg) {
+				//true
+				location.href = "<c:url value='/activity/updateActivity.do?activity_no=${activity.activity_no}'/>";
+			} else {
+				//false
+				event.preventDefault;
+				location.href = "<c:url value='/activity/getActivity.do?activity_no=${activity.activity_no}'/>";
+			}
+		});	
+	});	
+</script>
 <main>
+	<div class="activity_div">
+		<div class="info_div">
+		<div class="edit_div">
+				<input type="button" value="숙박권 수정하기" id="update_activity">			
+			</div>
+			<div class="delete_activity_div">
+				<input type="button" value="숙박권 삭제하기" id="delete_activity">
+			</div>
+			<div class="thumb_div">
+				<img class="activity_product_thumb" src="<c:url value='/activityUpload/${activity.activity_thumb}'/>">
+			</div>
 
+			<div class="title_div">
+				<div>
+					<span class="activity_product_title">${activity.activity_title}</span>
+				</div>
+				<div>
+					<%-- <span>카테고리 : ${activity.activity_category}</span><br> --%>
+					<span>지역 : ${activity.activity_area}</span><br>
+					<span>가격 : ${activity.activity_price}원</span><br>
+					
+
+				</div>
+				<div class="buy_div">
+					<a href="#"><span class="activity_buy">구매하기</span></a>
+				</div>
+			</div>
+
+		</div>
+
+		<div class="clear_div">
+		<!-- float: left 제거를 위함 -->
+		</div>
+		<!-- 숙박 상세 설명 -->
+		<div class="activity_product_detail">
+			설명 : ${activity.activity_content}
+		</div>		
+	</div>
 <!-- 액티비티 제목 표현식에 있는 activity은 컨트롤러에서 model의 키값으로 정의한 것 사용 -->
 	<div type="hidden" value="getActivity.do?activity_no=${ activity.activity_no }">
 		<div class="activity_product_top">
@@ -99,108 +178,11 @@
 			<div>${ activity.activity_content }</div>
 		</div>
 		<div><img class="activity_product_thumb" src="<c:url value='/activityUpload/${ activity.activity_thumb }'/>"></div>
-		<div class="activity_video">
+<%-- 		<div class="activity_video">
 			<iframe width="854" height="480" src="${ activity.activity_video }" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 			</iframe>
 		</div>
-		
-		<!-- core의 if문 이용해서 코드 실행할 수 있게 함 null인 경우 skip될 수 있게 처리  jstl 이용해서  -->
-		
-<<<<<<< Updated upstream
-<%-- <div>
-=======
-		<div>
->>>>>>> Stashed changes
-			<img class="activity_product_img" src="<c:url value='/activityUpload/${ activity.activity_img1 }'/>">
-			<img class="activity_product_img" src="<c:url value='/activityUpload/${ activity.activity_img2 }'/>">
-			<img class="activity_product_img" src="<c:url value='/activityUpload/${ activity.activity_img3 }'/>">
-			<img class="activity_product_img" src="<c:url value='/activityUpload/${ activity.activity_img4 }'/>">
-			<img class="activity_product_img" src="<c:url value='/activityUpload/${ activity.activity_img5 }'/>">
-		</div>
-<<<<<<< Updated upstream
- --%>
-=======
-
->>>>>>> Stashed changes
-<!-- =================================================================================== -->
-		<div class="admin_content_wrap">
-			<div class="admin_content_subject"><span>액티비티 관리</span></div>
-				<div class="admin_content_activity">
-					<form  class="activity_table" action="insertActivity.do" method="post"  enctype="multipart/form-data">
-						<table class="activity_enroll" border="1" cellpadding="0" cellspacing="0">
-							<tr >
-								<td bgcolor="#58CCFF" width="100px">제목</td>
-								<td align="left" width="80%"><input type="text" name="activity_title" /></td>
-							</tr>
-							<tr>
-								<td bgcolor="#58CCFF" width="70">지역</td>
-								<td align="left">
-									<select name="activity_area">
-										<option value="아시아">아시아</option>
-										<option value="유럽">유럽</option>
-										<option value="북아메리카">북아메리카</option>
-										<option value="남아메리카">남아메리카</option>
-										<option value="아프리카">아프리카</option>
-										<option value="오세아니아">오세아니아</option>
-									</select>
-								</td>
-							</tr>
-							<tr>
-								<td bgcolor="#58CCFF" width="70">가격</td>
-								<td align="left"><input type="number" name="activity_price" />원</td>
-							</tr>
-							<tr>
-								<td bgcolor="#58CCFF">내용</td>
-								<td align="left"><textarea name="activity_content" cols="80" rows="10"></textarea></td>
-							</tr>
-<<<<<<< Updated upstream
-=======
-<!-- 							<tr>
-								<td bgcolor="#58CCFF">영상url</td>
-								<td><input type="text" name="activity_video"/></td>
-							</tr>
->>>>>>> Stashed changes
-							<tr>
-								<td bgcolor="#58CCFF">썸네일</td>
-								<td><input type="file" name="activityImgUpload"/></td>
-							</tr>
-<<<<<<< Updated upstream
-							
-<!-- 						<tr>
-								<td bgcolor="#58CCFF">영상url</td>
-								<td><input type="text" name="activity_video"/></td>
-							</tr>
-=======
->>>>>>> Stashed changes
-							<tr>
-								<td bgcolor="#58CCFF">설명파일1</td>
-								<td><input type="file" name="activityImgUpload"/></td>
-							</tr>
-							<tr>
-								<td bgcolor="#58CCFF">설명파일2</td>
-								<td><input type="file" name="activityImgUpload"/></td>
-							</tr>
-							<tr>
-								<td bgcolor="#58CCFF">설명파일3</td>
-								<td><input type="file" name="activityImgUpload"/></td>
-							</tr>
-							<tr>
-								<td bgcolor="#58CCFF">설명파일4</td>
-								<td><input type="file" name="activityImgUpload"/></td>
-							</tr>
-							<tr>
-								<td bgcolor="#58CCFF">설명파일5</td>
-								<td><input type="file" name="activityImgUpload"/></td>
-							</tr> -->
-							<tr>
-								<td colspan="2" align="center">
-								<input type="submit"value=" 새글 등록 " /></td>
-							</tr>
-						</table>
-					</form>
-				</div>
-	
-	
+ --%>	
 	
 	<br>
 </main>

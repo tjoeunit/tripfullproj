@@ -1,9 +1,12 @@
 package com.tjoeunit.biz.members.Impl;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.tjoeunit.biz.common.PagingVO;
 import com.tjoeunit.biz.members.MembersVO;
 
 @Repository
@@ -23,7 +26,11 @@ public class MembersDAO {
 	public int deleteMembers(int members_no) {
 		return mybatis.delete("membersDAOTemplate.deleteMembers", members_no);
 	}
-
+	
+	public MembersVO getMembers(MembersVO vo) { 
+		return mybatis.selectOne("membersDAOTemplate.getMembers", vo);
+	}
+	
 	public String checkMembersPw(String members_id) {
 		return mybatis.selectOne("membersDAOTemplate.checkMembersPw", members_id);
 	}
@@ -46,5 +53,19 @@ public class MembersDAO {
 
 	public int updateMembers(MembersVO vo) {
 		return mybatis.update("membersDAOTemplate.updateMembers", vo);
+	}
+	
+	//페이징처리를 위해 생성
+	public int countMembers() {
+		return mybatis.selectOne("membersDAOTemplate.countMembers");
+	}
+		
+	//페이징처리를 위해 생성
+	public List<MembersVO> selectMembers(PagingVO vo) {
+		return mybatis.selectList("membersDAOTemplate.selectMembers", vo);
+	}
+	
+	public int adminMembersDelete(MembersVO vo) {
+		return mybatis.delete("membersDAOTemplate.adminMembersDelete", vo);
 	}
 }
