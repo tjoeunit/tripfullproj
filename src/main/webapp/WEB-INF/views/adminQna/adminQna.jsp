@@ -95,9 +95,6 @@
 
 	<div class="admin_subtitle">
 		<span class="admin_subtitle_name">고객센터</span>
-		<span class="new_upload">
-			<a href="<c:url value='/adminQna/adminQnaInsert.do'/>">공지등록</a>
-		</span>
 	</div>
 
 	<!-- 페이징 JSP 추가작업 2 -->
