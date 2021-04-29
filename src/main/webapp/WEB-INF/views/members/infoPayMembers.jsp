@@ -2,8 +2,61 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../import/top.jsp" %>
 
+<style type="text/css">
+	
+	.main_title {
+		align-content: left;
+		font-size: 40px;
+		font-weight: 600;
+		margin: 20px 0px;
+	}
+	
+	.table_list {
+		margin: 20px 0px;
+		width: 100%;
+		border-collapse: collapse;
+		border-top: 3px solid black;
+	}
+	
+	th {
+		border-bottom: 3px solid black;
+		padding: 5px;
+	}
+	
+	td {
+		border-bottom: 1px solid gray;
+		padding: 10px 0px;
+		color: gray;
+	}
+	
+	.table_th1 {
+		width: 5%;
+	}
+	.table_th2 {
+		width: 10%;
+	}
+	.table_th3 {
+		width: 30%;
+	}
+	.table_th4 {
+		width: 10%;
+	}
+	.table_th5 {
+		width: 5%;
+	}
+	.table_th6 {
+		width: 10%;
+	}
+	.table_th7 {
+		width: 10%;
+	}
+	
+</style>
+
 <main>
-	<span>${members_id} 님의 결제정보</span>
+
+	<div class="main_title">${members_id} 님의 결제정보</div>
+	
 	<table class = "table_list">
 		<tr class="table_top">
 			<th class="table_th1">결제번호</th>
@@ -14,6 +67,7 @@
 			<th class="table_th6">예약일</th>
 			<th class="table_th7">결제일</th>	
 		</tr>
+		
 		<c:forEach items="${paymentList}" var="payment">
 		<tr>
 			<td>${payment.payment_no}</td>

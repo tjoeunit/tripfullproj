@@ -70,7 +70,7 @@
 		width: 350px;
 		background-color: white;
 		text-align: center;
-		margin: 0px 10px;
+		margin: 5px 10px;
 		font-size: 15px;
 	}
 
@@ -78,6 +78,16 @@
 		color: #fff !important;
 		background: #383838;
 		cursor: pointer;
+	}
+	
+	.product_option {
+		display: inline-block;
+		text-decoration: none;
+		border: 1px solid lightgray;
+		border-radius: 8px;
+		width: 350px;
+		padding: 10px 10px;
+		margin: 5px 10px;
 	}
 
 	.product_detail{
@@ -131,11 +141,14 @@
 			</tr>
 			<tr>
 				<td height="70">
-					<span class="product_price">${hotel.hotel_price} 원</span>
 					<form name="frm" method="post" action="<c:url value='/hotel/hotelPayment.do'/>">
-						예약일자 : <input type="date" name="payment_bookdate">
-						숙박일수 : <input type="text" id="payment_quantity" name="payment_quantity">(박)
-						<input type="submit" id="product_buy" class="product_buy" value="구매하기" />
+						<div>
+							<span><input type="date" name="payment_bookdate" class="product_option"></span>
+							<span class="product_price">${hotel.hotel_price} 원</span>
+							<span><input type="text" id="payment_quantity" name="payment_quantity" class="product_option" placeholder="숙박일수 (박)"></span>
+							<input type="submit" id="product_buy" class="product_buy" value="구매하기" />
+						</div>
+					
 						<input type="hidden" id="members_no" name="members_no" value="${members_no}">
 						<input type="hidden" name="hotel_no" value="${hotel.hotel_no}">
 						<input type="hidden" name="payment_price" value="${hotel.hotel_price}">

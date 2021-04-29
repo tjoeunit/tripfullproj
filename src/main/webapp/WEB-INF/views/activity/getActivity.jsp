@@ -70,7 +70,7 @@
 		width: 350px;
 		background-color: white;
 		text-align: center;
-		margin: 0px 10px;
+		margin: 5px 10px;
 		font-size: 15px;
 	}
 
@@ -78,6 +78,16 @@
 		color: #fff !important;
 		background: #383838;
 		cursor: pointer;
+	}
+	
+	.product_option {
+		display: inline-block;
+		text-decoration: none;
+		border: 1px solid lightgray;
+		border-radius: 8px;
+		width: 350px;
+		padding: 10px 10px;
+		margin: 5px 10px;
 	}
 
 	.product_detail{
@@ -117,34 +127,37 @@
 	<div class="product">
 
 		<table class="product_top">
-				<tr>
-					<td rowspan="3"><img class="product_thumb" src="<c:url value='/activityUpload/${ activity.activity_thumb }'/>"></td>
-					<td class="product_title">${ activity.activity_title }</td>
-				</tr>
-				<tr>
-					<td class="product_city" headers="70">
-						<span>#${ activity.activity_area }</span>
-						<span>#액티비티</span>
-						<span>#지역명소</span>
-						<span>#안전여행</span>
-					</td>
-				</tr>
-				<tr>
-					<td height="70">
+			<tr>
+				<td rowspan="3"><img class="product_thumb" src="<c:url value='/activityUpload/${ activity.activity_thumb }'/>"></td>
+				<td class="product_title">${ activity.activity_title }</td>
+			</tr>
+			<tr>
+				<td class="product_city" headers="70">
+					<span>#${ activity.activity_area }</span>
+					<span>#액티비티</span>
+					<span>#지역명소</span>
+					<span>#안전여행</span>
+				</td>
+			</tr>
+			<tr>
+				<td height="70">
+					<form name="frm" method="post" action="<c:url value='/activity/activityPayment.do'/>">
+					<div>
+						<span><input type="date" name="payment_bookdate" class="product_option"></span>
 						<span class="product_price">${activity.activity_price} 원</span>
-						<form name="frm" method="post" action="<c:url value='/activity/activityPayment.do'/>">
-							예약일자 : <input type="date" name="payment_bookdate">
-							수량 : <input type="text" id="payment_quantity" name="payment_quantity">
-							<input type="submit" id="product_buy" class="product_buy" value="구매하기" />
-							<input type="hidden" id="members_no" name="members_no" value="${members_no}">
-							<input type="hidden" name="activity_no" value="${activity.activity_no}">
-							<input type="hidden" name="payment_price" value="${activity.activity_price}">
-							<input type="hidden" name="activity_title" value="${activity.activity_title}">
-							<input type="hidden" name="product_category" value="액티비티">
-						</form>
-					</td>
-				</tr>
-			</table>
+						<span><input type="text" id="payment_quantity" name="payment_quantity" class="product_option" placeholder="수량"></span>
+						<input type="submit" id="product_buy" class="product_buy" value="구매하기" />
+					</div>
+					
+						<input type="hidden" id="members_no" name="members_no" value="${members_no}">
+						<input type="hidden" name="activity_no" value="${activity.activity_no}">
+						<input type="hidden" name="payment_price" value="${activity.activity_price}">
+						<input type="hidden" name="activity_title" value="${activity.activity_title}">
+						<input type="hidden" name="product_category" value="액티비티">
+					</form>
+				</td>
+			</tr>
+		</table>
 
 <!-- 액티비티 상세 설명 -->
 <!-- 영상 관련 기능 없음

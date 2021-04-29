@@ -100,7 +100,6 @@
 <main>
 
 	<div class="main_title">회원정보</div>
-	<hr>
 	
 	<table class="user_table">
 		<tr>
