@@ -228,6 +228,7 @@ public class ActivityController {
 //////////////////////////////////////////////////관리자////////////////////////////////////////////////////////
 
 	// 관리자 액티비티 목록 페이지로 이동
+	/*
 	@RequestMapping(value="/adminActivity/adminActivity.do", method=RequestMethod.GET)
 	public String adminActivityPage(ActivityVO vo, Model model) {
 		System.out.println("액티비티 관리자 목록으로 이동");
@@ -238,6 +239,29 @@ public class ActivityController {
 
 		return "adminActivity/adminActivity";
 	}
+	*/
+	
+	// 관리자 항공권 목록 페이지 : 페이징 처리 후 목록 컨트롤러
+	@RequestMapping(value="/adminActivity/adminActivity.do", method = RequestMethod.GET)
+	public String adminActivityListPaging(PagingVO vo, Model model,
+			@RequestParam(value="nowPage", required=false) String nowPage,
+			@RequestParam(value="cntPerPage", required=false) String cntPerPage) {
+		
+		int total = activityService.countActivity();
+		if (nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "20";
+		} else if (nowPage == null) {
+			nowPage = "1";
+		} else if (cntPerPage == null) { 
+			cntPerPage = "20";
+		}
+		
+		vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		model.addAttribute("paging", vo);
+		model.addAttribute("activityList", activityService.selectActivity(vo));
+		return "adminActivity/adminActivity";
+	}	
 
 	// 관리자 액티비티 등록 페이지로 이동
 	@RequestMapping(value="/adminActivity/insertActivity.do", method=RequestMethod.GET)
@@ -340,8 +364,8 @@ public class ActivityController {
 		return "adminActivity/adminActivityUpdatePage";
 	}
 
-	// 관리자 액티비티 수정 처리
-	@RequestMapping(value = "/adminActivity/adminActivityUpdate.do", method = RequestMethod.POST)
+	// 관리자 액티비티 수정 처리							 
+	@RequestMapping(value="/adminActivity/adminActivityUpdate.do", method=RequestMethod.POST)
 	public String adminActivityUpdate(ActivityVO vo, HttpSession session, MultipartFile[] activityImgUpload, HttpServletRequest request, Model model) throws Exception {
 		System.out.println("수정 처리 전 액티비티 vo = " + vo);
 
@@ -373,7 +397,7 @@ public class ActivityController {
 
 		int cnt = activityService.updateActivity(vo);
 
-		String msg="액티비티 수정 실패", url="/adminActivity/adminActivityUpdate.do?activity_no="+vo.getActivity_no();
+		String msg="액티비티 수정 실패", url="/adminActivity/adminActivityUpdatePage.do?activity_no="+vo.getActivity_no();
 
 		if(cnt>0) {
 			msg="액티비티 수정 성공";

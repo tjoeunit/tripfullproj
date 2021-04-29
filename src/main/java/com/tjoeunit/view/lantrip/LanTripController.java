@@ -61,6 +61,7 @@ public class LanTripController {
 
 /*관리자 컨트롤*/
 // adminLanTripList로 이동
+	/*
 	@RequestMapping(value="/adminLanTrip/adminLanTrip.do", method=RequestMethod.GET)
 	public String adminLanTrip(LanTripVO vo, Model model) {
 		System.out.println("랜선투어 관리자 목록으로 이동");
@@ -71,7 +72,35 @@ public class LanTripController {
 				
 		return "adminLanTrip/adminLanTrip";
 	}
-			
+	*/
+	
+	/*관리자 컨트롤*/
+	// adminLanTripList로 이동 + 페이징처리
+	@RequestMapping(value="/adminLanTrip/adminLanTrip.do", method=RequestMethod.GET)
+	public String adminLanTrip(PagingVO vo, Model model,
+			@RequestParam(value="nowPage", required=false) String nowPage,
+			@RequestParam(value="cntPerPage", required=false) String cntPerPage) {
+  
+		int total = lanTripService.countLanTrip();
+		if (nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "20";
+		} else if (nowPage == null) {
+			nowPage = "1";
+		} else if (cntPerPage == null) { 
+			cntPerPage = "20";
+		}
+  
+		vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+  
+		model.addAttribute("paging", vo);
+		model.addAttribute("lanTripList", lanTripService.selectLanTrip(vo));
+
+		System.out.println("랜선여행 목록 뷰");
+  
+		return "adminLanTrip/adminLanTrip";
+	}
+	
 	// 랜선여행 관리자 등록 페이지 이동
 	@RequestMapping(value="/adminLanTrip/insertLanTrip.do", method=RequestMethod.GET)
 	public String insertLanTrip(LanTripVO vo, Model model) {

@@ -2,7 +2,46 @@
     pageEncoding="UTF-8"%>
 
 <%@ include file="../import/admintop.jsp" %>
-
+<script type="text/javascript">
+	$(function(){
+		
+		var numReg = /^[0-9]+$/;
+		
+		$('form[name=frmm]').submit(function(){ 
+			if($('#flight_title').val().length < 1) {
+				alert('제목을 확인하세요');
+				$('#flight_title').focus();
+				event.preventDefault();
+				return false;
+				
+			}else if ($('#flight_price').val().length < 1){
+				alert('가격을 확인하세요');
+				$('#flight_price').focus();
+				event.preventDefault();
+				return false;		
+				
+			}else if (!numReg.test($("#flight_price").val())) {
+				alert('가격을 확인하세요');
+				$('#flight_price').focus();
+				event.preventDefault();
+				return false;		
+				
+			}else if ($('#flight_thumb').val().length < 1){
+				alert('썸네일 파일을 확인하세요');
+				$('#flight_thumb').focus();
+				event.preventDefault();
+				return false;
+				
+			}else if ($('#flight_content').val().length < 1){
+				alert('내용을 확인하세요');
+				$('#flight_content').focus();
+				event.preventDefault();
+				return false;				
+			}
+			
+		});
+	});
+</script>
 <style type="text/css">
 
 	.admin_subtitle {
@@ -61,52 +100,13 @@
 	
 	
 </style>
-<script type="text/javascript">
-$(function(){
-	
-	var numReg = /^[0-9]+$/;
-	
-	$('form[name=frm]').submit(function(){ 
-		if($('#flight_title').val().length < 1) {
-			alert('제목을 확인하세요');
-			$('#flight_title').focus();
-			event.preventDefault();
-			return false;
-			
-		}else if ($('#flight_price').val().length < 1){
-			alert('가격을 확인하세요');
-			$('#flight_price').focus();
-			event.preventDefault();
-			return false;		
-			
-		}else if (!numReg.test($("#flight_price").val())) {
-			alert('가격을 확인하세요');
-			$('#flight_price').focus();
-			event.preventDefault();
-			return false;		
-			
-		}else if ($('#flight_thumb').val().length < 1){
-			alert('썸네일 파일을 확인하세요');
-			$('#flight_thumb').focus();
-			event.preventDefault();
-			return false;
-			
-		}else if ($('#flight_content').val().length < 1){
-			alert('내용을 확인하세요');
-			$('#flight_content').focus();
-			event.preventDefault();
-			return false;
-			
-		}
-	});
-});	
-</script>
+
 <main>
 
 	<!-- ckeditor 4 -->	
 	<script type="text/javascript" src="<c:url value='/ckeditor/ckeditor.js'/>"></script>
 	
-	<form name="frm "action="<c:url value='/adminFlight/insertFlight.do'/>" method="post" enctype="multipart/form-data">
+	<form name="frmm" action="<c:url value='/adminFlight/insertFlight.do'/>" method="post" enctype="multipart/form-data">
 		<div class="admin_subtitle">
 			<span class="admin_subtitle_name">항공권 상품등록</span>
 			<span class="new_upload">
@@ -125,7 +125,7 @@ $(function(){
 					<td class="table_td1">출발</td>
 					<td>
 						<select name="flight_departure">
-							<option value="인천">인천</option>
+							<option value="인천" selected="selected">인천</option>
 							<option value="김포">김포</option>
 							<option value="김해">김해</option>
 							<option value="제주">제주</option>
@@ -140,7 +140,7 @@ $(function(){
 					<td class="table_td1">도착</td>
 					<td>
 						<select name="flight_arrival">
-							<option value="인천">인천</option>
+							<option value="인천" selected="selected">인천</option>
 							<option value="김포">김포</option>
 							<option value="김해">김해</option>
 							<option value="제주">제주</option>
