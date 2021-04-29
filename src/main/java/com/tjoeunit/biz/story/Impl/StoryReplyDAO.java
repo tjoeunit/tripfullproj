@@ -13,16 +13,20 @@ public class StoryReplyDAO {
     
 	@Autowired
 	private SqlSessionTemplate mybatis;
+	
+    //댓글 작성
+    public int createReply(StoryReplyVO rvo) {
+    	return mybatis.insert("storyReplyDAOTemplate.createReply", rvo); 
+    }
 	 
     //댓글 목록
-    public List<StoryReplyVO> storyReplyList(int story_no) {
-        return mybatis.selectList("storyReplyDAOTemplate.storyReplyList", story_no);
+    public List<StoryReplyVO> getReplyList(int story_no) {
+        return mybatis.selectList("storyReplyDAOTemplate.getReplyList", story_no);
     }
     
-    
-    //댓글 작성
-    public void createStoryReply(StoryReplyVO rvo) {
-    	mybatis.insert("storyReplyDAOTemplate.createStoryReply", rvo); 
+    //댓글 삭제
+    public void deleteReply(StoryReplyVO rvo) {
+        mybatis.delete("storyReplyDAOTemplate.deleteReply", rvo);
     }
 	    
 }

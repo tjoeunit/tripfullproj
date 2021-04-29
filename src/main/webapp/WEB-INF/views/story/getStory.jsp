@@ -51,6 +51,7 @@
 <script type="text/javascript">
 
 	$(function(){
+
 		$('#story_modify_a').click(function() {
 			if ($('#members_id').val() != $('#story_writer').val()) {
 				alert('수정 권한이 없습니다.');
@@ -58,7 +59,6 @@
 				return false;
 			}
 		});
-		
 		$('#story_delete_a').click(function() {
 			if ($('#members_id').val() != $('#story_writer').val()) {
 				alert('삭제 권한이 없습니다.');
@@ -66,6 +66,12 @@
 				return false;
 			}
 		});
+		$("#replyWriteBtn").on("click", function(){
+			var formObj = $("form[name='replyForm']");
+			formObj.attr("action", "<c:url value='/story/replyWrite.do'/>");
+			formObj.submit();
+		});
+		
 	});
 	
 	
@@ -73,9 +79,9 @@
 
 <main>
 
-	<input type="hidden" id="story_writer" value="${story.story_writer}">		<!-- 작성자 -->
-	<input type="hidden" name="story_no" value="${story.story_no}" />
-	<input type="hidden" id="members_id" value="${members_id}"> 		<!-- 세션 로그인된 id -->
+	<input type="hidden" id="story_writer" name="story_writer" value="${story.story_writer}">		<!-- 작성자 -->
+	<input type="hidden"  id="story_no" name="story_no" value="${story.story_no}" />
+	<input type="hidden" id="members_id" name="members_id" value="${members_id}"> 		<!-- 세션 로그인된 id -->
 	
 	<br><br>
 	
@@ -114,70 +120,47 @@
 <!-- 너비와 정렬방식 설정 -->
 <div style="width:700px; text-align:center;">
  
-<!-- 세션에 저장되어있는 members_id가 null이 아닐때 -->
-<!-- 그러니까 로그인을 한 상태이어야만 댓글을 작성 할 수 있다.-->
+	<!-- 로그인을 한 상태이어야만 댓글 입력창이 보임. -->
      <c:if test="${members_id != null}">
      
-     
-         <textarea rows="2" cols="120" id="reply_text" placeholder="댓글을 작성하세요."></textarea>
-         <br>
-         <!-- 댓글쓰기 버튼을 누르면 id값인 btnReply값이 넘어가서 -->
-         <!-- 밑에 있는 스크립트 구문이 실행되고 -->
-         <!-- 내가 댓글을 작성한 값이 스크립트문을 거쳐서 컨트롤러로 맵핑되게 된다. -->
-         <button type="button" id="btnReply">댓글쓰기</button>
-
-	<script type="text/javascript">	
-	    $("#btnReply").click(function(){
-	        var reply_text=$("#reply_text").val(); //댓글 내용
-	        var param={"reply_text": reply_text, "story_no": $('#story_no')};
-	        $.ajax({
-	            type: "post", //데이터를 보낼 방식
-	            url: "${path}/story/storyReplyinsert.do", //데이터를 보낼 url
-	            data: param, //보낼 데이터
+	   	<form name="replyForm" method="post">  
+	   		<input type="hidden"  id="story_no" name="story_no" value="${story.story_no}" />
+	   		<input type="hidden" id="members_id" name="members_id" value="${members_id}">
+	         <textarea rows="2" cols="120" id="reply_text" name="reply_text" placeholder="댓글을 작성하세요."></textarea>
+	         <br>
+			 <div>
+				<button type="button" id="replyWriteBtn">작성</button>
+			 </div>
+		</form>
 	
-	            success: function(){ //데이터를 보내는것이 성공했을시 출력되는 메시지
-	                alert("댓글이 등록되었습니다.");
-	                listReply2(); //댓글 목록 출력
-	            }
-	        });
-	    });
-	    
-	</script>
+		<!-- 댓글 등록 기능 처리 -->
+		<script type="text/javascript">	
+			
+		</script>
   
     </c:if>
-    </div>
+</div>   
+	
+	<!-- 댓글 조회 -->
+	<div id="reply">
+		<ol class="replyList">
+			<c:forEach items="${replyList}" var="replyList">
+				<li>
+					<p>
+					작성자 : ${replyList.members_id}<br />
+					작성 날짜 :  <fmt:formatDate value="${replyList.reply_date}" pattern="yyyy-MM-dd" />
+					</p>
+				
+					<p>${replyList.reply_text}</p>
+					<div>
+						<a id= "replyDeleteBtn" href="replyDeleteView.do?reply_no=${reply.reply_no}">삭제</a>
+					</div>
+				</li>
+			</c:forEach>   
+		</ol>
+	</div>
+	
     
-    
-    <!-- 댓글 목록 -->
-    <!-- 댓글이 등록이 되면 listReply에 댓글이 쌓이게 된다 -->
-    <div id="listReply"></div>
-    
-    <script type="text/javascript">	
-		function listReply(){
-		    $.ajax({
-		        type: "get", //get방식으로 자료를 전달한다
-		        url: "${path}/story/storyReplylist.do?story_no="+$('#story_no'), //컨트롤러에 있는 storyReplylist.do로 맵핑하고 게시판 번호도 같이 보낸다.
-		        success: function(result){ //자료를 보내는것이 성공했을때 출력되는 메시지
-		            //result : responseText 응답텍스트(html)
-		            $("#listReply").html(result);
-		        }
-		    });
-		}
-    
-    
-		function listReply(num){
-	    $.ajax({
-	        type: "post", //post방식으로 자료를 전달
-	        url: "${path}/story/storyReplylist.do?story_no="+$('#story_no'), //컨트롤러에 있는 storyReplylist.do로 맵핑
-	        success: function(result){ //자료를 보내는것이 성공했을때 출력되는 메시지
-	            //result : responseText 응답텍스트(html)
-	            console.log(result);
-	            $("#listReply").html(result);
-	        }
-	    });
-	}
-		
-	</script>
 	
 	<div class="get_story_bottom" >
 		<a id= "story_modify_a" href="updateStoryPage.do?story_no=${story.story_no}">수정하기</a>&nbsp;&nbsp;&nbsp;&nbsp; 

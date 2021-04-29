@@ -6,9 +6,11 @@ import java.util.List;
 public interface StoryReplyService {
 	
 //댓글 리스트
-	public List<StoryReplyVO> storyReplyList(int story_no); 
+	public List<StoryReplyVO> getReplyList(int story_no); 
 	
 //댓글 작성
-    public void createStoryReply(StoryReplyVO rvo);    
+    public int createReply(StoryReplyVO rvo);    
     
+//댓글 삭제
+    public void deleteReply(StoryReplyVO rvo);    
 }
