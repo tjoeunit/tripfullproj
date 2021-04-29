@@ -1,7 +1,45 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../import/admintop.jsp" %>
-
+<script type="text/javascript">
+	$(function(){
+		
+		var numReg = /^[0-9]+$/;
+		
+		$('form[name=frm]').submit(function(){ 
+			if($('#activity_title').val().length < 1) {
+				alert('제목을 확인하세요');
+				$('#activity_title').focus();
+				event.preventDefault();
+				return false;
+				
+			}else if ($('#activity_price').val().length < 1){
+				alert('가격을 확인하세요');
+				$('#activity_price').focus();
+				event.preventDefault();
+				return false;
+				
+			}else if (!numReg.test($("#activity_price").val())) {
+				alert('가격을 확인하세요');
+				$('#activity_price').focus();
+				event.preventDefault();
+				return false;	
+				
+			}else if ($('#activity_thumb').val().length < 1){
+				alert('썸네일 파일을 확인하세요');
+				$('#activity_thumb').focus();
+				event.preventDefault();
+				return false;		
+				
+			}else if ($('#activity_content').val().length < 1){
+				alert('내용을 확인하세요');
+				$('#activity_content').focus();
+				event.preventDefault();
+				return false;				
+			} 
+		});
+	});	
+</script>
 
 <style type="text/css">
 
@@ -66,7 +104,7 @@
 	<!-- ckeditor 4 -->	
  	<script type="text/javascript" src="<c:url value='/ckeditor/ckeditor.js'/>"></script>
 	
-	<form action="insertActivity.do" method="post" enctype="multipart/form-data">
+	<form name="frm" action="insertActivity.do" method="post" enctype="multipart/form-data">
 		<div class="admin_subtitle">
 			<span class="admin_subtitle_name">액티비티 등록</span>
 			<span class="new_upload">
@@ -78,41 +116,38 @@
 			<table class="insert_table">
 				<tr>
 					<td class="table_td1">제목</td>
-					<td><input type="text" class="insert_input" name="activity_title" /></td>
+					<td><input type="text" class="insert_input" id="activity_title" name="activity_title" /></td>
 				</tr>
 	
 				<tr>
 					<td class="table_td1">지역</td>
 					<td>
 						<select name="activity_area">
-						<option value="서울" selected="selected">서울</option>
-						<option value="부산">부산</option>
-						<option value="군산">군산</option>
-					</select>
+							<option value="서울" selected="selected">서울</option>
+							<option value="부산">부산</option>
+							<option value="강원">강원</option>
+							<option value="경기">경기</option>
+							<option value="충청">충청</option>
+							<option value="경상">경상</option>
+							<option value="전라">전라</option>
+							<option value="제주">제주</option>
+						</select>
 					</td>
 				</tr>
 				
 				<tr>
 					<td class="table_td1">가격</td>
-					<td><input type="text" class="insert_input" name="activity_price" placeholder="숫자만 입력해주세요"/></td>
+					<td><input type="text" class="insert_input" id="activity_price" name="activity_price" placeholder="숫자만 입력해주세요"/></td>
 				</tr>
 				
 				<tr>
 					<td class="table_td1">썸네일</td>
-					<td><input type="file" class="insert_input" name="activityImgUpload"/></td>
-				</tr>
-				
-<!-- 			
-				<tr>
-					<td class="table_td1">영상url</td>
-					<td><input type="text" class="insert_input" name="activity_video"/></td>
-				</tr
- -->
-				
+					<td><input type="file" class="insert_input" id="activity_thumb" name="activityImgUpload"/></td>
+				</tr>	
 				<tr>
 					<td class="table_td1">내용</td>
 					<td>
-						<textarea name="activity_content" class="ckeditor"></textarea>
+						<textarea name="activity_content" id="activity_content" class="ckeditor"></textarea>
 						<script type="text/javascript">
 							CKEDITOR.replace('activity_content', {height: 700, filebrowserUploadUrl:'/activityImage/imageUpload.do'});
 						</script>

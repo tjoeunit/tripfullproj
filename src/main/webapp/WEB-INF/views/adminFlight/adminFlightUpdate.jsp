@@ -79,14 +79,14 @@
 		$('#edRadio').click(function(){
 			if($('#svDiv').length > 0){
 				$('#svDiv').remove();
-				$('#thumbDiv').append('<div id="edDiv">변경 썸네일 : <input type="file" name="flightImgUpload"></div>');
+				$('#thumbDiv').append('<div id="edDiv">변경 썸네일 : <input type="file" id="flight_thumb" name="flightImgUpload"></div>');
 			}
 		});		
 		
 		$('#svRadio').click(function(){
 			if($('#edDiv').length > 0){
 				$('#edDiv').remove();
-				$('#thumbDiv').append('<div id="svDiv">현재 썸네일 : <input type="text" name="flightImgUpload" value="${flight.flight_thumb}" readonly></div>');
+				$('#thumbDiv').append('<div id="svDiv">현재 썸네일 : <input type="text" name="flightImgUpload" id="flight_thumb" value="${flight.flight_thumb}" readonly></div>');
 			}
 		});
 		
@@ -96,10 +96,46 @@
 		
 		// DB 저장된 값을 ckeditor 로 전송  
 		var serverContent = $('#serverContent').val();
-		$('#ckeditor').val(serverContent);		
+		$('#ckeditor').val(serverContent);
+		
+		var numReg = /^[0-9]+$/;
+		
+		$('form[name=frmm]').submit(function(){ 
+			if($('#flight_title').val().length < 1) {
+				alert('제목을 확인하세요');
+				$('#flight_title').focus();
+				event.preventDefault();
+				return false;
+				
+			}else if ($('#flight_price').val().length < 1){
+				alert('가격을 확인하세요');
+				$('#flight_price').focus();
+				event.preventDefault();
+				return false;		
+				
+			}else if (!numReg.test($("#flight_price").val())) {
+				alert('가격을 확인하세요');
+				$('#flight_price').focus();
+				event.preventDefault();
+				return false;		
+				
+			}else if ($('#flight_thumb').val().length < 1){
+				alert('썸네일 파일을 확인하세요');
+				$('#flight_thumb').focus();
+				event.preventDefault();
+				return false;
+				
+			}else if ($('#ckeditor').val().length < 1){
+				alert('내용을 확인하세요');
+				$('#ckeditor').focus();
+				event.preventDefault();
+				return false;				
+			}
+			
+		});
+		
 	});	
 </script>
-
 <main>
 	<!-- DB 저장된 값을 hidden에 저장 -->
 	<input type="hidden" id="hidden_departure" value="${flight.flight_departure}">
@@ -109,7 +145,7 @@
 	<!-- ckeditor 4 -->	
 	<script type="text/javascript" src="<c:url value='/ckeditor/ckeditor.js'/>"></script>
 	
-	<form action="<c:url value='/adminFlight/adminFlightUpdate.do'/>" method="post" enctype="multipart/form-data">
+	<form name="frmm" action="<c:url value='/adminFlight/adminFlightUpdate.do'/>" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="flight_no" value="${flight.flight_no}">
 		
 		<div class="admin_subtitle">
@@ -123,15 +159,21 @@
 			<table class="insert_table">
 				<tr>
 					<td class="table_td1">제목</td>
-					<td><input type="text" class="insert_input" name="flight_title" value="${flight.flight_title}"/></td>
+					<td><input type="text" class="insert_input" name="flight_title" id="flight_title" value="${flight.flight_title}"/></td>
 				</tr>
 				
 				<tr>
 					<td class="table_td1">출발</td>
 					<td>
 						<select name="flight_departure" id="flight_departure" class="select_box">
-							<option value="서울" selected="selected">서울</option>
-							<option value="부산">부산</option>
+							<option value="인천">인천</option>
+							<option value="김포">김포</option>
+							<option value="김해">김해</option>
+							<option value="제주">제주</option>
+							<option value="청주">청주</option>
+							<option value="대구">대구</option>
+							<option value="무안">무안</option>
+							<option value="양양">양양</option>
 						</select>						
 						<span>지역을 꼭 선택해주세요</span>
 					</td>
@@ -141,8 +183,14 @@
 					<td class="table_td1">도착</td>
 					<td>
 						<select name="flight_arrival" id="flight_arrival" class="select_box">
-							<option value="서울" selected="selected">서울</option>
-							<option value="부산">부산</option>
+							<option value="인천">인천</option>
+							<option value="김포">김포</option>
+							<option value="김해">김해</option>
+							<option value="제주">제주</option>
+							<option value="청주">청주</option>
+							<option value="대구">대구</option>
+							<option value="무안">무안</option>
+							<option value="양양">양양</option>
 						</select>						
 						<span>지역을 꼭 선택해주세요</span>
 					</td>
@@ -150,7 +198,7 @@
 				
 				<tr>
 					<td class="table_td1">가격</td>
-					<td><input type="text" class="insert_input" name="flight_price" value="${flight.flight_price}"/></td>
+					<td><input type="text" class="insert_input" id="flight_price" name="flight_price" value="${flight.flight_price}"/></td>
 				</tr>
 				
 				<tr>
@@ -163,7 +211,7 @@
 							<input type="radio" name="radioThumb" value="기존 썸네일 사용" id="svRadio" checked="checked"><label for="기존 썸네일 사용">기존 썸네일 사용</label>
 							<input type="radio" name="radioThumb" value="변경 썸네일 사용" id="edRadio"><label for="변경 썸네일 사용">변경 썸네일 사용</label><br>										
 							<div id="svDiv">
-							현재 썸네일 : <input type="text" name="flightImgUpload" value="${flight.flight_thumb}" readonly>
+							현재 썸네일 : <input type="text" name="flightImgUpload" id="flight_thumb" value="${flight.flight_thumb}" readonly>
 							</div>						
 						</div>
 					</td>

@@ -71,7 +71,7 @@
 	td {
 		border-bottom: 1px solid gray;
 		padding: 10px 0px;
-		color: gray;
+		color: black;
 	}
 	
 	.user_table_td1 {

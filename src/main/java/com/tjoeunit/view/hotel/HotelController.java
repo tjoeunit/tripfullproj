@@ -250,7 +250,8 @@ public class HotelController {
 //////////////////////////////////////////////////관리자////////////////////////////////////////////////////////
 //////////////////////////////////////////////////관리자////////////////////////////////////////////////////////
 
-	// 관리자 항공권 목록 페이지로 이동
+	// 관리자 숙박권 목록 페이지로 이동
+	/*
 	@RequestMapping(value="/adminHotel/adminHotel.do", method=RequestMethod.GET)
 	public String adminHotel(HotelVO vo, Model model) {
 		System.out.println("숙박권 관리자 목록으로 이동");
@@ -260,7 +261,30 @@ public class HotelController {
 		model.addAttribute("hotelList", hotelList);
 				
 		return "adminHotel/adminHotel";
-	}	
+	}
+	*/
+	
+	// 관리자 항공권 목록 페이지 : 페이징 처리 후 목록 컨트롤러
+	@RequestMapping(value="/adminHotel/adminHotel.do", method = RequestMethod.GET)
+	public String adminHotelListPaging(PagingVO vo, Model model,
+			@RequestParam(value="nowPage", required=false) String nowPage,
+			@RequestParam(value="cntPerPage", required=false) String cntPerPage) {
+		
+		int total = hotelService.countHotel();
+		if (nowPage == null && cntPerPage == null) {
+			nowPage = "1";
+			cntPerPage = "20";
+		} else if (nowPage == null) {
+			nowPage = "1";
+		} else if (cntPerPage == null) { 
+			cntPerPage = "20";
+		}
+		
+		vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+		model.addAttribute("paging", vo);
+		model.addAttribute("hotelList", hotelService.selectHotel(vo));
+		return "adminHotel/adminHotel";
+	}
 	
 	// 관리자 숙박권 등록 페이지로 이동
 	@RequestMapping(value="/adminHotel/insertHotel.do", method = RequestMethod.GET)
@@ -368,7 +392,7 @@ public class HotelController {
 		return "adminHotel/adminHotelUpdate";
 	}
 	
-	// 관리자 항공권 수정 처리
+	// 관리자 숙박권 수정 처리
 	@RequestMapping(value = "/adminHotel/adminHotelUpdate.do", method = RequestMethod.POST)
 	public String adminHotelUpdate(HotelVO vo, HttpSession session, MultipartFile[] hotelImgUpload, HttpServletRequest request, Model model) throws Exception {
 		System.out.println("수정 처리 전 숙박권 vo = " + vo);

@@ -40,6 +40,12 @@
 		background: #383838;
 	}
 	
+	.page_select {
+		padding: 5px;
+		border: 1px solid gray;
+		margin: 20px 20px 0px 20px;
+	}
+	
 	.list_table {
 		width: 1160px;
 		margin: 20px;
@@ -103,7 +109,7 @@
 	
 	<!-- 페이징 JSP 추가작업 2 -->
 	<!-- 페이징 옵션 시작 -->
-	<select id="cntPerPage" name="sel" onchange="selChange()">
+	<select id="cntPerPage" name="sel" onchange="selChange()" class="page_select">
 		<option value="10"
 			<c:if test="${paging.cntPerPage == 10}">selected</c:if>>10개 보기</option>
 		<option value="20"

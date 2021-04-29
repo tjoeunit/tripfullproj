@@ -17,6 +17,12 @@
 		font-weight: 600;
 	}
 	
+	.page_select {
+		padding: 5px;
+		border: 1px solid gray;
+		margin: 20px 20px 0px 20px;
+	}
+	
 	.list_table {
 		width: 1160px;
 		margin: 20px;
@@ -59,6 +65,8 @@
 		color: black;
 	}
 	
+	
+	
 </style>
 
 
@@ -78,17 +86,11 @@
 		<span class="admin_subtitle_name">여행이야기 관리</span>
 	</div>
 
-
-
 	<!-- 페이징 JSP 추가작업 2 -->
 	<!-- 페이징 옵션 시작 -->
-	<select id="cntPerPage" name="sel" onchange="selChange()" class="AdminStorycntPerPage">
-		<option value="5"
-			<c:if test="${paging.cntPerPage == 5}">selected</c:if>>5개 보기</option>
+	<select id="cntPerPage" name="sel" onchange="selChange()" class="page_select">
 		<option value="10"
 			<c:if test="${paging.cntPerPage == 10}">selected</c:if>>10개 보기</option>
-		<option value="15"
-			<c:if test="${paging.cntPerPage == 15}">selected</c:if>>15개 보기</option>
 		<option value="20"
 			<c:if test="${paging.cntPerPage == 20}">selected</c:if>>20개 보기</option>
 	</select>

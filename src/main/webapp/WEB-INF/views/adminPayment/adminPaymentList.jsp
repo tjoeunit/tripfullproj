@@ -58,19 +58,25 @@
 	}
 	
 	.list_th1 {
-		width: 5%;
+		width: 10%;
 	}
 	.list_th2 {
-		width: 65%;
+		width: 10%;
 	}
 	.list_th3 {
-		width: 10%;
+		width: 30%;
 	}
 	.list_th4 {
 		width: 10%;
 	}
 	.list_th5 {
 		width: 10%;
+	}
+	.list_th6 {
+		width: 15%;
+	}
+	.list_th7 {
+		width: 15%;
 	}
 	
 	td {
@@ -94,17 +100,16 @@
 <script>
 	function selChange() {
 		var sel = document.getElementById('cntPerPage').value;
-		location.href = "<c:url value='/adminHotel/adminHotel.do?nowPage=${paging.nowPage}&cntPerPage="+sel+"'/>";		
-		
+		location.href = "<c:url value='/adminFlight/adminFlight.do?nowPage=${paging.nowPage}&cntPerPage="+sel+"'/>";		
 	}
 </script>
 <!-- 페이징 옵션 처리 자바스크립트 끝 -->
 
 <main>
 	<div class="admin_subtitle">
-		<span class="admin_subtitle_name">숙박권 관리</span>
+		<span class="admin_subtitle_name">결제정보</span>
 		<span class="new_upload">
-			<a href="<c:url value='/adminHotel/insertHotel.do'/>">상품등록</a>
+			<!-- <a href="<c:url value='/adminFlight/insertFlight.do'/>">상품등록</a> -->
 		</span>
 	</div>
 	
@@ -120,29 +125,33 @@
 	
 	<table class=list_table>
 		<tr>
-			<th class="list_th1">번호</th>
-			<th class="list_th2">제목</th>
-			<th class="list_th3">출발</th>
-			<th class="list_th4">도착</th>
-			<th class="list_th5">가격</th>
+			<th class="list_th1">결제번호</th>
+			<th class="list_th2">상품종류</th>
+			<th class="list_th3">상품명</th>
+			<th class="list_th4">가격</th>
+			<th class="list_th5">수량(박)</th>
+			<th class="list_th6">예약일</th>
+			<th class="list_th7">결제일</th>
 		</tr>
 		
-		<c:forEach items="${ hotelList }" var="hotel">
+		<c:forEach items="${paymentList}" var="payment">
 			<tr>
-				<td>${ hotel.hotel_no }</td>
-				<td class="list_product_title"><a href="<c:url value='/adminHotel/adminHotelDetail.do?hotel_no=${ hotel.hotel_no }'/>">${ hotel.hotel_title }</a></td>
-				<td>${ hotel.hotel_category }</td>
-				<td>${ hotel.hotel_area }</td>
-				<td>${ hotel.hotel_price }원</td>
+				<td>${payment.payment_no}</td>
+				<td>${payment.product_category}</td>
+				<td class="list_product_title">${payment.flight_title}${payment.hotel_title}${payment.activity_title}${payment.lantrip_title}</td>
+				<td>${payment.payment_price}원</td>
+				<td>${payment.payment_quantity}</td>
+				<td>${payment.payment_bookdate}</td>
+				<td>${payment.payment_date}</td>
 			</tr>
 		</c:forEach>
 	</table>
-
-<!-- 페이징 JSP 추가작업 3 -->
+	
+	<!-- 페이징 JSP 추가작업 3 -->
 	<!-- 페이징 하단 숫자 시작 -->
 	<div style="display: block; text-align: center;">		
 		<c:if test="${paging.startPage != 1 }">
-			<a href="<c:url value='/adminHotel/adminHotel.do?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}'/>">&lt;</a>
+			<a href="<c:url value='/adminFlight/adminFlight.do?nowPage=${paging.startPage - 1 }&cntPerPage=${paging.cntPerPage}'/>">&lt;</a>
 		</c:if>
 		<c:forEach begin="${paging.startPage }" end="${paging.endPage }" var="p">
 			<c:choose>
@@ -150,16 +159,16 @@
 					<b>${p }</b>
 				</c:when>
 				<c:when test="${p != paging.nowPage }">							
-					<a href="<c:url value='/adminHotel/adminHotel.do?nowPage=${p }&cntPerPage=${paging.cntPerPage}'/>">${p }</a>
+					<a href="<c:url value='/adminFlight/adminFlight.do?nowPage=${p }&cntPerPage=${paging.cntPerPage}'/>">${p }</a>
 				</c:when>
 			</c:choose>
 		</c:forEach>
 		<c:if test="${paging.endPage != paging.lastPage}">					
-			<a href="<c:url value='/adminHotel/adminHotel.do?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}'/>">&gt;</a>
+			<a href="<c:url value='/adminFlight/adminFlight.do?nowPage=${paging.endPage+1 }&cntPerPage=${paging.cntPerPage}'/>">&gt;</a>
 		</c:if>
 	</div>
 	<!-- 페이징 하단 숫자 끝 -->
-	<br>
+
 </main>
 
 <%@ include file="../import/bottom.jsp" %>
