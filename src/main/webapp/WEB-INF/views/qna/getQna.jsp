@@ -116,6 +116,10 @@
 		margin-bottom: 20px;
 		width: 1200px;
 	}
+	
+	a {
+		text-decoration: none;
+	}
 
 </style>
 
@@ -172,54 +176,6 @@
 </header>
 <body>
 
-
-<style>
-
-	.qna_get{
-		font: bold;
-		width: 1000px;
-		padding: 10px;
-	}
-	
-	.qna_get h5{
-		text-align: right;
-		padding-top: 10px;
-		padding-right: 20%;
-	}
-	.get_qna_title{
-		width: 500px;
-		padding: 10px;
-		padding-left: 3%;
-		border-left: #d9c5c5 double 10px;
-	}
-	
-	.get_qna_content{
-		background-color: #58CCFF;
-		height: 700px;
-	}
-	.get_qna_date{
-		background-color: #58CCFF;
-	}
-	.get_qna_cnt{	
-		background-color: #58CCFF;
-	}
-	
-	.get_qna_bottom{
-		text-align: center;
-	}
-	.get_qna_inform{
-		width: 750px;
-		padding: 10px;
-		padding-left: 1%;
-		border: #c4c4c4 dashed 1px;
-		border-radius: 3em;
-	}
-	
-	
-</style>
-
-
-
 <script type="text/javascript">
 
 	$(function(){
@@ -243,43 +199,109 @@
 	
 </script>
 
+<style type="text/css">
+	
+	.post_box {
+		border: 1px solid gray;
+		border-radius: 5px;
+		margin: 20px;
+		padding: 20px;
+	}
+	
+	.post_title {
+		font-size: 40px;
+		font-weight: 600;
+		text-align: left;
+		padding: 10px;
+	}
+	
+	.post_info_box {
+		text-align: right;
+	}
+	
+	.post_info {
+		font-size: 14px;
+		color: gray;
+		margin: 0px 10px;
+	}
+	
+	.post_content {
+		padding: 20px;
+	}
+	
+	.update_delete {
+		text-align: right;
+	}
+	
+	.update_delete_botton {
+		font-size: 14px;
+		color: gray;
+		margin: 0px 10px;
+	}
+	
+	.post_reply_box {
+	    border: 2px solid gray;
+	    border-radius: 5px;
+	    padding: 20px;
+	}
+	
+	.post_reply_writer {
+		display: inline-block;
+		width: 90%;
+	}
+	
+	.post_reply_button {
+		text-decoration: none;
+		display:inline-block;
+		margin: 0px 10px;
+		padding: 2px 10px;
+		border-radius: 5px;
+		border: 1px solid gray;
+		color: black;
+		background-color: white;
+		cursor: pointer;
+	}
+	
+	.post_reply {
+		display: block;
+	    width: 100%;
+	    border: 0;
+	    font-size: 13px;
+	    -webkit-appearance: none;
+	    resize: none;
+	    outline: 0;
+	    margin: 20px 0px;
+	}
+	
+}
+	
+</style>
+
 <main>
 
 	<input type="hidden" id="qna_writer" value="${qna.qna_writer}">		<!-- 작성자 -->
 	<input type="hidden" name="qna_no" value="${qna.qna_no}" />
 	<input type="hidden" id="members_id" value="${members_id}"> 		<!-- 세션 로그인된 id -->
 	
-	<br><br>
+	<div class="post_box">
+		<div class="post_title">${qna.qna_title}</div>
+		<div class="post_info_box">
+			<span class="post_info">${qna.qna_writer}</span>
+			<span class="post_info"><fmt:formatDate value="${ qna.qna_date }" pattern="yy.MM.dd HH:mm"/></span>
+		</div>
 	
-	<div class="get_qna_title">
-		<h2>${qna.qna_title}</h2>
-	</div>
-	
-	<br>
-	
-	<div class="get_qna_inform">
-		<b> 작성자&nbsp;&nbsp;&nbsp;${qna.qna_writer}</b>
+		<hr>
 		
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<div class="post_content">${qna.qna_content}</div>
 		
-		<fmt:formatDate value="${ qna.qna_date }" dateStyle="full" timeStyle="full"/>
-		
-	</div>
-	
-	<br><br><br>
-	
-		${qna.qna_content}
-		
-	<br><br><br>
-	
-	<div class="get_qna_bottom" >
-		<a id= "qna_modify_a" href="updateQnaPage.do?qna_no=${qna.qna_no}">수정하기</a>&nbsp;&nbsp;&nbsp;&nbsp; 
-		<a id= "qna_delete_a" href="deleteQna.do?qna_no=${qna.qna_no}">삭제하기</a>&nbsp;&nbsp;&nbsp;&nbsp; 
-		<a href="getQnaList.do">목록보기</a>
-	</div>
-	
-	<br><br>
+		<c:if test="${members_id != null}">
+			<div class="update_delete" >
+				<a class="update_delete_botton" id= "qna_modify_a" href="updateQnaPage.do?qna_no=${qna.qna_no}">수정하기</a>
+				<a class="update_delete_botton" id= "qna_delete_a" href="deleteQna.do?qna_no=${qna.qna_no}">삭제하기</a>
+				<a class="update_delete_botton" href="getQnaList.do">목록보기</a>
+			</div>
+		</c:if>
+
 </main>
 
 <%@ include file="../import/bottom.jsp" %>

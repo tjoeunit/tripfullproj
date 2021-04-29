@@ -52,7 +52,7 @@
 	</a>
 	
 	<!-- 액티비티관리 -->
-	<a href="<c:url value='#'/>">
+	<a href="<c:url value='/adminActivity/adminActivity.do'/>">
 		<img src="<c:url value='/img/adminindex05.jpg'/>" class="adminIndex2">
 	</a>
 	

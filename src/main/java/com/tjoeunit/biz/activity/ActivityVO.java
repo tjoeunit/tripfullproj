@@ -8,6 +8,7 @@ public class ActivityVO {
 	private String	activity_thumb;
 	private int		activity_price;
 	private String	activity_area;
+	private String	activity_video;
 
 	/*
 	 * private String activity_video; private String activity_img1; private String
@@ -72,6 +73,14 @@ public class ActivityVO {
 
 	public void setActivity_area(String activity_area) {
 		this.activity_area = activity_area;
+	}
+
+	public String getActivity_video() {
+		return activity_video;
+	}
+
+	public void setActivity_video(String activity_video) {
+		this.activity_video = activity_video;
 	}
 
 

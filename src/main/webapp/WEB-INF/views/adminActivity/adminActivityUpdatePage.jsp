@@ -4,6 +4,27 @@
 
 <%@ include file="../import/admintop.jsp" %>
 
+<script type="text/javascript">
+//Radio 를 이용하여 기존 썸네일 이용 또는 변경 썸네일 선택가능 
+	$(function(){	
+		$('#edRadio').click(function(){
+			if($('#svDiv').length > 0){
+				$('#svDiv').remove();
+				$('#thumbDiv').append('<div id="edDiv">변경 썸네일 : <input type="file" name="activityImgUpload"></div>');
+			}
+		});		
+		
+		$('#svRadio').click(function(){
+			if($('#edDiv').length > 0){
+				$('#edDiv').remove();
+				$('#thumbDiv').append('<div id="svDiv">현재 썸네일 : <input type="text" name="activityImgUpload" value="${activity.activity_thumb}" readonly></div>');
+			}
+		});
+
+	});	
+
+</script>
+
 <style type="text/css">
 
 	.admin_subtitle {
@@ -13,12 +34,16 @@
 	
 	.admin_subtitle_name {
 		display: inline-block;
-		width: 85%;
+		width: 1000px;
 		font-weight: 600;
 		font-size: 30px;
 	}
 	
-	table {
+	.new_upload {
+		width: 150px;
+	}
+	
+	.insert_table {
 		width: 1200px;
 		padding: 20px;
 	}
@@ -29,9 +54,13 @@
 	
 	.insert_input {
 		padding: 5px;
-		width: 900px;
+		width: 1052px;
 		border: none;
 		background-color: lightgray;
+	}
+	
+	.ckeditor {
+		width: 100%;
 	}
 	
 	.insert_submit {
@@ -99,10 +128,19 @@
 				
 				<tr>
 					<td class="table_td1">썸네일</td>
-					<td><input type="file" class="insert_input" name="activityImgUpload" value="${ activity.activity_thumb }"/></td>
+					<td>
+						<div id="thumbDiv">
+							<input type="radio" name="radioThumb" value="기존 썸네일 사용" id="svRadio" checked="checked"><label for="기존 썸네일 사용">기존 썸네일 사용</label>
+							<input type="radio" name="radioThumb" value="변경 썸네일 사용" id="edRadio"><label for="변경 썸네일 사용">변경 썸네일 사용</label><br>
+						
+							<div id="svDiv">
+								현재 썸네일 : <input type="text" name="activityImgUpload" value="${ activity.activity_thumb }" readonly="readonly">
+							</div>
+						</div>
+					</td>
 				</tr>
 				
-	<%-- 	<tr>
+<%--	 	<tr>
 					<td class="table_td1">영상url</td>
 					<td><input type="text" class="insert_input" name="activity_video" value="${ activity.activity_video }"/></td>
 				</tr>
@@ -112,7 +150,7 @@
 					<td>
 						<textarea name="activity_content" class="ckeditor">${ activity.activity_content }</textarea>
 						<script type="text/javascript">
-							CKEDITOR.replace('activity_content', {height: 700, width: 900, filebrowserUploadUrl:'/activityImage/imageUpload.do'});
+							CKEDITOR.replace('activity_content', {height: 700, filebrowserUploadUrl:'/activityImage/imageUpload.do'});
 						</script>
 					</td>
 				</tr>

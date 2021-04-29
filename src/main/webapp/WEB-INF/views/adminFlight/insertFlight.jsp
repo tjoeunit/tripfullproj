@@ -17,7 +17,7 @@
 		font-size: 30px;
 	}
 	
-	table {
+	.insert_table {
 		width: 1200px;
 		padding: 20px;
 	}
@@ -28,9 +28,13 @@
 	
 	.insert_input {
 		padding: 5px;
-		width: 900px;
+		width: 1052px;
 		border: none;
 		background-color: lightgray;
+	}
+	
+	.ckeditor {
+		width: 100%;
 	}
 	
 	.insert_submit {
@@ -67,7 +71,7 @@
 		<div class="admin_subtitle">
 			<span class="admin_subtitle_name">항공권 상품등록</span>
 			<span class="new_upload">
-				<input type="submit" class="insert_submit" value=" 새글 등록 " />
+				<input type="submit" class="insert_submit" value=" 새글등록 " />
 			</span>
 		</div>
 		
@@ -111,7 +115,7 @@
 					<td>
 						<textarea name="flight_content" class="ckeditor"></textarea>
 						<script type="text/javascript">
-							CKEDITOR.replace('flight_content', {height: 700, width: 900, filebrowserUploadUrl:'/flightImage/imageUpload.do'});
+							CKEDITOR.replace('flight_content', {height: 700, filebrowserUploadUrl:'/flightImage/imageUpload.do'});
 						</script>
 					</td>
 				</tr>

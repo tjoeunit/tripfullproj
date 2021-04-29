@@ -119,7 +119,7 @@
 			</table>
 
 <!-- 액티비티 상세 설명 -->
-
+<!-- 영상 관련 기능 없음
 			<div class="video">
 				<h3>액티비티 맛보기 영상</h3>
 				<iframe width="1200" height="675"
@@ -130,6 +130,7 @@
 					allowfullscreen>
 				</iframe>
 			</div>
+ -->
 			<div class="product_detail">${ activity.activity_content }</div>
 			
 	</div>

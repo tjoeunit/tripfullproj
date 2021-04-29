@@ -1,53 +1,6 @@
 <%@page contentType="text/html; charset=UTF-8"%>
 <%@ include file="../import/top.jsp" %>
 
-<style>
-
-	.story_get{
-		font: bold;
-		width: 1000px;
-		padding: 10px;
-	}
-	
-	.story_get h5{
-		text-align: right;
-		padding-top: 10px;
-		padding-right: 20%;
-	}
-	.get_story_title{
-		width: 500px;
-		padding: 10px;
-		padding-left: 3%;
-		border-left: #d9c5c5 double 10px;
-	}
-	
-	.get_story_content{
-		background-color: #58CCFF;
-		height: 700px;
-	}
-	.get_story_date{
-		background-color: #58CCFF;
-	}
-	.get_story_cnt{	
-		background-color: #58CCFF;
-	}
-	
-	.get_story_bottom{
-		text-align: center;
-	}
-	.get_story_inform{
-		width: 750px;
-		padding: 10px;
-		padding-left: 1%;
-		border: #c4c4c4 dashed 1px;
-		border-radius: 3em;
-	}
-	
-	
-</style>
-
-
-
 <script type="text/javascript">
 
 	$(function(){
@@ -67,64 +20,125 @@
 			}
 		});
 	});
-	
-	
+
 </script>
 
-<main>
+<style type="text/css">
+	
+	.post_box {
+		border: 1px solid gray;
+		border-radius: 5px;
+		margin: 20px;
+		padding: 20px;
+	}
+	
+	.post_title {
+		font-size: 40px;
+		font-weight: 600;
+		text-align: left;
+		padding: 10px;
+	}
+	
+	.post_info_box {
+		text-align: right;
+	}
+	
+	.post_info {
+		font-size: 14px;
+		color: gray;
+		margin: 0px 10px;
+	}
+	
+	.post_content {
+		padding: 20px;
+	}
+	
+	.update_delete {
+		text-align: right;
+	}
+	
+	.update_delete_botton {
+		font-size: 14px;
+		color: gray;
+		margin: 0px 10px;
+	}
+	
+	.post_reply_box {
+	    border: 2px solid gray;
+	    border-radius: 5px;
+	    padding: 20px;
+	}
+	
+	.post_reply_writer {
+		display: inline-block;
+		width: 90%;
+	}
+	
+	.post_reply_button {
+		text-decoration: none;
+		display:inline-block;
+		margin: 0px 10px;
+		padding: 2px 10px;
+		border-radius: 5px;
+		border: 1px solid gray;
+		color: black;
+		background-color: white;
+		cursor: pointer;
+	}
+	
+	.post_reply {
+		display: block;
+	    width: 100%;
+	    border: 0;
+	    font-size: 13px;
+	    -webkit-appearance: none;
+	    resize: none;
+	    outline: 0;
+	    margin: 20px 0px;
+	}
+	
+}
+	
+</style>
 
+
+<main>
 	<input type="hidden" id="story_writer" value="${story.story_writer}">		<!-- 작성자 -->
 	<input type="hidden" name="story_no" value="${story.story_no}" />
 	<input type="hidden" id="members_id" value="${members_id}"> 		<!-- 세션 로그인된 id -->
 	
-	<br><br>
-	
-	<div class="get_story_title">
-		<h2>${story.story_title}</h2>
-	</div>
-	
-	<br>
-	
-	<div class="get_story_inform">
-		<b> 작성자&nbsp;&nbsp;&nbsp;${story.story_writer}</b>
+	<div class="post_box">
+		<div class="post_title">${story.story_title}</div>
+		<div class="post_info_box">
+			<span class="post_info">${story.story_writer}</span>
+			<span class="post_info"><fmt:formatDate value="${ story.story_date }" pattern="yy.MM.dd HH:mm"/></span>
+			<span class="post_info">조회 ${story.story_cnt}</span>
+		</div>
 		
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<hr>
 		
-		<fmt:formatDate value="${ story.story_date }" dateStyle="full" timeStyle="full"/>
+		<div class="post_content">${story.story_content}</div>
 		
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		
-		조회수 <b>${story.story_cnt}</b>회
-		
-	</div>
-	
-	<br><br><br>
-	
-		${story.story_content}
-		
-	<br><br><br>
+		<c:if test="${members_id != null}">
+			<div class="update_delete" >
+				<a class="update_delete_botton" id= "story_modify_a" href="updateStoryPage.do?story_no=${story.story_no}">수정하기</a>
+				<a class="update_delete_botton" id= "story_delete_a" href="deleteStory.do?story_no=${story.story_no}">삭제하기</a>
+				<a class="update_delete_botton" href="getStoryList.do">목록보기</a>
+			</div>
 			
-	<hr><br>
-	
-	
-<!-- 댓글 쓰기 (버튼을 눌러서 id값이 넘어와 실행되는 자바스크립트 구문) -->
+			<hr>
+		
+		
+			<div class="post_reply_box">
+				<div>
+					<span class="post_reply_writer">${ members_id }</span>
+					<span><button type="button" id="btnReply" class="post_reply_button">댓글쓰기</button></span>
+				</div>
+				<textarea rows="2" cols="120" id="reply_text" class="post_reply" placeholder="댓글을 작성하세요."></textarea>
+			</div>
+		</c:if>
+	</div>
 
-<!-- 너비와 정렬방식 설정 -->
-<div style="width:700px; text-align:center;">
- 
-<!-- 세션에 저장되어있는 members_id가 null이 아닐때 -->
-<!-- 그러니까 로그인을 한 상태이어야만 댓글을 작성 할 수 있다.-->
-     <c:if test="${members_id != null}">
-     
-     
-         <textarea rows="2" cols="120" id="reply_text" placeholder="댓글을 작성하세요."></textarea>
-         <br>
-         <!-- 댓글쓰기 버튼을 누르면 id값인 btnReply값이 넘어가서 -->
-         <!-- 밑에 있는 스크립트 구문이 실행되고 -->
-         <!-- 내가 댓글을 작성한 값이 스크립트문을 거쳐서 컨트롤러로 맵핑되게 된다. -->
-         <button type="button" id="btnReply">댓글쓰기</button>
 
 	<script type="text/javascript">	
 	    $("#btnReply").click(function(){
@@ -144,7 +158,6 @@
 	    
 	</script>
   
-    </c:if>
     </div>
     
     
@@ -179,11 +192,7 @@
 		
 	</script>
 	
-	<div class="get_story_bottom" >
-		<a id= "story_modify_a" href="updateStoryPage.do?story_no=${story.story_no}">수정하기</a>&nbsp;&nbsp;&nbsp;&nbsp; 
-		<a id= "story_delete_a" href="deleteStory.do?story_no=${story.story_no}">삭제하기</a>&nbsp;&nbsp;&nbsp;&nbsp; 
-		<a href="getStoryList.do">목록보기</a>
-	</div>
+	
 	
 	<br><br>
 </main>

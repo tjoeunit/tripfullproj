@@ -36,30 +36,86 @@ $(function(){
 	});		
 });
 </script>
+
+
+<style type="text/css">
+	
+	.main_title {
+		align-content: left;
+		font-size: 40px;
+		font-weight: 600;
+		margin: 20px 0px;
+	}
+	
+	.user_table {
+		margin: 20px 0px;
+		width: 100%;
+		border-top: 3px solid black;
+		border-collapse: collapse;
+	}
+	
+	td {
+		border-bottom: 1px solid gray;
+		padding: 10px 0px;
+		color: gray;
+	}
+	
+	.user_table_td1 {
+		width: 150px;
+		padding-left: 20px;
+	}
+
+	.info_button_box {
+		text-align: right;
+	}
+	
+	.info_button {
+		text-align: right;
+		text-decoration: none;
+		display:inline-block;
+		margin: 10px;
+		padding: 10px;
+		border-radius: 5px;
+		border: 1px solid gray;
+		color: black;
+		background-color: white;
+	}
+	
+	.info_button:hover {
+		box-shadow: 1px 1px 3px gray;
+		border: 1px solid gray;
+	}
+
+</style>
+
+
 <main>
-	${members_id}님 비밀번호 변경<br>
+	
+	<div class="main_title">${members_id}님 비밀번호 변경</div>
+	<hr>
 	
 	<form name="frm" action="<c:url value='/members/updatePw.do'/>" method="post">
-		<table>
+		<table class="user_table">
 			<tr>
-				<td>현재 비밀번호 입력 : </td>
-				<td><input type="password" name="members_pw_use" id="usePw"></td>
-				<td></td>
+				<td class="user_table_td1">현재 비밀번호 입력</td>
+				<td class="user_table_td2"><input type="password" name="members_pw_use" id="usePw"></td>
+				<td class="user_table_td3"></td>
 			</tr>
 			<tr>
-				<td>새 비밀번호 입력 : </td>
-				<td><input type="password" name="members_pw" id="chgPw1"></td>
-				<td><div id="chkpw1div"></div></td>
+				<td class="user_table_td1">새 비밀번호 입력</td>
+				<td class="user_table_td2"><input type="password" name="members_pw" id="chgPw1"></td>
+				<td class="user_table_td3"><div id="chkpw1div"></div></td>
 			</tr>
 			<tr>
-				<td>새 비밀번호 확인 : </td>
-				<td><input type="password" id="chgPw2"></td>
-				<td><div id="chkpw2div"></div></td>
+				<td class="user_table_td1">새 비밀번호 확인</td>
+				<td class="user_table_td2"><input type="password" id="chgPw2"></td>
+				<td class="user_table_td3"><div id="chkpw2div"></div></td>
 			</tr>	
 		</table>
-		<div>
-			<input type="submit" value="변경하기">
-			<input type="button" value="뒤로가기" onclick="history.back()">
+		
+		<div class="info_button_box">
+			<input type="submit" value="변경하기" class="info_button">
+			<input type="button" value="뒤로가기" onclick="history.back()" class="info_button">
 		</div>
 	</form>
 </main>
