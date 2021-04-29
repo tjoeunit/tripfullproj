@@ -1,10 +1,13 @@
 package com.tjoeunit.biz.members.Impl;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.tjoeunit.biz.members.MembersVO;
+import com.tjoeunit.biz.payment.PaymentVO;
 
 @Repository
 public class MembersDAO {
@@ -33,9 +36,9 @@ public class MembersDAO {
 	}
 	
 	public MembersVO selectByMembersNo(int members_no) {
-		return mybatis.selectOne("membersDAOTemplate.selectByMembersNo" ,members_no);
+		return mybatis.selectOne("membersDAOTemplate.selectByMembersNo", members_no);
 	}
-	
+		
 	public String checkPwById(String members_id) {
 		return mybatis.selectOne("membersDAOTemplate.checkPwById", members_id);
 	}
@@ -47,4 +50,9 @@ public class MembersDAO {
 	public int updateMembers(MembersVO vo) {
 		return mybatis.update("membersDAOTemplate.updateMembers", vo);
 	}
+	
+	public List<MembersVO> getMembersList(MembersVO vo) {
+		return mybatis.selectList("membersDAOTemplate.getMembersList", vo);
+	}
+	
 }

@@ -35,26 +35,26 @@ public class ActivityServiceImpl implements ActivityService {
 	}
 
 	@Override
-	public void updateActivity(ActivityVO vo) {
-		activityDAO.updateActivity(vo);
+	public int updateActivity(ActivityVO vo) {
+		return activityDAO.updateActivity(vo);
+		
 	}
 
 	@Override
-	public void deleteActivity(ActivityVO vo) {
-		activityDAO.deleteActivity(vo);
-		
+	public int deleteActivity(ActivityVO vo) {
+		return activityDAO.deleteActivity(vo);
 	}
 	
 	//페이징처리를 위해 생성
-		@Override
-		public int countActivity() {		
-			return activityDAO.countActivity();
-		}
-		
-		//페이징처리를 위해 생성
-		@Override
-		public List<ActivityVO> selectActivity(PagingVO vo) {
-			return activityDAO.selectActivity(vo);
-		}
+	@Override
+	public int countActivity() {		
+		return activityDAO.countActivity();
+	}
+	
+	//페이징처리를 위해 생성
+	@Override
+	public List<ActivityVO> selectActivity(PagingVO vo) {
+		return activityDAO.selectActivity(vo);
+	}
 
 }

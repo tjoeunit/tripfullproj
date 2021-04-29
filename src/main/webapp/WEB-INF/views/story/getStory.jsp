@@ -30,7 +30,7 @@
 		background-color: #58CCFF;
 	}
 
-	.get_story_cnt{	
+	.get_story_cnt{
 		background-color: #58CCFF;
 	}
 
@@ -77,9 +77,9 @@
 
 <input type="hidden" id="story_writer" name="story_writer" value="${story.story_writer}">		<!-- 작성자 -->
 <input type="hidden" id="story_no" name="story_no" value="${story.story_no}" />
-<input type="hidden" id="members_id" name="members_id" value="${members_id}"> 		<!-- 세션 로그인된 id -->	
-<input type="hidden" id="reply_id" name="reply_id" value="${reply.members_id}"> 
- 	
+<input type="hidden" id="members_id" name="members_id" value="${members_id}"> 		<!-- 세션 로그인된 id -->
+<input type="hidden" id="reply_id" name="reply_id" value="${reply.members_id}">
+
 	<br><br>
 
 	<div class="get_story_title">
@@ -109,22 +109,22 @@
 <!-- 너비와 정렬방식 설정 -->
 
 	<div style="width:700px; text-align:center;">
-	
+
 	 <!-- 댓글 등록 (로그인 되어있을 시에만 보이도록) -->
 	     <c:if test="${members_id != null}">
 		     <form action="replyWrite.do" name="replyForm" method="post">
 		         <textarea rows="2" cols="120" id="reply_text" name="reply_text" placeholder="댓글을 작성하세요."></textarea>
 				 <input type="hidden" id="story_no" name="story_no" value="${story.story_no}" />
 				 <input type="hidden" id="members_id" name="members_id" value="${members_id}">
-	
+
 		         <br>
-		
+
 		         <button type="submit" id="replyWriteBtn">댓글쓰기</button>
 			</form>
 	    </c:if>
-	
+
 	</div>
-	
+
 	<script type="text/javascript">
 		$(function(){
 			if ($('#members_id').val() != $('#reply_id').val()) {
@@ -144,17 +144,16 @@
 						작성 날짜 :  <fmt:formatDate value="${replyList.reply_date}" pattern="yyyy-MM-dd" />
 					</p>
 					<p>${replyList.reply_text}</p>
-					<div>
-						 <a id="delete_story_reply" href="<c:url value='/story/replyDelete.do?reply_no=${replyList.reply_no}&story_no=${story.story_no}' />">삭제</a>
-					</div>
+					<a href="<c:url value='/story/replyDelete.do?reply_no=${replyList.reply_no}&story_no=${story.story_no}' />">삭제</a>
+					
 				</li>
-			</c:forEach>   
+			</c:forEach>
 		</ol>
 	</div>
-		
+
  	<div class="get_story_bottom" >
-		<a id= "story_modify_a" href="updateStoryPage.do?story_no=${story.story_no}">수정하기</a>&nbsp;&nbsp;&nbsp;&nbsp; 
-		<a id= "story_delete_a" href="deleteStory.do?story_no=${story.story_no}">삭제하기</a>&nbsp;&nbsp;&nbsp;&nbsp; 
+		<a id= "story_modify_a" href="updateStoryPage.do?story_no=${story.story_no}">수정하기</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a id= "story_delete_a" href="deleteStory.do?story_no=${story.story_no}">삭제하기</a>&nbsp;&nbsp;&nbsp;&nbsp;
 		<a href="getStoryList.do">목록보기</a>
 	</div>
 	<br><br>

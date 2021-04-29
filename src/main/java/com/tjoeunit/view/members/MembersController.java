@@ -1,5 +1,7 @@
 package com.tjoeunit.view.members;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -14,23 +16,65 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.tjoeunit.biz.flight.FlightVO;
 import com.tjoeunit.biz.members.MembersService;
 import com.tjoeunit.biz.members.MembersVO;
+import com.tjoeunit.biz.payment.PaymentService;
+import com.tjoeunit.biz.payment.PaymentVO;
 
 @Controller
-@RequestMapping("/members")
 public class MembersController {
 
-	@Autowired
-	private MembersService membersService;
-
+	@Autowired private MembersService membersService;
+	@Autowired private PaymentService paymentService;
+	
+	//관리자 : 회원상세 페이지
+	@RequestMapping(value="/adminMembers/adminMembersDetail.do", method=RequestMethod.GET)
+	public String asdf(HttpServletRequest request, Model model) {
+		System.out.println("관리자 회원상세 페이지");
+		
+		int members_no = Integer.parseInt((request.getParameter("members_no")));
+		
+		MembersVO members = membersService.selectByMembersNo(members_no);
+		System.out.println(members);
+		
+		model.addAttribute("members", members);		
+		return "adminMembers/adminMembersDetail";
+	}
+	
+	//관리자 : 회원목록 페이지
+	@RequestMapping(value="/adminMembers/adminMembersList.do", method=RequestMethod.GET)
+	public String adminMembersList (MembersVO vo, Model model) {
+		System.out.println("관리자 회원목록 페이지");
+		
+		List<MembersVO> membersList = membersService.getMembersList(vo);
+		System.out.println(membersList);
+		model.addAttribute("membersList", membersList);
+		
+		return "adminMembers/adminMembersList";
+	}
+	
+	
+	
+	//결제정보 페이지
+	@RequestMapping(value="/members/infoPayMembers.do", method=RequestMethod.GET)
+	public String infoPayMembersPage(HttpSession session,PaymentVO vo, Model model) {
+		System.out.println("회원결제정보 페이지");
+		
+		int members_no = (Integer)session.getAttribute("members_no");
+		
+		List<PaymentVO> paymentList = paymentService.getPaymentList(members_no);
+		model.addAttribute("paymentList", paymentList);
+		
+		return "members/infoPayMembers";
+	}
+	
 	//회원가입 페이지
-	@RequestMapping(value="/insertMembers.do", method=RequestMethod.GET)
+	@RequestMapping(value="/members/insertMembers.do", method=RequestMethod.GET)
 	public String insertMembersPage() {
 		System.out.println("회원가입 페이지");
 		return "members/insertMembers";
 	}
 
 	//회원가입 처리
-	@RequestMapping(value="/insertMembers.do", method=RequestMethod.POST)
+	@RequestMapping(value="/members/insertMembers.do", method=RequestMethod.POST)
 	public String insertMembers(MembersVO vo, Model model) throws Exception {
 		System.out.println("회원가입 처리");
 
@@ -52,7 +96,7 @@ public class MembersController {
 	}
 	
 	//회원 등록 시 아이디 중복 확인 (Ajax)
-	@RequestMapping("/checkIdDup.do")
+	@RequestMapping("/members/checkIdDup.do")
 	@ResponseBody
 	public int checkIdDup(@RequestParam String members_id) {
 		System.out.println("members_id = " + members_id);
@@ -62,14 +106,14 @@ public class MembersController {
 	}
 	
 	//회원 로그인 페이지
-	@RequestMapping(value="/loginMembers.do", method=RequestMethod.GET)
+	@RequestMapping(value="/members/loginMembers.do", method=RequestMethod.GET)
 	public String loginMembersPage() {
 		System.out.println("회원 로그인 페이지");
 		return "members/loginMembers";
 	}
 	
 	//회원 로그인 처리
-	@RequestMapping(value="/loginMembers.do", method=RequestMethod.POST)
+	@RequestMapping(value="/members/loginMembers.do", method=RequestMethod.POST)
 	public String loginMembers(@RequestParam String members_id, @RequestParam String members_pw,
 			HttpServletRequest request, Model model) {
 		System.out.println("회원 로그인 처리");
@@ -103,7 +147,7 @@ public class MembersController {
 	}
 	
 	//회원 로그아웃 처리
-	@RequestMapping(value="/logoutMembers.do", method=RequestMethod.GET)
+	@RequestMapping(value="/members/logoutMembers.do", method=RequestMethod.GET)
 	public String logoutMembers(Model model, HttpSession session) {
 		
 		String members_id = (String)session.getAttribute("members_id"); 
@@ -120,14 +164,14 @@ public class MembersController {
 	}
 	
 	//회원 로그인 페이지
-	@RequestMapping(value="/indexMembers.do", method=RequestMethod.GET)
+	@RequestMapping(value="/members/indexMembers.do", method=RequestMethod.GET)
 	public String indexMembersPage() {
 		System.out.println("마이페이지 첫 화면");
 		return "members/indexMembers";
 	}
 	
 	//회원 정보 페이지
-	@RequestMapping(value="/infoMembers.do", method=RequestMethod.GET)
+	@RequestMapping(value="/members/infoMembers.do", method=RequestMethod.GET)
 	public String infoMembersPage(HttpSession session, Model model) {
 		System.out.println("회원정보 페이지");
 		
@@ -140,7 +184,7 @@ public class MembersController {
 	}
 	
 	//회원 탈퇴
-	@RequestMapping("/deleteMembers.do")
+	@RequestMapping("/members/deleteMembers.do")
 	public String deleteMembers(HttpSession session, Model model) {
 		
 		int members_no = (Integer)session.getAttribute("members_no");
@@ -167,14 +211,14 @@ public class MembersController {
 	}
 
 	//비밀번호 변경 페이지
-	@RequestMapping(value="/updatePw.do", method=RequestMethod.GET)
+	@RequestMapping(value="/members/updatePw.do", method=RequestMethod.GET)
 	public String updatePwPage() {
 		System.out.println("비밀번호 변경 페이지");
 		return "members/updatePw";
 	}
 	
 	//비밀번호 변경
-	@RequestMapping(value="/updatePw.do", method=RequestMethod.POST)
+	@RequestMapping(value="/members/updatePw.do", method=RequestMethod.POST)
 	public String updatePw(HttpSession session, HttpServletRequest request, MembersVO vo, Model model) {
 		
 		System.out.println("비밀번호 변경 처리");
@@ -234,7 +278,7 @@ public class MembersController {
 	}
 	
 	//회원정보 변경 페이지
-	@RequestMapping(value="/updateMembers.do", method=RequestMethod.GET)
+	@RequestMapping(value="/members/updateMembers.do", method=RequestMethod.GET)
 	public String updateMembersPage(HttpSession session, Model model) {
 		System.out.println("회원정보 변경 페이지");
 		
@@ -246,7 +290,7 @@ public class MembersController {
 		return "members/updateMembers";
 	}
 	
-	@RequestMapping(value="/updateMembers.do", method=RequestMethod.POST)
+	@RequestMapping(value="/members/updateMembers.do", method=RequestMethod.POST)
 	public String updateMembers(MembersVO vo, Model model) {
 		System.out.println("회원정보 변경 처리");
 		

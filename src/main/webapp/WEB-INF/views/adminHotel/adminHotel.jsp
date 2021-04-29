@@ -98,7 +98,7 @@
 	<div class="admin_subtitle">
 		<span class="admin_subtitle_name">숙박권 관리</span>
 		<span class="new_upload">
-			<a href="<c:url value='/adminHotel/insertHotel.do'/>">상품 등록</a>
+			<a href="<c:url value='/adminHotel/insertHotel.do'/>">상품등록</a>
 		</span>
 	</div>
 	

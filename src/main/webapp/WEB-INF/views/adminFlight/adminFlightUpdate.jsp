@@ -12,12 +12,16 @@
 	
 	.admin_subtitle_name {
 		display: inline-block;
-		width: 85%;
+		width: 1000px;
 		font-weight: 600;
 		font-size: 30px;
 	}
 	
-	table {
+	.new_upload {
+		width: 150px;
+	}
+	
+	.insert_table {
 		width: 1200px;
 		padding: 20px;
 	}
@@ -26,11 +30,21 @@
 		width: 100px;
 	}
 	
+	.select_box {
+		width: 100px;
+		text-align: center;
+		padding: 2px;
+	}
+	
 	.insert_input {
 		padding: 5px;
-		width: 900px;
+		width: 1052px;
 		border: none;
 		background-color: lightgray;
+	}
+	
+	.ckeditor {
+		width: 100%;
 	}
 	
 	.insert_submit {
@@ -90,11 +104,14 @@
 	<!-- DB 저장된 값을 hidden에 저장 -->
 	<input type="hidden" id="hidden_departure" value="${flight.flight_departure}">
 	<input type="hidden" id="hidden_arrival" value="${flight.flight_arrival}">
+	
+	
 	<!-- ckeditor 4 -->	
 	<script type="text/javascript" src="<c:url value='/ckeditor/ckeditor.js'/>"></script>
 	
 	<form action="<c:url value='/adminFlight/adminFlightUpdate.do'/>" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="flight_no" value="${flight.flight_no}">
+		
 		<div class="admin_subtitle">
 			<span class="admin_subtitle_name">항공권 상품 수정</span>
 			<span class="new_upload">
@@ -112,7 +129,7 @@
 				<tr>
 					<td class="table_td1">출발</td>
 					<td>
-						<select name="flight_departure" id="flight_departure">
+						<select name="flight_departure" id="flight_departure" class="select_box">
 							<option value="서울" selected="selected">서울</option>
 							<option value="부산">부산</option>
 						</select>						
@@ -123,7 +140,7 @@
 				<tr>
 					<td class="table_td1">도착</td>
 					<td>
-						<select name="flight_arrival" id="flight_arrival">
+						<select name="flight_arrival" id="flight_arrival" class="select_box">
 							<option value="서울" selected="selected">서울</option>
 							<option value="부산">부산</option>
 						</select>						
@@ -157,7 +174,7 @@
 					<td>
 						<textarea name="flight_content" class="ckeditor" id="ckeditor"></textarea>
 						<script type="text/javascript">
-							CKEDITOR.replace('flight_content', {height: 700, width: 900, filebrowserUploadUrl:'/flightImage/imageUpload.do'});
+							CKEDITOR.replace('flight_content', {height: 700, filebrowserUploadUrl:'/flightImage/imageUpload.do'});
 						</script>
 						<!-- flight_content 값을 불러 들일 textarea 생성 (display: none = hidden 효과) -->
 						<textarea id="serverContent" style="display: none">${flight.flight_content}</textarea>

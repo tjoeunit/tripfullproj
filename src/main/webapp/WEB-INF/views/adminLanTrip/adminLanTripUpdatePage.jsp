@@ -13,12 +13,16 @@
 	
 	.admin_subtitle_name {
 		display: inline-block;
-		width: 85%;
+		width: 1000px;
 		font-weight: 600;
 		font-size: 30px;
 	}
 	
-	table {
+	.new_upload {
+		width: 150px;
+	}
+	
+	.insert_table {
 		width: 1200px;
 		padding: 20px;
 	}
@@ -29,9 +33,13 @@
 	
 	.insert_input {
 		padding: 5px;
-		width: 900px;
+		width: 1052px;
 		border: none;
 		background-color: lightgray;
+	}
+	
+	.ckeditor {
+		width: 100%;
 	}
 	
 	.insert_submit {
@@ -82,14 +90,14 @@
 		$('#edRadio').click(function(){
 			if($('#svDiv').length > 0){
 				$('#svDiv').remove();
-				$('#thumbDiv').append('<div id="edDiv">변경 썸네일 : <input type="file" name="flightImgUpload"></div>');
+				$('#thumbDiv').append('<div id="edDiv">변경 썸네일 : <input type="file" name="lanTiripImgUpload"></div>');
 			}
 		});		
 		
 		$('#svRadio').click(function(){
 			if($('#edDiv').length > 0){
 				$('#edDiv').remove();
-				$('#thumbDiv').append('<div id="svDiv">현재 썸네일 : <input type="text" name="flightImgUpload" value="${flight.flight_thumb}" readonly></div>');
+				$('#thumbDiv').append('<div id="svDiv">현재 썸네일 : <input type="text" name="lanTiripImgUpload" value="${lantrip.lantrip_thumb}" readonly></div>');
 			}
 		});
 		
@@ -205,7 +213,7 @@
 					<td>
 						<textarea name="lantrip_content" class="ckeditor" id="lantrip_content">${ lantrip.lantrip_content }</textarea>
 						<script type="text/javascript">
-							CKEDITOR.replace('lantrip_content', {height: 700, width: 900, filebrowserUploadUrl:'/lanTripImage/imageUpload.do'});
+							CKEDITOR.replace('lantrip_content', {height: 700, filebrowserUploadUrl:'/lanTripImage/imageUpload.do'});
 						</script>
 					</td>
 				</tr>

@@ -27,6 +27,37 @@ public class LanTripController {
 	
 	@Autowired
 	private LanTripService lanTripService;
+	
+	// 랜선여행 결제 정보 받아서 결제 페이지로 보내기
+	@RequestMapping(value="/lantrip/lantripPayment.do", method=RequestMethod.POST)
+	public String flightPaymentPage(HttpServletRequest request, Model model) {
+		
+		String members_no = (String)request.getParameter("members_no");
+		String lantrip_no = request.getParameter("lantrip_no");
+		String payment_price = request.getParameter("payment_price");
+		String payment_quantity = request.getParameter("payment_quantity");
+		String payment_bookdate = request.getParameter("payment_bookdate");
+		String lantrip_title = request.getParameter("lantrip_title");
+		String product_category = request.getParameter("product_category");
+		
+		System.out.println("members_no="+members_no);
+		System.out.println("lantrip_no="+lantrip_no);
+		System.out.println("payment_price="+payment_price);
+		System.out.println("payment_quantity="+payment_quantity);
+		System.out.println("payment_bookdate="+payment_bookdate);
+		System.out.println("lantrip_title="+lantrip_title);
+		System.out.println("product_category="+product_category);
+		
+		model.addAttribute("members_no", members_no);
+		model.addAttribute("lantrip_no", lantrip_no);
+		model.addAttribute("payment_price", payment_price);
+		model.addAttribute("payment_quantity", payment_quantity);
+		model.addAttribute("payment_bookdate", payment_bookdate);
+		model.addAttribute("lantrip_title", lantrip_title);
+		model.addAttribute("product_category", product_category);
+		
+		return "payment/payment";
+	}
 
 /*관리자 컨트롤*/
 // adminLanTripList로 이동
@@ -193,11 +224,11 @@ public class LanTripController {
 		int total = lanTripService.countLanTrip();
 		if (nowPage == null && cntPerPage == null) {
 			nowPage = "1";
-			cntPerPage = "5";
+			cntPerPage = "20";
 		} else if (nowPage == null) {
 			nowPage = "1";
 		} else if (cntPerPage == null) { 
-			cntPerPage = "5";
+			cntPerPage = "20";
 		}
 		
 		vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
