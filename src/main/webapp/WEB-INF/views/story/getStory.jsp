@@ -19,12 +19,6 @@
 			}
 		});
 	});
-	
-	$(function(){
-		if ($('#members_id').val() != $('#reply_id').val()) {
-			$("#delete_story_reply").hide();
-		}
-	});
 </script>
 
 <style type="text/css">

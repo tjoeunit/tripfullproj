@@ -104,6 +104,7 @@
 </style>
 <script>
 	$(function(){
+		var numReg = /^[0-9]+$/;
 		$('form[name=frm]').submit(function() {
 			if ($('#members_no').val().length < 1) {
 				alert('로그인이 필요합니다');
@@ -115,6 +116,16 @@
 				$('#payment_bookdate').focus();
 				event.preventDefault();
 				return false;
+			}else if ($('#payment_quantity').val().length < 1){
+				alert('수량을 입력하세요');
+				$('#payment_quantity').focus();
+				event.preventDefault();
+				return false;
+			}else if (!numReg.test($("#payment_quantity").val())) {
+				alert('숫자만 입력하세요');
+				$('#payment_quantity').focus();
+				event.preventDefault();
+				return false;			
 			}
 		});
 	});
@@ -138,7 +149,7 @@
 				<td height="70">
 					<form name="frm" method="post" action="<c:url value='/activity/activityPayment.do'/>">
 					<div>
-						<span><input type="date" name="payment_bookdate" class="product_option"></span>
+						<span><input type="date" id="payment_bookdate" name="payment_bookdate" class="product_option"></span>
 						<span class="product_price">${activity.activity_price} 원</span>
 						<span><input type="text" id="payment_quantity" name="payment_quantity" class="product_option" placeholder="수량"></span>
 						<input type="submit" id="product_buy" class="product_buy" value="구매하기" />
