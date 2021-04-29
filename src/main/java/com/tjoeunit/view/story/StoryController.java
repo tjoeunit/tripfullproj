@@ -180,20 +180,22 @@ public class StoryController {
 
 		
 	// 댓글 삭제
-		@RequestMapping(value= "/story/replyDelete.do", method=RequestMethod.GET)
-		public String replyDelete(StoryReplyVO rvo, Model model, StoryVO vo) throws Exception {
-			System.out.println("댓글 삭제 처리");
-			
-			replyService.deleteReply(rvo);
-			
-			String msg="댓글이 삭제되었습니다.";
-			String url="/story/getStory.do?story_no="+vo.getStory_no();
-			
-			model.addAttribute("msg", msg);
-			model.addAttribute("url", url);
-	 
-			return "common/message";
-		}
+	@RequestMapping(value= "/story/replyDelete.do", method=RequestMethod.GET)
+	public String replyDelete(StoryReplyVO rvo, Model model, StoryVO vo) throws Exception {
+		
+		// 댓글을 보여줄 때 c:foreach로 보여주기 때문에 jsp보다 컨트롤러에서 처리하는 것이 편리
+		System.out.println("댓글 삭제 처리 rvo = "+rvo);
+				
+		replyService.deleteReply(rvo);
+		
+		String msg="댓글이 삭제되었습니다.";
+		String url="/story/getStory.do?story_no="+vo.getStory_no();
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+ 
+		return "common/message";
+	}
 		
 		
 		

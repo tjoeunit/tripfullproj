@@ -145,6 +145,7 @@
 					<li><a href="<c:url value='/adminActivity/adminActivity.do'/>">액티비티</a></li>
 					<li><a href="<c:url value='/adminLanTrip/adminLanTrip.do'/>">랜선투어</a></li>
 					<li><a href="<c:url value='/adminStory/adminStory.do'/>">여행이야기</a></li>
+					<li><a href="<c:url value='/adminPayment/adminPaymentInfo.do'/>">결제정보</a></li>
 				</ul>
 			</div>
 

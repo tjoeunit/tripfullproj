@@ -79,7 +79,7 @@
 		background: #383838;
 		cursor: pointer;
 	}
-	
+
 	.product_option {
 		display: inline-block;
 		text-decoration: none;
@@ -103,21 +103,29 @@
 
 </style>
 <script>
-	//전화번호 숫자 정규식!
-	var numReg = /^[0-9]+$/;
-	
 	$(function(){
+		var numReg = /^[0-9]+$/;
 		$('form[name=frm]').submit(function() {
 			if ($('#members_no').val().length < 1) {
 				alert('로그인이 필요합니다');
 				$('#members_id').focus();
 				event.preventDefault();
-				return false;				
-			}else if (!numReg.test$('#payment_quantity').val()){
-				alert('수량은 숫자만 입력하세요');
+				return false;
+			}else if ($('#payment_bookdate').val().length < 1){
+				alert('예약일자를 입력하세요');
+				$('#payment_bookdate').focus();
+				event.preventDefault();
+				return false;
+			}else if ($('#payment_quantity').val().length < 1){
+				alert('수량을 입력하세요');
 				$('#payment_quantity').focus();
 				event.preventDefault();
 				return false;
+			}else if (!numReg.test($("#payment_quantity").val())) {
+				alert('숫자만 입력하세요');
+				$('#payment_quantity').focus();
+				event.preventDefault();
+				return false;			
 			}
 		});
 	});
@@ -143,17 +151,17 @@
 				<td height="70">
 					<form name="frm" method="post" action="<c:url value='/lantrip/lantripPayment.do'/>">
 						<div>
-							<span><input type="date" name="payment_bookdate" class="product_option"></span>
+							<span><input type="date" id="payment_bookdate" name="payment_bookdate" class="product_option"></span>
 							<span class="product_price">${lantrip.lantrip_price} 원</span>
-							<span><input type="text" id="payment_quantity" name="payment_quantity" class="product_option" placeholder="수량"></span>
+							<span><input type="text" id="payment_quantity" name="payment_quantity" class="product_option" placeholder="수량" value="1" readonly></span>
 							<input type="submit" id="product_buy" class="product_buy" value="구매하기" />
 						</div>
-					
+
 						<input type="hidden" id="members_no" name="members_no" value="${members_no}">
 						<input type="hidden" name="lantrip_no" value="${lantrip.lantrip_no}">
 						<input type="hidden" name="payment_price" value="${lantrip.lantrip_price}">
 						<input type="hidden" name="lantrip_title" value="${lantrip.lantrip_title}">
-						<input type="hidden" name="product_category" value="랜선여행">						
+						<input type="hidden" name="product_category" value="랜선여행">
 					</form>
 				</td>
 			</tr>
@@ -171,7 +179,7 @@
 			</iframe>
 		</div>
 		<div class="product_detail">${ lantrip.lantrip_content }</div>
-			
+
 	</div>
 	<br>
 </main>

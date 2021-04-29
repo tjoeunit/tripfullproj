@@ -71,6 +71,7 @@ public class AdminController {
         return "redirect:/adminLogin/adminLogin_View.do";
     }
 
-
+    // 관리자 결제정보 보여주기
+    
 
 }
