@@ -18,7 +18,7 @@ public class HotelDAO {
 	
 	public int insertHotel(HotelVO vo){
 		return mybatis.insert("hotelDAOTemplate.insertHotel", vo);
-	  }
+	}
 	
     public int updateHotel(HotelVO vo){
     	return mybatis.update("hotelDAOTemplate.updateHotel", vo);
@@ -29,14 +29,12 @@ public class HotelDAO {
 	}  
 	  
 	public HotelVO getHotel(HotelVO vo) {
-	  return mybatis.selectOne("hotelDAOTemplate.getHotel", vo);
+		return mybatis.selectOne("hotelDAOTemplate.getHotel", vo);
 	}//  값을 반환하는 셀렉문 , 하나만 반환하면 selectOne
 	  
-	public List<HotelVO> getHotelList(HotelVO vo) {
-		  
-		  return mybatis.selectList("hotelDAOTemplate.getHotelList", vo);
-	
-    } 
+	public List<HotelVO> getHotelList(HotelVO vo) {		  
+		return mybatis.selectList("hotelDAOTemplate.getHotelList", vo);
+	}
 	
 	//페이징처리를 위해 생성
 	public int countHotel() {

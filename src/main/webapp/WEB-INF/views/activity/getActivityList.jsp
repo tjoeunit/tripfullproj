@@ -92,12 +92,8 @@
 	<!-- 페이징 옵션 시작 -->
 	<div class="page_select_box">
 	<select id="cntPerPage" name="sel" onchange="selChange()" class="page_select">
-		<option value="5"
-			<c:if test="${paging.cntPerPage == 5}">selected</c:if>>5개씩 보기</option>
 		<option value="10"
 			<c:if test="${paging.cntPerPage == 10}">selected</c:if>>10개씩 보기</option>
-		<option value="15"
-			<c:if test="${paging.cntPerPage == 15}">selected</c:if>>15개씩 보기</option>
 		<option value="20"
 			<c:if test="${paging.cntPerPage == 20}">selected</c:if>>20개씩 보기</option>
 	</select>
