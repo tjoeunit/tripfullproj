@@ -80,19 +80,19 @@
 <main>
 	<div style="height: 650px;">
 		<form id="frmPayment" name="frmPayment">
-			회원번호 : <input type="hidden" name="members_no" value="${members_no}"><br>
-			항공번호 : <input type="hidden" name="flight_no" id="flight_no" value="${flight_no}"><br>
-			호텔번호 : <input type="hidden" name="hotel_no" id="hotel_no" value="${hotel_no}"><br>
-			액티번호 : <input type="hidden" name="activity_no" id="activity_no" value="${activity_no}"><br>
-			랜선번호 : <input type="hidden" name="lantrip_no" id="lantrip_no" value="${lantrip_no}"><br>
-			예약일자 : <input type="hidden" name="payment_bookdate" value="${payment_bookdate}"><br>
-			수량수량 : <input type="hidden" name="payment_quantity" id="payment_quantity" value="${payment_quantity}"><br>
-			가격가격 : <input type="hidden" name="payment_price" id="payment_price" value="${payment_price}"><br>
-			항공제목 : <input type="hidden" name="flight_title" value="${flight_title}"><br>
-			호텔제목 : <input type="hidden" name="hotel_title" value="${hotel_title}"><br>
-			액티제목 : <input type="hidden" name="activity_title" value="${activity_title}"><br>
-			랜선제목 : <input type="hidden" name="lantrip_title" value="${lantrip_title}"><br>
-			상품종류 : <input type="hidden" name="product_category" id="cat" value="${product_category}"><br>
+			<input type="hidden" name="members_no" value="${members_no}"><br>
+			<input type="hidden" name="flight_no" id="flight_no" value="${flight_no}"><br>
+			<input type="hidden" name="hotel_no" id="hotel_no" value="${hotel_no}"><br>
+			<input type="hidden" name="activity_no" id="activity_no" value="${activity_no}"><br>
+			<input type="hidden" name="lantrip_no" id="lantrip_no" value="${lantrip_no}"><br>
+			<input type="hidden" name="payment_bookdate" value="${payment_bookdate}"><br>
+			<input type="hidden" name="payment_quantity" id="payment_quantity" value="${payment_quantity}"><br>
+			<input type="hidden" name="payment_price" id="payment_price" value="${payment_price}"><br>
+			<input type="hidden" name="flight_title" value="${flight_title}"><br>
+			<input type="hidden" name="hotel_title" value="${hotel_title}"><br>
+			<input type="hidden" name="activity_title" value="${activity_title}"><br>
+			<input type="hidden" name="lantrip_title" value="${lantrip_title}"><br>
+			<input type="hidden" name="product_category" id="cat" value="${product_category}"><br>
 		</form>		
 	</div>
 </main>
