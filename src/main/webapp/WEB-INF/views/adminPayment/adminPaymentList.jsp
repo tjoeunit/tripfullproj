@@ -40,6 +40,12 @@
 		background: #383838;
 	}
 	
+	.page_select {
+		padding: 5px;
+		border: 1px solid gray;
+		margin: 20px 20px 0px 20px;
+	}
+	
 	.list_table {
 		width: 1160px;
 		margin: 20px;
@@ -52,19 +58,25 @@
 	}
 	
 	.list_th1 {
-		width: 5%;
+		width: 10%;
 	}
 	.list_th2 {
-		width: 65%;
+		width: 10%;
 	}
 	.list_th3 {
-		width: 10%;
+		width: 30%;
 	}
 	.list_th4 {
 		width: 10%;
 	}
 	.list_th5 {
 		width: 10%;
+	}
+	.list_th6 {
+		width: 15%;
+	}
+	.list_th7 {
+		width: 15%;
 	}
 	
 	td {
@@ -103,7 +115,7 @@
 	
 	<!-- 페이징 JSP 추가작업 2 -->
 	<!-- 페이징 옵션 시작 -->
-	<select id="cntPerPage" name="sel" onchange="selChange()">
+	<select id="cntPerPage" name="sel" onchange="selChange()" class="page_select">
 		<option value="10"
 			<c:if test="${paging.cntPerPage == 10}">selected</c:if>>10개 보기</option>
 		<option value="20"
@@ -125,8 +137,8 @@
 		<c:forEach items="${paymentList}" var="payment">
 			<tr>
 				<td>${payment.payment_no}</td>
-				<td class="list_product_title">${payment.product_category}</td>
-				<td>${payment.flight_title}${payment.hotel_title}${payment.activity_title}${payment.lantrip_title}</td>
+				<td>${payment.product_category}</td>
+				<td class="list_product_title">${payment.flight_title}${payment.hotel_title}${payment.activity_title}${payment.lantrip_title}</td>
 				<td>${payment.payment_price}원</td>
 				<td>${payment.payment_quantity}</td>
 				<td>${payment.payment_bookdate}</td>
