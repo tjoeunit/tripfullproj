@@ -93,30 +93,25 @@
 	}
 
 </style>
-<script>
-	//전화번호 숫자 정규식!
-	var numReg = /^[0-9]+$/;
-	
+<script>	
 	$(function(){
-		$('form[name=frm]').submit(function() {
+		$('form[name=frm]').submit(function() {						
 			if ($('#members_no').val().length < 1) {
 				alert('로그인이 필요합니다');
 				$('#members_id').focus();
 				event.preventDefault();
 				return false;				
-			}else if (!numReg.test$('#payment_quantity').val()){
-				alert('수량은 숫자만 입력하세요');
-				$('#payment_quantity').focus();
+			}else if ($('#payment_bookdate').val().length < 1){
+				alert('예약일자를 입력하세요');
+				$('#payment_bookdate').focus();
 				event.preventDefault();
 				return false;
 			}
 		});
 	});
 </script>
-<main>
-	
-	<div class="product">
-	
+<main>	
+	<div class="product">	
 	<table class="product_top">
 				<tr>
 					<td rowspan="3"><img class="product_thumb" src="<c:url value='/flightUpload/${flight.flight_thumb}'/>"></td>
@@ -132,8 +127,8 @@
 				<td height="70">
 					<span class="product_price">${flight.flight_price} 원</span>
 					<form name="frm" method="post" action="<c:url value='/flight/flightPayment.do'/>">
-						예약일자 : <input type="date" name="payment_bookdate">
-						수량 : <input type="text" id="payment_quantity" name="payment_quantity">
+						예약일자 : <input type="date" id="payment_bookdate" name="payment_bookdate">
+						수량 : <input type="text" name="payment_quantity" value="1">
 						<input type="submit" id="product_buy" class="product_buy" value="구매하기" />
 						<input type="hidden" id="members_no" name="members_no" value="${members_no}">
 						<input type="hidden" name="flight_no" value="${flight.flight_no}">
@@ -143,12 +138,9 @@
 					</form>
 				</td>
 			</tr>
-		</table>
-		
-		<!-- 항공권 상세 설명 -->	
+		</table>		
 		<div class="product_detail">${flight.flight_content}</div>
 	</div>
 	<br>
 </main>
-
 <%@ include file="../import/bottom.jsp" %>

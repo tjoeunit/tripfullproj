@@ -93,9 +93,6 @@
 
 </style>
 <script>
-	//전화번호 숫자 정규식!
-	var numReg = /^[0-9]+$/;
-	
 	$(function(){
 		$('form[name=frm]').submit(function() {
 			if ($('#members_no').val().length < 1) {
@@ -103,9 +100,9 @@
 				$('#members_id').focus();
 				event.preventDefault();
 				return false;				
-			}else if (!numReg.test$('#payment_quantity').val()){
-				alert('숙박일수는 숫자만 입력하세요');
-				$('#payment_quantity').focus();
+			}else if ($('#payment_bookdate').val().length < 1){
+				alert('예약일자를 입력하세요');
+				$('#payment_bookdate').focus();
 				event.preventDefault();
 				return false;
 			}
@@ -113,9 +110,7 @@
 	});
 </script>
 <main>
-
 	<div class="product">
-
 		<table class="product_top">
 			<tr>
 				<td rowspan="3"><img class="product_thumb" src="<c:url value='/hotelUpload/${hotel.hotel_thumb}'/>"></td>
@@ -133,7 +128,7 @@
 				<td height="70">
 					<span class="product_price">${hotel.hotel_price} 원</span>
 					<form name="frm" method="post" action="<c:url value='/hotel/hotelPayment.do'/>">
-						예약일자 : <input type="date" name="payment_bookdate">
+						예약일자 : <input type="date" id="payment_bookdate" name="payment_bookdate">
 						숙박일수 : <input type="text" id="payment_quantity" name="payment_quantity">(박)
 						<input type="submit" id="product_buy" class="product_buy" value="구매하기" />
 						<input type="hidden" id="members_no" name="members_no" value="${members_no}">
@@ -144,12 +139,9 @@
 					</form>
 				</td>
 			</tr>
-		</table>
-		
-		<div class="product_detail">${hotel.hotel_content}</div>
-			
+		</table>		
+		<div class="product_detail">${hotel.hotel_content}</div>			
 	</div>
 	<br>
 </main>
-
 <%@ include file="../import/bottom.jsp" %>

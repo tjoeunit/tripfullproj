@@ -93,9 +93,6 @@
 
 </style>
 <script>
-	//전화번호 숫자 정규식!
-	var numReg = /^[0-9]+$/;
-	
 	$(function(){
 		$('form[name=frm]').submit(function() {
 			if ($('#members_no').val().length < 1) {
@@ -103,9 +100,9 @@
 				$('#members_id').focus();
 				event.preventDefault();
 				return false;				
-			}else if (!numReg.test$('#payment_quantity').val()){
-				alert('수량은 숫자만 입력하세요');
-				$('#payment_quantity').focus();
+			}else if ($('#payment_bookdate').val().length < 1){
+				alert('예약일자를 입력하세요');
+				$('#payment_bookdate').focus();
 				event.preventDefault();
 				return false;
 			}
@@ -113,9 +110,7 @@
 	});
 </script>
 <main>
-
 	<div class="product">
-
 		<table class="product_top">
 				<tr>
 					<td rowspan="3"><img class="product_thumb" src="<c:url value='/activityUpload/${ activity.activity_thumb }'/>"></td>
@@ -133,7 +128,7 @@
 					<td height="70">
 						<span class="product_price">${activity.activity_price} 원</span>
 						<form name="frm" method="post" action="<c:url value='/activity/activityPayment.do'/>">
-							예약일자 : <input type="date" name="payment_bookdate">
+							예약일자 : <input type="date" id="payment_bookdate" name="payment_bookdate">
 							수량 : <input type="text" id="payment_quantity" name="payment_quantity">
 							<input type="submit" id="product_buy" class="product_buy" value="구매하기" />
 							<input type="hidden" id="members_no" name="members_no" value="${members_no}">
@@ -145,25 +140,8 @@
 					</td>
 				</tr>
 			</table>
-
-<!-- 액티비티 상세 설명 -->
-<!-- 영상 관련 기능 없음
-			<div class="video">
-				<h3>액티비티 맛보기 영상</h3>
-				<iframe width="1200" height="675"
-					src="${ activity.activity_video }"
-					title="YouTube video player"
-					frameborder="0"
-					allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-					allowfullscreen>
-				</iframe>
-			</div>
- -->
-			<div class="product_detail">${ activity.activity_content }</div>
-			
+		<div class="product_detail">${ activity.activity_content }</div>			
 	</div>
 	<br>
 </main>
-	
-
 <%@ include file="../import/bottom.jsp" %>
