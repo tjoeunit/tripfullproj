@@ -24,23 +24,130 @@
 	
 </script>
 
+<style type="text/css">
+
+	.admin_subtitle {
+		background-color: lightgray;
+		padding: 10px 10px 10px 20px;
+	}
+	
+	.admin_subtitle_name {
+		display: inline-block;
+		width: 900px;
+		font-weight: 600;
+		font-size: 30px;
+	}
+	
+	.update_delete input {
+		display: inline-block;
+		font-size: 25px;
+		text-decoration: none;
+		color: black;
+		font-weight: 600;
+		border-radius: 5px;
+		-moz-transition: background-color .2s ease-in-out;
+		-webkit-transition: background-color .2s ease-in-out;
+		-ms-transition: background-color .2s ease-in-out;
+		transition: background-color .2s ease-in-out;
+		padding: 10px 5px;
+		background-color: lightgray;
+		border: none;
+		width: 125px;
+		cursor: pointer;
+	}
+	
+	.update_delete input:hover {
+		color: #fff !important;
+		background: #383838;
+	}
+	
+	.user_table {
+		margin: 20px 0px;
+		width: 100%;
+		border-top: 3px solid black;
+		border-collapse: collapse;
+	}
+	
+	td {
+		border-bottom: 1px solid gray;
+		padding: 10px 0px;
+		color: gray;
+	}
+	
+	.user_table_td1 {
+		width: 150px;
+		padding-left: 20px;
+	}
+	
+	input {
+		padding: 5px;
+		border: 1px solid gray;
+		border-radius: 5px;
+		width: 300px;
+	}
+
+</style>
 
 <main>
-회원정보<br>
-
-
-아이디 : <input type="text" value="${members.members_id}" readonly><br>
-이름 : <input type="text" value="${members.members_name}" readonly><br>
-전화번호 : <input type="text" value="${members.members_tel}" readonly><br>
-이메일 : <input type="text" value="${members.members_email}" readonly><br>
-성별 : <input type="text" value="${members.members_gender}" readonly><br>
-우편번호 : <input type="text" value="${members.members_zipcode}" readonly><br>
-주소 : <input type="text" value="${members.members_address}" readonly><br>
-주소상세 : <input type="text" value="${members.members_address_detail}" readonly><br>
-가입일 : <input type="text" value="${members.members_regdate}" readonly><br>
-
-<input type="button" id="updateBtn" value="수정하기">
-<input type="button" id="deleteBtn" value="삭제하기">
+	
+	<div class="admin_subtitle">
+		<span class="admin_subtitle_name">회원정보 상세보기</span>
+		<span class="update_delete">
+			<input type="button" id="updateBtn" value="수정하기">
+		</span>
+		<span class="update_delete">
+			<input type="button" id="deleteBtn" value="삭제하기">
+		</span>
+	</div>
+	
+	<table class="user_table">
+		<tr>
+			<td class="user_table_td1">가입일</td>
+			<td class="user_table_td2">${members.members_regdate}</td>
+		</tr>
+		
+		<tr>
+			<td class="user_table_td1">아이디</td>
+			<td class="user_table_td2">${members.members_id}</td>
+		</tr>
+		
+		<tr>
+			<td class="user_table_td1">이름</td>
+			<td class="user_table_td2">${members.members_name}</td>
+		</tr>
+		
+		<tr>
+			<td class="user_table_td1">성별</td>
+			<td class="user_table_td2">${members.members_gender}</td>
+		</tr>
+		
+		<tr>
+			<td class="user_table_td1">전화번호</td>
+			<td class="user_table_td2">${members.members_tel}</td>
+		</tr>
+		
+		<tr>
+			<td class="user_table_td1">이메일</td>
+			<td class="user_table_td2">${members.members_email}</td>
+		</tr>
+		
+		<tr>
+			<td class="user_table_td1">우편번호</td>
+			<td class="user_table_td2">${members.members_zipcode}</td>
+		</tr>
+		
+		<tr>
+			<td class="user_table_td1">주소</td>
+			<td class="user_table_td2">${members.members_address}</td>
+		</tr>
+		
+		<tr>
+			<td class="user_table_td1">상세주소</td>
+			<td class="user_table_td2">${members.members_address_detail}</td>
+		</tr>
+	</table>
 
 </main>
+
+
 <%@ include file="../import/bottom.jsp" %>
