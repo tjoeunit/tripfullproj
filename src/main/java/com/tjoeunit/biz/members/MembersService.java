@@ -1,5 +1,9 @@
 package com.tjoeunit.biz.members;
 
+import java.util.List;
+
+import com.tjoeunit.biz.payment.PaymentVO;
+
 public interface MembersService {
 
 	//고객 등록
@@ -28,4 +32,8 @@ public interface MembersService {
 
 	//고객 번호로 아이디 가져오기
 	MembersVO selectByMembersNo(int members_no);
+	
+	//관리자 회원목록 보기
+	List<MembersVO> getMembersList(MembersVO vo);
+	
 }

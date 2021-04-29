@@ -18,14 +18,14 @@ public class ActivityDAO {
 	
 	public int insertActivity(ActivityVO vo){
 		return mybatis.insert("activityDAOTemplate.insertActivity", vo);
-	  }
+	}
 	
     public void updateActivity(ActivityVO vo){
     	mybatis.update("activityDAOTemplate.updateActivity", vo);
 	}
 	  
 	public void deleteActivity(ActivityVO vo){
-		  mybatis.delete("activityDAOTemplate.deleteActivity", vo);
+		mybatis.delete("activityDAOTemplate.deleteActivity", vo);
 	}  
 	  
 	public ActivityVO getActivity(ActivityVO vo) { 
@@ -34,10 +34,8 @@ public class ActivityDAO {
 
 	public List<ActivityVO> getActivityList(ActivityVO vo) {
 		  // 검색 기능 전 
-		  return mybatis.selectList("activityDAOTemplate.getActivityList", vo);
-		 
-    } 
-	
+		return mybatis.selectList("activityDAOTemplate.getActivityList", vo);
+	}
 	
 	//페이징처리를 위해 생성
 	public int countActivity() {

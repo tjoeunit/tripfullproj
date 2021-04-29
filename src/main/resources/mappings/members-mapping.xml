@@ -65,6 +65,10 @@
 			members_address=#{members_address},
 			members_address_detail=#{members_address_detail}
 		where members_id=#{members_id}
-	</update>
+	</update>	
 	
+	<select id="getMembersList" resultType="com.tjoeunit.biz.members.MembersVO">
+		select * from members
+		order by members_no desc
+	</select>	
 </mapper>

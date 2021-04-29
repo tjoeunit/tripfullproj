@@ -32,7 +32,7 @@
 <main>
 
 	<!-- 회원관리 -->
-	<a href="<c:url value='#'/>"> 
+	<a href="<c:url value='/adminMembers/adminMembersList.do'/>"> 
 		<img src="<c:url value='/img/adminindex01.jpg'/>" class="adminIndex1">
 	</a>
 	

@@ -23,7 +23,6 @@
 		<mapper resource="mappings/flight-mapping.xml"/>
 		<mapper resource="mappings/storyReply-mapping.xml"/>
 		<mapper resource="mappings/qna-mapping.xml"/>
-	</mappers>
-	
-	
+		<mapper resource="mappings/payment-mapping.xml"/>		
+	</mappers>	
 </configuration>

@@ -46,15 +46,15 @@ public class ActivityServiceImpl implements ActivityService {
 	}
 	
 	//페이징처리를 위해 생성
-		@Override
-		public int countActivity() {		
-			return activityDAO.countActivity();
-		}
-		
-		//페이징처리를 위해 생성
-		@Override
-		public List<ActivityVO> selectActivity(PagingVO vo) {
-			return activityDAO.selectActivity(vo);
-		}
+	@Override
+	public int countActivity() {		
+		return activityDAO.countActivity();
+	}
+	
+	//페이징처리를 위해 생성
+	@Override
+	public List<ActivityVO> selectActivity(PagingVO vo) {
+		return activityDAO.selectActivity(vo);
+	}
 
 }
