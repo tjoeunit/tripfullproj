@@ -144,9 +144,8 @@
 						작성 날짜 :  <fmt:formatDate value="${replyList.reply_date}" pattern="yyyy-MM-dd" />
 					</p>
 					<p>${replyList.reply_text}</p>
-					<div>
-						 <a id="delete_story_reply" href="<c:url value='/story/replyDelete.do?reply_no=${replyList.reply_no}&story_no=${story.story_no}' />">삭제</a>
-					</div>
+					<a href="<c:url value='/story/replyDelete.do?reply_no=${replyList.reply_no}&story_no=${story.story_no}' />">삭제</a>
+					
 				</li>
 			</c:forEach>
 		</ol>
