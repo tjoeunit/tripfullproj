@@ -99,7 +99,7 @@
 <main>
 
 	<div class="admin_subtitle">
-		<span class="admin_subtitle_name">고객센터</span>
+		<span class="admin_subtitle_name">QNA</span>
 	</div>
 
 	<!-- 페이징 JSP 추가작업 2 -->

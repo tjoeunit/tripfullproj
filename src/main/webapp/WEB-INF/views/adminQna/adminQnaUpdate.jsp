@@ -88,7 +88,7 @@
 		<input type="hidden" name="qna_no" value="${ qna.qna_no }"/>
 		
 		<div class="admin_subtitle">
-			<span class="admin_subtitle_name">문의사항 답변하기</span>
+			<span class="admin_subtitle_name">QNA 답변하기</span>
 			<span class="new_upload">
 				<input type="submit" class="insert_submit" value=" 답변완료 " />
 			</span>
