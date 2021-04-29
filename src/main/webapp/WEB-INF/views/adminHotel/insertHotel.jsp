@@ -3,10 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 <%@ include file="../import/admintop.jsp" %>
 <script type="text/javascript">
-/////////////////////////////////////////////////////////////
-////////////////////db 1111입력 오류 방지////////////////////////
-/////////////////////////////////////////////////////////////
-
+// DB 1111오류 방지
 $(function(){	
 	
 	$('form[name=update_Hotel]').submit(function(){ 
@@ -52,7 +49,7 @@ $(function(){
 		font-size: 30px;
 	}
 	
-	table {
+	.insert_table {
 		width: 1200px;
 		padding: 20px;
 	}
@@ -63,9 +60,13 @@ $(function(){
 	
 	.insert_input {
 		padding: 5px;
-		width: 900px;
+		width: 1052px;
 		border: none;
 		background-color: lightgray;
+	}
+	
+	.ckeditor {
+		width: 100%;
 	}
 	
 	.insert_submit {
@@ -106,7 +107,7 @@ $(function(){
 		<div class="admin_subtitle">
 			<span class="admin_subtitle_name">숙박권 등록</span>
 			<span class="new_upload">
-				<input type="submit" class="insert_submit" value=" 새글 등록 " />
+				<input type="submit" class="insert_submit" value=" 새글등록 " />
 			</span>
 		</div>
 		
@@ -158,7 +159,7 @@ $(function(){
 					<td>
 						<textarea name="hotel_content" class="ckeditor" id="hotel_content"></textarea>
 						<script type="text/javascript">
-							CKEDITOR.replace('hotel_content', {height: 700, width: 900, filebrowserUploadUrl:'/hotelImage/imageUpload.do'});
+							CKEDITOR.replace('hotel_content', {height: 700, filebrowserUploadUrl:'/hotelImage/imageUpload.do'});
 						</script>
 					</td>
 				</tr>

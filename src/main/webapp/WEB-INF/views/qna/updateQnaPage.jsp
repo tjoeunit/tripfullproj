@@ -116,6 +116,10 @@
 		margin-bottom: 20px;
 		width: 1200px;
 	}
+	
+	a {
+		text-decoration: none;
+	}
 
 </style>
 
@@ -174,42 +178,58 @@
 
 <style type="text/css">
 
-	.qna_update{
-		color: white;
-		font: bold;
-		width: 1000px;
-		padding: 10px;
+	.main_title {
+		align-content: left;
+		font-size: 40px;
+		font-weight: 600;
+		margin: 20px 0px;
 	}
 	
-	.qna_update td{
-		text-align: center;
+	.insert_table {
+		width: 1200px;
+		padding: 20px;
 	}
 	
-	.qna_update td input{
+	.table_td1 {
+		width: 100px;
+	}
+	
+	.insert_input {
+		padding: 5px;
+		width: 1052px;
+		border: none;
+		background-color: lightgray;
+	}
+	
+	.input_readonly {
+		padding: 5px;
+		width: 1052px;
+		border: none;
+		background-color: white;
+	}
+	
+	.ckeditor {
 		width: 100%;
 	}
 	
-	.update_qna_subject{
-		background-color: #58CCFF;
-		width: 120px;
-	}
-	.update_qna_writer{
-		background-color: #58CCFF;
+	.new_post_button {
+		text-align: right;
 	}
 	
-	.update_qna_content{
-		background-color: #58CCFF;
-		height: 700px;
+	.new_post {
+		text-decoration: none;
+		display:inline-block;
+		margin: 10px;
+		padding: 10px;
+		border-radius: 5px;
+		border: 1px solid gray;
+		color: black;
+		background-color: white;
 	}
 	
-	.updateQna_bottom{
-		text-align: center;
-		padding-right: 17%;
-	}
-	
-	.updateQna_bottom input{
-		width:65pt;
-		height:30pt;
+	.new_post:hover {
+		box-shadow: 1px 1px 3px gray;
+		border: 1px solid gray;
 	}
 
 </style>
@@ -244,41 +264,43 @@
 
 <!-- ckeditor 4 -->
  	<script type="text/javascript" src = "<c:url value = '/ckeditor/ckeditor.js' />"></script>
-			<br><h1>문의사항 수정</h1><hr><br>
-			<form action="updateQna.do?qna_no=${qna.qna_no}" name="enroll_updated_qna" method="post" enctype="multipart/form-data">
-				<input type="hidden" name="members_no" value="${members_no}">
-				<table class="qna_update">
-					<tr>
-						<td class="update_qna_subject">제목</td>
-						<td><input type="text" id="qna_title" name="qna_title" value="${qna.qna_title}"/></td>
-					</tr>
-					
-					<tr>
-						<td class="update_qna_writer">작성자</td>
-						<td><input type="text" name="qna_writer" value="${qna.qna_writer}" readonly></td>
-					</tr>
-					<tr>
-						<td class="update_qna_content">내용</td>
-						<td>
-							<textarea id="qna_content" name="qna_content">${qna.qna_content}</textarea>
-							<script type="text/javascript">
-								CKEDITOR.replace('qna_content', {height: 700, width: 900, filebrowserUploadUrl:'/qnaImage/imageUpload.do'});
-							</script>
-						</td>
-					</tr>					
-					
-				</table>	<br><br>
-						
-					<div class = "updateQna_bottom">
-						<input type="submit" value=" 수정하기 "/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<input type="button" onclick="hiqna.back()" value=" 뒤로가기 "/>
-					</div>
-					
-			</form>
+ 	
+ 	<div class="main_title">문의사항 수정</div>
+	<hr>
 			
-			<br><br>
-			
-
+	<form action="updateQna.do?qna_no=${qna.qna_no}" name="enroll_updated_qna" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="members_no" value="${members_no}">
+				
+		<div>
+			<table class="insert_table">
+				<tr>
+					<td class="table_td1">제목</td>
+					<td class="table_td2"><input type="text" id="qna_title" name="qna_title" class="insert_input" value="${qna.qna_title}"/></td>
+				</tr>
+				
+				<tr>
+					<td class="table_td1">작성자</td>
+					<td class="table_td2"><input type="text" name="qna_writer" class="input_readonly" value="${qna.qna_writer}" readonly></td>
+				</tr>
+					
+				<tr>
+					<td class="table_td1">내용</td>
+					<td class="table_td2">
+						<textarea id="qna_content" name="qna_content" class="ckeditor">${qna.qna_content}</textarea>
+						<script type="text/javascript">
+						CKEDITOR.replace('qna_content', {height: 700, filebrowserUploadUrl:'/qnaImage/imageUpload.do'});
+						</script>
+					</td>
+				</tr>				
+			</table>
+		</div>
+		
+		<div class="new_post_button">
+			<input type="submit" class=" new_post" value=" 수정하기 "/>
+			<input type="button" onclick="history.back()" class=" new_post" value=" 뒤로가기 "/>
+		</div>
+	
+	</form>
 </main>
 
 <%@ include file="../import/bottom.jsp" %>

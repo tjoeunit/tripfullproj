@@ -12,12 +12,16 @@
 	
 	.admin_subtitle_name {
 		display: inline-block;
-		width: 85%;
+		width: 1000px;
 		font-weight: 600;
 		font-size: 30px;
 	}
 	
-	table {
+	.new_upload {
+		width: 150px;
+	}
+	
+	.insert_table {
 		width: 1200px;
 		padding: 20px;
 	}
@@ -28,9 +32,13 @@
 	
 	.insert_input {
 		padding: 5px;
-		width: 900px;
+		width: 1052px;
 		border: none;
 		background-color: lightgray;
+	}
+	
+	.ckeditor {
+		width: 100%;
 	}
 	
 	.insert_submit {
@@ -195,7 +203,7 @@
 					<td>
 						<textarea name="hotel_content" class="ckeditor" id="ckeditor"></textarea>
 						<script type="text/javascript">
-							CKEDITOR.replace('hotel_content', {height: 700, width: 900, filebrowserUploadUrl:'/hotelImage/imageUpload.do'});
+							CKEDITOR.replace('hotel_content', {height: 700, filebrowserUploadUrl:'/hotelImage/imageUpload.do'});
 						</script>
 						<!-- flight_content 값을 불러 들일 textarea 생성 (display: none = hidden 효과) -->
 						<textarea id="serverContent" style="display: none">${hotel.hotel_content}</textarea>

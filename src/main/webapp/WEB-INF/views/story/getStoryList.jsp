@@ -101,7 +101,7 @@
 		//세션에 로그인 된 아이디 값이 없다면
 		if($("#sessionID").val() == ""){
 			// 새글 등록 버튼 숨기기
-			$("#new_story_post").hide();
+			$("#new_post").hide();
 		}
 
 	});
@@ -183,7 +183,7 @@
 	<!-- 페이징 하단 숫자 끝 -->
 	
 	<div class="new_post_button">
-			<a href="<c:url value='/story/insertStory.do'/>" id="new_post" class=" new_post">새글등록</a>
+			<a href="<c:url value='/story/insertStoryPage.do'/>" id="new_post" class=" new_post">새글등록</a>
 	</div>
 	
 	

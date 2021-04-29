@@ -159,66 +159,153 @@
 		}).open();
 	}
 </script>
+
+
+<style type="text/css">
+	
+	.main_title {
+		align-content: left;
+		font-size: 40px;
+		font-weight: 600;
+		margin: 20px 0px;
+	}
+	
+	.info_change_button {
+		
+	}
+	
+	.user_table {
+		margin: 20px 0px;
+		width: 100%;
+		border-top: 3px solid black;
+		border-collapse: collapse;
+	}
+	
+	td {
+		border-bottom: 1px solid gray;
+		padding: 10px 0px;
+		color: gray;
+	}
+	
+	.user_table_td1 {
+		width: 150px;
+		padding-left: 20px;
+	}
+	
+	.info_button_box {
+		text-align: right;
+	}
+	
+	.info_button {
+		text-align: right;
+		text-decoration: none;
+		display:inline-block;
+		margin: 10px;
+		padding: 10px;
+		border-radius: 5px;
+		border: 1px solid gray;
+		color: black;
+		background-color: white;
+	}
+	
+	.info_button:hover {
+		box-shadow: 1px 1px 3px gray;
+		border: 1px solid gray;
+	}
+	
+	input {
+		padding: 5px;
+		border: 1px solid gray;
+		border-radius: 5px;
+	}
+	
+	.select_box {
+		padding: 5px;
+		border: 1px solid gray;
+		border-radius: 5px;
+		width: 174px;
+	}
+	
+</style>
+
 <main>
+	
+	<div class="main_title">회원정보 수정</div>
+	<hr>
+	
 	<input type="hidden" id="dbtel" value="${members.members_tel}">
 	<input type="hidden" id="dbgender" value="${members.members_gender}">	
 
 	<form name="frm" action="<c:url value='/members/updateMembers.do'/>" method="post">
 		<input type="hidden" id="members_tel" name="members_tel" value="${members.members_tel}">
-		<table>
+		
+		<table class="user_table">
 			<tr>
-				<td>아이디 : </td>
-				<td><input type="text" name="members_id" value="${members.members_id}" readonly></td>
+				<td class="user_table_td1">아이디</td>
+				<td class="user_table_td2"><input type="text" name="members_id" value="${members.members_id}" readonly></td>
+				<td class="user_table_td3"></td>
 			</tr>
 			<tr>
-				<td>이름 : </td>
-				<td><input type="text" name="members_name" id="members_name" value="${members.members_name}"></td>
+				<td class="user_table_td1">이름</td>
+				<td class="user_table_td2"><input type="text" name="members_name" id="members_name" value="${members.members_name}"></td>
+				<td class="user_table_td3"></td>
 			</tr>
 			<tr>
-				<td>전화번호 : </td>
-				<td>
-					<input type="text" id="tel1" readonly>-<input type="text" id="tel2" maxlength="4">-<input type="text" id="tel3" maxlength="4">
+				<td class="user_table_td1">전화번호</td>
+				<td class="user_table_td2">
+					<input type="text" id="tel1" readonly> - <input type="text" id="tel2" maxlength="4"> - <input type="text" id="tel3" maxlength="4">
 				</td>
-				<td>
+				<td class="user_table_td3">
 					<div id="chkTel"></div>
 				</td>
 			</tr>
 			<tr>
-				<td>이메일 : </td>
-				<td>
+				<td class="user_table_td1">이메일</td>
+				<td class="user_table_td2">
 					<input type="text" name="members_email" id="members_email" value="${members.members_email}">
 				</td>
-				<td>
+				<td class="user_table_td3">
 					<div id="chkEmail"></div>
 				</td>
 			</tr>
 			<tr>
-				<td>성별 : </td>
-				<td>
-					<select name="members_gender" id="members_gender">
+				<td class="user_table_td1">성별</td>
+				<td class="user_table_td2">
+					<select name="members_gender" id="members_gender" class="select_box">
 						<option value="남자" selected>남자</option>
 					    <option value="여자">여자</option>
 					</select>
 				</td>
+				<td class="user_table_td3"></td>
 			</tr>
 			<tr>
-				<td>우편번호 : </td>
-				<td>
+				<td class="user_table_td1">우편번호</td>
+				<td class="user_table_td2">
 					<input type="text" name="members_zipcode" id="members_zipcode" value="${members.members_zipcode}" readonly>
 					<input type="button" id="search_address" onclick="sample4_execDaumPostcode()" value="주소검색">
-				</td>			
+				</td>
+				<td class="user_table_td3"></td>			
 			</tr>
 			<tr>
-				<td>주소 : </td>
-				<td><input type="text" id="members_address" name="members_address" value="${members.members_address}"></td>
+				<td class="user_table_td1">주소</td>
+				<td class="user_table_td2">
+					<input type="text" id="members_address" name="members_address" value="${members.members_address}">
+				</td>
+				<td class="user_table_td3"></td>
 			</tr>
 			<tr>
-				<td>주소상세 : </td>
-				<td><input type="text" id="members_address_detail" name="members_address_detail" value="${members.members_address_detail}"></td>
+				<td class="user_table_td1">주소상세</td>
+				<td class="user_table_td2">
+					<input type="text" id="members_address_detail" name="members_address_detail" value="${members.members_address_detail}">
+				</td>
+				<td class="user_table_td3"></td>
 			</tr>		
 		</table>
-		<input type="submit" value="수정하기">
-		<input type="button" value="뒤로가기" onclick="history.back()">
+		
+		<div class="info_button_box">
+			<input type="submit" value="수정하기" class="info_button">
+			<input type="button" value="뒤로가기" onclick="history.back()" class="info_button">
+		</div>
 	</form>	
 </main>
 
