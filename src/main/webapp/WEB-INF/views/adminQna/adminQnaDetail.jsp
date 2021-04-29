@@ -67,7 +67,7 @@
 	<input type="hidden" id="members_id" value="${members_id}"> 		<!-- 세션 로그인된 id -->
 
 	<div class="admin_subtitle">
-		<span class="admin_subtitle_name">문의사항 상세보기</span>
+		<span class="admin_subtitle_name">QNA 상세보기</span>
 		<span class="update_delete">
 			<a href="<c:url value='/adminQna/adminQnaUpdate.do?qna_no=${ qna.qna_no }'/>">답변하기</a>
 		</span>

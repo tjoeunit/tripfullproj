@@ -163,7 +163,7 @@
 					<li><a href="<c:url value='/index/termService.jsp'/>">이용약관</a></li>
 					<li><a href="<c:url value='/index/privacyPolicy.jsp'/>">개인정보 처리방침</a></li>
 					<li><a href="<c:url value='/index/cancelRefund.jsp'/>">취소 및 환불 정책</a></li>
-					<li><a href="<c:url value='/qna/getQnaList.do'/>"class="serviceCheck">자주 묻는 질문</a></li>
+					<li><a href="<c:url value='/qna/getQnaList.do'/>"class="serviceCheck">QNA</a></li>
 				</ul>
 			</div>
 
