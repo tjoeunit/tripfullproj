@@ -3,9 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 <%@ include file="../import/admintop.jsp" %>
 <script type="text/javascript">
-// DB 1111오류 방지
-$(function(){	
-	
+$(function(){
 	$('form[name=update_Hotel]').submit(function(){ 
 		if($('#hotel_title').val().length < 1) {
 			alert('제목을 확인하세요');
