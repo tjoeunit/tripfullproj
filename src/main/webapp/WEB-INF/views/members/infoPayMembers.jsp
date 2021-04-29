@@ -5,7 +5,18 @@
 <style type="text/css">
 	
 	.main_title {
+		display: inline-block;
+		width: 85%;
 		align-content: left;
+		font-size: 40px;
+		font-weight: 600;
+		margin: 20px 0px;
+	}
+	
+	.sub_title {
+		display: inline-block;
+		color: gray;
+		align-content: right;
 		font-size: 40px;
 		font-weight: 600;
 		margin: 20px 0px;
@@ -27,6 +38,11 @@
 		border-bottom: 1px solid gray;
 		padding: 10px 0px;
 		color: gray;
+		text-align: center;
+	}
+	
+	.product_title {
+		text-align: left;
 	}
 	
 	.table_th1 {
@@ -55,7 +71,14 @@
 
 <main>
 
-	<div class="main_title">${members_id} 님의 결제정보</div>
+	<div>
+		<a href="<c:url value='/members/infoPayMembers.do'/>">
+			<span class="main_title">${members_id} 결제정보</span>
+		</a>
+		<a href="<c:url value='/members/infoMembers.do'/>">
+			<span class="sub_title">회원정보</span>
+		</a>
+	</div>
 	
 	<table class = "table_list">
 		<tr class="table_top">
@@ -72,7 +95,7 @@
 		<tr>
 			<td>${payment.payment_no}</td>
 			<td>${payment.product_category}</td>
-			<td>${payment.flight_title}${payment.hotel_title}${payment.activity_title}${payment.lantrip_title}</td>
+			<td class="product_title">${payment.flight_title}${payment.hotel_title}${payment.activity_title}${payment.lantrip_title}</td>
 			<td>${payment.payment_price}</td>
 			<td>${payment.payment_quantity}</td>
 			<td>${payment.payment_bookdate}</td>
