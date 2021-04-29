@@ -28,4 +28,20 @@
 		]]>
 	</select>
 	
+	<!-- 페이징 처리 쿼리 (결제 총 개수) -->
+	<select id="countPayment" resultType="int">
+		select count(*) from payment
+	</select>
+
+	<!-- 페이징 처리 쿼리 -->
+	<select id="selectPayment" resultType="com.tjoeunit.biz.payment.PaymentVO">
+		select * from (
+			select rownum as rn, a.*
+				from (
+					select * from payment
+					order by payment_no desc
+					) a		
+		)
+		where rn between #{start} and #{end}
+	</select>
 </mapper>
