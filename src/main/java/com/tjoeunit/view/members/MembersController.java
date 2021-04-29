@@ -30,12 +30,12 @@ public class MembersController {
 	public String adminUpdateMembers(MembersVO vo, Model model) {
 		System.out.println("관리자 회원 수정 처리 vo = "+vo);
 		
-		String msg="회원 삭제 실패", url="/adminMembers/adminMembersDetail.do?members_no="+vo.getMembers_no();
+		String msg="회원 수정 실패", url="/adminMembers/adminMembersDetail.do?members_no="+vo.getMembers_no();
 		
 		int cnt = membersService.updateMembers(vo);
 		
 		if(cnt>0) {
-			msg="회원 삭제 성공";
+			msg="회원 수정 성공";
 			url="/adminMembers/adminMembersDetail.do?members_no="+vo.getMembers_no();
 		}
 
