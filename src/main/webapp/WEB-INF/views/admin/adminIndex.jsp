@@ -62,7 +62,7 @@
 	</a>
 	
 	<!-- 여행이야기관리 -->
-	<a href="<c:url value='#'/>">
+	<a href="<c:url value='/adminStory/adminStory.do'/>">
 		<img src="<c:url value='/img/adminindex07.jpg'/>" class="adminIndex2">
 	</a>
 	

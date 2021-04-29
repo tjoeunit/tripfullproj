@@ -10,21 +10,31 @@ import com.tjoeunit.biz.story.StoryReplyVO;
 
 @Service
 public class StoryReplyServiceImpl implements StoryReplyService{
-
-	//dao 호출을 위한 주입
 	@Autowired
-    StoryReplyDAO replyDao; 
+	private StoryReplyDAO replyDAO;
 	
 	//댓글 목록
 	@Override
-	public List<StoryReplyVO> storyReplyList(int story_no) {
-		return replyDao.storyReplyList(story_no);
+	public List<StoryReplyVO> getReplyList(int story_no) {
+		return replyDAO.getReplyList(story_no);
 	}
 
-	//댓글 쓰기
+	// 댓글 작성
 	@Override
-	public void createStoryReply(StoryReplyVO rvo) {
-		replyDao.createStoryReply(rvo);
+	public int createReply(StoryReplyVO rvo) {
+		return replyDAO.createReply(rvo);
 	}
-
+	
+	//댓글 삭제
+	@Override
+	public void deleteReply(StoryReplyVO rvo) {
+		replyDAO.deleteReply(rvo);
+	}
+	
+ /*
+	//선택된 댓글 조회
+	@Override
+	public StoryReplyVO selectStoryReply(StoryReplyVO rvo) {
+		return replyDao.selectStoryReply(rvo);
+	}*/
 }

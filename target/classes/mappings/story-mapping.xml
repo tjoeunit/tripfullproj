@@ -38,7 +38,7 @@
 		select * from story order by story_no desc
 	</select>
 	
-<!-- 페이징 처리 쿼리 (항공권 총 개수) -->
+<!-- 페이징 처리 쿼리 -->
 	<select id="countStory" resultType="int">
 		select count(*) from story
 	</select>
