@@ -17,57 +17,36 @@
 		
 		var IMP = window.IMP;
 		IMP.init('imp82469177');		
-			IMP.request_pay({
-			pg : 'kakaopay',
-			pay_method : 'card',
-			merchant_uid : 'merchant_' + new Date().getTime(),
-			name : 'Tripfull 상품결제',
-			amount : parseInt(price),
-		}, function(rsp) {
-			$.ajax({
-				url: "<c:url value='/payment/payment.do' />",
-				type: "post",
-				data: $('#frmPayment').serialize(),
-				success: function(result){
-					if(result > 0){					
-						alert("결제 성공");						
-						if(cat == '항공') {
-							location.href = "<c:url value='/flight/getFlight.do?flight_no="+fno+"'/>";
-						}else if(cat == '숙박'){
-							location.href = "<c:url value='/hotel/getHotel.do?hotel_no="+hno+"'/>";
-						}else if(cat == '액티비티'){
-							location.href = "<c:url value='/activity/getActivity.do?activity_no="+ano+"'/>";
-						}else if(cat == '랜선여행'){
-							location.href = "<c:url value='/lantrip/getLantrip.do?lantrip_no="+lno+"'/>";
-						}
-						
-					}else{						
-						alert("결제 실패");
-						if(cat == '항공') {
-							location.href = "<c:url value='/flight/getFlight.do?flight_no="+fno+"'/>";
-						}else if(cat == '숙박'){
-							location.href = "<c:url value='/hotel/getHotel.do?hotel_no="+hno+"'/>";
-						}else if(cat == '액티비티'){
-							location.href = "<c:url value='/activity/getActivity.do?activity_no="+ano+"'/>";
-						}else if(cat == '랜선여행'){
-							location.href = "<c:url value='/lantrip/getLantrip.do?lantrip_no="+lno+"'/>";
-						}
+		IMP.request_pay({
+				pg : 'kakaopay',
+				pay_method : 'card',
+				merchant_uid : 'merchant_' + new Date().getTime(),
+				name : 'Tripfull 상품결제',
+				amount : parseInt(price),
+		},	
+		
+		function(rsp) {
+			if(rsp.success) {
+				$.ajax({
+					url: "<c:url value='/payment/payment.do' />",
+					type: "post",
+					dataType: 'json',
+					data: $('#frmPayment').serialize(),
+				})
+				
+				.done(function(data){
+					if(everythings_fine) {
+						alert("결제완료");					
+					}else{
+						alert("결제실패");
 					}
-				},
-				error : function(xhr, status, error) {
-				alert("결제 중지");
-				if(cat == '항공') {
-					location.href = "<c:url value='/flight/getFlight.do?flight_no="+fno+"'/>";
-				}else if(cat == '숙박'){
-					location.href = "<c:url value='/hotel/getHotel.do?hotel_no="+hno+"'/>";
-				}else if(cat == '액티비티'){
-					location.href = "<c:url value='/activity/getActivity.do?activity_no="+ano+"'/>";
-				}else if(cat == '랜선여행'){
-					location.href = "<c:url value='/lantrip/getLantrip.do?lantrip_no="+lno+"'/>";
-				}
-				}
-			});
-		})	     
+			
+				});
+				
+			}else {
+				alert("결제실패"+rsp.error_msg);			
+			}
+		});     
 	});
 </script>
 <main>
@@ -87,6 +66,51 @@
 			랜선제목 : <input type="text" name="lantrip_title" value="${lantrip_title}"><br>
 			상품종류 : <input type="text" name="product_category" id="cat" value="${product_category}"><br>
 		</form>
+		
+		<%-- $.ajax({
+					url: "<c:url value='/payment/payment.do' />",
+					type: "post",
+					data: $('#frmPayment').serialize(),
+					success: function(result){
+						if(result > 0){					
+							alert("결제 성공");						
+							if(cat == '항공') {
+								location.href = "<c:url value='/flight/getFlight.do?flight_no="+fno+"'/>";
+							}else if(cat == '숙박'){
+								location.href = "<c:url value='/hotel/getHotel.do?hotel_no="+hno+"'/>";
+							}else if(cat == '액티비티'){
+								location.href = "<c:url value='/activity/getActivity.do?activity_no="+ano+"'/>";
+							}else if(cat == '랜선여행'){
+								location.href = "<c:url value='/lantrip/getLantrip.do?lantrip_no="+lno+"'/>";
+							}
+							
+						}else{						
+							alert("결제 실패");
+							if(cat == '항공') {
+								location.href = "<c:url value='/flight/getFlight.do?flight_no="+fno+"'/>";
+							}else if(cat == '숙박'){
+								location.href = "<c:url value='/hotel/getHotel.do?hotel_no="+hno+"'/>";
+							}else if(cat == '액티비티'){
+								location.href = "<c:url value='/activity/getActivity.do?activity_no="+ano+"'/>";
+							}else if(cat == '랜선여행'){
+								location.href = "<c:url value='/lantrip/getLantrip.do?lantrip_no="+lno+"'/>";
+							}
+						}
+					},
+					error : function(xhr, status, error) {
+					alert("결제 중지");
+					if(cat == '항공') {
+						location.href = "<c:url value='/flight/getFlight.do?flight_no="+fno+"'/>";
+					}else if(cat == '숙박'){
+						location.href = "<c:url value='/hotel/getHotel.do?hotel_no="+hno+"'/>";
+					}else if(cat == '액티비티'){
+						location.href = "<c:url value='/activity/getActivity.do?activity_no="+ano+"'/>";
+					}else if(cat == '랜선여행'){
+						location.href = "<c:url value='/lantrip/getLantrip.do?lantrip_no="+lno+"'/>";
+					}
+					}
+				});//$.ajax --%>
+		
 	</div>
 </main>
 
