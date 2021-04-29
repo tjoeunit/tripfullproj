@@ -119,6 +119,12 @@
 				event.preventDefault();
 				return false;	
 			
+			} else if ($('#lantrip_area').val().length < 1) {
+				alert('지역을 확인하세요');
+				$('#lantrip_area').focus();
+				event.preventDefault();
+				return false;	
+			
 			} else if ($('#lantrip_price').val().length < 1) {
 				alert('가격을 확인하세요');
 				$('#lantrip_price').focus();
