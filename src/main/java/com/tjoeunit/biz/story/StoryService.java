@@ -27,6 +27,6 @@ public interface StoryService {
 	// 페이징처리를 위해 생성 : 게시물 총 개수
 	int countStory();
 		
-	//페이징처리를 위해 생성 : 항공권 조회
+	//페이징처리를 위해 생성
 	List<StoryVO> selectStory(PagingVO vo);
 }
