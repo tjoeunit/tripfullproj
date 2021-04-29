@@ -147,23 +147,18 @@ public class StoryController {
 	@RequestMapping(value="/story/getStory.do",  method = RequestMethod.GET)
 	public String getStory(StoryVO vo, Model model) {
 		System.out.println("여행 이야기 상세 조회 처리");
-		
-		//조회수 처리
-		storyService.viewCountStory(vo);
-		
-		StoryVO story = storyService.getStory(vo);
-		
-		//댓글 처리
-		List<StoryReplyVO> replyList = replyService.getReplyList(story.getStory_no());
-		
-		model.addAttribute("replyList", replyList);
-		model.addAttribute("story", story);
-		
-		return "story/getStory";
-	}
+			
+			storyService.viewCountStory(vo);
+			StoryVO story = storyService.getStory(vo);
+			model.addAttribute("story", story);
+			
+			//댓글 목록 조회
+			List<StoryReplyVO> replyList = replyService.getReplyList(vo.getStory_no());
+			model.addAttribute("replyList", replyList);
+			return "story/getStory";
+		}
 
-	
-// 댓글 작성
+	// 댓글 작성
 	@RequestMapping(value="/story/replyWrite.do", method = RequestMethod.POST)
 	public String replyWrite(StoryVO vo, StoryReplyVO rvo, Model model) throws Exception {
 		System.out.println("댓글 등록 처리");
@@ -181,29 +176,101 @@ public class StoryController {
 		model.addAttribute("url", url);
 
 		return "common/message";
-		
-	}
+		}
 
-// 댓글 삭제 뷰 get
-	@RequestMapping(value="/story/replyDeleteView.do", method = RequestMethod.GET)
-	public String replyDeleteView(StoryReplyVO rvo, Model model){
-		System.out.println("댓글 삭제 뷰 호출");
-		return null;
-	}
-	
-//댓글 삭제
-	@RequestMapping(value="/story/replyDelete.do", method = RequestMethod.POST)
-	public String replyDelete(StoryReplyVO rvo, Model model, StoryVO vo) throws Exception {
-		System.out.println("댓글 삭제 기능 처리");
 		
-		replyService.deleteReply(rvo);
+	// 댓글 삭제
+		@RequestMapping(value= "/story/replyDelete.do", method=RequestMethod.GET)
+		public String replyDelete(StoryReplyVO rvo, Model model, StoryVO vo) throws Exception {
+			System.out.println("댓글 삭제 처리");
+			
+			replyService.deleteReply(rvo);
+			
+			String msg="댓글이 삭제되었습니다.";
+			String url="/story/getStory.do?story_no="+vo.getStory_no();
+			
+			model.addAttribute("msg", msg);
+			model.addAttribute("url", url);
+	 
+			return "common/message";
+		}
 		
-		String msg="댓글이 삭제되었습니다.";
-		String url="/story/getStory.do?story_no="+vo.getStory_no();
 		
-		model.addAttribute("msg", msg);
-		model.addAttribute("url", url);
+		
+		
+/* 관리자 관련 컨트롤러 */
+		
+	// adminStory로 이동
+		@RequestMapping(value="/adminStory/adminStory.do", method=RequestMethod.GET)
+		public String adminStory(PagingVO vo, Model model,
+				@RequestParam(value="nowPage", required=false) String nowPage,
+				@RequestParam(value="cntPerPage", required=false) String cntPerPage) {
+			
+			System.out.println("여행이야기 관리자 목록으로 이동");
+		
+			int total = storyService.countStory();
+			if (nowPage == null && cntPerPage == null) {
+				nowPage = "1";
+				cntPerPage = "5";
+			} else if (nowPage == null) {
+				nowPage = "1";
+			} else if (cntPerPage == null) { 
+				cntPerPage = "5";
+			}
+			
+			vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+			model.addAttribute("paging", vo);
+			model.addAttribute("storyList", storyService.selectStory(vo));
+			return "/adminStory/adminStory";
+		}
+		
+	// 글 상세 조회
+		@RequestMapping(value="/adminStory/adminStoryDetail.do",  method = RequestMethod.GET)
+		public String adminStoryDetail(StoryVO vo, Model model) {
+			System.out.println("여행 이야기 관리자 상세 조회 처리");
+				
+				StoryVO story = storyService.getStory(vo);
+				model.addAttribute("story", story);
+				
+				//댓글 목록 조회
+				List<StoryReplyVO> replyList = replyService.getReplyList(vo.getStory_no());
+				model.addAttribute("replyList", replyList);
+				return "adminStory/adminStoryDetail";
+			}
+		
+	// 사용자 댓글 삭제
+		@RequestMapping(value= "/adminStory/adminReplyDelete.do", method=RequestMethod.GET)
+		public String adminReplyDelete(StoryReplyVO rvo, Model model, StoryVO vo) throws Exception {
+			System.out.println("댓글 삭제 처리");
+			
+			replyService.deleteReply(rvo);
+			
+			String msg="[관리자] 댓글을 삭제했습니다.";
+			String url="/adminStory/adminStoryDetail.do?story_no="+vo.getStory_no();
+			
+			model.addAttribute("msg", msg);
+			model.addAttribute("url", url);
+	 
+			return "common/message";
+		}
 
-		return "common/message";
-	}
+	// 부적합한 게시글 삭제
+		@RequestMapping("/adminStory/adminStoryDelete.do")
+		public String adminStoryDelete(StoryVO vo, Model model, StoryReplyVO rvo) throws Exception {
+			System.out.println("여행 이야기 관리자 게시글 삭제 기능 처리");
+			
+			replyService.deleteReply(rvo);
+			storyService.deleteStory(vo);
+			
+			String msg="[관리자] 게시글을 삭제했습니다.";
+			String url="/adminStory/adminStory.do";
+			
+			model.addAttribute("msg", msg);
+			model.addAttribute("url", url);
+			
+
+			return "common/message";
+
+		}
+		
 }

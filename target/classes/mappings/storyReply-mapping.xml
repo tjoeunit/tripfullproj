@@ -12,17 +12,17 @@
         values(
         	#{reply_no},#{story_no},#{reply_text},#{members_id})
     </insert>
-    
-    <!-- 댓글 삭제 -->
-    <select id="deleteReply" resultType="com.tjoeunit.biz.story.StoryReplyVO">
-        delete reply where reply_no=#{reply_no}
-    </select>
-    
+
     <!-- 댓글 목록 보기 -->
     <select id="getReplyList" resultType="com.tjoeunit.biz.story.StoryReplyVO">
-        select reply_no, reply_text, members_id, reply_date from reply
-        where story_no=#{story_no}
-        order by reply_date desc
+        select reply_no, story_no, members_id, reply_text, reply_date from reply
+        where story_no = #{story_no}
+        order by reply_no desc
     </select>
 
+
+	<!-- 댓글 삭제 -->
+	<delete id="deleteReply" parameterType="com.tjoeunit.biz.story.StoryReplyVO">
+		delete reply where reply_no=#{reply_no}
+	</delete>
 </mapper>

@@ -12,5 +12,9 @@ public interface StoryReplyService {
     public int createReply(StoryReplyVO rvo);    
     
 //댓글 삭제
-    public void deleteReply(StoryReplyVO rvo);    
+    public void deleteReply(StoryReplyVO rvo);  
+	 
+    /*
+	  //선택된 댓글 조회 public StoryReplyVO selectStoryReply(StoryReplyVO rvo);
+	 */
 }
