@@ -98,8 +98,15 @@
 </style>
 
 <main>
-
-	<div class="main_title">회원정보</div>
+	
+	<div>
+		<a href="<c:url value='/members/infoMembers.do'/>">
+			<span class="main_title">회원정보</span>
+		</a>
+		<a href="<c:url value='/members/infoPayMembers.do'/>">
+			<span class="main_title">결제정보</span>
+		</a>
+	</div>
 	
 	<table class="user_table">
 		<tr>

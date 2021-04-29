@@ -55,8 +55,7 @@
 		width: 900px;
 		border: none;
 		background-color: lightgray;
-	}
-	
+	}	
 	
 </style>
 

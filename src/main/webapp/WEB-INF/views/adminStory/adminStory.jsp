@@ -4,25 +4,17 @@
 <%@ include file="../import/admintop.jsp" %>
 
 <style type="text/css">
-
-	.top_story_list{
-		color: white;
-		background-color: #58CCFF;
+	
 	.admin_subtitle {
 		background-color: lightgray;
-		padding: 10px 10px 10px 20px;
+		padding: 18px 10px 18px 20px;
 	}
-	.story_top{
 	
-	.admin_subtitle_name_story {
+	.admin_subtitle_name {
 		font-size: 30px;
 		display: inline-block;
 		width: 1000px;
-	 	border: 1px solid gray;
-	 	text-align: center;
-	 	padding: 7px;
 		font-weight: 600;
-		padding: 10px 10px 10px 0px;
 	}
 	
 	.list_table {
@@ -31,42 +23,42 @@
 		border-collapse: collapse;
 		border-bottom: 3px solid gray;
 	}
-	
 	.list_table th{
 		border-bottom: 3px solid gray;
 		padding: 5px;
 	}
-
-	.story_subject_title{
-		text-align: left;
-		padding: 5px;
-		padding-left: 20px;
+	
+	.list_th1 {
+		width: 5%;
 	}
-
-	.story_subject{
-		width: 60%;
+	.list_th2 {
+		width: 70%;
 	}
-	.story_writer{
-		width: 15%;
-	}
-	.story_date{
-		width: 15%;
-	}
-	.story_views{
+	.list_th3 {
 		width: 10%;
 	}
-	.new_story_post{
+	.list_th4 {
+		width: 10%;
+	}
 	
-	td{
+	.list_th5 {
+		width: 5%;
+	}
+	
+	td {
 		padding: 5px;
 		text-align: center;
 	}
-/*	.story_top a:hover {
-		color: #fff !important;
-		background: #58CCFF;
+	
+	.list_product_title {
+		text-align: left;
 	}
-*/
-
+	
+	.list_product_title a {
+		text-decoration: none;
+		color: black;
+	}
+	
 </style>
 
 
@@ -80,13 +72,13 @@
 </script>
 <!-- 페이징 옵션 처리 자바스크립트 끝 -->
 
-
 <main>
-
-	<br><h1>여행 이야기 관리하기</h1>
+	
 	<div class="admin_subtitle">
-		<span class="admin_subtitle_name_story">여행이야기 관리</span>
+		<span class="admin_subtitle_name">여행이야기 관리</span>
 	</div>
+
+
 
 	<!-- 페이징 JSP 추가작업 2 -->
 	<!-- 페이징 옵션 시작 -->
@@ -102,28 +94,22 @@
 	</select>
 	<!-- 페이징 옵션 끝 -->
 	
-	<br><br>
-	
-	<table class = "story_top">
-
-		<tr class="top_story_list">
-	<table class = "list_table">
+	<table class=list_table>
 		<tr>
-			<th class="story_subject">제목</th>
-			<th class="story_writer">작성자</th>
-			<th class="story_date">등록일</th>
-			<th class="story_views">조회수</th>
+			<th class="list_th1">번호</th>
+			<th class="list_th2">제목</th>
+			<th class="list_th3">작성자</th>
+			<th class="list_th4">등록일</th>
+			<th class="list_th5">조회수</th>
 		</tr>
-
+	
 		<c:forEach items="${ storyList }" var="story">
 			<tr>
-				<td class="story_subject_title"><a href="adminStoryDetail.do?story_no=${ story.story_no }"> ${ story.story_title }</a></td>
+				<td>${ story.story_no }</td>
+				<td class="list_product_title"><a href="adminStoryDetail.do?story_no=${ story.story_no }"> ${ story.story_title }</a></td>
 				<td>${ story.story_writer }</td>
-				<td><fmt:formatDate value="${ story.story_date }" pattern="yy-MM-dd"/>
-				</td>
-				<td>${ story.story_cnt }</td>
 				<td><fmt:formatDate value="${ story.story_date }" pattern="yy-MM-dd"/></td>
-				<td>${ story.story_cnt }회</td>
+				<td>${ story.story_cnt }</td>
 			</tr>
 		</c:forEach>
 

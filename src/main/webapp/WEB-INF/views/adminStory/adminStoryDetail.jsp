@@ -1,51 +1,97 @@
 <%@page contentType="text/html; charset=UTF-8"%>
 <%@ include file="../import/admintop.jsp" %>
 
-<style>
-	.story_get{
-		font: bold;
-		width: 1000px;
+<style type="text/css">
+	
+	.admin_subtitle {
+		background-color: lightgray;
+		padding: 10px 10px 10px 20px;
+	}
+	
+	.admin_subtitle_name {
+		display: inline-block;
+		width: 900px;
+		font-weight: 600;
+		font-size: 30px;
+	}
+	
+	.update_delete {
+		width: 150px;
+	}
+	
+	.update_delete a {
+		display: inline-block;
+		font-size: 25px;
+		text-decoration: none;
+		color: black;
+		font-weight: 600;
+		border-radius: 5px;
+		-moz-transition: background-color .2s ease-in-out;
+		-webkit-transition: background-color .2s ease-in-out;
+		-ms-transition: background-color .2s ease-in-out;
+		transition: background-color .2s ease-in-out;
 		padding: 10px;
 	}
-
-	.story_get h5{
+	
+	.update_delete a:hover {
+		color: #fff !important;
+		background: #383838;
+	}
+	
+	table {
+		width: 1200px;
+		padding: 20px;
+	}
+	
+	.table_td1 {
+		width: 100px;
+	}
+	
+	.table_td2{
+		padding: 5px;
+		width: 900px;
+		border: none;
+		background-color: lightgray;
+	}
+	
+	.ck_content {
+		border-bottom: 1px solid gray;
+	}
+	
+	.reply_list {
+		display: block;
+		padding: 10px;
+		border-bottom: 1px solid lightgray;
+		width: 1100px;
+	}
+	
+	.reply_list_member {
+		font-weight: 600;
+		font-size: 16px;
+	}
+	
+	.reply_list_content {
+		display: block;
+		padding: 10px;
+		width: 1100px;
+	}
+	
+	.reply_list_delete {
+		color: gray;
 		text-align: right;
-		padding-top: 10px;
-		padding-right: 20%;
+		font-size: 14px;
 	}
-
-	.get_story_title{
-		width: 500px;
-		padding: 10px;
-		padding-left: 3%;
-		border-left: #d9c5c5 double 10px;
+	
+	.reply_list_delete span {
+		margin: 0px 10px;
 	}
-
-	.get_story_content{
-		background-color: #58CCFF;
-		height: 700px;
+	
+	.reply_list_delete span a {
+		color: gray;
+		text-decoration: none;
 	}
-
-	.get_story_date{
-		background-color: #58CCFF;
-	}
-
-	.get_story_cnt{	
-		background-color: #58CCFF;
-	}
-
-	.get_story_bottom{
-		text-align: center;
-	}
-
-	.get_story_inform{
-		width: 750px;
-		padding: 10px;
-		padding-left: 1%;
-		border: #c4c4c4 dashed 1px;
-		border-radius: 3em;
-	}
-
+	
+	
 </style>
 
 <main>
@@ -58,7 +104,7 @@
 	<div class="admin_subtitle">
 		<span class="admin_subtitle_name">여행이야기 상세보기</span>
 		<span class="update_delete">
-			<a href="<c:url value='/adminFlight/adminStoryDelete.do?story_no=${story.story_no}'/>">상품삭제</a>
+			<a id= "story_delete_a" href="adminStoryDelete.do?story_no=${story.story_no}">부적절한 게시글 삭제</a>
 		</span>
 	</div>
 
@@ -99,31 +145,21 @@
 
 	</div>
 	
-
-
 <!-- 댓글 조회 -->
+	
+	<c:forEach items="${replyList}" var="replyList">
+			<div id="story_reply" class="reply_list">
+				<div class="reply_list_member">${replyList.members_id}</div>
+				<div class="reply_list_content">${replyList.reply_text}</div>
+				<div class="reply_list_delete">
+					<span><fmt:formatDate value="${replyList.reply_date}" pattern="yyyy-MM-dd" /></span>
+					<span>
+						<a href="<c:url value='/adminStory/adminReplyDelete.do?reply_no=${replyList.reply_no}&story_no=${story.story_no}' />">삭제</a>
+					</span>
+				</div>
+			</div>
+		</c:forEach>
 
-		<div id="reply">
-			<ol class="replyList">
-				<c:forEach items="${replyList}" var="replyList">
-					<li>
-						<p>
-							작성자 : ${replyList.members_id}<br />
-							작성 날짜 :  <fmt:formatDate value="${replyList.reply_date}" pattern="yyyy-MM-dd" />
-						</p>
-						<p>${replyList.reply_text}</p>
-						<div>
-							<a id="replyDeleteBtn" href="<c:url value='/adminStory/adminReplyDelete.do?reply_no=${replyList.reply_no}&story_no=${story.story_no}' />">사용자 댓글 삭제</a>
-						</div>
-					</li>
-				</c:forEach>   
-			</ol>
-		</div>
-	<div class="get_story_bottom" >
-		<a id= "story_delete_a" href="adminStoryDelete.do?story_no=${story.story_no}">[부적절한 게시글 삭제]</a>&nbsp;&nbsp;&nbsp;&nbsp; 
-		<a href="adminStory.do">목록보기</a>
-	</div>
-	<br><br>
 
 </main>
 
