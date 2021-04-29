@@ -42,7 +42,7 @@
 			<a href="<c:url value='/index/termService.do'/>"><span class="footerPolicy">이용약관</span></a>
 			<a href="<c:url value='/index/privacyPolicy.do'/>"><span class="footerPolicy">개인정보 처리방침</span></a>
 			<a href="<c:url value='/index/cancelRefund.do'/>"><span class="footerPolicy">취소 및 환불 정책</span></a>
-			<a href="<c:url value='/qna/getQnaList.do'/>"><span class="footerPolicy">자주 묻는 질문</span></a>
+			<a href="<c:url value='/qna/getQnaList.do'/>"><span class="footerPolicy">QNA</span></a>
 		</div>		
 		
 		<div class="descDiv">		

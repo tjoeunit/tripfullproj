@@ -28,6 +28,12 @@ public class StoryReplyDAO {
     public void deleteReply(StoryReplyVO rvo) {
         mybatis.delete("storyReplyDAOTemplate.deleteReply", rvo);
     }
+    
+    //댓글 번호로 댓글 작성자 아이디 조회
+    public String selectIdByReplyNo(int reply_no) {
+    	return mybatis.selectOne("storyReplyDAOTemplate.selectIdByReplyNo", reply_no);
+    }
+    
 /*
     //선택된 댓글 조회
     public StoryReplyVO selectStoryReply(StoryReplyVO rvo) {

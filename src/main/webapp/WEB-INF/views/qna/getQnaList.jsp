@@ -168,7 +168,7 @@
 					<li><a href="<c:url value='/index/termService.do'/>">이용약관</a></li>
 					<li><a href="<c:url value='/index/privacyPolicy.do'/>">개인정보 처리방침</a></li>
 					<li><a href="<c:url value='/index/cancelRefund.do'/>">취소 및 환불 정책</a></li>
-					<li><a href="<c:url value='/qna/getQnaList.do'/>"class="serviceCheck">자주 묻는 질문</a></li>
+					<li><a href="<c:url value='/qna/getQnaList.do'/>"class="serviceCheck">QNA</a></li>
 				</ul>
 			</div>
 
@@ -290,7 +290,7 @@
 
 <main>
 
-	<div class="main_title">자주 묻는 질문</div>
+	<div class="main_title">QNA</div>
 	<hr>
 	
 	<!-- 페이징 JSP 추가작업 2 -->

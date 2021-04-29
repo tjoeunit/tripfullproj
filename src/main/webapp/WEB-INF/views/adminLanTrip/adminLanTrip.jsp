@@ -47,6 +47,7 @@
 		border-collapse: collapse;
 		border-bottom: 3px solid gray;
 	}
+	
 	.list_table th{
 		border-bottom: 3px solid gray;
 		padding: 5px;
@@ -61,7 +62,7 @@
 	.list_th3 {
 		width: 10%;
 	}
-	.list_th3 {
+	.list_th4 {
 		width: 10%;
 	}
 	
