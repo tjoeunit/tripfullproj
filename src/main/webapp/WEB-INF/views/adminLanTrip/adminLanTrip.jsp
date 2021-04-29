@@ -61,7 +61,7 @@
 	.list_th3 {
 		width: 10%;
 	}
-	.list_th3 {
+	.list_th4 {
 		width: 10%;
 	}
 	

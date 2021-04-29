@@ -70,7 +70,7 @@
 		width: 350px;
 		background-color: white;
 		text-align: center;
-		margin: 0px 10px;
+		margin: 5px 10px;
 		font-size: 15px;
 	}
 
@@ -78,6 +78,16 @@
 		color: #fff !important;
 		background: #383838;
 		cursor: pointer;
+	}
+
+	.product_option {
+		display: inline-block;
+		text-decoration: none;
+		border: 1px solid lightgray;
+		border-radius: 8px;
+		width: 350px;
+		padding: 10px 10px;
+		margin: 5px 10px;
 	}
 
 	.product_detail{
@@ -99,7 +109,7 @@
 				alert('로그인이 필요합니다');
 				$('#members_id').focus();
 				event.preventDefault();
-				return false;				
+				return false;
 			}else if ($('#payment_bookdate').val().length < 1){
 				alert('예약일자를 입력하세요');
 				$('#payment_bookdate').focus();
@@ -128,16 +138,19 @@
 			</tr>
 			<tr>
 				<td height="70">
-					<span class="product_price">${lantrip.lantrip_price} 원</span>
 					<form name="frm" method="post" action="<c:url value='/lantrip/lantripPayment.do'/>">
-						예약일자 : <input type="date" id="payment_bookdate" name="payment_bookdate">
-						수량 : <input type="text" id="payment_quantity" name="payment_quantity" value="1" readonly>
-						<input type="submit" id="product_buy" class="product_buy" value="구매하기" />
+						<div>
+							<span><input type="date" name="payment_bookdate" class="product_option"></span>
+							<span class="product_price">${lantrip.lantrip_price} 원</span>
+							<span><input type="text" id="payment_quantity" name="payment_quantity" class="product_option" placeholder="수량"></span>
+							<input type="submit" id="product_buy" class="product_buy" value="구매하기" />
+						</div>
+
 						<input type="hidden" id="members_no" name="members_no" value="${members_no}">
 						<input type="hidden" name="lantrip_no" value="${lantrip.lantrip_no}">
 						<input type="hidden" name="payment_price" value="${lantrip.lantrip_price}">
 						<input type="hidden" name="lantrip_title" value="${lantrip.lantrip_title}">
-						<input type="hidden" name="product_category" value="랜선여행">						
+						<input type="hidden" name="product_category" value="랜선여행">
 					</form>
 				</td>
 			</tr>
@@ -155,7 +168,7 @@
 			</iframe>
 		</div>
 		<div class="product_detail">${ lantrip.lantrip_content }</div>
-			
+
 	</div>
 	<br>
 </main>
