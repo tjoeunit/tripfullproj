@@ -3,36 +3,43 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 <%@ include file="../import/admintop.jsp" %>
 <script type="text/javascript">
-// DB 1111오류 방지
-$(function(){	
-	
-	$('form[name=update_Hotel]').submit(function(){ 
-		if($('#hotel_title').val().length < 1) {
-			alert('제목을 확인하세요');
-			$('#hotel_title').focus();
-			event.preventDefault();
-			return false;
-			
-		}else if ($('#hotel_price').val().length < 1){
-			alert('가격을 확인하세요');
-			$('#hotel_price').focus();
-			event.preventDefault();
-			return false;
-			
-		}else if ($('#hotel_thumb').val().length < 1){
-			alert('썸네일 파일을 확인하세요');
-			$('#hotel_thumb').focus();
-			event.preventDefault();
-			return false;		
-			
-		}else if ($('#hotel_content').val().length < 1){
-			alert('내용을 확인하세요');
-			$('#hotel_content').focus();
-			event.preventDefault();
-			return false;				
-		} 
-	});
-});	
+	$(function(){
+		
+		var numReg = /^[0-9]+$/;
+		
+		$('form[name=update_Hotel]').submit(function(){ 
+			if($('#hotel_title').val().length < 1) {
+				alert('제목을 확인하세요');
+				$('#hotel_title').focus();
+				event.preventDefault();
+				return false;
+				
+			}else if ($('#hotel_price').val().length < 1){
+				alert('가격을 확인하세요');
+				$('#hotel_price').focus();
+				event.preventDefault();
+				return false;
+				
+			}else if (!numReg.test($("#hotel_price").val())) {
+				alert('가격을 확인하세요');
+				$('#hotel_price').focus();
+				event.preventDefault();
+				return false;	
+				
+			}else if ($('#hotel_thumb').val().length < 1){
+				alert('썸네일 파일을 확인하세요');
+				$('#hotel_thumb').focus();
+				event.preventDefault();
+				return false;		
+				
+			}else if ($('#hotel_content').val().length < 1){
+				alert('내용을 확인하세요');
+				$('#hotel_content').focus();
+				event.preventDefault();
+				return false;				
+			} 
+		});
+	});	
 </script>
 
 <style type="text/css">
@@ -124,7 +131,7 @@ $(function(){
 					<td class="table_td1">카테고리</td>
 					<td>
 						<select name="hotel_category">
-							<option value="호텔">호텔</option>
+							<option value="호텔" selected="selected">호텔</option>
 							<option value="팬션">팬션</option>
 							<option value="게스트하우스">게스트하우스</option>
 							<option value="캠핑">캠핑</option>
@@ -136,7 +143,7 @@ $(function(){
 					<td class="table_td1">지역</td>
 					<td>
 						<select name="hotel_area">
-							<option value="서울">서울</option>
+							<option value="서울" selected="selected">서울</option>
 							<option value="제주도">제주도</option>
 							<option value="부산">부산</option>
 							<option value="인천">인천</option>

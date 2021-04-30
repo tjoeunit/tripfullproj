@@ -55,8 +55,7 @@
 		width: 900px;
 		border: none;
 		background-color: lightgray;
-	}
-	
+	}	
 	
 </style>
 
@@ -112,3 +111,5 @@
 	</div>
 	
 </main>
+
+<%@ include file="../import/bottom.jsp" %>

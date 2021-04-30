@@ -2,8 +2,84 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../import/top.jsp" %>
 
+<style type="text/css">
+	
+	.main_title {
+		display: inline-block;
+		width: 85%;
+		align-content: left;
+		font-size: 40px;
+		font-weight: 600;
+		margin: 20px 0px;
+	}
+	
+	.sub_title {
+		display: inline-block;
+		color: gray;
+		align-content: right;
+		font-size: 40px;
+		font-weight: 600;
+		margin: 20px 0px;
+	}
+	
+	.table_list {
+		margin: 20px 0px;
+		width: 100%;
+		border-collapse: collapse;
+		border-top: 3px solid black;
+	}
+	
+	th {
+		border-bottom: 3px solid black;
+		padding: 5px;
+	}
+	
+	td {
+		border-bottom: 1px solid gray;
+		padding: 10px 0px;
+		color: gray;
+		text-align: center;
+	}
+	
+	.product_title {
+		text-align: left;
+	}
+	
+	.table_th1 {
+		width: 5%;
+	}
+	.table_th2 {
+		width: 10%;
+	}
+	.table_th3 {
+		width: 30%;
+	}
+	.table_th4 {
+		width: 10%;
+	}
+	.table_th5 {
+		width: 5%;
+	}
+	.table_th6 {
+		width: 10%;
+	}
+	.table_th7 {
+		width: 10%;
+	}
+	
+</style>
+
 <main>
-	<span>${members_id} 님의 결제정보</span>
+
+	<div>
+		<a href="<c:url value='/members/infoPayMembers.do'/>">
+			<span class="main_title">${members_id} 결제정보</span>
+		</a>
+		<a href="<c:url value='/members/infoMembers.do'/>">
+			<span class="sub_title">회원정보</span>
+		</a>
+	</div>
+	
 	<table class = "table_list">
 		<tr class="table_top">
 			<th class="table_th1">결제번호</th>
@@ -14,11 +90,12 @@
 			<th class="table_th6">예약일</th>
 			<th class="table_th7">결제일</th>	
 		</tr>
+		
 		<c:forEach items="${paymentList}" var="payment">
 		<tr>
 			<td>${payment.payment_no}</td>
 			<td>${payment.product_category}</td>
-			<td>${payment.flight_title}${payment.hotel_title}${payment.activity_title}${payment.lantrip_title}</td>
+			<td class="product_title">${payment.flight_title}${payment.hotel_title}${payment.activity_title}${payment.lantrip_title}</td>
 			<td>${payment.payment_price}</td>
 			<td>${payment.payment_quantity}</td>
 			<td>${payment.payment_bookdate}</td>

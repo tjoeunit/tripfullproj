@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.tjoeunit.biz.hotel.HotelVO;
+import com.tjoeunit.biz.common.PagingVO;
 import com.tjoeunit.biz.payment.PaymentService;
 import com.tjoeunit.biz.payment.PaymentVO;
 
@@ -25,6 +25,17 @@ public class PaymentServiceImpl implements PaymentService {
 		return list;
 	}
 	
+	//페이징처리를 위해 생성
+	@Override
+	public int countPayment() {		
+		return paymentDAO.countPayment();
+	}
+	
+	//페이징처리를 위해 생성
+	@Override
+	public List<PaymentVO> selectPayment(PagingVO vo) {
+		return paymentDAO.selectPayment(vo);
+	}
 	
 
 }

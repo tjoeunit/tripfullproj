@@ -168,7 +168,7 @@
 					<li><a href="<c:url value='/index/termService.do'/>">이용약관</a></li>
 					<li><a href="<c:url value='/index/privacyPolicy.do'/>">개인정보 처리방침</a></li>
 					<li><a href="<c:url value='/index/cancelRefund.do'/>">취소 및 환불 정책</a></li>
-					<li><a href="<c:url value='/qna/getQnaList.do'/>"class="serviceCheck">자주 묻는 질문</a></li>
+					<li><a href="<c:url value='/qna/getQnaList.do'/>"class="serviceCheck">QNA</a></li>
 				</ul>
 			</div>
 
@@ -290,19 +290,15 @@
 
 <main>
 
-	<div class="main_title">자주 묻는 질문</div>
+	<div class="main_title">QNA</div>
 	<hr>
 	
 	<!-- 페이징 JSP 추가작업 2 -->
 	<!-- 페이징 옵션 시작 -->
 	<div class="page_select_box">
 	<select id="cntPerPage" name="sel" onchange="selChange()" class="page_select">
-		<option value="5"
-			<c:if test="${paging.cntPerPage == 5}">selected</c:if>>5개씩 보기</option>
 		<option value="10"
 			<c:if test="${paging.cntPerPage == 10}">selected</c:if>>10개씩 보기</option>
-		<option value="15"
-			<c:if test="${paging.cntPerPage == 15}">selected</c:if>>15개씩 보기</option>
 		<option value="20"
 			<c:if test="${paging.cntPerPage == 20}">selected</c:if>>20개씩 보기</option>
 	</select>

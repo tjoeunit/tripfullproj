@@ -73,14 +73,14 @@
 		$('#edRadio').click(function(){
 			if($('#svDiv').length > 0){
 				$('#svDiv').remove();
-				$('#thumbDiv').append('<div id="edDiv">변경 썸네일 : <input type="file" name="hotelImgUpload"></div>');
+				$('#thumbDiv').append('<div id="edDiv">변경 썸네일 : <input type="file" id="hotel_thumb" name="hotelImgUpload"></div>');
 			}
 		});		
 		
 		$('#svRadio').click(function(){
 			if($('#edDiv').length > 0){
 				$('#edDiv').remove();
-				$('#thumbDiv').append('<div id="svDiv">현재 썸네일 : <input type="text" name="hotelImgUpload" value="${hotel.hotel_thumb}" readonly></div>');
+				$('#thumbDiv').append('<div id="svDiv">현재 썸네일 : <input type="text" id="hotel_thumb" name="hotelImgUpload" value="${hotel.hotel_thumb}" readonly></div>');
 			}
 		});
 		
@@ -98,6 +98,8 @@
 	/////////////////////////////////////////////////////////////
 	$(function(){	
 		
+		var numReg = /^[0-9]+$/;
+		
 		$('form[name=update_Hotel]').submit(function(){ 
 			if($('#hotel_title').val().length < 1) {
 				alert('제목을 확인하세요');
@@ -110,6 +112,12 @@
 				$('#hotel_price').focus();
 				event.preventDefault();
 				return false;
+				
+			}else if (!numReg.test($("#hotel_price").val())) {
+				alert('가격을 확인하세요');
+				$('#hotel_price').focus();
+				event.preventDefault();
+				return false;		
 				
 			}else if ($('#ckeditor').val().length < 1){
 				alert('내용을 확인하세요');
@@ -159,8 +167,7 @@
 							<option value="팬션">팬션</option>
 							<option value="게스트하우스">게스트하우스</option>
 							<option value="캠핑">캠핑</option>
-						</select>						
-						<span>지역을 꼭 선택해주세요</span>
+						</select>		
 					</td>
 				</tr>
 				
@@ -172,8 +179,7 @@
 						<option value="제주도">제주도</option>
 						<option value="부산">부산</option>
 						<option value="인천">인천</option>
-						</select>						
-						<span>지역을 꼭 선택해주세요</span>
+						</select>
 					</td>
 				</tr>
 				
@@ -192,7 +198,7 @@
 							<input type="radio" name="radioThumb" value="기존 썸네일 사용" id="svRadio" checked="checked"><label for="기존 썸네일 사용">기존 썸네일 사용</label>
 							<input type="radio" name="radioThumb" value="변경 썸네일 사용" id="edRadio"><label for="변경 썸네일 사용">변경 썸네일 사용</label><br>										
 							<div id="svDiv">
-							현재 썸네일 : <input type="text" name="hotelImgUpload" value="${hotel.hotel_thumb}" readonly>
+							현재 썸네일 : <input type="text" id="hotel_thumb" name="hotelImgUpload" value="${hotel.hotel_thumb}" readonly>
 							</div>						
 						</div>
 					</td>

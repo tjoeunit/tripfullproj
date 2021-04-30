@@ -49,7 +49,18 @@
 <style type="text/css">
 	
 	.main_title {
+		display: inline-block;
+		width: 85%;
 		align-content: left;
+		font-size: 40px;
+		font-weight: 600;
+		margin: 20px 0px;
+	}
+	
+	.sub_title {
+		display: inline-block;
+		color: gray;
+		align-content: right;
 		font-size: 40px;
 		font-weight: 600;
 		margin: 20px 0px;
@@ -98,9 +109,15 @@
 </style>
 
 <main>
-
-	<div class="main_title">회원정보</div>
-	<hr>
+	
+	<div>
+		<a href="<c:url value='/members/infoMembers.do'/>">
+			<span class="main_title">${members_id} 회원정보</span>
+		</a>
+		<a href="<c:url value='/members/infoPayMembers.do'/>">
+			<span class="sub_title">결제정보</span>
+		</a>
+	</div>
 	
 	<table class="user_table">
 		<tr>
