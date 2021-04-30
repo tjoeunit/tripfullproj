@@ -123,7 +123,7 @@
 	<nav class="nav">
 		<div class="navDiv">
 			<div class="navImgDiv">
-				<a style="all: unset; cursor: pointer;" href="<c:url value='/#'/>">
+				<a style="all: unset; cursor: pointer;" href="<c:url value='/admin/adminIndex.do'/>">
 					<img src="<c:url value='/img/tripfulllogo.png'/>">
 				</a>
 			</div>

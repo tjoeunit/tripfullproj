@@ -1,8 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../import/top.jsp" %>
-
-
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+    $(function(){
+        var responseMessage = "<c:out value="${message}"/>";
+        
+        if(responseMessage != ""){
+            alert(responseMessage);
+        }
+    });
+</script>
 
 <style type="text/css">
 	.admin_login {
