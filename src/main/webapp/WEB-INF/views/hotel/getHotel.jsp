@@ -70,7 +70,7 @@
 		width: 350px;
 		background-color: white;
 		text-align: center;
-		margin: 0px 10px;
+		margin: 5px 10px;
 		font-size: 15px;
 	}
 
@@ -78,6 +78,16 @@
 		color: #fff !important;
 		background: #383838;
 		cursor: pointer;
+	}
+
+	.product_option {
+		display: inline-block;
+		text-decoration: none;
+		border: 1px solid lightgray;
+		border-radius: 8px;
+		width: 350px;
+		padding: 10px 10px;
+		margin: 5px 10px;
 	}
 
 	.product_detail{
@@ -93,29 +103,35 @@
 
 </style>
 <script>
-	//전화번호 숫자 정규식!
-	var numReg = /^[0-9]+$/;
-	
 	$(function(){
+		var numReg = /^[0-9]+$/;
 		$('form[name=frm]').submit(function() {
 			if ($('#members_no').val().length < 1) {
 				alert('로그인이 필요합니다');
 				$('#members_id').focus();
 				event.preventDefault();
-				return false;				
-			}else if (!numReg.test$('#payment_quantity').val()){
-				alert('숙박일수는 숫자만 입력하세요');
+				return false;
+			}else if ($('#payment_bookdate').val().length < 1){
+				alert('예약일자를 입력하세요');
+				$('#payment_bookdate').focus();
+				event.preventDefault();
+				return false;
+			}else if ($('#payment_quantity').val().length < 1){
+				alert('숙박일수를 입력하세요');
 				$('#payment_quantity').focus();
 				event.preventDefault();
 				return false;
+			}else if (!numReg.test($("#payment_quantity").val())) {
+				alert('숫자만 입력하세요');
+				$('#payment_quantity').focus();
+				event.preventDefault();
+				return false;			
 			}
 		});
 	});
 </script>
 <main>
-
 	<div class="product">
-
 		<table class="product_top">
 			<tr>
 				<td rowspan="3"><img class="product_thumb" src="<c:url value='/hotelUpload/${hotel.hotel_thumb}'/>"></td>
@@ -131,25 +147,25 @@
 			</tr>
 			<tr>
 				<td height="70">
-					<span class="product_price">${hotel.hotel_price} 원</span>
 					<form name="frm" method="post" action="<c:url value='/hotel/hotelPayment.do'/>">
-						예약일자 : <input type="date" name="payment_bookdate">
-						숙박일수 : <input type="text" id="payment_quantity" name="payment_quantity">(박)
-						<input type="submit" id="product_buy" class="product_buy" value="구매하기" />
+						<div>
+							<span><input type="date" id="payment_bookdate" name="payment_bookdate" class="product_option"></span>
+							<span class="product_price">${hotel.hotel_price} 원</span>
+							<span><input type="text" id="payment_quantity" name="payment_quantity" class="product_option" placeholder="숙박일수 (박)"></span>
+							<input type="submit" id="product_buy" class="product_buy" value="구매하기" />
+						</div>
+
 						<input type="hidden" id="members_no" name="members_no" value="${members_no}">
 						<input type="hidden" name="hotel_no" value="${hotel.hotel_no}">
 						<input type="hidden" name="payment_price" value="${hotel.hotel_price}">
 						<input type="hidden" name="hotel_title" value="${hotel.hotel_title}">
-						<input type="hidden" name="product_category" value="숙박">						
+						<input type="hidden" name="product_category" value="숙박">
 					</form>
 				</td>
 			</tr>
 		</table>
-		
 		<div class="product_detail">${hotel.hotel_content}</div>
-			
 	</div>
 	<br>
 </main>
-
 <%@ include file="../import/bottom.jsp" %>

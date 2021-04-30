@@ -289,7 +289,7 @@
 			<tr>
 				<td class="user_table_td1">주소</td>
 				<td class="user_table_td2">
-					<input type="text" id="members_address" name="members_address" value="${members.members_address}">
+					<input type="text" id="members_address" name="members_address" value="${members.members_address}" readonly>
 				</td>
 				<td class="user_table_td3"></td>
 			</tr>

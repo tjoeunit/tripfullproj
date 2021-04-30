@@ -3,6 +3,8 @@ package com.tjoeunit.view.story;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -180,20 +182,56 @@ public class StoryController {
 
 		
 	// 댓글 삭제
-		@RequestMapping(value= "/story/replyDelete.do", method=RequestMethod.GET)
-		public String replyDelete(StoryReplyVO rvo, Model model, StoryVO vo) throws Exception {
-			System.out.println("댓글 삭제 처리");
-			
-			replyService.deleteReply(rvo);
-			
-			String msg="댓글이 삭제되었습니다.";
-			String url="/story/getStory.do?story_no="+vo.getStory_no();
-			
-			model.addAttribute("msg", msg);
-			model.addAttribute("url", url);
-	 
-			return "common/message";
+	@RequestMapping(value= "/story/replyDelete.do", method=RequestMethod.GET)
+	public String replyDelete(StoryReplyVO rvo, Model model, StoryVO vo, HttpSession session) throws Exception {
+		System.out.println("댓글 삭제 처리");
+		
+		// 댓글을 보여줄 때 c:foreach로 보여주기 때문에 jsp x 컨트롤러 o
+		// 로그인 중인 회원의 아이디와 댓글 작성자의 아이디를 비교 세션에 아이디 값이 없는 경우도 처리
+		System.out.println("스토리 번호 = "+vo.getStory_no());
+		System.out.println("코멘트 번호 = "+rvo.getReply_no());
+
+		// 세션을 통해 로그인 중인 회원의 아이디를 추출
+		String session_id = "";
+		
+		if(session.getAttribute("members_id") != null) {
+			session_id = (String)session.getAttribute("members_id");
 		}
+		
+		System.out.println("로그인 회원 아이디 = "+session_id);
+				
+		// 댓글번호를 통해 댓글 작성자의 아이디를 추출
+		String reply_id = replyService.selectIdByReplyNo(rvo.getReply_no());
+		System.out.println("댓글 작성자 아이디 = "+reply_id);
+						
+		String msg = "";
+		String url = "";
+		
+		// 세션에 아이디 없음
+		if(session_id.isEmpty()) {
+			System.out.println("로그인 중인 아이디 없음");
+			msg = "로그인이 필요한 서비스입니다";
+			url = "/story/getStory.do?story_no="+vo.getStory_no();
+			
+		// 아이디가 같은 경우 (메서드 실행)
+		}else if(session_id.equals(reply_id)) {
+			System.out.println("아이디 일치");
+			msg = "댓글이 삭제되었습니다";
+			url = "/story/getStory.do?story_no="+vo.getStory_no();			
+			replyService.deleteReply(rvo);
+		
+		// 아이디가 다른 경우
+		}else {
+			System.out.println("아이디 불일치");
+			msg = "아이디가 일치하지 않습니다";
+			url = "/story/getStory.do?story_no="+vo.getStory_no();
+		}
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+ 
+		return "common/message";
+	}
 		
 		
 		
@@ -211,11 +249,11 @@ public class StoryController {
 			int total = storyService.countStory();
 			if (nowPage == null && cntPerPage == null) {
 				nowPage = "1";
-				cntPerPage = "5";
+				cntPerPage = "20";
 			} else if (nowPage == null) {
 				nowPage = "1";
 			} else if (cntPerPage == null) { 
-				cntPerPage = "5";
+				cntPerPage = "20";
 			}
 			
 			vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));

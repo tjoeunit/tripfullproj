@@ -25,15 +25,69 @@ public class MembersController {
 	@Autowired private MembersService membersService;
 	@Autowired private PaymentService paymentService;
 	
+	//관리자 : 회원수정 처리
+	@RequestMapping(value="/adminMembers/adminUpdateMembers.do", method=RequestMethod.POST)
+	public String adminUpdateMembers(MembersVO vo, Model model) {
+		System.out.println("관리자 회원 수정 처리 vo = "+vo);
+		
+		String msg="회원 수정 실패", url="/adminMembers/adminMembersDetail.do?members_no="+vo.getMembers_no();
+		
+		int cnt = membersService.updateMembers(vo);
+		
+		if(cnt>0) {
+			msg="회원 수정 성공";
+			url="/adminMembers/adminMembersDetail.do?members_no="+vo.getMembers_no();
+		}
+
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		return "common/message";
+		
+	}
+	
+	//관리자 : 회원수정 페이지
+	@RequestMapping(value="/adminMembers/updateMembers.do", method=RequestMethod.GET)
+	public String adminUpdateMembersPage(MembersVO vo, Model model) {
+		System.out.println("관리자 회원 수정 페이지 vo = "+vo);
+		
+		MembersVO members = membersService.selectByMembersNo(vo.getMembers_no());
+		
+		model.addAttribute("members", members);
+		return "adminMembers/adminUpdateMembers";
+	}
+	
+	
+	//관리자 : 회원삭제
+	@RequestMapping(value="/adminMembers/deleteMembers.do", method=RequestMethod.GET)
+	public String adminDeleteMembers(MembersVO vo, Model model) {
+		System.out.println("관리자 회원삭제 members_no = "+vo.getMembers_no());
+		
+		int cnt = membersService.deleteMembers(vo.getMembers_no());
+		System.out.println("cnt = "+cnt);
+		
+		String msg="회원 삭제 실패", url="/adminMembers/adminMembersDetail.do?members_no="+vo.getMembers_no();
+		
+		if(cnt>0) {
+			msg="회원 삭제 성공";
+			url="/adminMembers/adminMembersList.do";
+		}
+
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		return "common/message";
+	}
+	
+	
 	//관리자 : 회원상세 페이지
 	@RequestMapping(value="/adminMembers/adminMembersDetail.do", method=RequestMethod.GET)
-	public String asdf(HttpServletRequest request, Model model) {
+	public String adminMembersDetail(HttpServletRequest request, Model model) {
 		System.out.println("관리자 회원상세 페이지");
 		
 		int members_no = Integer.parseInt((request.getParameter("members_no")));
 		
 		MembersVO members = membersService.selectByMembersNo(members_no);
-		System.out.println(members);
 		
 		model.addAttribute("members", members);		
 		return "adminMembers/adminMembersDetail";

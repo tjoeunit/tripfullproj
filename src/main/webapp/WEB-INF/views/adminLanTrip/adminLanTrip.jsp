@@ -41,12 +41,19 @@
 		background: #383838;
 	}
 	
+	.page_select {
+		padding: 5px;
+		border: 1px solid gray;
+		margin: 20px 20px 0px 20px;
+	}
+	
 	.list_table {
 		width: 1160px;
 		margin: 20px;
 		border-collapse: collapse;
 		border-bottom: 3px solid gray;
 	}
+	
 	.list_table th{
 		border-bottom: 3px solid gray;
 		padding: 5px;
@@ -61,7 +68,7 @@
 	.list_th3 {
 		width: 10%;
 	}
-	.list_th3 {
+	.list_th4 {
 		width: 10%;
 	}
 	
@@ -101,11 +108,11 @@
 	
 	<!-- 페이징 JSP 추가작업 2 -->
 	<!-- 페이징 옵션 시작 -->
-	<select id="cntPerPage" name="sel" onchange="selChange()">
+	<select id="cntPerPage" name="sel" onchange="selChange()" class="page_select">
 		<option value="10"
-			<c:if test="${paging.cntPerPage == 10}">selected</c:if>>10개씩 보기</option>
+			<c:if test="${paging.cntPerPage == 10}">selected</c:if>>10개 보기</option>
 		<option value="20"
-			<c:if test="${paging.cntPerPage == 20}">selected</c:if>>20개씩 보기</option>
+			<c:if test="${paging.cntPerPage == 20}">selected</c:if>>20개 보기</option>
 	</select>
 	<!-- 페이징 옵션 끝 -->
 	

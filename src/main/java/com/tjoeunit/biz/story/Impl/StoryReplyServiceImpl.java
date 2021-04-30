@@ -30,6 +30,11 @@ public class StoryReplyServiceImpl implements StoryReplyService{
 	public void deleteReply(StoryReplyVO rvo) {
 		replyDAO.deleteReply(rvo);
 	}
+
+	@Override
+	public String selectIdByReplyNo(int reply_no) {		
+		return replyDAO.selectIdByReplyNo(reply_no);
+	}
 	
  /*
 	//선택된 댓글 조회

@@ -1,11 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>     
 <%@ include file="../import/admintop.jsp" %>
-
-
 <style type="text/css">
-
 	.admin_subtitle {
 		background-color: lightgray;
 		padding: 10px 10px 10px 20px;
@@ -62,9 +58,7 @@
 	.insert_submit:hover {
 		color: #fff !important;
 		background: #383838;
-	}
-	
-	
+	}	
 </style>
 
 <script type="text/javascript">
@@ -90,14 +84,14 @@
 		$('#edRadio').click(function(){
 			if($('#svDiv').length > 0){
 				$('#svDiv').remove();
-				$('#thumbDiv').append('<div id="edDiv">변경 썸네일 : <input type="file" name="lanTiripImgUpload"></div>');
+				$('#thumbDiv').append('<div id="edDiv">변경 썸네일 : <input type="file" id="lantrip_thumb" name="lanTiripImgUpload"></div>');
 			}
 		});		
 		
 		$('#svRadio').click(function(){
 			if($('#edDiv').length > 0){
 				$('#edDiv').remove();
-				$('#thumbDiv').append('<div id="svDiv">현재 썸네일 : <input type="text" name="lanTiripImgUpload" value="${lantrip.lantrip_thumb}" readonly></div>');
+				$('#thumbDiv').append('<div id="svDiv">현재 썸네일 : <input type="text" id="lantrip_thumb" name="lanTiripImgUpload" value="${lantrip.lantrip_thumb}" readonly></div>');
 			}
 		});
 		
@@ -105,19 +99,15 @@
 	
 	//db 1111입력 오류 방지
 	$(function(){
-	
+		
+		var numReg = /^[0-9]+$/;
+		
 		$('form[name=update_LanTrip]').submit(function() { 
 			if($('#lantrip_title').val().length < 1) {
 				alert('제목을 확인하세요');
 				$('#lantrip_title').focus();
 				event.preventDefault();
 				return false;
-				
-			} else if ($('#lantrip_content').val().length < 1) {
-				alert('내용을 확인하세요');
-				$('#lantrip_content').focus();
-				event.preventDefault();
-				return false;	
 			
 			} else if ($('#lantrip_price').val().length < 1) {
 				alert('가격을 확인하세요');
@@ -125,18 +115,30 @@
 				event.preventDefault();
 				return false;
 				
+			}else if (!numReg.test($("#lantrip_price").val())) {
+				alert('가격을 확인하세요');
+				$('#lantrip_price').focus();
+				event.preventDefault();
+				return false;		
+				
 			} else if ($('#lantrip_thumb').val().length < 1) {
 				alert('썸네일 파일을 확인하세요');
 				$('#lantrip_thumb').focus();
 				event.preventDefault();
 				return false;	
 				
-			} else if ($('#lantrip_video').val().length < 1) {
+			} else if ($('#lantrip_video_view').val().length < 1) {
 				alert('영상 url 주소를 확인하세요');
-				$('#lantrip_video').focus();
+				$('#lantrip_video_view').focus();
 				event.preventDefault();
-				return false;			
-			} 
+				return false;				
+			
+			} else if ($('#lantrip_content').val().length < 1) {
+				alert('내용을 확인하세요');
+				$('#lantrip_content').focus();
+				event.preventDefault();
+				return false;
+			}	
 	});
 });
 </script>
@@ -194,7 +196,7 @@
 							<input type="radio" name="radioThumb" value="변경 썸네일 사용" id="edRadio"><label for="변경 썸네일 사용">변경 썸네일 사용</label><br>
 						
 							<div id="svDiv">
-								현재 썸네일 : <input type="text" name="lanTripImgUpload" value="${ lantrip.lantrip_thumb }" readonly="readonly">
+								현재 썸네일 : <input type="text" name="lanTripImgUpload" id="lantrip_thumb" value="${ lantrip.lantrip_thumb }" readonly="readonly">
 							</div>
 						</div>
 					</td>

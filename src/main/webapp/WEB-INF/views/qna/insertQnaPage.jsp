@@ -167,7 +167,7 @@
 					<li><a href="<c:url value='/index/termService.do'/>">이용약관</a></li>
 					<li><a href="<c:url value='/index/privacyPolicy.do'/>">개인정보 처리방침</a></li>
 					<li><a href="<c:url value='/index/cancelRefund.do'/>">취소 및 환불 정책</a></li>
-					<li><a href="<c:url value='/qna/getQnaList.do'/>"class="serviceCheck">자주 묻는 질문</a></li>
+					<li><a href="<c:url value='/qna/getQnaList.do'/>"class="serviceCheck">QNA</a></li>
 				</ul>
 			</div>
 
@@ -255,7 +255,7 @@
 <!-- ckeditor 4 -->
  	<script type="text/javascript" src = "<c:url value = '/ckeditor/ckeditor.js' />"></script>
  	
- 	<div class="main_title">문의사항 등록</div>
+ 	<div class="main_title">QNA 등록</div>
 	<hr>
 	
 	<form action="<c:url value='/qna/insertQna.do'/>" name="enroll_qna" method="post" enctype="multipart/form-data">
