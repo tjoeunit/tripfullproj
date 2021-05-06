@@ -3,7 +3,6 @@ package com.tjoeunit.biz.qna;
 import java.util.List;
 
 import com.tjoeunit.biz.common.PagingVO;
-import com.tjoeunit.biz.story.StoryVO;
 
 public interface QnaService {
 	

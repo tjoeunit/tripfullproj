@@ -1,7 +1,5 @@
 package com.tjoeunit.biz.lantrip;
 
-import org.springframework.web.multipart.MultipartFile;
-
 public class LanTripVO {
 	private int		lantrip_no;
 	private String	lantrip_title;

@@ -1,7 +1,6 @@
 package com.tjoeunit.view.flight;
 
 import java.io.File;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -17,7 +16,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.tjoeunit.biz.common.PagingVO;
 import com.tjoeunit.biz.flight.FlightService;
 import com.tjoeunit.biz.flight.FlightVO;
-import com.tjoeunit.biz.lantrip.LanTripVO;
 
 @Controller
 public class FlightController {

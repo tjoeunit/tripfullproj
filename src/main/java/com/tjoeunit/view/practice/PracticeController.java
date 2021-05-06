@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.tjoeunit.biz.practice.PracticeService;
 import com.tjoeunit.biz.practice.PracticeVO;
-import com.tjoeunit.biz.story.StoryVO;
-
 
 @Controller
 @RequestMapping("/practice")

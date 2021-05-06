@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.tjoeunit.biz.flight.FlightVO;
 import com.tjoeunit.biz.members.MembersService;
 import com.tjoeunit.biz.members.MembersVO;
 import com.tjoeunit.biz.payment.PaymentService;
