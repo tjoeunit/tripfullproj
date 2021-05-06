@@ -3,7 +3,6 @@ package com.tjoeunit.biz.activity;
 import java.util.List;
 
 import com.tjoeunit.biz.common.PagingVO;
-import com.tjoeunit.biz.activity.ActivityVO;
 
 public interface ActivityService {
 	// CRUD 기능의 메서드 구현

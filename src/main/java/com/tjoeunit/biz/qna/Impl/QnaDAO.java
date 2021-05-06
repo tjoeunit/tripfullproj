@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 
 import com.tjoeunit.biz.common.PagingVO;
 import com.tjoeunit.biz.qna.QnaVO;
-import com.tjoeunit.biz.story.StoryVO;
 
 @Repository
 public class QnaDAO {

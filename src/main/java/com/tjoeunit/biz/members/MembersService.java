@@ -2,8 +2,6 @@ package com.tjoeunit.biz.members;
 
 import java.util.List;
 
-import com.tjoeunit.biz.payment.PaymentVO;
-
 public interface MembersService {
 
 	//고객 등록

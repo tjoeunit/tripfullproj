@@ -7,8 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.tjoeunit.biz.practice.PracticeVO;
-import com.tjoeunit.biz.story.StoryVO;
-
 
 @Repository
 public class PracticeDAO {

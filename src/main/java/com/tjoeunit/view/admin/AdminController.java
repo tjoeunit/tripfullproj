@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import com.tjoeunit.biz.admin.AdminService;
 import com.tjoeunit.biz.admin.AdminVO;
-import com.tjoeunit.biz.lantrip.LanTripService;
 
 @Controller
 /* @RequestMapping("/adminLogin") */

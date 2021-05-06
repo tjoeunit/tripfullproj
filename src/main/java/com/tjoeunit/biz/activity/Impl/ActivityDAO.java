@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 
 import com.tjoeunit.biz.activity.ActivityVO;
 import com.tjoeunit.biz.common.PagingVO;
-import com.tjoeunit.biz.activity.ActivityVO;
 
 @Repository
 public class ActivityDAO {

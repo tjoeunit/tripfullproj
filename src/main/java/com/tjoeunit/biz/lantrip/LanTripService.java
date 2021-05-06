@@ -3,7 +3,6 @@ package com.tjoeunit.biz.lantrip;
 import java.util.List;
 
 import com.tjoeunit.biz.common.PagingVO;
-import com.tjoeunit.biz.flight.FlightVO;
 
 public interface LanTripService {
 	// CRUD 기능의 메서드 구현

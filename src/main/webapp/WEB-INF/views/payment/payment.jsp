@@ -44,7 +44,7 @@
 						}else if(cat == '액티비티'){
 							location.href = "<c:url value='/activity/getActivity.do?activity_no="+ano+"'/>";
 						}else if(cat == '랜선여행'){
-							location.href = "<c:url value='/lantrip/getLantrip.do?lantrip_no="+lno+"'/>";
+							location.href = "<c:url value='/lantrip/getLanTrip.do?lantrip_no="+lno+"'/>";
 						}
 						
 					}else {
@@ -56,7 +56,7 @@
 						}else if(cat == '액티비티'){
 							location.href = "<c:url value='/activity/getActivity.do?activity_no="+ano+"'/>";
 						}else if(cat == '랜선여행'){
-							location.href = "<c:url value='/lantrip/getLantrip.do?lantrip_no="+lno+"'/>";
+							location.href = "<c:url value='/lantrip/getLanTrip.do?lantrip_no="+lno+"'/>";
 						}
 					}
 			
@@ -71,7 +71,7 @@
 				}else if(cat == '액티비티'){
 					location.href = "<c:url value='/activity/getActivity.do?activity_no="+ano+"'/>";
 				}else if(cat == '랜선여행'){
-					location.href = "<c:url value='/lantrip/getLantrip.do?lantrip_no="+lno+"'/>";
+					location.href = "<c:url value='/lantrip/getLanTrip.do?lantrip_no="+lno+"'/>";
 				}
 			}
 		});     

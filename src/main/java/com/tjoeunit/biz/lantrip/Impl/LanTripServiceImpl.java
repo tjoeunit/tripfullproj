@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.tjoeunit.biz.common.PagingVO;
-import com.tjoeunit.biz.flight.FlightVO;
 import com.tjoeunit.biz.lantrip.LanTripService;
 import com.tjoeunit.biz.lantrip.LanTripVO;
 

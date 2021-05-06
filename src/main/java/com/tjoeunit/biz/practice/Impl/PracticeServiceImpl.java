@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.tjoeunit.biz.practice.PracticeService;
 import com.tjoeunit.biz.practice.PracticeVO;
-import com.tjoeunit.biz.story.StoryVO;
 
 @Service
 public class PracticeServiceImpl implements PracticeService{
