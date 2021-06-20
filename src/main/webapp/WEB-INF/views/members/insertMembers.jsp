@@ -80,7 +80,7 @@
 						$('#certNumBtn').click(function(){
 							if (data == $('#certNum').val()) {
 								alert('휴대폰 인증 성공');
-								$('#certFlag').val('Y');
+								$('#certFlag').val('Y');															
 							} else {
 								alert('휴대폰 인증 실패');
 								$('#members_tel2').val('');
@@ -91,7 +91,7 @@
 					error : function(xhr, status, error) {
 						alert(status + ", " + error);
 					}
-				}); //ajax
+				});
 			}	
 		});
 		
@@ -621,7 +621,7 @@
 			<input type="hidden" name="members_tel" id="members_tel">
 			<input type="hidden" id="checkyn1" name="checkyn1" value="no">
 			<input type="hidden" id="checkyn2" name="checkyn2" value="no">
-			<input type="hidden" id="certFlag" value="N">
+			<input type="text" id="certFlag" value="N">
 			
 			<div class="join_info">아이디</div>
 			<div>
