@@ -1,6 +1,7 @@
 package com.tjoeunit.view.members;
 
 import java.util.List;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.tjoeunit.biz.flight.FlightVO;
+import com.tjoeunit.biz.certification.CertificationService;
 import com.tjoeunit.biz.members.MembersService;
 import com.tjoeunit.biz.members.MembersVO;
 import com.tjoeunit.biz.payment.PaymentService;
@@ -24,6 +25,7 @@ public class MembersController {
 
 	@Autowired private MembersService membersService;
 	@Autowired private PaymentService paymentService;
+	@Autowired private CertificationService certificationService;
 	
 	//관리자 : 회원수정 처리
 	@RequestMapping(value="/adminMembers/adminUpdateMembers.do", method=RequestMethod.POST)
@@ -158,6 +160,23 @@ public class MembersController {
 		System.out.println("cnt = "+cnt);
 		return cnt;
 	}
+	
+	//휴대폰 번호 인증 (Ajax)
+	@RequestMapping(value="/members/sendSMS.do")
+	@ResponseBody
+    public String sendSMS(String phoneNumber) {
+        Random random = new Random();
+        String certNum = "";
+        for(int i=0; i<4; i++) {
+            String randomNum = Integer.toString(random.nextInt(10));
+            certNum+=randomNum;
+        }
+
+        System.out.println("수신자 번호 : " + phoneNumber);
+        System.out.println("인증번호 : " + certNum);
+        certificationService.certifiedPhoneNumber(phoneNumber, certNum);
+        return certNum;
+    }
 	
 	//회원 로그인 페이지
 	@RequestMapping(value="/members/loginMembers.do", method=RequestMethod.GET)
