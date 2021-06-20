@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import com.tjoeunit.biz.activity.ActivityService;
 import com.tjoeunit.biz.activity.ActivityVO;
 import com.tjoeunit.biz.common.PagingVO;
-import com.tjoeunit.biz.activity.ActivityVO;
 
 @Service
 public class ActivityServiceImpl implements ActivityService {

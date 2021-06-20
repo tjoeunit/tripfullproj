@@ -3,7 +3,6 @@ package com.tjoeunit.biz.hotel;
 import java.util.List;
 
 import com.tjoeunit.biz.common.PagingVO;
-import com.tjoeunit.biz.flight.FlightVO;
 
 public interface HotelService {
 	

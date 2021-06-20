@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.tjoeunit.biz.members.MembersVO;
-import com.tjoeunit.biz.payment.PaymentVO;
 
 @Repository
 public class MembersDAO {
