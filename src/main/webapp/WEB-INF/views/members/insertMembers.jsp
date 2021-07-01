@@ -59,6 +59,42 @@
 			}
 		});
 		
+		//전화번호 인증
+		$('#sendTelNumBtn').click(function(){
+			var phoneNumber = $('#members_tel').val();
+			phoneNumber = phoneNumber.replace(/\-/g,''); //변경작업
+			
+			if(!numReg.test(phoneNumber) || phoneNumber.length != 11){
+				alert('전화번호를 확인하세요');
+				$('#members_tel2').focus();
+				
+			}else{
+				alert(phoneNumber + ' 인증번호를 전송합니다');
+			
+				$.ajax({
+					url : "<c:url value='/members/sendSMS.do' />",
+					type : "get",
+					data : "phoneNumber=" + phoneNumber,
+					dataType : "json",
+					success : function(data) {
+						$('#certNumBtn').click(function(){
+							if (data == $('#certNum').val()) {
+								alert('휴대폰 인증 성공');
+								$('#certFlag').val('Y');															
+							} else {
+								alert('휴대폰 인증 실패');
+								$('#members_tel2').val('');
+								$('#members_tel3').val('');							
+							}
+						});
+					},
+					error : function(xhr, status, error) {
+						alert(status + ", " + error);
+					}
+				});
+			}	
+		});
+		
 		//이메일 정규식
 		var emailReg = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
 		
@@ -119,6 +155,8 @@
 			}
 		});
 		
+		
+		
 		$('form[name=frm]').submit(function() {
 			if ($('#members_id').val().length < 6) {
 				alert('아이디를 확인하세요');
@@ -167,7 +205,13 @@
 				$('#members_tel3').focus();
 				event.preventDefault();
 				return false;		
-				
+			
+			} else if ($('#certFlag').val() != 'Y') {
+				alert('휴대폰 인증을 확인하세요');
+				$('#members_tel2').focus();
+				event.preventDefault();
+				return false;
+			
 			} else if ($('#members_email').val().length < 1) {
 				alert('이메일을 확인하세요');
 				$('#members_email').focus();
@@ -577,6 +621,7 @@
 			<input type="hidden" name="members_tel" id="members_tel">
 			<input type="hidden" id="checkyn1" name="checkyn1" value="no">
 			<input type="hidden" id="checkyn2" name="checkyn2" value="no">
+			<input type="text" id="certFlag" value="N">
 			
 			<div class="join_info">아이디</div>
 			<div>
@@ -617,6 +662,19 @@
 				<input type="text" name="members_tel3" id="members_tel3" class="input_tel" maxlength="4">
 			</div>
 			<div id="chkTel" class="join_warning"></div>
+			
+			<!-- 전화번호 보내기 버튼 -->			 
+			<div>
+				<input type="button" id="sendTelNumBtn" value="인증하기">
+			</div>			
+			<!-- 인증번호 입력 공간 -->
+			<div>
+				<input type="text" id="certNum">
+			</div>
+			<!-- 인증하기 버튼  -->
+			<div>
+				<input type="button" id="certNumBtn" value="인증완료">
+			</div>
 			
 			<div class="join_info">이메일</div>
 			<div>
