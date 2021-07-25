@@ -20,7 +20,6 @@
 		});
 	});
 </script>
-
 <style type="text/css">
 	
 	.post_box {
@@ -149,8 +148,71 @@
 		<hr>
 		
 		<div class="post_content">${story.story_content}</div>
+		
+		<!-- KAKAO MAP API TEST -->		
+		<div id="map" style="width:500px;height:400px;"></div>
+		<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5ce4ab475875bc2febf74e12c93fbe08"></script>		
+		<script>
+			//방법1			
+			// 기본 - 아이디
+			var container = document.getElementById('map');
+			// 기본 - 중심좌표
+			var options = {
+				center: new kakao.maps.LatLng(33.450701, 126.570667), // 위도 경도
+				level: 3
+			};
+			// 기본 - 생성
+			var map = new kakao.maps.Map(container, options);
+			
+			// 마커 - 위치 
+			var markerPosition  = new kakao.maps.LatLng(33.450701, 126.570667); // 위도 경도
+			// 마커 - 생성
+			var marker = new kakao.maps.Marker({
+			    position: markerPosition
+			});
+			// 마커 - 표시
+			marker.setMap(map);		
+			
+			// 인포윈도우 - 내용
+			var iwContent = '<div style="width:100%; height:100%; padding:5px;">카카오 스페이스 닷원</div>';
+			// 인포윈도우 - 위치
+			var iwPosition = new kakao.maps.LatLng(33.450701, 126.570667); // 위도 경도
+			// 인포윈도우 - 생성
+			var infowindow = new kakao.maps.InfoWindow({
+			    position : iwPosition, 
+			    content : iwContent 
+			});			  
+			// 인포윈도우 - 표시 (두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시)
+			infowindow.open(map, marker);			
+			
+			//방법2
+			/*
+			// 이미지 지도에 표시할 마커입니다
+			// 이미지 지도에 표시할 마커를 아래와 같이 배열로 넣어주면 여러개의 마커를 표시할 수 있습니다 
+			var markers = [
+			    {
+			        position: new kakao.maps.LatLng(33.450701, 126.570667),
+			    	text: '텍스트'
+			    },
+			    {
+			        position: new kakao.maps.LatLng(33.450001, 126.570467), 
+			        text: '텍스트' // text 옵션을 설정하면 마커 위에 텍스트를 함께 표시할 수 있습니다     
+			    }
+			];
 
-<!-- c:if를 통해 로그인 한 경우에만 보이도록 설정 -->
+			var staticMapContainer  = document.getElementById('map'), // 이미지 지도를 표시할 div  
+			    staticMapOption = { 
+			        center: new kakao.maps.LatLng(33.450701, 126.570667), // 이미지 지도의 중심좌표
+			        level: 3, // 이미지 지도의 확대 레벨
+			        marker: markers // 이미지 지도에 표시할 마커 
+			    };    
+
+			// 이미지 지도를 생성합니다
+			var staticMap = new kakao.maps.StaticMap(staticMapContainer, staticMapOption);
+			*/			
+		</script>		
+		
+		<!-- c:if를 통해 로그인 한 경우에만 보이도록 설정 -->
 		<c:if test="${members_id != null}">
 			<div class="update_delete" >
 				<a class="update_delete_botton" id= "story_modify_a" href="updateStoryPage.do?story_no=${story.story_no}">수정하기</a>
@@ -160,7 +222,7 @@
 			
 			<hr>
 
-<!-- 댓글 쓰기 -->
+			<!-- 댓글 쓰기 -->
 			<div class="post_reply_box">
 				<form action="replyWrite.do" name="replyForm" method="post">
 					<span class="post_reply_writer">${ members_id }</span>
