@@ -102,7 +102,7 @@
 				  </div>
 			  </a>
 		</div>
-		
+
 		<div>
 			<a href="<c:url value='/story/getStoryList.do'/>">
 				<img src="<c:url value='/img/story01.jpg'/>" style="width:1200px">
